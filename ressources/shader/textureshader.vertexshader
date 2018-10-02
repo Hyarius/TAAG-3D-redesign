@@ -1,0 +1,13 @@
+#version 330 core
+
+in vec3 vertexPosition_modelspace;
+in vec2 vertexUV;
+
+out vec2 UV;
+
+void main()
+{
+	gl_Position.xyz = vertexPosition_modelspace;
+
+	UV = vertexUV;
+}

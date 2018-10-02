@@ -1,0 +1,2 @@
+tileset 		:ressources/assets/charset/pawn_red.png
+size tile		:4:4

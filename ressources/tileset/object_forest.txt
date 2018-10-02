@@ -1,0 +1,2 @@
+tileset 		:ressources/assets/object/object_forest.png
+size tile		:4:4

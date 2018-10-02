@@ -1,0 +1,5 @@
+name			:Banner
+tileset 		:ressources/tileset/object_forest.txt
+sprite_pos 		:3:1
+sprite_size		:1:2
+10:0:0:0:0:2:0:1

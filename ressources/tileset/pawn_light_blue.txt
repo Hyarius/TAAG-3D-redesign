@@ -1,0 +1,2 @@
+tileset 		:ressources/assets/charset/pawn_light_blue.png
+size tile		:4:4

@@ -1,0 +1,13 @@
+name			:Golf
+tileset 		:ressources/tileset/pawn_yellow.txt
+sprite_pos 		:0:0
+sprite_size		:1:1
+55:8:6:130:9:2:3:1
+NULL
+NULL
+NULL
+NULL
+ressources/spell/recover.txt
+ressources/spell/strike.txt
+NULL
+NULL

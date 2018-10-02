@@ -1,0 +1,2 @@
+image		:ressources/assets/texture/texture-domolia.png
+size		:9:10

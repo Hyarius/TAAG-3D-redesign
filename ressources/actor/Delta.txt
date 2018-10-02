@@ -1,0 +1,13 @@
+name			:Delta
+tileset 		:ressources/tileset/pawn_green.txt
+sprite_pos 		:0:0
+sprite_size		:1:1
+61:8:2:62:0:2:5:2
+NULL
+NULL
+ressources/spell/frost_bite.txt
+NULL
+NULL
+ressources/spell/strike.txt
+NULL
+NULL

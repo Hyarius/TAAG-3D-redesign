@@ -1,0 +1,4 @@
+name			:Water
+tileset 		:ressources/tileset/texture_domolia.txt
+sprite_pos 		:4:0
+cost			:2

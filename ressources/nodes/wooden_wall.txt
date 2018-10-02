@@ -1,0 +1,4 @@
+name			:Wooden wall
+tileset 		:ressources/tileset/texture_domolia.txt
+sprite_pos 		:6:0
+cost			:1

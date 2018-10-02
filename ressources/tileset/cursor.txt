@@ -1,0 +1,2 @@
+image		:ressources/assets/interface/cursor.png
+size		:3:3

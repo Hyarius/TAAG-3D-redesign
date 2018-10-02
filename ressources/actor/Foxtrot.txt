@@ -1,0 +1,13 @@
+name			:Foxtrot
+tileset 		:ressources/tileset/pawn_red.txt
+sprite_pos 		:0:0
+sprite_size		:1:1
+100:5:3:100:3:8:1:9
+NULL
+ressources/spell/fireball.txt
+NULL
+ressources/spell/heal.txt
+NULL
+NULL
+NULL
+NULL

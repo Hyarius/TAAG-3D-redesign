@@ -1,0 +1,4 @@
+name			:Wall
+tileset 		:ressources/tileset/texture_domolia.txt
+sprite_pos 		:2:5
+cost			:1

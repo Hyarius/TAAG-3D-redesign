@@ -1,0 +1,5 @@
+name			:Ruined wall
+tileset 		:ressources/tileset/object_forest.txt
+sprite_pos 		:2:1
+sprite_size		:1:2
+15:0:0:0:0:5:0:5

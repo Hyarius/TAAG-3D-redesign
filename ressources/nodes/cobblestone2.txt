@@ -1,0 +1,4 @@
+name			:Cobblestone
+tileset 		:ressources/tileset/texture_domolia.txt
+sprite_pos 		:5:5
+cost			:1

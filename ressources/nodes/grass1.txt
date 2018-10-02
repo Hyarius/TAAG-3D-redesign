@@ -1,0 +1,4 @@
+name			:Grass
+tileset 		:ressources/tileset/texture_domolia.txt
+sprite_pos 		:0:0
+cost			:1

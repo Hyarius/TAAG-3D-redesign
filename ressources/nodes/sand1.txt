@@ -1,0 +1,4 @@
+name			:Sand
+tileset 		:ressources/tileset/texture_domolia.txt
+sprite_pos 		:3:0
+cost			:1

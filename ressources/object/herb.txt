@@ -1,0 +1,5 @@
+name			:Big bush
+tileset 		:ressources/tileset/object_forest.txt
+sprite_pos 		:3:2
+sprite_size		:1:1
+1:0:0:0:0:1:0:1
