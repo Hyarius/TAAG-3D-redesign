@@ -143,16 +143,16 @@ void			text_box::draw_self(int value)
 	if (this->text.size() != 0)
 	{
 		if (this->text_size != -1)
-			draw_buffer_sized_text(this->text, t_vect(this->coord.x + border_size, this->coord.y + this->size.y / 2 - (FONT_SIZE + this->text_size) / 2), this->text_size, NORMAL, this->text_color);
+			draw_lined_buffer_sized_text(this->text, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, this->text_color);
 		else
-			draw_buffer_text(this->text, t_vect(this->coord.x + border_size, this->coord.y + this->size.y / 2 - (FONT_SIZE + this->text_size) / 2), NORMAL, this->text_color);
+			draw_lined_buffer_text(this->text, this->coord + t_vect(border_size * 2, this->size.y / 2), NORMAL, this->text_color);
 	}
 	else
 	{
 		if (this->text_size != -1)
-			draw_buffer_sized_text(this->description, t_vect(this->coord.x + border_size, this->coord.y + this->size.y / 2 - (FONT_SIZE + this->text_size) / 2), this->text_size, NORMAL, GREY);
+			draw_lined_buffer_sized_text(this->description, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, GREY);
 		else
-			draw_buffer_text(this->description, t_vect(this->coord.x + border_size, this->coord.y + this->size.y / 2 - (FONT_SIZE + this->text_size) / 2), NORMAL, GREY);
+			draw_lined_buffer_text(this->description, this->coord + t_vect(border_size * 2, this->size.y / 2), NORMAL, GREY);
 	}
 }
 

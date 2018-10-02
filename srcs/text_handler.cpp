@@ -31,7 +31,7 @@ SDL_Surface			*get_char(int size, int style, int p_color, char c)
 	if (char_list[size][style][p_color][c] == NULL)
 	{
 		if (font_list.find(size) == font_list.end())
-			font_list[size] = TTF_OpenFont(FONT_PATH, FONT_SIZE + size);
+			font_list[size] = TTF_OpenFont(FONT_PATH, size);
 		text = c + '\0';
 		char_list[size][style][p_color][c] = TTF_RenderText_Blended(font_list[size], text.c_str(), get_color(p_color));
 	}

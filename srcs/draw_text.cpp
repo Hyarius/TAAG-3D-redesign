@@ -152,3 +152,17 @@ int				draw_centred_buffer_sized_text(string text, t_vect coord, int size, int t
 	int y = get_char(size, typo, color_type, '0')->h;
 	return (draw_buffer_sized_text(text, t_vect(coord.x - x / 2, coord.y - y / 2), size, typo, color_type));
 }
+
+int				draw_lined_buffer_text(string text, t_vect coord, int typo, int color_type)
+{
+	int x = calc_buffer_sized_text_len(text, 1, typo, color_type);
+	int y = get_char(1, typo, color_type, '0')->h;
+	return (draw_buffer_sized_text(text, coord + t_vect(0, (-y / 2)), 1, typo, color_type));
+}
+
+int				draw_lined_buffer_sized_text(string text, t_vect coord, int size, int typo, int color_type)
+{
+	int x = calc_buffer_sized_text_len(text, size, typo, color_type);
+	int y = get_char(size, typo, color_type, '0')->h;
+	return (draw_buffer_sized_text(text, coord + t_vect(0, (-y / 2)), size, typo, color_type));
+}

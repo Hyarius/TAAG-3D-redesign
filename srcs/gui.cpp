@@ -10,6 +10,7 @@ void					gui::draw_self()
 	this->draw_image();
 	this->draw_text_button();
 	this->draw_text_box();
+	this->draw_iterator_box();
 }
 
 void					gui::draw_image()
@@ -35,7 +36,7 @@ void					gui::draw_text_button()
 		i++;
 	}
 }
-
+ 
 void					gui::draw_text_box()
 {
 	size_t i;
@@ -44,6 +45,18 @@ void					gui::draw_text_box()
 	while (i < this->list_text_box.size())
 	{
 		this->list_text_box[i].draw_self((this->selected_text_box != &(this->list_text_box[i]) ? 1 : 0));
+		i++;
+	}
+}
+
+void					gui::draw_iterator_box()
+{
+	size_t i;
+
+	i = 0;
+	while (i < this->list_iterator_box.size())
+	{
+		this->list_iterator_box[i].draw_self();
 		i++;
 	}
 }
@@ -78,6 +91,36 @@ void					gui::test_box_click()
 	}
 }
 
+void					gui::test_iterator_click_minus()
+{
+	size_t i;
+	t_vect mouse;
+
+	i = 0;
+	mouse = get_mouse_coord();
+	while (i < this->list_iterator_box.size())
+	{
+		if (this->list_iterator_box[i].click_minus(mouse) == true)
+			this->list_iterator_box[i].add_value(-1);
+		i++;
+	}
+}
+
+void					gui::test_iterator_click_plus()
+{
+	size_t i;
+	t_vect mouse;
+
+	i = 0;
+	mouse = get_mouse_coord();
+	while (i < this->list_iterator_box.size())
+	{
+		if (this->list_iterator_box[i].click_plus(mouse) == true)
+			this->list_iterator_box[i].add_value(1);
+		i++;
+	}
+}
+
 void					gui::test_click()
 {
 	this->test_button_click();
@@ -97,6 +140,11 @@ void					gui::add_text_box(text_box new_button)
 void					gui::add_image(image new_image)
 {
 	this->list_image.push_back(new_image);
+}
+
+void					gui::add_iterator_box(iterator_box new_iterator_box)
+{
+	this->list_iterator_box.push_back(new_iterator_box);
 }
 
 t_vect		gui::get_win_unit()

@@ -70,6 +70,8 @@ int				draw_centred_buffer_text(string text, t_vect coord, int typo, int color_t
 int				draw_buffer_sized_text(string text, t_vect coord, int size, int typo, int color_type);
 int				calc_buffer_sized_text_len(string text, int size, int typo, int color_type);
 int				draw_centred_buffer_sized_text(string text, t_vect coord, int size, int typo, int color_type);
+int				draw_lined_buffer_text(string text, t_vect coord, int typo, int color_type);
+int				draw_lined_buffer_sized_text(string text, t_vect coord, int size, int typo, int color_type);
 
 //		Draw triangle
 void			draw_triangle_texture(t_triangle surface);

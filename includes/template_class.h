@@ -109,17 +109,21 @@ public:
 class iterator_box
 {
 private:
-	vector<image>	image_list;
 	int				*value;
 	string			text;
-	t_vect			coord[4];
+	int				text_size;
+	t_vect			coord[5];
 	t_vect			size[4];
 	t_color			color_front;
 	t_color			color_back;
 public:
 	iterator_box();
-	iterator_box(string text, int *value, vector<image> image_list, t_vect coord_text, t_vect coord, t_vect size, t_vect space, t_color color);
-	iterator_box(string text, int *value, vector<image> image_list, t_vect coord_text, t_vect coord, t_vect size, t_vect space, t_color color, t_color color2);
+	iterator_box(string text, int *value, t_vect p_coord, t_vect p_size, t_color color, t_color color2);
+	string			get_text();
+	void			add_value(double modif);
+	void			draw_self();
+	bool			click_minus(t_vect mouse);
+	bool			click_plus(t_vect mouse);
 };
 
 class gui
@@ -128,6 +132,7 @@ private:
 	t_vect					win_unit;
 	vector<text_button>		list_text_button;
 	vector<text_box>		list_text_box;
+	vector<iterator_box>	list_iterator_box;
 	vector<image>			list_image;
 	text_box				*selected_text_box;
 public:
@@ -136,12 +141,20 @@ public:
 	void					draw_image();
 	void					draw_text_button();
 	void					draw_text_box();
+	void					draw_iterator_box();
+
 	void					test_button_click();
 	void					test_box_click();
+	void					test_iterator_click_minus();
+	void					test_iterator_click_plus();
+
 	void					test_click();
+
 	void					add_text_button(text_button new_button);
 	void					add_text_box(text_box new_text);
 	void					add_image(image new_image);
+	void					add_iterator_box(iterator_box new_iterator_box);
+
 	t_vect					get_win_unit();
 	text_box				*get_selected_text_box();
 };
