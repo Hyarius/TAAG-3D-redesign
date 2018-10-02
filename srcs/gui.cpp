@@ -3,6 +3,7 @@
 gui::gui()
 {
 	this->win_unit = t_vect(get_win_size().x / 15, get_win_size().y / 10);
+	this->selected_text_box = NULL;
 }
 
 void					gui::draw_self()
@@ -36,7 +37,7 @@ void					gui::draw_text_button()
 		i++;
 	}
 }
- 
+
 void					gui::draw_text_box()
 {
 	size_t i;
@@ -147,12 +148,17 @@ void					gui::add_iterator_box(iterator_box new_iterator_box)
 	this->list_iterator_box.push_back(new_iterator_box);
 }
 
-t_vect		gui::get_win_unit()
+t_vect					gui::get_win_unit()
 {
 	return (this->win_unit);
 }
 
-text_box	*gui::get_selected_text_box()
+text_box				*gui::get_selected_text_box()
 {
 	return (this->selected_text_box);
+}
+
+void					gui::set_selected_text_box(text_box *new_text)
+{
+	this->selected_text_box = new_text;
 }

@@ -157,6 +157,7 @@ public:
 
 	t_vect					get_win_unit();
 	text_box				*get_selected_text_box();
+	void					set_selected_text_box(text_box *new_text);
 };
 
 #endif
