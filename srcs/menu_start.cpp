@@ -1,30 +1,5 @@
 #include "taag.h"
 
-void		play()
-{
-	printf("Enter play mode\n");
-}
-
-void		menu_spell_editor()
-{
-	printf("Enter spell editor\n");
-}
-
-void		menu_map_editor()
-{
-	printf("Enter map editor\n");
-}
-
-void		menu_shop()
-{
-	printf("Enter shop\n");
-}
-
-void		menu_option()
-{
-	printf("Enter option menu\n");
-}
-
 void		menu_start()
 {
 	SDL_Event	event;
