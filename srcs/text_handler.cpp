@@ -8,25 +8,25 @@ SDL_Surface			*get_char(int size, int style, int p_color, char c)
 {
 	string text;
 
-	if (char_list.size() <= size)
+	if (char_list.size() <= (size_t)size)
 	{
 		char_list.resize(size + 1);
 		char_list[size].resize(style + 1);
 		char_list[size][style].resize(p_color + 1);
 		char_list[size][style][p_color].resize(c + 1);
 	}
-	else if (char_list[size].size() <= style)
+	else if (char_list[size].size() <= (size_t)style)
 	{
 		char_list[size].resize(style + 1);
 		char_list[size][style].resize(p_color + 1);
 		char_list[size][style][p_color].resize(c + 1);
 	}
-	else if (char_list[size][style].size() <= p_color)
+	else if (char_list[size][style].size() <= (size_t)p_color)
 	{
 		char_list[size][style].resize(p_color + 1);
 		char_list[size][style][p_color].resize(c + 1);
 	}
-	else if (char_list[size][style][p_color].size() <= c)
+	else if (char_list[size][style][p_color].size() <= (size_t)c)
 		char_list[size][style][p_color].resize(c + 1);
 	if (char_list[size][style][p_color][c] == NULL)
 	{

@@ -1,7 +1,13 @@
 #ifndef INCLUDE_H
 # define INCLUDE_H
 
-# include <io.h>
+
+#ifdef __APPLE__
+#	include <stdlib.h>
+#elif defined _WIN32
+#	include <io.h>
+#endif
+
 # include <stdio.h>
 # include <iostream>
 # include <fstream>
@@ -16,10 +22,19 @@
 # include <sstream>
 
 # include <SDL.h>
-# include <glew.h>
-# include <SDL_opengl.h>
+
+#ifdef __APPLE__
+#	include <OpenGL/gl3.h>
+#	include <OpenGL/gl3ext.h>
+#elif defined _WIN32
+#	include <glew.h>
+#	include <SDL_opengl.h>
+#endif
+
 # include <SDL_image.h>
 # include <SDL_ttf.h>
 # include <SDL_mixer.h>
+
+
 
 #endif

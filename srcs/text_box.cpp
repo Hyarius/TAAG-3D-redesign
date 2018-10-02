@@ -2,7 +2,7 @@
 
 				text_box::text_box()
 {
-	
+
 }
 
 bool			text_box::click(t_vect mouse)
@@ -13,7 +13,7 @@ bool			text_box::click(t_vect mouse)
 }
 
 				text_box::text_box(string description, int text_color, t_vect coord, t_vect size, t_color color)
-{		
+{
 	this->text = "";
 	this->description = description;
 	this->text_color = text_color;
@@ -66,7 +66,7 @@ bool			text_box::click(t_vect mouse)
 	this->text = text;
 	this->description = description;
 	this->text_color = text_color;
-	this->text_size = text_size;
+	this->text_size = -1;
 	this->coord = coord;
 	this->size = size;
 	this->color_front = color;
@@ -78,7 +78,7 @@ bool			text_box::click(t_vect mouse)
 	this->text = text;
 	this->description = description;
 	this->text_color = text_color;
-	this->text_size = text_size;
+	this->text_size = -1;
 	this->coord = coord;
 	this->size = size;
 	this->color_front = color;
@@ -99,7 +99,7 @@ bool			text_box::click(t_vect mouse)
 
 				text_box::text_box(string description, string text, int text_color, int text_size, t_vect coord, t_vect size, t_color color, t_color color2)
 {
-	this->text = "";
+	this->text = text;
 	this->description = description;
 	this->text_color = text_color;
 	this->text_size = text_size;
@@ -173,8 +173,6 @@ void			text_box::set_text(string new_text)
 
 void			text_box::add_text(string new_text)
 {
-	if (this == NULL)
-		return;
 	int i = 8;
 	int border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
 

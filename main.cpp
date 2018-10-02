@@ -1,8 +1,11 @@
-#include "taag.h"
+ #include "taag.h"
 
 int main(int argc, char **argv)
 {
-	window_initialisation("window_name");
+	if (argc != 1)
+		return (1);
+
+	window_initialisation(argv[0]);
 
 	menu_start();
 

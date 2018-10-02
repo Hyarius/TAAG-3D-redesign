@@ -8,11 +8,11 @@ vector<string>        strsplit(string input, const string c)
     char	*word;
 
     line = (char *)(input.c_str());
-    word = strtok_s(line, c.c_str(), &context);
+    word = strtok_r(line, c.c_str(), &context);
     while(word != NULL)
     {
         tab.push_back(word);
-        word = strtok_s(NULL, c.c_str(), &context);
+        word = strtok_r(NULL, c.c_str(), &context);
     }
     return tab;
 }
@@ -46,11 +46,11 @@ vector<string>			get_strsplit(ifstream *myfile, const string c, int size)
 		return (tab);
 	}
 	saved_line = line;
-    word = strtok_s((char *)(line.c_str()), c.c_str(), &context);
+    word = strtok_r((char *)(line.c_str()), c.c_str(), &context);
     while(word != NULL)
     {
         tab.push_back(word);
-        word = strtok_s(NULL, c.c_str(), &context);
+        word = strtok_r(NULL, c.c_str(), &context);
     }
 	if ((int)(tab.size()) != size)
 		error_exit("Bad splited line (" + saved_line + ")!", 134);

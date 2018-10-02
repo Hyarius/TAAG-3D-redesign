@@ -51,7 +51,7 @@ void		menu_start()
 
 		if (SDL_PollEvent(&(event)) == 1)
 		{
-			if (event.type == SDL_QUIT || event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE)
+			if (event.type == SDL_QUIT || (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE))
 				menu_quit();
 			if (event.type == SDL_MOUSEBUTTONUP)
 				menu.test_click();
