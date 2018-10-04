@@ -62,8 +62,12 @@ void			text_button::draw_self()
 		draw_centred_buffer_text(this->text, t_vect(this->coord.x + this->size.x / 2, this->coord.y + this->size.y / 2), NORMAL, this->text_color);
 }
 
-void			text_button::click(t_vect mouse)
+bool			text_button::click(t_vect mouse)
 {
 	if (mouse.x > this->coord.x && mouse.x < this->coord.x + this->size.x && mouse.y > this->coord.y && mouse.y < this->coord.y + this->size.y)
+	{
 		this->funct();
+		return (true);
+	}
+	return (false);
 }

@@ -72,7 +72,7 @@ public:
 					text_button(string text, int text_color, int text_size, t_vect coord, t_vect size, t_color color, void(&p_fonct)());
 					text_button(string text, int text_color, int text_size, t_vect coord, t_vect size, t_color color, t_color color2, void(&p_fonct)());
 	void			draw_self();
-	void			click(t_vect mouse);
+	bool			click(t_vect mouse);
 };
 
 class text_box
@@ -120,10 +120,24 @@ public:
 	iterator_box();
 	iterator_box(string text, int *value, t_vect p_coord, t_vect p_size, t_color color, t_color color2);
 	string			get_text();
-	void			add_value(double modif);
+	void			add_value(int modif);
 	void			draw_self();
 	bool			click_minus(t_vect mouse);
 	bool			click_plus(t_vect mouse);
+};
+
+class list_box
+{
+private:
+	string			text;
+	t_vect			coord;
+	t_vect			size;
+	t_color			color_front;
+	t_color			color_back;
+public:
+	list_box();
+	list_box(string text, t_vect p_coord, t_vect p_size, t_color color, t_color color2);
+	void			draw_self();
 };
 
 class gui

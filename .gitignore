@@ -1,2 +1,7 @@
 Makefile
 *.o
+*.vcxproj
+*.filters
+*.user
+Debug
+lib

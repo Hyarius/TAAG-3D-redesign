@@ -12,10 +12,46 @@ s_vect::s_vect(int p_x, int p_y)
 	this->y = p_y;
 }
 
+s_vect::s_vect(double p_x, double p_y)
+{
+	this->x = (int)p_x;
+	this->y = (int)p_y;
+}
+
+s_vect::s_vect(int p_x, double p_y)
+{
+	this->x = (int)p_x;
+	this->y = (int)p_y;
+}
+
+s_vect::s_vect(double p_x, int p_y)
+{
+	this->x = (int)p_x;
+	this->y = (int)p_y;
+}
+
 s_f_vect::s_f_vect()
 {
 	this->x = 0;
 	this->y = 0;
+}
+
+s_f_vect::s_f_vect(int p_x, int p_y)
+{
+	this->x = (double)p_x;
+	this->y = (double)p_y;
+}
+
+s_f_vect::s_f_vect(int p_x, double p_y)
+{
+	this->x = (double)p_x;
+	this->y = (double)p_y;
+}
+
+s_f_vect::s_f_vect(double p_x, int p_y)
+{
+	this->x = (double)p_x;
+	this->y = (double)p_y;
 }
 
 s_f_vect::s_f_vect(double p_x, double p_y)

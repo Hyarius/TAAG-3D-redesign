@@ -8,7 +8,7 @@ void		menu_start()
 	gui			menu;
 
 	menu.add_image(image("ressources/assets/interface/menu_start.png", t_vect(0, 0), get_win_size()));
-	menu.add_text_button(text_button("Play", BLACK, menu.get_win_unit().x / 2.5, menu.get_win_unit() * t_vect(10, 1), menu.get_win_unit() * t_vect(4, 1), t_color(0.6, 0.6, 0.6), t_color(0.4, 0.4, 0.4), play));
+	menu.add_text_button(text_button("Play", BLACK, (int)(menu.get_win_unit().x / 2.5), menu.get_win_unit() * t_vect(10, 1), menu.get_win_unit() * t_vect(4, 1), t_color(0.6, 0.6, 0.6), t_color(0.4, 0.4, 0.4), play));
 	menu.add_text_button(text_button("Player editor", BLACK, menu.get_win_unit().x / 5, menu.get_win_unit() * t_f_vect(10, 2.5), menu.get_win_unit() * t_vect(4, 1), t_color(0.6, 0.6, 0.6), menu_player_editor));
 	menu.add_text_button(text_button("Spell editor", BLACK, menu.get_win_unit().x / 5, menu.get_win_unit() * t_f_vect(10, 4), menu.get_win_unit() * t_vect(4, 1), t_color(0.6, 0.6, 0.6), menu_spell_editor));
 	menu.add_text_button(text_button("Map editor", BLACK, menu.get_win_unit().x / 5, menu.get_win_unit() * t_f_vect(10, 5.5), menu.get_win_unit() * t_vect(4, 1), t_color(0.6, 0.6, 0.6), menu_map_editor));
