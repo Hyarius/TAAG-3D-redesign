@@ -12,99 +12,99 @@ bool			text_box::click(t_vect mouse)
 	return (false);
 }
 
-				text_box::text_box(string description, int text_color, t_vect coord, t_vect size, t_color color)
+				text_box::text_box(string description, int text_color, t_vect p_coord, t_vect p_size, t_color color)
 {
 	this->text = "";
 	this->description = description;
 	this->text_color = text_color;
 	this->text_size = -1;
-	this->coord = coord;
-	this->size = size;
+	this->coord = p_coord;
+	this->size = p_size;
 	this->color_front = color;
 	this->color_back = t_color(this->color_front.r + 0.2, this->color_front.g + 0.2, this->color_front.b + 0.2);
 }
 
-				text_box::text_box(string description, int text_color, t_vect coord, t_vect size, t_color color, t_color color2)
+				text_box::text_box(string description, int text_color, t_vect p_coord, t_vect p_size, t_color color, t_color color2)
 {
 	this->text = "";
 	this->description = description;
 	this->text_color = text_color;
 	this->text_size = -1;
-	this->coord = coord;
-	this->size = size;
+	this->coord = p_coord;
+	this->size = p_size;
 	this->color_front = color;
 	this->color_back = color2;
 }
 
-				text_box::text_box(string description, int text_color, int text_size, t_vect coord, t_vect size, t_color color)
+				text_box::text_box(string description, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color)
 {
 	this->text = "";
 	this->description = description;
 	this->text_color = text_color;
 	this->text_size = text_size;
-	this->coord = coord;
-	this->size = size;
+	this->coord = p_coord;
+	this->size = p_size;
 	this->color_front = color;
 	this->color_back = t_color(this->color_front.r + 0.2, this->color_front.g + 0.2, this->color_front.b + 0.2);
 }
 
-				text_box::text_box(string description, int text_color, int text_size, t_vect coord, t_vect size, t_color color, t_color color2)
+				text_box::text_box(string description, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color, t_color color2)
 {
 	this->text = "";
 	this->description = description;
 	this->text_color = text_color;
 	this->text_size = text_size;
-	this->coord = coord;
-	this->size = size;
+	this->coord = p_coord;
+	this->size = p_size;
 	this->color_front = color;
 	this->color_back = color2;
 }
 
 
-				text_box::text_box(string description, string text, int text_color, t_vect coord, t_vect size, t_color color)
+				text_box::text_box(string description, string text, int text_color, t_vect p_coord, t_vect p_size, t_color color)
 {
 	this->text = text;
 	this->description = description;
 	this->text_color = text_color;
 	this->text_size = -1;
-	this->coord = coord;
-	this->size = size;
+	this->coord = p_coord;
+	this->size = p_size;
 	this->color_front = color;
 	this->color_back = t_color(this->color_front.r + 0.2, this->color_front.g + 0.2, this->color_front.b + 0.2);
 }
 
-				text_box::text_box(string description, string text, int text_color, t_vect coord, t_vect size, t_color color, t_color color2)
+				text_box::text_box(string description, string text, int text_color, t_vect p_coord, t_vect p_size, t_color color, t_color color2)
 {
 	this->text = text;
 	this->description = description;
 	this->text_color = text_color;
 	this->text_size = -1;
-	this->coord = coord;
-	this->size = size;
+	this->coord = p_coord;
+	this->size = p_size;
 	this->color_front = color;
 	this->color_back = color2;
 }
 
-				text_box::text_box(string description, string text, int text_color, int text_size, t_vect coord, t_vect size, t_color color)
+				text_box::text_box(string description, string text, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color)
 {
 	this->text = text;
 	this->description = description;
 	this->text_color = text_color;
 	this->text_size = text_size;
-	this->coord = coord;
-	this->size = size;
+	this->coord = p_coord;
+	this->size = p_size;
 	this->color_front = color;
 	this->color_back = t_color(this->color_front.r + 0.2, this->color_front.g + 0.2, this->color_front.b + 0.2);
 }
 
-				text_box::text_box(string description, string text, int text_color, int text_size, t_vect coord, t_vect size, t_color color, t_color color2)
+				text_box::text_box(string description, string text, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color, t_color color2)
 {
 	this->text = text;
 	this->description = description;
 	this->text_color = text_color;
 	this->text_size = text_size;
-	this->coord = coord;
-	this->size = size;
+	this->coord = p_coord;
+	this->size = p_size;
 	this->color_front = color;
 	this->color_back = color2;
 }
@@ -118,16 +118,16 @@ void			text_box::draw_self()
 	if (this->text.size() != 0)
 	{
 		if (this->text_size != -1)
-			draw_buffer_sized_text(this->text, t_vect(this->coord.x + border_size, this->coord.y + this->size.y / 2 - (FONT_SIZE + this->text_size) / 2), this->text_size, NORMAL, this->text_color);
+			draw_lined_buffer_sized_text(this->text, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
 		else
-			draw_buffer_text(this->text, t_vect(this->coord.x + border_size, this->coord.y + this->size.y / 2 - (FONT_SIZE + this->text_size) / 2), NORMAL, this->text_color);
+			draw_lined_buffer_sized_text(this->text, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
 	}
 	else
 	{
 		if (this->text_size != -1)
-			draw_buffer_sized_text(this->description, t_vect(this->coord.x + border_size, this->coord.y + this->size.y / 2 - (FONT_SIZE + this->text_size) / 2), this->text_size, NORMAL, GREY);
+			draw_lined_buffer_sized_text(this->description, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
 		else
-			draw_buffer_text(this->description, t_vect(this->coord.x + border_size, this->coord.y + this->size.y / 2 - (FONT_SIZE + this->text_size) / 2), NORMAL, GREY);
+			draw_lined_buffer_sized_text(this->description, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
 	}
 }
 

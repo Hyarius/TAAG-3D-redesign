@@ -25,6 +25,9 @@ void		menu_player_editor()
 	menu.add_iterator_box(iterator_box("Body / Armor sprite :", &value, menu.get_win_unit() * t_f_vect(0.5, 7.6), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
 	menu.add_iterator_box(iterator_box("Weapon sprite :", &value, menu.get_win_unit() * t_f_vect(0.5, 8.3), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
 
+	menu.add_info_box(info_box("Weight of the test", DARK_GREY, menu.get_win_unit() * t_f_vect(6.5, 1), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2));
+	menu.add_list_box(list_box("Character name : ", " - Create a new char - ", menu.get_win_unit() * t_f_vect(6.5, 2), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+
 	while (quit == false)
 	{
 		prepare_screen(t_color(0.8, 0.8, 0.8));
