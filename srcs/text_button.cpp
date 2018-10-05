@@ -55,7 +55,7 @@ text_button::text_button(string text, int text_color, int text_size, t_vect p_co
 
 void			text_button::draw_self()
 {
-	draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back, BORDER);
+	draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back);
 	if (this->text_size != -1)
 		draw_centred_buffer_sized_text(this->text, t_vect(this->coord.x + this->size.x / 2, this->coord.y + this->size.y / 2), this->text_size, NORMAL, this->text_color);
 	else

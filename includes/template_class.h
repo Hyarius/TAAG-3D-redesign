@@ -159,9 +159,10 @@ private:
 	t_vect			size[2];
 	t_color			color_front;
 	t_color			color_back;
+	vector<string>	(*funct)(string, string);
 public:
 	list_box();
-	list_box(string p_text, string p_empty_line, t_vect p_coord, t_vect p_size, t_color color, t_color color2);
+	list_box(string p_text, string p_empty_line, t_vect p_coord, t_vect p_size, t_color color, t_color color2, vector<string>(&p_fonct)(string path, string extension));
 	string			click(t_vect mouse);
 	string			check_list(t_vect mouse);
 	void			draw_self();

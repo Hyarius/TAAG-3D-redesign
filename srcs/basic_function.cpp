@@ -41,17 +41,41 @@ t_vect				get_mouse_coord()
 	return(mouse);
 }
 
-int					return_zero()
+vector<string>        strsplit(string input, const string c)
 {
-	return (0);
+    vector<string> tab;
+	char	*line;
+	char	*context = NULL;
+    char	*word;
+
+    line = (char *)(input.c_str());
+    word = strtok_r(line, c.c_str(), &context);
+    while(word != NULL)
+    {
+        tab.push_back(word);
+        word = strtok_r(NULL, c.c_str(), &context);
+    }
+    return tab;
 }
 
-int					return_plus()
+vector<string>		list_files(string path, string extension)
 {
-	return (1);
-}
+	vector<string>	brut_files;
+	vector<string>	files;
+	string			line;
+	DIR				*dir = opendir(path.c_str());
+	char	*context = NULL;
 
-int					return_minus()
-{
-	return (-1);
+	size_t i = 2;
+	struct dirent *dirent_ptr;
+
+	while ((dirent_ptr = readdir(dir)) != NULL)
+        brut_files.push_back(dirent_ptr->d_name);
+	while (i < brut_files.size())
+	{
+		if (brut_files[i].find(extension) != string::npos)
+			files.push_back(strsplit(brut_files[i], extension)[0]);
+		i++;
+	}
+	return files;
 }

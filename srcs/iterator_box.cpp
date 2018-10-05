@@ -7,8 +7,6 @@ iterator_box::iterator_box()
 
 iterator_box::iterator_box(string text, int *value, int value_min, int value_max, int value_incre, t_vect p_coord, t_vect p_size, t_color color, t_color color2 )
 {
-	int border_size = p_size.x / BORDER < p_size.y / BORDER ? p_size.x / BORDER : p_size.y / BORDER;
-
 	this->value = value;
 
 	this->value_min = value_min;
@@ -17,14 +15,14 @@ iterator_box::iterator_box(string text, int *value, int value_min, int value_max
 	this->text = text;
 
 	int i = 1;
-	while (calc_buffer_sized_text_len(text, i + 1, NORMAL, BLACK) + border_size * 4 < p_size.x / 2 &&
+	while (calc_buffer_sized_text_len(text, i + 1, NORMAL, BLACK) + BORDER * 4 < p_size.x / 2 &&
 			get_char(i, NORMAL, BLACK, 'M')->h < p_size.y / 2)
 		i++;
 	this->text_size = i;
 	this->color_front = color;
 	this->color_back = color2;
 
-	this->coord[4] = p_coord + t_vect(border_size * 2, p_size.y / 2);
+	this->coord[4] = p_coord + t_vect(BORDER * 2, p_size.y / 2);
 	this->size[3] = t_vect(p_size.y, p_size.y);
 	this->size[2] = t_vect(p_size.y * 2 , p_size.y);
 	this->size[1] = t_vect(p_size.y, p_size.y);
@@ -45,7 +43,7 @@ void		iterator_box::draw_self()
 	int i = 0;
 	while (i < 4)
 	{
-		draw_border_rectangle(this->coord[i], this->size[i], this->color_front, this->color_back, BORDER);
+		draw_border_rectangle(this->coord[i], this->size[i], this->color_front, this->color_back);
 		i++;
 	}
 	draw_centred_buffer_sized_text("<", this->coord[1] + this->size[1] / 2, this->text_size, NORMAL, DARK_GREY);

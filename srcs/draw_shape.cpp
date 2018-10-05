@@ -104,7 +104,6 @@ void			draw_alpha_rectangle(t_vect coord, t_vect size, int color_type, int alpha
 
 	s = SDL_CreateRGBSurface(0, size.x, size.y, 32, rmask, gmask, bmask, amask);
 
-	printf("color = %d / %d / %d / %d\n", color.r, color.g, color.b, alpha);
 	SDL_FillRect(s, &rect, SDL_MapRGBA(s->format, color.r, color.g, color.b, alpha));
 
 	draw_image(s, coord, size);
@@ -143,36 +142,28 @@ void			draw_alpha_centred_rectangle(t_vect coord, t_vect size, int color_type, i
 
 }
 
-void			draw_border_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int i)
+void			draw_border_rectangle(t_vect coord, t_vect size, int color_type, int color_type2)
 {
-	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
-
 	draw_rectangle(coord, size, color_type);
-	draw_rectangle(t_vect(coord.x + (int)(border_size), coord.y + (int)(border_size)), t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color_type2);
+	draw_rectangle(t_vect(coord.x + BORDER, coord.y + BORDER), t_vect(size.x - BORDER * 2, size.y - BORDER * 2), color_type2);
 }
 
-void			draw_border_centred_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int i)
+void			draw_border_centred_rectangle(t_vect coord, t_vect size, int color_type, int color_type2)
 {
-	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
-
 	draw_centred_rectangle(coord, size, color_type);
-	draw_centred_rectangle(coord, t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color_type2);
+	draw_centred_rectangle(coord, t_vect(size.x - BORDER * 2, size.y - BORDER * 2), color_type2);
 }
 
-void			draw_alpha_border_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int i, int alpha)
+void			draw_alpha_border_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int alpha)
 {
-	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
-
 	draw_alpha_rectangle(coord, size, color_type, alpha);
-	draw_alpha_rectangle(t_vect(coord.x + (int)(border_size), coord.y + (int)(border_size)), t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color_type2, alpha);
+	draw_alpha_rectangle(t_vect(coord.x + BORDER, coord.y + BORDER), t_vect(size.x - BORDER * 2, size.y - BORDER * 2), color_type2, alpha);
 }
 
-void			draw_alpha_border_centred_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int i, int alpha)
+void			draw_alpha_border_centred_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int alpha)
 {
-	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
-
 	draw_alpha_centred_rectangle(coord, size, color_type, alpha);
-	draw_alpha_centred_rectangle(coord, t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color_type2, alpha);
+	draw_alpha_centred_rectangle(coord, t_vect(size.x - BORDER * 2, size.y - BORDER * 2), color_type2, alpha);
 }
 
 void			draw_rectangle(t_vect tl, t_vect tr, t_vect dl, t_vect dr, t_color color)
@@ -260,38 +251,26 @@ void			draw_alpha_centred_rectangle(t_vect coord, t_vect size, t_color color, in
 
 }
 
-void			draw_border_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int i)
+void			draw_border_rectangle(t_vect coord, t_vect size, t_color color, t_color color2)
 {
-	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
-
-	//draw_rectangle(coord - t_vect(2, 2), size + t_vect(4, 4), t_color(0.0, 0.0, 0.0));
 	draw_rectangle(coord, size, color);
-	draw_rectangle(t_vect(coord.x + (int)(border_size), coord.y + (int)(border_size)), t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color2);
+	draw_rectangle(t_vect(coord.x + BORDER, coord.y + BORDER), t_vect(size.x - BORDER * 2, size.y - BORDER * 2), color2);
 }
 
-void			draw_border_centred_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int i)
+void			draw_border_centred_rectangle(t_vect coord, t_vect size, t_color color, t_color color2)
 {
-	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
-
-	//draw_centred_rectangle(coord, size + t_vect(4, 4), t_color(0.0, 0.0, 0.0));
 	draw_centred_rectangle(coord, size, color);
-	draw_centred_rectangle(coord, t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color2);
+	draw_centred_rectangle(coord, t_vect(size.x - BORDER * 2, size.y - BORDER * 2), color2);
 }
 
-void			draw_alpha_border_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int i, int alpha)
+void			draw_alpha_border_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int alpha)
 {
-	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
-
-	//draw_alpha_rectangle(coord - t_vect(2, 2), size + t_vect(4, 4), t_color(0.0, 0.0, 0.0), alpha);
 	draw_alpha_rectangle(coord, size, color, alpha);
-	draw_alpha_rectangle(t_vect(coord.x + (int)(border_size), coord.y + (int)(border_size)), t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color2, alpha);
+	draw_alpha_rectangle(t_vect(coord.x + BORDER, coord.y + BORDER), t_vect(size.x - BORDER * 2, size.y - BORDER * 2), color2, alpha);
 }
 
-void			draw_alpha_border_centred_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int i, int alpha)
+void			draw_alpha_border_centred_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int alpha)
 {
-	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
-
-	//draw_alpha_centred_rectangle(coord, size + t_vect(4, 4), t_color(0.0, 0.0, 0.0), alpha);
 	draw_alpha_centred_rectangle(coord, size, color, alpha);
-	draw_alpha_centred_rectangle(coord, t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color2, alpha);
+	draw_alpha_centred_rectangle(coord, t_vect(size.x - BORDER * 2, size.y - BORDER * 2), color2, alpha);
 }

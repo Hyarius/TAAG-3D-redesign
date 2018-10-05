@@ -16,6 +16,7 @@
 # include <map>
 
 # include <string.h>
+# include <dirent.h>
 # include <vector>
 # include <math.h>
 # include <iomanip>

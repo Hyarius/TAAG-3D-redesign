@@ -1,22 +1,5 @@
 #include "template.h"
 
-vector<string>        strsplit(string input, const string c)
-{
-    vector<string> tab;
-	char	*line;
-	char	*context = NULL;
-    char	*word;
-
-    line = (char *)(input.c_str());
-    word = strtok_r(line, c.c_str(), &context);
-    while(word != NULL)
-    {
-        tab.push_back(word);
-        word = strtok_r(NULL, c.c_str(), &context);
-    }
-    return tab;
-}
-
 string					get_str(ifstream *myfile)
 {
     string line;

@@ -14,9 +14,7 @@ void				error_exit(string msg, int error);
 void				set_sdl_rect(SDL_Rect *rect, int x, int y, int w, int h);
 void				get_leaks(string msg);
 t_vect				get_mouse_coord();
-int					return_zero();
-int					return_plus();
-int					return_minus();
+vector<string>		list_files(string path, string extension);
 
 //		Color handler
 void				set_color_tab(void);
@@ -45,19 +43,19 @@ void			draw_rectangle(t_vect coord, t_vect size, int color_type);
 void			draw_centred_rectangle(t_vect coord, t_vect size, int color_type);
 void			draw_alpha_rectangle(t_vect coord, t_vect size, int color_type, int alpha);
 void			draw_alpha_centred_rectangle(t_vect coord, t_vect size, int color_type, int alpha);
-void			draw_border_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int i);
-void			draw_border_centred_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int i);
-void			draw_alpha_border_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int i, int alpha);
-void			draw_alpha_border_centred_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int i, int alpha);
+void			draw_border_rectangle(t_vect coord, t_vect size, int color_type, int color_type2);
+void			draw_border_centred_rectangle(t_vect coord, t_vect size, int color_type, int color_type2);
+void			draw_alpha_border_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int alpha);
+void			draw_alpha_border_centred_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int alpha);
 void			draw_rectangle(t_vect tl, t_vect tr, t_vect dl, t_vect dr, double *color);
 void			draw_rectangle(t_vect coord, t_vect size, t_color color);
 void			draw_centred_rectangle(t_vect coord, t_vect size, t_color color);
 void			draw_alpha_rectangle(t_vect coord, t_vect size, t_color color, int alpha);
 void			draw_alpha_centred_rectangle(t_vect coord, t_vect size, t_color color, int alpha);
-void			draw_border_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int i);
-void			draw_border_centred_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int i);
-void			draw_alpha_border_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int i, int alpha);
-void			draw_alpha_border_centred_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int i, int alpha);
+void			draw_border_rectangle(t_vect coord, t_vect size, t_color color, t_color color2);
+void			draw_border_centred_rectangle(t_vect coord, t_vect size, t_color color, t_color color2);
+void			draw_alpha_border_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int alpha);
+void			draw_alpha_border_centred_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int alpha);
 
 //		Draw text
 int				draw_text(string text, t_vect coord, int typo, int color_type, TTF_Font *font);

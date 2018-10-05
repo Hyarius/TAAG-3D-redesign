@@ -111,46 +111,42 @@ bool			text_box::click(t_vect mouse)
 
 void			text_box::draw_self()
 {
-	int border_size = size.x / BORDER < size.y / BORDER ? size.x / BORDER : size.y / BORDER;
-
-	draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back, BORDER);
+	draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back);
 	if (this->text.size() != 0)
 	{
 		if (this->text_size != -1)
-			draw_lined_buffer_sized_text(this->text, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
+			draw_lined_buffer_sized_text(this->text, this->coord + t_vect(BORDER * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
 		else
-			draw_lined_buffer_sized_text(this->text, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
+			draw_lined_buffer_sized_text(this->text, this->coord + t_vect(BORDER * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
 	}
 	else
 	{
 		if (this->text_size != -1)
-			draw_lined_buffer_sized_text(this->description, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
+			draw_lined_buffer_sized_text(this->description, this->coord + t_vect(BORDER * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
 		else
-			draw_lined_buffer_sized_text(this->description, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
+			draw_lined_buffer_sized_text(this->description, this->coord + t_vect(BORDER * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
 	}
 }
 
 void			text_box::draw_self(int value)
 {
-	int border_size = size.x / BORDER < size.y / BORDER ? size.x / BORDER : size.y / BORDER;
-
 	if (value == 0)
-		draw_border_rectangle(this->coord, this->size, this->color_front, t_color(1.0, 0.9, 0.7), BORDER);
+		draw_border_rectangle(this->coord, this->size, this->color_front, t_color(1.0, 0.9, 0.7));
 	else
-		draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back, BORDER);
+		draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back);
 	if (this->text.size() != 0)
 	{
 		if (this->text_size != -1)
-			draw_lined_buffer_sized_text(this->text, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, this->text_color);
+			draw_lined_buffer_sized_text(this->text, this->coord + t_vect(BORDER * 2, this->size.y / 2), this->text_size, NORMAL, this->text_color);
 		else
-			draw_lined_buffer_text(this->text, this->coord + t_vect(border_size * 2, this->size.y / 2), NORMAL, this->text_color);
+			draw_lined_buffer_text(this->text, this->coord + t_vect(BORDER * 2, this->size.y / 2), NORMAL, this->text_color);
 	}
 	else
 	{
 		if (this->text_size != -1)
-			draw_lined_buffer_sized_text(this->description, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, GREY);
+			draw_lined_buffer_sized_text(this->description, this->coord + t_vect(BORDER * 2, this->size.y / 2), this->text_size, NORMAL, GREY);
 		else
-			draw_lined_buffer_text(this->description, this->coord + t_vect(border_size * 2, this->size.y / 2), NORMAL, GREY);
+			draw_lined_buffer_text(this->description, this->coord + t_vect(BORDER * 2, this->size.y / 2), NORMAL, GREY);
 	}
 }
 
@@ -171,11 +167,8 @@ void			text_box::set_text(string new_text)
 
 void			text_box::add_text(string new_text)
 {
-	int i = 8;
-	int border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
-
 	if (this->text_size != -1)
-		if (calc_buffer_sized_text_len(this->text + new_text, this->text_size, NORMAL, this->text_color) <= this->size.x - border_size * 2)
+		if (calc_buffer_sized_text_len(this->text + new_text, this->text_size, NORMAL, this->text_color) <= this->size.x - BORDER * 2)
 			this->text += new_text;
 }
 
