@@ -13,8 +13,7 @@ list_box::list_box(string p_text, string p_empty_line, t_vect p_coord, t_vect p_
 	this->color_front = color;
 	this->color_back = color2;
 
-	int i = 8;
-	int border_size = p_size.x / i < p_size.y / i ? p_size.x / i : p_size.y / i;
+	int border_size = p_size.x / BORDER < p_size.y / BORDER ? p_size.x / BORDER : p_size.y / BORDER;
 
 	this->coord[0] = p_coord;
 	this->size[0] = t_vect(p_size.x / 2 - border_size, p_size.y);
@@ -33,16 +32,14 @@ list_box::list_box(string p_text, string p_empty_line, t_vect p_coord, t_vect p_
 
 void			list_box::draw_self()
 {
-	int i = 8;
-	int border_size = this->size[0].x / i < this->size[0].y / i ? this->size[0].x / i : this->size[0].y / i;
+	int border_size = this->size[0].x / BORDER < this->size[0].y / BORDER ? this->size[0].x / BORDER : this->size[0].y / BORDER;
 
-	draw_border_rectangle(this->coord[0], this->size[0], this->color_front, this->color_back, 8);
+	draw_border_rectangle(this->coord[0], this->size[0], this->color_front, this->color_back, BORDER);
 	draw_lined_buffer_sized_text(this->text, this->coord[0] + t_vect(border_size * 2, this->size[0].y / 2), this->text_size, NORMAL, DARK_GREY);
 
-	draw_border_rectangle(this->coord[1], this->size[1], this->color_front, this->color_back, 8);
+	draw_border_rectangle(this->coord[1], this->size[1], this->color_front, this->color_back, BORDER);
 	if (line_index != -1)
 	{
-
 		draw_centred_buffer_sized_text(this->list_string[line_index], this->coord[1] + this->size[1] / 2, this->line_size, NORMAL, DARK_GREY);
 	}
 

@@ -25,9 +25,8 @@
 
 void			info_box::draw_self()
 {
-	int i = 8;
-	int border_size = this->size.x / i < this->size.y / i ? this->size.x / i : this->size.y / i;
+	int border_size = this->size.x / BORDER < this->size.y / BORDER ? this->size.x / BORDER : this->size.y / BORDER;
 
-	draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back, i);
+	draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back, BORDER);
 	draw_lined_buffer_sized_text(this->text, this->coord + t_vect(border_size * 2, this->size.y / 2), this->text_size, NORMAL, DARK_GREY);
 }

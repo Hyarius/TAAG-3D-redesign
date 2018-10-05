@@ -111,10 +111,9 @@ bool			text_box::click(t_vect mouse)
 
 void			text_box::draw_self()
 {
-	int i = 8;
-	int border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
+	int border_size = size.x / BORDER < size.y / BORDER ? size.x / BORDER : size.y / BORDER;
 
-	draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back, i);
+	draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back, BORDER);
 	if (this->text.size() != 0)
 	{
 		if (this->text_size != -1)
@@ -133,13 +132,12 @@ void			text_box::draw_self()
 
 void			text_box::draw_self(int value)
 {
-	int i = 8;
-	int border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
+	int border_size = size.x / BORDER < size.y / BORDER ? size.x / BORDER : size.y / BORDER;
 
 	if (value == 0)
-		draw_border_rectangle(this->coord, this->size, this->color_front, t_color(1.0, 0.9, 0.7), i);
+		draw_border_rectangle(this->coord, this->size, this->color_front, t_color(1.0, 0.9, 0.7), BORDER);
 	else
-		draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back, i);
+		draw_border_rectangle(this->coord, this->size, this->color_front, this->color_back, BORDER);
 	if (this->text.size() != 0)
 	{
 		if (this->text_size != -1)

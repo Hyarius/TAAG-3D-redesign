@@ -8,7 +8,7 @@ void			draw_rectangle(t_vect tl, t_vect tr, t_vect dl, t_vect dr, int color_type
 	t_point		dr_opengl = screen_to_opengl(dr);
 
 	t_color		color = get_open_color(color_type);
-	
+
 	t_triangle a = t_triangle(t_point(tl_opengl.x, tl_opengl.y, color.r, color.g, color.b), t_point(tr_opengl.x, tr_opengl.y, color.r, color.g, color.b), t_point(dl_opengl.x, dl_opengl.y, color.r, color.g, color.b));
 	t_triangle b = t_triangle(t_point(dl_opengl.x, dl_opengl.y, color.r, color.g, color.b), t_point(dr_opengl.x, dr_opengl.y, color.r, color.g, color.b), t_point(tr_opengl.x, tr_opengl.y, color.r, color.g, color.b));
 
@@ -264,6 +264,7 @@ void			draw_border_rectangle(t_vect coord, t_vect size, t_color color, t_color c
 {
 	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
 
+	//draw_rectangle(coord - t_vect(2, 2), size + t_vect(4, 4), t_color(0.0, 0.0, 0.0));
 	draw_rectangle(coord, size, color);
 	draw_rectangle(t_vect(coord.x + (int)(border_size), coord.y + (int)(border_size)), t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color2);
 }
@@ -272,6 +273,7 @@ void			draw_border_centred_rectangle(t_vect coord, t_vect size, t_color color, t
 {
 	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
 
+	//draw_centred_rectangle(coord, size + t_vect(4, 4), t_color(0.0, 0.0, 0.0));
 	draw_centred_rectangle(coord, size, color);
 	draw_centred_rectangle(coord, t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color2);
 }
@@ -280,6 +282,7 @@ void			draw_alpha_border_rectangle(t_vect coord, t_vect size, t_color color, t_c
 {
 	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
 
+	//draw_alpha_rectangle(coord - t_vect(2, 2), size + t_vect(4, 4), t_color(0.0, 0.0, 0.0), alpha);
 	draw_alpha_rectangle(coord, size, color, alpha);
 	draw_alpha_rectangle(t_vect(coord.x + (int)(border_size), coord.y + (int)(border_size)), t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color2, alpha);
 }
@@ -288,6 +291,7 @@ void			draw_alpha_border_centred_rectangle(t_vect coord, t_vect size, t_color co
 {
 	double border_size = size.x / i < size.y / i ? size.x / i : size.y / i;
 
+	//draw_alpha_centred_rectangle(coord, size + t_vect(4, 4), t_color(0.0, 0.0, 0.0), alpha);
 	draw_alpha_centred_rectangle(coord, size, color, alpha);
 	draw_alpha_centred_rectangle(coord, t_vect(size.x - (int)(border_size * 2), size.y - (int)(border_size * 2)), color2, alpha);
 }

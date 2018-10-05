@@ -37,7 +37,7 @@
 # define ITALIC			2
 # define UNDERLINE		3
 
-# define BORDER			8
+# define BORDER			12
 
 # define SCREEN_RATIO_X	0.6
 # define SCREEN_RATIO_Y	0.6

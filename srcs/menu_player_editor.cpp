@@ -12,20 +12,16 @@ void		menu_player_editor()
 
 	menu.add_text_box(text_box("Enter your name", DARK_GREY, menu.get_win_unit().x / 5, menu.get_win_unit() * t_f_vect(0.5, 1), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2));
 
-	int value[8];
+	player target = player(t_stat(t_value(50), t_value(7), t_value(4), t_element(3, 3), t_element(3, 3)), 0);
 
-	int i = 0;
-	while (i < 8)
-		value[i++] = 5;
-
-	menu.add_iterator_box(iterator_box("HP :", &value[0], 10, 150, 10, menu.get_win_unit() * t_f_vect(0.5, 2), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("PA :", &value[1], 5, 12, 1, menu.get_win_unit() * t_f_vect(0.5, 2.7), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("PM :", &value[2], 3, 8, 1, menu.get_win_unit() * t_f_vect(0.5, 3.4), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("Physical attack :", &value[3], 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 4.1), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("Magical attack :", &value[4], 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 4.8), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("Physical defense :", &value[5], 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 5.5), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("Magical defense :", &value[6], 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 6.2), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("sprite :", &value[7], 0, 12, 1, menu.get_win_unit() * t_f_vect(0.5, 6.9), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("HP : 1 pts", &(target.get_stat()->hp.max), 10, 150, 10, menu.get_win_unit() * t_f_vect(0.5, 2), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("PA : 3 pts", &target.get_stat()->pa.max, 5, 12, 1, menu.get_win_unit() * t_f_vect(0.5, 2.7), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("PM : 2 pts", &target.get_stat()->pm.max, 3, 8, 1, menu.get_win_unit() * t_f_vect(0.5, 3.4), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("Physical attack : 2 pts", &target.get_stat()->phy.atk, 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 4.1), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("Magical attack : 2 pts", &target.get_stat()->mag.atk, 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 4.8), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("Physical defense : 2 pts", &target.get_stat()->phy.def, 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 5.5), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("Magical defense : 2 pts", &target.get_stat()->mag.def, 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 6.2), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("sprite :", target.get_sprite(), 0, 12, 1, menu.get_win_unit() * t_f_vect(0.5, 6.9), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
 
 	menu.add_info_box(info_box("Weight of the test", DARK_GREY, menu.get_win_unit() * t_f_vect(6.5, 1), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2));
 	menu.add_list_box(list_box("Character name : ", " - Create a new char - ", menu.get_win_unit() * t_f_vect(6.5, 2), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
