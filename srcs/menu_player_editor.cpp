@@ -12,18 +12,20 @@ void		menu_player_editor()
 
 	menu.add_text_box(text_box("Enter your name", DARK_GREY, menu.get_win_unit().x / 5, menu.get_win_unit() * t_f_vect(0.5, 1), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2));
 
-	int value = 15;
+	int value[8];
 
-	menu.add_iterator_box(iterator_box("HP :", &value, menu.get_win_unit() * t_f_vect(0.5, 2), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("PA :", &value, menu.get_win_unit() * t_f_vect(0.5, 2.7), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("PM :", &value, menu.get_win_unit() * t_f_vect(0.5, 3.4), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("Physical attack :", &value, menu.get_win_unit() * t_f_vect(0.5, 4.1), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("Magical attack :", &value, menu.get_win_unit() * t_f_vect(0.5, 4.8), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("Physical defense :", &value, menu.get_win_unit() * t_f_vect(0.5, 5.5), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("Magical defense :", &value, menu.get_win_unit() * t_f_vect(0.5, 6.2), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("Hat / Hair sprite :", &value, menu.get_win_unit() * t_f_vect(0.5, 6.9), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("Body / Armor sprite :", &value, menu.get_win_unit() * t_f_vect(0.5, 7.6), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
-	menu.add_iterator_box(iterator_box("Weapon sprite :", &value, menu.get_win_unit() * t_f_vect(0.5, 8.3), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	int i = 0;
+	while (i < 8)
+		value[i++] = 5;
+
+	menu.add_iterator_box(iterator_box("HP :", &value[0], 10, 150, 10, menu.get_win_unit() * t_f_vect(0.5, 2), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("PA :", &value[1], 5, 12, 1, menu.get_win_unit() * t_f_vect(0.5, 2.7), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("PM :", &value[2], 3, 8, 1, menu.get_win_unit() * t_f_vect(0.5, 3.4), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("Physical attack :", &value[3], 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 4.1), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("Magical attack :", &value[4], 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 4.8), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("Physical defense :", &value[5], 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 5.5), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("Magical defense :", &value[6], 1, 10, 1, menu.get_win_unit() * t_f_vect(0.5, 6.2), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
+	menu.add_iterator_box(iterator_box("sprite :", &value[7], 0, 12, 1, menu.get_win_unit() * t_f_vect(0.5, 6.9), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
 
 	menu.add_info_box(info_box("Weight of the test", DARK_GREY, menu.get_win_unit() * t_f_vect(6.5, 1), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2));
 	menu.add_list_box(list_box("Character name : ", " - Create a new char - ", menu.get_win_unit() * t_f_vect(6.5, 2), menu.get_win_unit() * t_f_vect(5, 0.5), color, color2 ));
@@ -53,13 +55,7 @@ void		menu_player_editor()
 					quit = true;
 			}
 			else if (event.type == SDL_MOUSEBUTTONUP)
-			{
-				if (value > 0)
-					menu.test_iterator_click_minus();
-				if (value < 30)
-					menu.test_iterator_click_plus();
 				menu.test_click();
-			}
 			else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKSPACE && menu.get_selected_text_box() != NULL)
 				menu.get_selected_text_box()->delete_text();
 			else if (event.type == SDL_TEXTINPUT && menu.get_selected_text_box() != NULL)

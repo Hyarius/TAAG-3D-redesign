@@ -126,6 +126,9 @@ class iterator_box
 {
 private:
 	int				*value;
+	int				value_min;
+	int				value_max;
+	int				value_incre;
 	string			text;
 	int				text_size;
 	t_vect			coord[5];
@@ -134,12 +137,12 @@ private:
 	t_color			color_back;
 public:
 	iterator_box();
-	iterator_box(string p_text, int *value, t_vect p_coord, t_vect p_size, t_color color, t_color color2);
+	iterator_box(string p_text, int *value, int value_min, int value_max, int value_incre, t_vect p_coord, t_vect p_size, t_color color, t_color color2);
 	string			get_text();
 	void			add_value(int modif);
 	void			draw_self();
-	bool			click_minus(t_vect mouse);
-	bool			click_plus(t_vect mouse);
+	void			click_minus(t_vect mouse);
+	void			click_plus(t_vect mouse);
 };
 
 class list_box

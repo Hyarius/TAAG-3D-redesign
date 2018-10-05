@@ -127,8 +127,7 @@ void					gui::test_iterator_click_minus()
 	mouse = get_mouse_coord();
 	while (i < this->list_iterator_box.size())
 	{
-		if (this->list_iterator_box[i].click_minus(mouse) == true)
-			this->list_iterator_box[i].add_value(-1);
+		this->list_iterator_box[i].click_minus(mouse);
 		i++;
 	}
 }
@@ -142,8 +141,7 @@ void					gui::test_iterator_click_plus()
 	mouse = get_mouse_coord();
 	while (i < this->list_iterator_box.size())
 	{
-		if (this->list_iterator_box[i].click_plus(mouse) == true)
-			this->list_iterator_box[i].add_value(1);
+		this->list_iterator_box[i].click_plus(mouse);
 		i++;
 	}
 }
@@ -164,6 +162,8 @@ void					gui::test_list_click()
 
 void					gui::test_click()
 {
+	this->test_iterator_click_minus();
+	this->test_iterator_click_plus();
 	this->test_button_click();
 	this->test_box_click();
 	this->test_list_click();

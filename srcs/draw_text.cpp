@@ -73,7 +73,7 @@ int				draw_buffer_text(string text, t_vect coord, int typo, int color_type)
 	delta = 0;
 	while (i < text.length())
 	{
-		surface = get_char(1, typo, color_type, text[i]);
+		surface = get_char(12, typo, color_type, text[i]);
 		rel_coord = t_vect(coord.x + delta, coord.y);
 		draw_image(surface, rel_coord);
 		delta += surface->w;
@@ -92,7 +92,7 @@ int				calc_buffer_text_len(string text, int typo, int color_type)
 	delta = 0;
 	while (i < text.length())
 	{
-		surface = get_char(1, typo, color_type, text[i]);
+		surface = get_char(12, typo, color_type, text[i]);
 		delta += surface->w;
 		i++;
 	}

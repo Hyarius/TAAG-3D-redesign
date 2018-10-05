@@ -37,7 +37,7 @@ void				window_initialisation(string window_name)
 	g_context = SDL_GL_CreateContext(g_window);
 
 	#ifndef __APPLE__
-	glewInit();
+		glewInit();
 	#endif
 
 	SDL_WarpMouseInWindow(g_window, g_window_size.x / 2, g_window_size.y / 2);

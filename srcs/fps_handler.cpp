@@ -2,8 +2,8 @@
 
 using namespace std;
 
-bool			draw = false;
-int				g_fps = 6000;
+bool			draw = true;
+int				g_fps = 60;
 
 void			set_fps(int i)
 {

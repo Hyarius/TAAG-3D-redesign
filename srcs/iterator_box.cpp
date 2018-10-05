@@ -5,12 +5,16 @@ iterator_box::iterator_box()
 
 }
 
-iterator_box::iterator_box(string text, int *value, t_vect p_coord, t_vect p_size, t_color color, t_color color2 )
+iterator_box::iterator_box(string text, int *value, int value_min, int value_max, int value_incre, t_vect p_coord, t_vect p_size, t_color color, t_color color2 )
 {
 	int i = 8;
 	int border_size = p_size.x / i < p_size.y / i ? p_size.x / i : p_size.y / i;
 
 	this->value = value;
+
+	this->value_min = value_min;
+	this->value_max = value_max;
+	this->value_incre = value_incre;
 	this->text = text;
 
 	i = 1;
@@ -57,16 +61,24 @@ void			iterator_box::add_value(int modif)
 	*(this->value) += modif;
 }
 
-bool			iterator_box::click_minus(t_vect mouse)
+void			iterator_box::click_minus(t_vect mouse)
 {
 	if (mouse.x > this->coord[1].x && mouse.x < this->coord[1].x + this->size[1].x && mouse.y > this->coord[1].y && mouse.y < this->coord[1].y + this->size[1].y)
-		return (true);
-	return (false);
+	{
+		if (*(this->value) > this->value_min)
+			this->add_value(- this->value_incre);
+		else
+			*(this->value) = this->value_max;
+	}
 }
 
-bool			iterator_box::click_plus(t_vect mouse)
+void			iterator_box::click_plus(t_vect mouse)
 {
 	if (mouse.x > this->coord[3].x && mouse.x < this->coord[3].x + this->size[3].x && mouse.y > this->coord[3].y && mouse.y < this->coord[3].y + this->size[3].y)
-		return (true);
-	return (false);
+	{
+		if (*(this->value) < this->value_max)
+			this->add_value(this->value_incre);
+		else
+			*(this->value) = this->value_min;
+	}
 }
