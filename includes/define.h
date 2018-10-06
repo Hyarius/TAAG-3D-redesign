@@ -44,9 +44,6 @@
 
 # define NB_CHANNEl		10
 
-# define ACTOR_PATH		"ressources/actor"
-# define ACTOR_EXT		".act"
-
 #ifdef _WIN32
 #	define strtok_r strtok_s
 #endif

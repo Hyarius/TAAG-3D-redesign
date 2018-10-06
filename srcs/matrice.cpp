@@ -101,7 +101,7 @@ matrice			matrice::operator * (matrice p_matrice)
 	return (m);
 }
 
-t_f_vertex		matrice::operator * (t_f_vertex vertex)
+t_vertex		matrice::operator * (t_vertex vertex)
 {
 	double		result[3];
 
@@ -109,31 +109,5 @@ t_f_vertex		matrice::operator * (t_f_vertex vertex)
 	result[1] = this->value[1][0] * vertex.x + this->value[1][1] * vertex.y + this->value[1][2] * vertex.z + this->value[1][3];
 	result[2] = this->value[2][0] * vertex.x + this->value[2][1] * vertex.y + this->value[2][2] * vertex.z + this->value[2][3];
 
-	return t_f_vertex(result[0], result[1], result[2]);
-}
-
-t_f_vertex		matrice::operator * (t_vertex vertex)
-{
-	double		result[3];
-
-	result[0] = this->value[0][0] * vertex.x + this->value[0][1] * vertex.y + this->value[0][2] * vertex.z + this->value[0][3];
-	result[1] = this->value[1][0] * vertex.x + this->value[1][1] * vertex.y + this->value[1][2] * vertex.z + this->value[1][3];
-	result[2] = this->value[2][0] * vertex.x + this->value[2][1] * vertex.y + this->value[2][2] * vertex.z + this->value[2][3];
-
-	return t_f_vertex(result[0], result[1], result[2]);
-}
-
-void			matrice::print()
-{
-	int	i;
-
-	i = 0;
-	printf("-----------------------------------------------------------------\n");
-	while (i < 4)
-	{
-		printf("|\t%-4f|\t%-4f|\t%-4f|\t%-4f|\n", this->value[i][0], this->value[i][1],
-		this->value[i][2], this->value[i][3]);
-		i++;
-	}
-	printf("-----------------------------------------------------------------\n");
+	return t_vertex(result[0], result[1], result[2]);
 }

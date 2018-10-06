@@ -37,7 +37,7 @@ string 				convert_int(int i)
 t_point				screen_to_opengl(t_vect source)
 {
 	matrice		tra_matrice = matrice(T, -1.0, -1.0, 0);
-	t_f_vertex	result = t_f_vertex((double)source.x / ((double)get_win_size().x / 2), (double)source.y / ((double)get_win_size().y / 2), 0);
+	t_vertex	result = t_vertex((double)source.x / ((double)get_win_size().x / 2), (double)source.y / ((double)get_win_size().y / 2), 0.0);
 
 	result = tra_matrice * result;
 

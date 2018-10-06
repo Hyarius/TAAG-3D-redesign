@@ -3,16 +3,17 @@
 SDL_GLContext		g_context;
 SDL_Window			*g_window;
 t_vect				g_window_size;
+
 GLuint				program_color;
 GLuint				program_sprite;
+
 GLuint				vertex_array;
+
 GLuint				vertex_buffer;
 GLuint				color_buffer;
-GLuint				link_texture;
 GLuint				texture_buffer;
-GLenum				texture_format;
 
-t_f_vect			screen_size = t_f_vect(SCREEN_RATIO_X, SCREEN_RATIO_Y);
+GLenum				texture_format;
 
 GLvoid				*pixels;
 
@@ -32,7 +33,7 @@ void				window_initialisation(string window_name)
 	SDL_GetDesktopDisplayMode(0, &current);
 	g_window = SDL_CreateWindow(window_name.c_str(),
 						SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-						(int)(current.w * screen_size.x), (int)(current.h * screen_size.y),
+						(int)(current.w * SCREEN_RATIO_X), (int)(current.h * SCREEN_RATIO_Y),
 						SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 	SDL_GetWindowSize(g_window, &win_x, &win_y);
 	g_window_size = t_vect(win_x, win_y);
@@ -46,7 +47,7 @@ void				window_initialisation(string window_name)
 	SDL_SetWindowGrab(g_window, SDL_FALSE);
 	SDL_ShowCursor(1);
 
-	t_color color = get_open_color(BLACK);
+	t_color color = t_color(0.1, 0.1, 0.1);
 
 	glClearColor((GLclampf)color.r, (GLclampf)color.g, (GLclampf)color.b, 0.0f);
 
@@ -63,7 +64,6 @@ void				window_initialisation(string window_name)
 	program_color = LoadShaders(	"ressources/shader/colorshader.vertexshader",	"ressources/shader/colorshader.fragmentshader");
 	program_sprite = LoadShaders(	"ressources/shader/textureshader.vertexshader", "ressources/shader/textureshader.fragmentshader");
 
-	link_texture = glGetUniformLocation(program_sprite, "myTextureSampler");
 
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
@@ -73,15 +73,8 @@ void				window_initialisation(string window_name)
 	glEnable(GL_BLEND);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-	texture_format = GL_RGBA;
-
 	set_color_tab();
 	TTF_Init();
-}
-
-SDL_GLContext		*get_context(void)
-{
-	return (&g_context);
 }
 
 t_vect				get_win_size(void)
@@ -89,13 +82,12 @@ t_vect				get_win_size(void)
 	return (g_window_size);
 }
 
-SDL_Window			*get_window()
-{
-	return (g_window);
-}
-
 void				prepare_screen()
 {
+	t_color color = t_color(0.1, 0.1, 0.1);
+
+	glClearColor((GLclampf)color.r, (GLclampf)color.g, (GLclampf)color.b, 0.0f);
+
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 }
 
@@ -104,51 +96,12 @@ void				prepare_screen(t_color color)
 	glClearColor((GLclampf)color.r, (GLclampf)color.g, (GLclampf)color.b, 0.0f);
 
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-	color = get_open_color(BLACK);
-	glClearColor((GLclampf)color.r, (GLclampf)color.g, (GLclampf)color.b, 0.0f);
 }
-
 
 void				render_screen()
 {
 	check_frame();
 	SDL_GL_SwapWindow(g_window);
-}
-
-void				save_screen()
-{
-	pixels = new GLubyte[4 * get_win_size().x * get_win_size().y];
-
-	glReadPixels(0, 0, get_win_size().x, get_win_size().y, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
-}
-
-void				load_screen()
-{
-	t_point		tl_opengl = screen_to_opengl(t_vect(0, get_win_size().y));
-	t_point		tr_opengl = screen_to_opengl(get_win_size());
-	t_point		dl_opengl = screen_to_opengl(t_vect(0, 0));
-	t_point		dr_opengl = screen_to_opengl(t_vect(get_win_size().x, 0));
-
-	glBindTexture(GL_TEXTURE_2D, get_texture_id());
-
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
-	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
-
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, get_win_size().x, get_win_size().y, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
-
-	t_triangle a = t_triangle(t_point(tl_opengl.x, tl_opengl.y, 0.0, 0.0),
-		t_point(tr_opengl.x, tr_opengl.y, 1.0, 0.0),
-		t_point(dl_opengl.x, dl_opengl.y, 0.0, 1.0));
-
-	t_triangle b = t_triangle(t_point(dl_opengl.x, dl_opengl.y, 0.0, 1.0),
-		t_point(dr_opengl.x, dr_opengl.y, 1.0, 1.0),
-		t_point(tr_opengl.x, tr_opengl.y, 1.0, 0.0));
-
-	draw_triangle_texture(a);
-	draw_triangle_texture(b);
 }
 
 GLuint				get_program_color()
@@ -159,11 +112,6 @@ GLuint				get_program_color()
 GLuint				get_program_sprite()
 {
 	return (program_sprite);
-}
-
-GLuint				get_link_texture()
-{
-	return (link_texture);
 }
 
 GLuint				get_vertex_array()

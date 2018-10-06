@@ -24,8 +24,8 @@ typedef struct		s_color
 
 typedef struct		s_vect
 {
-	int				x;
-	int				y;
+	double			x;
+	double			y;
 	s_vect();
 	s_vect(int x, int y);
 	s_vect(double x, double y);
@@ -34,86 +34,41 @@ typedef struct		s_vect
 	s_vect			operator * (int mult);
 	s_vect			operator * (double mult);
 	s_vect			operator * (s_vect mult);
-	s_vect			operator * (struct s_f_vect mult);
 	s_vect			operator + (int add);
 	s_vect			operator + (double add);
 	s_vect			operator + (s_vect add);
-	s_vect			operator + (struct s_f_vect add);
 	s_vect			operator / (int div);
 	s_vect			operator / (double div);
 	s_vect			operator / (s_vect div);
-	s_vect			operator / (struct s_f_vect div);
 	s_vect			operator - (int min);
 	s_vect			operator - (double min);
 	s_vect			operator - (s_vect min);
-	s_vect			operator - (struct s_f_vect min);
 }					t_vect;
 
-typedef struct		s_f_vect
-{
-	double			x;
-	double			y;
-	s_f_vect();
-	s_f_vect(int x, int y);
-	s_f_vect(double x, double y);
-	s_f_vect(int x, double y);
-	s_f_vect(double x, int y);
-	s_f_vect		operator * (int mult);
-	s_f_vect		operator * (double mult);
-	s_f_vect		operator * (s_vect mult);
-	s_f_vect		operator * (struct s_f_vect mult);
-	s_f_vect		operator + (int add);
-	s_f_vect		operator + (double add);
-	s_f_vect		operator + (s_vect add);
-	s_f_vect		operator + (struct s_f_vect add);
-	s_f_vect		operator / (int div);
-	s_f_vect		operator / (double div);
-	s_f_vect		operator / (s_vect div);
-	s_f_vect		operator / (struct s_f_vect div);
-	s_f_vect		operator - (int min);
-	s_f_vect		operator - (double min);
-	s_f_vect		operator - (s_vect min);
-	s_f_vect		operator - (struct s_f_vect min);
-}					t_f_vect;
-
 typedef struct		s_vertex
-{
-	int				x;
-	int				y;
-	int				z;
-	s_vertex(int p_x, int p_y, int p_z);
-	s_vertex();
-}					t_vertex;
-
-typedef struct		s_f_vertex
 {
 	double			x;
 	double			y;
 	double			z;
-	s_f_vertex(double p_x, double p_y, double p_z);
-	s_f_vertex();
-}					t_f_vertex;
+	s_vertex(int p_x, int p_y, int p_z);
+	s_vertex(double p_x, double p_y, double p_z);
+	s_vertex();
+}					t_vertex;
 
 typedef struct	s_point
 {
 	double		x;
 	double		y;
-	double		a;
+	double		r;
+	double		g;
 	double		b;
-	double		c;
+	double		a;
 				s_point();
 				s_point(double p_x, double p_y);
-				s_point(double p_x, double p_y, double p_a, double p_b, double p_c);
 				s_point(double p_x, double p_y, double p_a, double p_b);
+				s_point(double p_x, double p_y, double p_r, double p_g, double p_b);
+				s_point(double p_x, double p_y, double p_r, double p_g, double p_b, double p_a);
 }				t_point;
-
-typedef struct	s_triangle
-{
-	t_point	a;
-	t_point b;
-	t_point c;
-	s_triangle(t_point p_a, t_point p_b, t_point p_c);
-}				t_triangle;
 
 struct matrice
 {
@@ -127,9 +82,20 @@ struct matrice
 	matrice(ROTATION, double x, double y, double z);
 	matrice(TRANSLATION, double t_x, double t_y, double t_z);
 	matrice(SCALE, double t_x, double t_y, double t_z);
-	matrice operator * (matrice p_matrice);
-	t_f_vertex operator * (t_f_vertex vertex);
-	t_f_vertex operator * (t_vertex vertex);
-	void print();
+	matrice 		operator * (matrice p_matrice);
+	t_vertex 		operator * (t_vertex vertex);
 };
+
+typedef struct		s_image
+{
+	SDL_Surface		*surface;
+	GLenum			format;
+	GLint			internal_format;
+	GLuint			texture_id;
+					s_image(string path);
+					s_image(SDL_Surface *p_surface);
+	void			draw_self(t_vect p_coordd, t_vect p_size);
+	void			draw_self(t_vect tl, t_vect tr, t_vect dl, t_vect dr);
+}					t_image;
+
 #endif

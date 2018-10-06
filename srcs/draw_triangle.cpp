@@ -1,17 +1,17 @@
 #include "template.h"
 
-void			draw_triangle_texture(t_triangle surface)
+void			draw_triangle_texture(t_point a, t_point b, t_point c)
 {
 	GLfloat g_vertex_buffer_data[] = {
-		(float)surface.a.x, (float)surface.a.y, 0.0f,
-		(float)surface.b.x, (float)surface.b.y, 0.0f,
-		(float)surface.c.x, (float)surface.c.y, 0.0f,
+		(float)a.x, (float)a.y, 0.0f,
+		(float)b.x, (float)b.y, 0.0f,
+		(float)c.x, (float)c.y, 0.0f,
 	};
 
 	GLfloat g_uv_buffer_data[] = {
-		(float)surface.a.a,  (float)surface.a.b,
-		(float)surface.b.a,  (float)surface.b.b,
-		(float)surface.c.a,  (float)surface.c.b,
+		(float)a.r,  (float)a.g,
+		(float)b.r,  (float)b.g,
+		(float)c.r,  (float)c.g,
 	};
 
 	glBindVertexArray(get_vertex_array());
@@ -38,18 +38,18 @@ void			draw_triangle_texture(t_triangle surface)
 	glDisableVertexAttribArray(1);
 }
 
-void			draw_triangle_color(t_triangle surface, int alpha)
+void			draw_triangle_color(t_point a, t_point b, t_point c)
 {
 	GLfloat g_vertex_buffer_data[] = {
-		(float)surface.a.x, (float)surface.a.y, 0.0f,
-		(float)surface.b.x, (float)surface.b.y, 0.0f,
-		(float)surface.c.x, (float)surface.c.y, 0.0f,
+		(float)a.x, (float)a.y, 0.0f,
+		(float)b.x, (float)b.y, 0.0f,
+		(float)c.x, (float)c.y, 0.0f,
 	};
 
 	GLfloat g_color_buffer_data[] = {
-		(float)surface.a.a,  (float)surface.a.b,  (float)surface.a.c, (float)alpha / 255.0f,
-		(float)surface.b.a,  (float)surface.b.b,  (float)surface.b.c, (float)alpha / 255.0f,
-		(float)surface.c.a,  (float)surface.c.b,  (float)surface.c.c, (float)alpha / 255.0f,
+		(float)a.r,  (float)a.g,  (float)a.b, (float)a.a,
+		(float)b.r,  (float)b.g,  (float)b.b, (float)b.a,
+		(float)c.r,  (float)c.g,  (float)c.b, (float)c.a,
 	};
 
 	glBindVertexArray(get_vertex_array());

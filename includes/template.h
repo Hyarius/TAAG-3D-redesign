@@ -8,115 +8,58 @@
 
 using namespace std;
 
-//		Basics functions
-int					get_root(int size);
+//			BASIC_FUNCTION
 void				error_exit(string msg, int error);
-void				set_sdl_rect(SDL_Rect *rect, int x, int y, int w, int h);
-void				get_leaks(string msg);
 t_vect				get_mouse_coord();
+vector<string>		strsplit(string input, string c);
 vector<string>		list_files(string path, string extension);
 bool				check_file_exist(string path, string name);
 
-//		Color handler
-void				set_color_tab(void);
-SDL_Color			get_color(int i);
-t_color				get_open_color(int i);
-
-//		Convert
 double				degree_to_radius(double angle);
 double				radius_to_degree(double radian);
 string				convert_double(double i, int n);
 string 				convert_int(int i);
 t_point				screen_to_opengl(t_vect source);
 
-//		Draw image
-void			draw_image(SDL_Surface *surface, t_vect tl, t_vect tr, t_vect dl, t_vect dr);
-void			draw_image(SDL_Surface *surface, t_vect coord, t_vect size);
-void			draw_image(SDL_Surface *surface, t_vect coord);
-void			draw_image(t_vect tl, t_vect tr, t_vect dl, t_vect dr);
-void			draw_image(t_vect coord, t_vect size);
-void			draw_centred_image(SDL_Surface *surface, t_vect coord, t_vect size);
-void			draw_centred_image(SDL_Surface *surface, t_vect coord);
+void				draw_triangle_texture(t_point a, t_point b, t_point c);
+void				draw_triangle_color(t_point a, t_point b, t_point c);
 
-//		Draw shape
-void			draw_rectangle(t_vect tl, t_vect tr, t_vect dl, t_vect dr, int color_type);
-void			draw_rectangle(t_vect coord, t_vect size, int color_type);
-void			draw_centred_rectangle(t_vect coord, t_vect size, int color_type);
-void			draw_alpha_rectangle(t_vect coord, t_vect size, int color_type, int alpha);
-void			draw_alpha_centred_rectangle(t_vect coord, t_vect size, int color_type, int alpha);
-void			draw_border_rectangle(t_vect coord, t_vect size, int color_type, int color_type2);
-void			draw_border_centred_rectangle(t_vect coord, t_vect size, int color_type, int color_type2);
-void			draw_alpha_border_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int alpha);
-void			draw_alpha_border_centred_rectangle(t_vect coord, t_vect size, int color_type, int color_type2, int alpha);
-void			draw_rectangle(t_vect tl, t_vect tr, t_vect dl, t_vect dr, double *color);
-void			draw_rectangle(t_vect coord, t_vect size, t_color color);
-void			draw_centred_rectangle(t_vect coord, t_vect size, t_color color);
-void			draw_alpha_rectangle(t_vect coord, t_vect size, t_color color, int alpha);
-void			draw_alpha_centred_rectangle(t_vect coord, t_vect size, t_color color, int alpha);
-void			draw_border_rectangle(t_vect coord, t_vect size, t_color color, t_color color2);
-void			draw_border_centred_rectangle(t_vect coord, t_vect size, t_color color, t_color color2);
-void			draw_alpha_border_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int alpha);
-void			draw_alpha_border_centred_rectangle(t_vect coord, t_vect size, t_color color, t_color color2, int alpha);
+void				draw_image(t_vect tl, t_vect tr, t_vect dl, t_vect dr);
+void				draw_image(t_vect coord, t_vect size);
 
-//		Draw text
-int				draw_text(string text, t_vect coord, int typo, int color_type, TTF_Font *font);
-int				draw_text_alpha(string text, t_vect coord, int typo, int color_type, TTF_Font *font, int alpha);
-int				draw_centred_text(string text, t_vect coord, int typo, int color_type, TTF_Font *font);
-int				draw_centred_alpha_text(string text, t_vect coord, int typo, int color_type, TTF_Font *font, int alpha);
-int				calc_buffer_text_len(string text, int typo, int color_type);
-int				draw_buffer_text(string text, t_vect coord, int typo, int color_type);
-int				draw_centred_buffer_text(string text, t_vect coord, int typo, int color_type);
-int				draw_buffer_sized_text(string text, t_vect coord, int size, int typo, int color_type);
-int				calc_buffer_sized_text_len(string text, int size, int typo, int color_type);
-int				draw_centred_buffer_sized_text(string text, t_vect coord, int size, int typo, int color_type);
-int				draw_lined_buffer_text(string text, t_vect coord, int typo, int color_type);
-int				draw_lined_buffer_sized_text(string text, t_vect coord, int size, int typo, int color_type);
+void				draw_rectangle(t_vect p_tl, t_vect p_tr, t_vect p_dl, t_vect p_dr, t_color c);
+void				draw_rectangle(t_vect p_coord, t_vect p_size, t_color c);
+void				draw_centred_rectangle(t_vect p_coord, t_vect p_size, t_color c);
 
-//		Draw triangle
-void			draw_triangle_texture(t_triangle surface);
-void			draw_triangle_color(t_triangle surface, int alpha);
-
-//		Draw uv mapping
-void			draw_uv_texture(tileset *tile, int sprite, t_vect tl, t_vect tr, t_vect dl, t_vect dr);
-
-//		File handler
-vector<string>	strsplit(string input, const string c);
-string			get_str(ifstream *myfile);
-vector<string>	get_strsplit(ifstream *myfile, const string c, int size);
-
-//		Fps handler
-void			set_fps(int i);
-void			reset_fps(int i);
-int				get_fps(void);
-void			check_frame();
-
-//		Screen handler
 void				window_initialisation(string window_name);
-SDL_GLContext		*get_context(void);
 t_vect				get_win_size(void);
-SDL_Window			*get_window();
 void				prepare_screen();
 void				prepare_screen(t_color color);
 void				render_screen();
-void				save_screen();
-void				load_screen();
+
 GLuint				get_program_color();
 GLuint				get_program_sprite();
-GLuint				get_link_texture();
+
 GLuint				get_vertex_array();
+
 GLuint				get_vertex_buffer();
 GLuint				get_color_buffer();
 GLuint				get_texture_buffer();
+
 GLuint				get_texture_id();
 
-//		Shader
-GLuint				LoadShaders(const char * vertex_file_path, const char * fragment_file_path);
+GLuint				LoadShaders(const char * vertex_file_path,const char * fragment_file_path);
 
-//		Text handler
-SDL_Surface			*get_char(int size, int style, int p_color, char c);
+void				check_frame();
+void				check_frame(bool draw);
 
-//		Tileset
-tileset				*create_tileset(string path);
+int					draw_text(string text, int text_size, t_vect coord, int typo, int color_type);
+int					calc_text_len(string text, int text_size, int typo);
+int					calc_text_max_size(string text, int typo, t_vect size);
+int					draw_centred_text(string text, int text_size, t_vect coord, int typo, int color_type);
+int					draw_lined_text(string text, int text_size, t_vect coord, int typo, int color_type);
 
+void				set_color_tab();
+t_image				*get_char(int size, int style, int p_color, char c);
 
 #endif
