@@ -63,15 +63,16 @@ private:
 	t_vect			size;
 	t_color			color_front;
 	t_color			color_back;
-	void			(*funct)();
+	void			(*funct)(void *);
 public:
 					text_button();
-					text_button(string p_text, int text_color, t_vect p_coord, t_vect p_size, t_color color, void(&p_fonct)());
-					text_button(string p_text, int text_color, t_vect p_coord, t_vect p_size, t_color color, t_color color2, void(&p_fonct)());
-					text_button(string p_text, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color, void(&p_fonct)());
-					text_button(string p_text, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color, t_color color2, void(&p_fonct)());
+					text_button(string p_text, int text_color, t_vect p_coord, t_vect p_size, t_color color, void(&p_fonct)(void *));
+					text_button(string p_text, int text_color, t_vect p_coord, t_vect p_size, t_color color, t_color color2, void(&p_fonct)(void *));
+					text_button(string p_text, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color, void(&p_fonct)(void *));
+					text_button(string p_text, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color, t_color color2, void(&p_fonct)(void *));
 	void			draw_self();
 	bool			click(t_vect mouse);
+	bool			click(t_vect mouse, void *value);
 };
 
 class text_box
@@ -159,12 +160,13 @@ private:
 	t_vect			size[2];
 	t_color			color_front;
 	t_color			color_back;
-	vector<string>	(*funct)(string, string);
 public:
 	list_box();
-	list_box(string p_text, string p_empty_line, t_vect p_coord, t_vect p_size, t_color color, t_color color2, vector<string>(&p_fonct)(string path, string extension));
-	string			click(t_vect mouse);
-	string			check_list(t_vect mouse);
+	list_box(string p_text, string p_empty_line, t_vect p_coord, t_vect p_size, t_color color, t_color color2);
+	void			click(t_vect mouse);
+	void			check_list(t_vect mouse);
+	void			actualize_line(vector<string> p_entry);
+	string			get_entry();
 	void			draw_self();
 };
 
@@ -194,6 +196,13 @@ public:
 	void					test_list_click();
 	void					test_iterator_click_minus();
 	void					test_iterator_click_plus();
+
+	vector<image>			*get_image();
+	vector<text_button>		*get_text_button();
+	vector<text_box>		*get_text_box();
+	vector<info_box>		*get_info_box();
+	vector<iterator_box>	*get_iterator_box();
+	vector<list_box>		*get_list_box();
 
 	void					test_click();
 

@@ -14,6 +14,8 @@ GLenum				texture_format;
 
 t_f_vect			screen_size = t_f_vect(SCREEN_RATIO_X, SCREEN_RATIO_Y);
 
+GLvoid				*pixels;
+
 GLuint				textureID;
 
 void				window_initialisation(string window_name)
@@ -114,6 +116,40 @@ void				render_screen()
 	SDL_GL_SwapWindow(g_window);
 }
 
+void				save_screen()
+{
+	pixels = new GLubyte[4 * get_win_size().x * get_win_size().y];
+
+	glReadPixels(0, 0, get_win_size().x, get_win_size().y, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+}
+
+void				load_screen()
+{
+	t_point		tl_opengl = screen_to_opengl(t_vect(0, get_win_size().y));
+	t_point		tr_opengl = screen_to_opengl(get_win_size());
+	t_point		dl_opengl = screen_to_opengl(t_vect(0, 0));
+	t_point		dr_opengl = screen_to_opengl(t_vect(get_win_size().x, 0));
+
+	glBindTexture(GL_TEXTURE_2D, get_texture_id());
+
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, get_win_size().x, get_win_size().y, 0, GL_RGBA, GL_UNSIGNED_BYTE, pixels);
+
+	t_triangle a = t_triangle(t_point(tl_opengl.x, tl_opengl.y, 0.0, 0.0),
+		t_point(tr_opengl.x, tr_opengl.y, 1.0, 0.0),
+		t_point(dl_opengl.x, dl_opengl.y, 0.0, 1.0));
+
+	t_triangle b = t_triangle(t_point(dl_opengl.x, dl_opengl.y, 0.0, 1.0),
+		t_point(dr_opengl.x, dr_opengl.y, 1.0, 1.0),
+		t_point(tr_opengl.x, tr_opengl.y, 1.0, 0.0));
+
+	draw_triangle_texture(a);
+	draw_triangle_texture(b);
+}
 
 GLuint				get_program_color()
 {

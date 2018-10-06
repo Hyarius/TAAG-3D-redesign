@@ -213,3 +213,33 @@ void					gui::set_selected_text_box(text_box *new_text)
 {
 	this->selected_text_box = new_text;
 }
+
+vector<image>			*gui::get_image()
+{
+	return (&this->list_image);
+}
+
+vector<text_button>		*gui::get_text_button()
+{
+	return (&this->list_text_button);
+}
+
+vector<text_box>		*gui::get_text_box()
+{
+	return (&this->list_text_box);
+}
+
+vector<info_box>		*gui::get_info_box()
+{
+	return (&this->list_info_box);
+}
+
+vector<iterator_box>	*gui::get_iterator_box()
+{
+	return (&this->list_iterator_box);
+}
+
+vector<list_box>		*gui::get_list_box()
+{
+	return (&this->list_list_box);
+}

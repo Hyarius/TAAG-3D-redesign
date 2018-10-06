@@ -1,6 +1,6 @@
 #include "taag.h"
 
-void		menu_start()
+void		menu_start(void *value)
 {
 	SDL_Event	event;
 	bool		quit = false;

@@ -5,7 +5,7 @@ text_button::text_button()
 
 }
 
-text_button::text_button(string text, int text_color, t_vect p_coord, t_vect p_size, t_color color, void(&p_fonct)())
+text_button::text_button(string text, int text_color, t_vect p_coord, t_vect p_size, t_color color, void(&p_fonct)(void *value))
 {
 	this->text = text;
 	this->text_color = text_color;
@@ -17,7 +17,7 @@ text_button::text_button(string text, int text_color, t_vect p_coord, t_vect p_s
 	this->funct = p_fonct;
 }
 
-text_button::text_button(string text, int text_color, t_vect p_coord, t_vect p_size, t_color color, t_color color2, void(&p_fonct)())
+text_button::text_button(string text, int text_color, t_vect p_coord, t_vect p_size, t_color color, t_color color2, void(&p_fonct)(void *value))
 {
 	this->text = text;
 	this->text_color = text_color;
@@ -29,7 +29,7 @@ text_button::text_button(string text, int text_color, t_vect p_coord, t_vect p_s
 	this->funct = p_fonct;
 }
 
-text_button::text_button(string text, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color, void(&p_fonct)())
+text_button::text_button(string text, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color, void(&p_fonct)(void *value))
 {
 	this->text = text;
 	this->text_color = text_color;
@@ -41,7 +41,7 @@ text_button::text_button(string text, int text_color, int text_size, t_vect p_co
 	this->funct = p_fonct;
 }
 
-text_button::text_button(string text, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color, t_color color2, void(&p_fonct)())
+text_button::text_button(string text, int text_color, int text_size, t_vect p_coord, t_vect p_size, t_color color, t_color color2, void(&p_fonct)(void *value))
 {
 	this->text = text;
 	this->text_color = text_color;
@@ -66,7 +66,17 @@ bool			text_button::click(t_vect mouse)
 {
 	if (mouse.x > this->coord.x && mouse.x < this->coord.x + this->size.x && mouse.y > this->coord.y && mouse.y < this->coord.y + this->size.y)
 	{
-		this->funct();
+		this->funct(NULL);
+		return (true);
+	}
+	return (false);
+}
+
+bool			text_button::click(t_vect mouse, void *value)
+{
+	if (mouse.x > this->coord.x && mouse.x < this->coord.x + this->size.x && mouse.y > this->coord.y && mouse.y < this->coord.y + this->size.y)
+	{
+		this->funct(value);
 		return (true);
 	}
 	return (false);

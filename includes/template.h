@@ -15,6 +15,7 @@ void				set_sdl_rect(SDL_Rect *rect, int x, int y, int w, int h);
 void				get_leaks(string msg);
 t_vect				get_mouse_coord();
 vector<string>		list_files(string path, string extension);
+bool				check_file_exist(string path, string name);
 
 //		Color handler
 void				set_color_tab(void);
@@ -97,6 +98,8 @@ SDL_Window			*get_window();
 void				prepare_screen();
 void				prepare_screen(t_color color);
 void				render_screen();
+void				save_screen();
+void				load_screen();
 GLuint				get_program_color();
 GLuint				get_program_sprite();
 GLuint				get_link_texture();

@@ -7,9 +7,8 @@ list_box::list_box()
 
 }
 
-list_box::list_box(string p_text, string p_empty_line, t_vect p_coord, t_vect p_size, t_color color, t_color color2, vector<string>(&p_fonct)(string path, string extension))
+list_box::list_box(string p_text, string p_empty_line, t_vect p_coord, t_vect p_size, t_color color, t_color color2)
 {
-	this->funct = p_fonct;
 	this->text = p_text;
 	this->empty_line = p_empty_line;
 	this->line_index = -1;
@@ -47,7 +46,15 @@ void			list_box::draw_self()
 	}
 }
 
-string			list_box::check_list(t_vect mouse)
+void			list_box::actualize_line(vector<string> p_entry)
+{
+	this->list_string = p_entry;
+	if (this->line_index == -1)
+		this->line_index = 0;
+	this->list_string.insert(this->list_string.begin(), this->empty_line);
+}
+
+void			list_box::check_list(t_vect mouse)
 {
 	SDL_Event	event;
 	bool		quit = false;
@@ -55,25 +62,24 @@ string			list_box::check_list(t_vect mouse)
 	t_vect		text_coord[5];
 	t_vect		text_size;
 
-	this->list_string = this->funct("ressources/actor", ".");
-	if (this->line_index == -1)
-		this->line_index = 0;
-	this->list_string.insert(this->list_string.begin(), this->empty_line);
-
 	int delta = 5;
 	int j = 0;
 
 	t_vect tmp_size = this->size[1] * t_vect(1, delta);
 	text_size = t_vect(tmp_size.x, tmp_size.y / delta);
 	t_vect tmp_coord = t_vect(this->coord[1].x, this->coord[1].y - (text_size.y * 2));
+	while (tmp_coord.y + text_size.y * (0 + j) < 0)
+		j++;
+	while (tmp_coord.y + text_size.y * (delta + j) > get_win_size().y)
+		j--;
 	for (i = 0; i < 5; i++)
-	{
-		while (tmp_coord.y + text_size.y * (i + j) < 0)
-			j++;
-		text_coord[i] = t_vect(tmp_coord.x, tmp_coord.y + (int)(text_size.y * (i + j)));
-	}
+		text_coord[i] = t_vect(tmp_coord.x, tmp_coord.y + (int)((text_size.y) * (i + j)));
 	while (quit == false)
 	{
+		prepare_screen(t_color(0.8, 0.8, 0.8));
+
+		load_screen();
+
 		i = - 2;
 		while (i + this->line_index < (int)this->list_string.size() + 2 && i < delta)
 		{
@@ -105,21 +111,20 @@ string			list_box::check_list(t_vect mouse)
 			else if (((event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_UP) || (event.type == SDL_MOUSEWHEEL && event.wheel.y > 0)) && this->line_index > 0)
 				this->line_index--;
 			else if (event.type == SDL_MOUSEBUTTONUP)
-			{
-				t_vect mouse = get_mouse_coord();
-				if (mouse.x < text_coord[0].x || mouse.x > text_coord[0].x + text_size.x || mouse.y < text_coord[0].y || mouse.y > text_coord[4].y + text_size.y)
-					quit = true;
-			}
+				quit = true;
 		}
 	}
-	return (this->list_string[this->line_index]);
 }
 
-string			list_box::click(t_vect mouse)
+void			list_box::click(t_vect mouse)
 {
 	if (mouse.x > this->coord[1].x && mouse.x < this->coord[1].x + this->size[1].x && mouse.y > this->coord[1].y && mouse.y < this->coord[1].y + this->size[1].y)
-	{
-		return (this->check_list(mouse));
-	}
+		this->check_list(mouse);
+}
+
+string			list_box::get_entry()
+{
+	if (this->line_index != -1)
+		return (this->list_string[this->line_index]);
 	return ("");
 }
