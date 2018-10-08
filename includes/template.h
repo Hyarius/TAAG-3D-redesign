@@ -3,7 +3,8 @@
 
 # include "include.h"
 # include "define.h"
-# include "structure_template.h"
+# include "template_structure.h"
+# include "template_gui.h"
 # include "template_class.h"
 
 using namespace std;
@@ -61,5 +62,6 @@ int					draw_lined_text(string text, int text_size, t_vect coord, int typo, int 
 
 void				set_color_tab();
 t_image				*get_char(int size, int style, int p_color, char c);
+int					calc_text_size(string p_text, t_vect p_size);
 
 #endif

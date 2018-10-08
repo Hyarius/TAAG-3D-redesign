@@ -1,5 +1,10 @@
 #include "template.h"
 
+s_image::s_image()
+{
+	
+}
+
 s_image::s_image(string path)
 {
 	this->surface = IMG_Load(path.c_str());

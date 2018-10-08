@@ -1,5 +1,5 @@
-#ifndef STRUCTURE_TEMPLATE_H
-# define STRUCTURE_TEMPLATE_H
+#ifndef TEMPLATE_STRUCTURE_H
+# define TEMPLATE_STRUCTURE_H
 
 using namespace std;
 
@@ -43,6 +43,8 @@ typedef struct		s_vect
 	s_vect			operator - (int min);
 	s_vect			operator - (double min);
 	s_vect			operator - (s_vect min);
+	bool			operator < (s_vect delta);
+	bool			operator > (s_vect delta);
 }					t_vect;
 
 typedef struct		s_vertex
@@ -92,6 +94,7 @@ typedef struct		s_image
 	GLenum			format;
 	GLint			internal_format;
 	GLuint			texture_id;
+					s_image();
 					s_image(string path);
 					s_image(SDL_Surface *p_surface);
 	void			draw_self(t_vect p_coordd, t_vect p_size);

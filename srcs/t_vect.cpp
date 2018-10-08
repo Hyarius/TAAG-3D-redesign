@@ -101,3 +101,17 @@ s_vect			s_vect::operator - (s_vect min)
 	t_vect result = t_vect(this->x - min.x, this->y - min.y);
 	return (result);
 }
+
+bool			s_vect::operator < (s_vect delta)
+{
+	if (this->x < delta.x && this->y < delta.y)
+		return (true);
+	return (false);
+}
+
+bool			s_vect::operator > (s_vect delta)
+{
+	if (this->x > delta.x && this->y > delta.y)
+		return (true);
+	return (false);
+}

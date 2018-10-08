@@ -8,10 +8,11 @@ void				error_exit(string msg, int error)
 
 t_vect				get_mouse_coord()
 {
-	t_vect mouse;
+	int		x;
+	int		y;
 
-	SDL_GetMouseState((int *)&mouse.x, (int *)&mouse.y);
-	return(mouse);
+	SDL_GetMouseState(&x, &y);
+	return(t_vect(x, y));
 }
 
 vector<string>		strsplit(string input, string c)

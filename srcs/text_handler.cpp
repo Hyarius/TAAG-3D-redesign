@@ -15,6 +15,18 @@ static SDL_Color	create_color(int r, int g, int b, int a)
 	return (color);
 }
 
+int					calc_text_size(string p_text, t_vect p_size)
+{
+	int text_size;
+
+	text_size = 1;
+	while (calc_text_len(p_text, text_size + 1, NORMAL) < p_size.x)
+		text_size++;
+	while (get_char(text_size, NORMAL, BLACK, 'M')->surface->h > p_size.y)
+		text_size--;
+	return (text_size);
+}
+
 void				set_color_tab(void)
 {
 	g_color_tab[BLACK] = create_color(39, 39, 39, 42);
