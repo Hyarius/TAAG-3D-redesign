@@ -54,14 +54,12 @@ typedef struct	s_image_button : t_gui_obj
 	void		click(t_vect mouse); // test if the mouse is in the button and start the funct if yes
 }				t_image_button;
 
-
-
 typedef struct	s_text_entry : t_gui_obj
 {
 	string		text; //text to draw on screen
 	int			text_size; // text size
 	int			text_color; // text color
-	t_vect		coord[2]; //0 - coord first rect || 1 - coord second rect
+	t_vect		coord[2]; //0 - coord first rect || 1 - coord second rect || 2 - text coord
  	t_vect		size[2]; //0 - size first rect || 1 - size second rect
 	t_color		color[2]; //0 - color back || 1 - color front
 	t_gui_obj	**selected_entry; //a pointer to the object pointer in the gui object
