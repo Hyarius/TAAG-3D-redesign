@@ -17,27 +17,9 @@ s_text_button::s_text_button(	string p_text, int p_text_color, //text info
 	this->data = NULL;
 }
 
-void		s_text_button::set_funct_param(gui_funct p_funct, t_data p_data)
-{
-	this->funct = p_funct;
-	this->data = p_data;
-}
-
 void		s_text_button::draw_self()
 {
-	int i = 0;
-
-	while (i < 2)
-	{
+	for (int i = 0 ; i < 2 ; i++)
 		draw_rectangle(coord[i], size[i], color[i]);
-		i++;
-	}
 	draw_centred_text(text, text_size, coord[0] + size[0] / 2, NORMAL, text_color);
-}
-
-void		s_text_button::click(t_vect mouse)
-{
-	if (mouse > this->coord[0] && mouse < this->coord[0] + this->size[0])
-		if (this->funct != NULL)
-			this->funct(this->data);
 }

@@ -17,9 +17,11 @@ static SDL_Color	create_color(int r, int g, int b, int a)
 
 int					calc_text_size(string p_text, t_vect p_size)
 {
-	int text_size;
+	int text_size = 1;
+	string text = p_text;
 
-	text_size = 1;
+	if (p_text == "")
+		text = "mmmmmmmmmmmmmmmmmmmmmmmmm";
 	while (calc_text_len(p_text, text_size + 1, NORMAL) < p_size.x)
 		text_size++;
 	while (get_char(text_size, NORMAL, BLACK, 'M')->surface->h > p_size.y)

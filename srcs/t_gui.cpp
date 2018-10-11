@@ -2,7 +2,7 @@
 
 s_gui::s_gui()
 {
-
+	this->selected_entry = NULL;
 }
 
 void		s_gui::draw_self()
@@ -11,7 +11,7 @@ void		s_gui::draw_self()
 
 	while (i < this->object_list.size())
 	{
-		this->object_list[i]->draw_self();
+		this->object_list.at(i)->draw_self();
 		i++;
 	}
 }
@@ -21,11 +21,14 @@ void		s_gui::click()
 	size_t i = 0;
 	t_vect mouse = get_mouse_coord();
 
-	this->selected_entry = NULL;
-	SDL_StopTextInput();
+	if (this->selected_entry != NULL)
+	{
+		this->selected_entry = NULL;
+		SDL_StopTextInput();
+	}
 	while (i < this->object_list.size())
 	{
-		this->object_list[i]->click(mouse);
+		this->object_list.at(i)->click(mouse);
 		i++;
 	}
 }
