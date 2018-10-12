@@ -2,12 +2,22 @@
 
 static void		test(t_data p_data)
 {
-	if (p_data.data != NULL)
-		printf("Data content : [%s] = %d / %d\n", ((string *)p_data.data[0])->c_str(), *((int *)p_data.data[1]), *((int *)p_data.data[2]));
-	else if (p_data.data == NULL)
+	size_t i = 0;
+
+	if (p_data.data.size() != 0)
 	{
-		printf("Data is empty\n");
+		printf("Data content : ");
+		while (i < p_data.data.size())
+		{
+			if (i != 0)
+				printf(" - ");
+			printf("[%s]", ((string *)p_data.data[i])->c_str());
+			i++;
+		}
+		printf("\n");
 	}
+	else
+		printf("Data is empty\n");
 }
 
 int main(int argc, char **argv)
@@ -19,11 +29,23 @@ int main(int argc, char **argv)
 
 	SDL_Event	event;
 	bool		quit = false;
+	int i = 0;
 
 	t_gui		gui;
 
+	string		text_button = "yolo";
+	string		text = "AMAZING";
+	string		str_content = "Content";
+	string		test1 = "ceci est un test";
+
+	t_data		data = t_data(3, &str_content, &text, &test1);
+
+	gui.object_list.push_back(new s_button(new s_text_button(	&text_button, BLACK, t_vect(150, 150), t_vect(150, 150), 8, t_color(0.0, 0.0, 0.0), t_color(0.6, 0.6, 0.6)), test, NULL));
+
+
 	while (quit == false)
 	{
+
 		prepare_screen(t_color(0.3, 0.3, 0.3));
 
 		gui.draw_self();

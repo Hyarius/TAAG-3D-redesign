@@ -5,10 +5,14 @@ using namespace std;
 
 typedef struct		s_data
 {
-	void 			**data;
+	vector<void *>	data;
 					s_data();
-					s_data(void **p_data);
-	void			operator = (void **p_data);
+					s_data(vector<void *> p_data);
+					s_data(int nb_param, ...);
+	void			operator = (vector<void *> p_data);
+	void			operator = (void *p_data);
+	void			operator + (vector<void *> p_data);
+	void			operator + (void *p_ptr);
 }					t_data;
 
 typedef 			void(*gui_funct)(t_data p_data);
@@ -22,7 +26,7 @@ typedef struct		s_gui_comp
 
 typedef struct 		s_button_comp : t_gui_comp
 {
-	string			text; //text to draw on screen
+	string			*text; //text to draw on screen
 	int				text_size;
 	int				text_color;
 	t_vect			coord[2]; //0 - coord first rect || 1 - coord second rect
@@ -39,7 +43,7 @@ typedef struct 		s_button_comp : t_gui_comp
 typedef struct		s_text_button : t_button_comp
 {
 	t_color			color[2]; //0 - color back || 1 - color front
-					s_text_button(	string p_text, int p_text_color, // text info
+					s_text_button(	string *p_text, int p_text_color, // text info
 								t_vect p_coord, t_vect p_size, int border, // coord / size info
 								t_color p_color1, t_color p_color2); // color info
 	void			draw_self(); // draw the button
@@ -48,7 +52,7 @@ typedef struct		s_text_button : t_button_comp
 typedef struct		s_image_button : t_button_comp
 {
 	t_image			image; //image to draw on the screen
-					s_image_button(string p_text, int p_text_color,
+					s_image_button(string *p_text, int p_text_color,
 						t_image p_image, t_vect p_coord, t_vect p_size, int border); //info about the image and it's place
 						s_image_button( t_image p_image, t_vect p_coord, t_vect p_size); //info about the image and it's place
 	void			draw_self(); // draw the button
@@ -56,7 +60,7 @@ typedef struct		s_image_button : t_button_comp
 
 typedef struct		s_entry_comp : t_gui_comp
 {
-	string			text; //text to draw on screen
+	string			*text; //text to draw on screen
 	int				text_size;
 	int				text_color;
 	t_vect			coord[3]; // 0 - coord tl | 1 - coord + border | 2 - coord text
@@ -73,7 +77,7 @@ typedef struct		s_entry_comp : t_gui_comp
 typedef struct		s_text_entry : t_entry_comp
 {
 	t_color			color[2]; //0 - color back || 1 - color front
-					s_text_entry(	string p_text, int p_text_color, //text info
+					s_text_entry(	string *p_text, int p_text_color, //text info
 								t_entry_comp **p_selected_entry, //info about the pointer in the gui object
 								t_vect p_coord, t_vect p_size, int border, // coord / size info
 								t_color p_color1, t_color p_color2); // color info
@@ -83,7 +87,7 @@ typedef struct		s_text_entry : t_entry_comp
 typedef struct		s_image_entry : t_entry_comp
 {
 	t_image			image; //image to draw on the screen
-					s_image_entry(	string p_text, int p_text_color, //text info
+					s_image_entry(	string *p_text, int p_text_color, //text info
 							t_entry_comp **p_selected_entry, //info about the pointer in the gui object
 							t_image p_image, t_vect p_coord, t_vect p_size, int border); //info about the image and it's place
 	void			draw_self(); // draw the button
