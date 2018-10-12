@@ -2,7 +2,7 @@
 
 s_image_entry::s_image_entry(	string *p_text, int p_text_color,
 								t_entry_comp **p_selected_entry,
-								t_image p_image, t_vect p_coord, t_vect p_size, int border)
+					t_image p_image, t_vect p_coord, t_vect p_size, int border)
 {
 	text = p_text;
 	text_color = p_text_color;

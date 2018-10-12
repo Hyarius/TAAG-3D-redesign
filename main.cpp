@@ -33,15 +33,16 @@ int main(int argc, char **argv)
 
 	t_gui		gui;
 
-	string		text_button = "yolo";
-	string		text = "AMAZING";
-	string		str_content = "Content";
-	string		test1 = "ceci est un test";
+	string		text_button = "value : ";
+	string		minus = "-";
+	int			value = 10;
+	string		value_text = "";
+	string		plus = "+";
 
-	t_data		data = t_data(3, &str_content, &text, &test1);
-
-	gui.object_list.push_back(new s_button(new s_text_button(	&text_button, BLACK, t_vect(150, 150), t_vect(150, 150), 8, t_color(0.0, 0.0, 0.0), t_color(0.6, 0.6, 0.6)), test, NULL));
-
+	gui.object_list.push_back(new s_iterator(	new s_text_button(&text_button, BLACK, t_vect(150, 150), t_vect(450, 150), 8, t_color(0.0, 0.0, 0.0), t_color(0.6, 0.6, 0.6)),
+												new s_text_button(&minus, BLACK, t_vect(650, 150), t_vect(150, 150), 8, t_color(0.0, 0.0, 0.0), t_color(0.6, 0.6, 0.6)), test, NULL,
+												new s_text_button(&value_text, BLACK, t_vect(850, 150), t_vect(250, 150), 8, t_color(0.0, 0.0, 0.0), t_color(0.6, 0.6, 0.6)), test, t_data(2, &value, &value_text),
+												new s_text_button(&plus, BLACK, t_vect(1150, 150), t_vect(150, 150), 8, t_color(0.0, 0.0, 0.0), t_color(0.6, 0.6, 0.6)), test, NULL));
 
 	while (quit == false)
 	{

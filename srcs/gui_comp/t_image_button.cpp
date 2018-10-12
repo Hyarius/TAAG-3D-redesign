@@ -1,7 +1,7 @@
 #include "template.h"
 
 s_image_button::s_image_button(string *p_text, int p_text_color,
-						t_image p_image, t_vect p_coord, t_vect p_size, int border)
+					t_image p_image, t_vect p_coord, t_vect p_size, int border)
 {
 	text = p_text;
 	text_color = p_text_color;
@@ -32,6 +32,7 @@ void		s_image_button::draw_self()
 	if (text != NULL && *text != "")
 	{
 		text_size = calc_text_size(*text, size[1] - (size[0] - size[1]));
-		draw_centred_text(*text, text_size, coord[1] + size[1] / 2, NORMAL, text_color);
+		draw_centred_text(*text, text_size, coord[1] + size[1] / 2,
+							NORMAL, text_color);
 	}
 }

@@ -25,6 +25,7 @@ void		s_text_button::draw_self()
 	if (text != NULL && *text != "")
 	{
 		text_size = calc_text_size(*text, size[1] - (size[0] - size[1]));
-		draw_centred_text(*text, text_size, coord[0] + size[0] / 2, NORMAL, text_color);
+		draw_centred_text(*text, text_size, coord[0] + size[0] / 2,
+							NORMAL, text_color);
 	}
 }

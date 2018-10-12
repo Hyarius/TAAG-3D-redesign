@@ -42,7 +42,9 @@ s_image::s_image(SDL_Surface *p_surface)
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, this->internal_format, this->surface->w, this->surface->h, 0, this->format, GL_UNSIGNED_BYTE, this->surface->pixels);
+	glTexImage2D(GL_TEXTURE_2D, 0, this->internal_format, this->surface->w,
+				this->surface->h, 0, this->format,
+				GL_UNSIGNED_BYTE, this->surface->pixels);
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 }
