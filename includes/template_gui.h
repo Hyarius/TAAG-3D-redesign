@@ -24,11 +24,16 @@ typedef struct		s_button : t_gui_obj
 typedef struct		s_iterator : t_gui_obj
 {
 	t_button_comp	*button[4]; //0 - description | 1 - button minus | 2 - value | 3 - button plus
+	string			text_value;
+	int				delta;
+	int				min;
+	int				max;
 
 					s_iterator(	t_button_comp *p_button0,
-								t_button_comp *p_button1, gui_funct p_funct1, t_data p_data1,
-								t_button_comp *p_button2, gui_funct p_funct2, t_data p_data2,
-								t_button_comp *p_button3, gui_funct p_funct3, t_data p_data3);
+								t_button_comp *p_button1,
+								t_button_comp *p_button2,
+								t_button_comp *p_button3,
+								int *p_value, int p_delta, int p_min, int p_max);
 	void			draw_self();
 	void			click(t_vect mouse);
 }					t_iterator;

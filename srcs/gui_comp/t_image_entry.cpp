@@ -11,7 +11,7 @@ s_image_entry::s_image_entry(	string *p_text, int p_text_color,
 	coord[1] = p_coord + border;
 	size[1] = p_size - (border * 2);
 	coord[2] = coord[1] + t_vect(0, size[1].y / 2);
-	if (*text != "")
+	if (text != NULL && *text != "")
 		text_size = calc_text_size(*text, size[1] - border * 2);
 	selected_entry = p_selected_entry;
 	image = p_image;

@@ -45,7 +45,7 @@ typedef struct		s_text_button : t_button_comp
 	t_color			color[2]; //0 - color back || 1 - color front
 					s_text_button(	string *p_text, int p_text_color, // text info
 								t_vect p_coord, t_vect p_size, int border, // coord / size info
-								t_color p_color1, t_color p_color2); // color info
+								t_color p_color1, t_color p_color2);
 	void			draw_self(); // draw the button
 }					t_text_button;
 

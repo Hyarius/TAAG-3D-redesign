@@ -37,7 +37,7 @@ int				calc_text_max_size(string text, int typo, t_vect size)
 {
 	int i = 1;
 
-	while (calc_text_len(text, i + 1, NORMAL) + BORDER * 4 < size.x &&
+	while (calc_text_len(text, i + 1, NORMAL) < size.x &&
 			get_char(i, NORMAL, BLACK, 'M')->surface->h < size.y)
 		i++;
 	return (i);

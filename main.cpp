@@ -1,25 +1,5 @@
  #include "template.h"
 
-static void		test(t_data p_data)
-{
-	size_t i = 0;
-
-	if (p_data.data.size() != 0)
-	{
-		printf("Data content : ");
-		while (i < p_data.data.size())
-		{
-			if (i != 0)
-				printf(" - ");
-			printf("[%s]", ((string *)p_data.data[i])->c_str());
-			i++;
-		}
-		printf("\n");
-	}
-	else
-		printf("Data is empty\n");
-}
-
 int main(int argc, char **argv)
 {
 	if (argc != 1)
@@ -33,16 +13,15 @@ int main(int argc, char **argv)
 
 	t_gui		gui;
 
-	string		text_button = "value : ";
-	string		minus = "-";
 	int			value = 10;
-	string		value_text = "";
-	string		plus = "+";
 
-	gui.object_list.push_back(new s_iterator(	new s_text_button(&text_button, BLACK, t_vect(150, 150), t_vect(450, 150), 8, t_color(0.0, 0.0, 0.0), t_color(0.6, 0.6, 0.6)),
-												new s_text_button(&minus, BLACK, t_vect(650, 150), t_vect(150, 150), 8, t_color(0.0, 0.0, 0.0), t_color(0.6, 0.6, 0.6)), test, NULL,
-												new s_text_button(&value_text, BLACK, t_vect(850, 150), t_vect(250, 150), 8, t_color(0.0, 0.0, 0.0), t_color(0.6, 0.6, 0.6)), test, t_data(2, &value, &value_text),
-												new s_text_button(&plus, BLACK, t_vect(1150, 150), t_vect(150, 150), 8, t_color(0.0, 0.0, 0.0), t_color(0.6, 0.6, 0.6)), test, NULL));
+	gui.object_list.push_back(new s_button(new s_image_button(t_image("ressources/assets/interface/Menu_start.png"), t_vect(0, 0), get_win_size()), NULL, NULL));
+
+	gui.object_list.push_back(new s_iterator(	new s_text_button(	get_text("value"), 	BLACK, 	t_vect(150, 150), 	t_vect(450, 150), 8, 	t_color(0.0, 0.0, 0.0), 	t_color(0.6, 0.6, 0.6)),
+												new s_text_button(	get_text("minus"), 		BLACK, 	t_vect(650, 150), 	t_vect(150, 150), 8, 	t_color(0.0, 0.0, 0.0), 	t_color(0.6, 0.6, 0.6)),
+												new s_text_button(	NULL, 	BLACK, 	t_vect(850, 150), 	t_vect(250, 150), 8, 	t_color(0.0, 0.0, 0.0), 	t_color(0.6, 0.6, 0.6)),
+												new s_text_button(	get_text("plus"), 			BLACK, 	t_vect(1150, 150), 	t_vect(150, 150), 8, 	t_color(0.0, 0.0, 0.0), 	t_color(0.6, 0.6, 0.6)),
+												&value, 1, 0, 20));
 
 	while (quit == false)
 	{
@@ -51,7 +30,7 @@ int main(int argc, char **argv)
 
 		gui.draw_self();
 
-		render_screen();
+		render_screen(true);
 
 		if (SDL_PollEvent(&(event)) == 1)
 		{

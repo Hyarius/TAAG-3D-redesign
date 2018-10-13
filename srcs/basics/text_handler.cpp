@@ -58,7 +58,7 @@ void				set_color_tab(void)
 
 static SDL_Color	get_color(int i)
 {
-	if (i < 0 || i > NB_COLOR)
+	if (i < 0 || i >= NB_COLOR)
 		return (g_color_tab[0]);
 	return (g_color_tab[i]);
 }

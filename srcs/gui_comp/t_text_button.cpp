@@ -10,7 +10,7 @@ s_text_button::s_text_button(	string *p_text, int p_text_color, //text info
 	size[0] = p_size;
 	coord[1] = p_coord + border;
 	size[1] = p_size - (border * 2);
-	if (*text != "")
+	if (text != NULL && *text != "")
 		text_size = calc_text_size(*text, size[1] - border * 2);
 	color[0] = p_color1;
 	color[1] = p_color2;

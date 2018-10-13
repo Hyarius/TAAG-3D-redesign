@@ -2,6 +2,7 @@
 # define TEMPLATE_H
 
 # include "include.h"
+# include "text_define.h"
 # include "define.h"
 # include "template_structure.h"
 # include "template_gui.h"
@@ -15,6 +16,12 @@ t_vect				get_mouse_coord();
 vector<string>		strsplit(string input, string c);
 vector<string>		list_files(string path, string extension);
 bool				check_file_exist(string path, string name);
+
+void				set_lang_text(string path);
+string				*get_text(string key);
+
+string				get_str(ifstream *myfile);
+vector<string>		get_strsplit(ifstream *myfile, const string c, int size);
 
 double				degree_to_radius(double angle);
 double				radius_to_degree(double radian);
@@ -37,6 +44,7 @@ t_vect				get_win_size(void);
 void				prepare_screen();
 void				prepare_screen(t_color color);
 void				render_screen();
+void				render_screen(bool value);
 
 GLuint				get_program_color();
 GLuint				get_program_sprite();

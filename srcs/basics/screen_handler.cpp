@@ -74,6 +74,7 @@ void				window_initialisation(string window_name)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	set_color_tab();
+	set_lang_text("ressources/langage/english.lang");
 	TTF_Init();
 }
 
@@ -101,6 +102,12 @@ void				prepare_screen(t_color color)
 void				render_screen()
 {
 	check_frame();
+	SDL_GL_SwapWindow(g_window);
+}
+
+void				render_screen(bool value)
+{
+	check_frame(value);
 	SDL_GL_SwapWindow(g_window);
 }
 
