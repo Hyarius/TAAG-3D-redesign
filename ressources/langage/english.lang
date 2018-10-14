@@ -1,4 +1,9 @@
-value;Value :
-plus;+
-minus;-
-test;This is a test
+play;Play
+player_editor;Player editor
+map_editor;Map editor
+shop;Shop
+option;Option
+quit;Quit
+quit ?;Did you wanna quit ?
+yes;Yes
+no;No

@@ -42,7 +42,11 @@ typedef struct	s_gui
 {
 	vector<t_gui_obj *>	object_list;
 	t_gui_obj			*selected_entry;
-	s_gui();
+
+	t_vect				unit;
+
+				s_gui();
+	void		add(t_gui_obj *object);
 	void		draw_self();
 	void		click();
 }				t_gui;

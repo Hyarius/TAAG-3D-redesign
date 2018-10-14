@@ -1,4 +1,9 @@
-value;Valeur :
-plus;>
-minus;<
-test;Ceci est un test
+play;Jouer
+player_editor;Editeur de personnage
+map_editor;Editeur de carte
+shop;Boutique
+option;Option
+quit;Quitter
+quit ?;Voulez-vous quitter ?
+yes;Oui
+no;Non

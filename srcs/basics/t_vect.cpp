@@ -14,20 +14,20 @@ s_vect::s_vect(int p_x, int p_y)
 
 s_vect::s_vect(double p_x, double p_y)
 {
-	this->x = (int)p_x;
-	this->y = (int)p_y;
+	this->x = p_x;
+	this->y = p_y;
 }
 
 s_vect::s_vect(int p_x, double p_y)
 {
-	this->x = (int)p_x;
-	this->y = (int)p_y;
+	this->x = p_x;
+	this->y = p_y;
 }
 
 s_vect::s_vect(double p_x, int p_y)
 {
-	this->x = (int)p_x;
-	this->y = (int)p_y;
+	this->x = p_x;
+	this->y = p_y;
 }
 
 s_vect			s_vect::operator * (int mult)

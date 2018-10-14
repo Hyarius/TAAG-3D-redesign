@@ -9,6 +9,7 @@ s_image_button::s_image_button(string *p_text, int p_text_color,
 	size[0] = p_size;
 	coord[1] = p_coord + border;
 	size[1] = p_size - (border * 2);
+	coord[2] = coord[1] + size[1] / 2;
 	if (text != NULL && *text != "")
 		text_size = calc_text_size(*text, size[1] - border * 2);
 	image = p_image;
@@ -32,7 +33,6 @@ void		s_image_button::draw_self()
 	if (text != NULL && *text != "")
 	{
 		text_size = calc_text_size(*text, size[1] - (size[0] - size[1]));
-		draw_centred_text(*text, text_size, coord[1] + size[1] / 2,
-							NORMAL, text_color);
+		draw_centred_text(*text, text_size, coord[2], NORMAL, text_color);
 	}
 }

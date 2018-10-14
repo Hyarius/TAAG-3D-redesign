@@ -29,7 +29,7 @@ typedef struct 		s_button_comp : t_gui_comp
 	string			*text; //text to draw on screen
 	int				text_size;
 	int				text_color;
-	t_vect			coord[2]; //0 - coord first rect || 1 - coord second rect
+	t_vect			coord[3]; //0 - coord first rect || 1 - coord second rect || 2 - text coord
 	t_vect			size[2]; //0 - size first rect || 1 - size second rect
 	gui_funct		funct; //function to use when clicked : initialized empty
 	t_data			data; // data to send to the function : initialized empty
