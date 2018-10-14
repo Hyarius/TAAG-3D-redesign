@@ -1,14 +1,19 @@
 #include "taag.h"
 
-static void		set_quit(t_data data)
+static void		stand(t_data data)
 {
 	*((bool *)data.data[0]) = true;
+}
+
+static void		quit(t_data data)
+{
+	exit(0);
 }
 
 void		menu_quit(t_data data)
 {
 	SDL_Event	event;
-	bool		quit = false;
+	bool		continu = false;
 	t_gui		back_gui = t_gui(*((t_gui *)(data.data[0])));
 	t_color		color[2] = {t_color(0.6, 0.6, 0.6), t_color(0.8, 0.8, 0.8)};
 
@@ -25,17 +30,17 @@ void		menu_quit(t_data data)
 
 	gui.add(new s_button(new s_text_button(//button yes
 						get_text("yes"), DARK_GREY, //text info
-						gui.unit * t_vect(5.25, 4.75), gui.unit * t_vect(2, 1), 8, //object info
+						gui.unit * t_vect(4.25, 5.25), gui.unit * t_vect(3, 1.5), 8, //object info
 						color[0], color[1]),
-						NULL, NULL));
+						quit, NULL));
 
 	gui.add(new s_button(new s_text_button(//button no
 						get_text("no"), DARK_GREY, //text info
-						gui.unit * t_vect(7.75, 4.75), gui.unit * t_vect(2, 1), 8, //object info
+						gui.unit * t_vect(7.75, 5.25), gui.unit * t_vect(3, 1.5), 8, //object info
 						color[0], color[1]),
-						NULL, NULL));
+						stand, t_data(1, &continu)));
 
-	while (quit == false)
+	while (continu == false)
 	{
 		prepare_screen();
 
@@ -47,10 +52,9 @@ void		menu_quit(t_data data)
 		if (SDL_PollEvent(&(event)) == 1)
 		{
 			if (event.type == SDL_QUIT || (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE))
-				quit = true;
+				continu = true;
 			else if (event.type == SDL_MOUSEBUTTONUP)
 				gui.click();
 		}
 	}
-	printf("menu quit\n");
 }
