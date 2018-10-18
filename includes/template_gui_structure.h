@@ -7,11 +7,9 @@ typedef struct		s_data
 {
 	vector<void *>	data;
 					s_data();
-					s_data(vector<void *> p_data);
-					s_data(int nb_param, ...);
-	void			operator = (vector<void *> p_data);
+					s_data(void *p_data);
+					s_data(int nb_param, void *p_ptr, ...);
 	void			operator = (void *p_data);
-	void			operator + (vector<void *> p_data);
 	void			operator + (void *p_ptr);
 }					t_data;
 

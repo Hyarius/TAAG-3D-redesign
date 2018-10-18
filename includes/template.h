@@ -16,6 +16,7 @@ t_vect				get_mouse_coord();
 vector<string>		strsplit(string input, string c);
 vector<string>		list_files(string path, string extension);
 bool				check_file_exist(string path, string name);
+SDL_Surface			*create_surface_color(t_color p_color);
 
 void				set_lang_text(string path);
 string				*get_text(string key);

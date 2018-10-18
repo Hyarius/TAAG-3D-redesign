@@ -7,7 +7,7 @@ int main(int argc, char **argv)
 
 	window_initialisation(argv[0]);
 
-	menu_start();
+	menu_player_editor(NULL);
 
 	return 0;
 }

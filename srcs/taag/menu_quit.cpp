@@ -7,14 +7,17 @@ static void		stand(t_data data)
 
 static void		quit(t_data data)
 {
-	exit(0);
+	if (data.data[0] == NULL)
+		exit(0);
+	else
+		*((bool *)data.data[0]) = true;;
+		*((bool *)data.data[1]) = true;;
 }
 
 void		menu_quit(t_data data)
 {
 	SDL_Event	event;
 	bool		continu = false;
-	t_gui		back_gui = t_gui(*((t_gui *)(data.data[0])));
 	t_color		color[2] = {t_color(0.6, 0.6, 0.6), t_color(0.8, 0.8, 0.8)};
 
 	t_gui		gui;
@@ -32,19 +35,20 @@ void		menu_quit(t_data data)
 						get_text("yes"), DARK_GREY, //text info
 						gui.unit * t_vect(4.25, 5.25), gui.unit * t_vect(3, 1.5), 8, //object info
 						color[0], color[1]),
-						quit, NULL));
+						quit, (data.data.size() == 1 ? NULL : t_data(2, data.data[1], &continu))));
 
 	gui.add(new s_button(new s_text_button(//button no
 						get_text("no"), DARK_GREY, //text info
 						gui.unit * t_vect(7.75, 5.25), gui.unit * t_vect(3, 1.5), 8, //object info
 						color[0], color[1]),
-						stand, t_data(1, &continu)));
+						stand, &continu));
 
 	while (continu == false)
 	{
 		prepare_screen();
 
-		back_gui.draw_self();
+		if (data.data.size() != 0)
+			(*((t_gui *)(data.data[0]))).draw_self();
 		gui.draw_self();
 
 		render_screen(true);

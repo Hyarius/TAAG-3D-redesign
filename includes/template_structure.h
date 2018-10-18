@@ -96,6 +96,7 @@ typedef struct		s_image
 	GLuint			texture_id;
 					s_image();
 					s_image(string path);
+					s_image(t_color p_color);
 					s_image(SDL_Surface *p_surface);
 	void			draw_self(t_vect p_coordd, t_vect p_size);
 	void			draw_self(t_vect tl, t_vect tr, t_vect dl, t_vect dr);
