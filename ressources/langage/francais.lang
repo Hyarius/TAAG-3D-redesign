@@ -7,3 +7,8 @@ quit;Quitter
 quit ?;Voulez-vous quitter ?
 yes;Oui
 no;Non
+entry name;Entrer le nom du personnage
+pool point;Points d'attribut a distribuer :
+health;Health :
+pa;Action points :
+pm;Mouvement points :

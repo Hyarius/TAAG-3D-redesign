@@ -25,6 +25,9 @@ typedef struct		s_iterator : t_gui_obj
 {
 	t_button_comp	*button[4]; //0 - description | 1 - button minus | 2 - value | 3 - button plus
 	string			text_value;
+	int				*value;
+	int				*pool;
+	int				cost;
 	int				delta;
 	int				min;
 	int				max;
@@ -33,15 +36,26 @@ typedef struct		s_iterator : t_gui_obj
 								t_button_comp *p_button1,
 								t_button_comp *p_button2,
 								t_button_comp *p_button3,
-								int *p_value, int p_delta, int p_min, int p_max);
+								int *p_value, int p_delta, int p_min, int p_max,
+								int	*p_pool, int p_cost);
 	void			draw_self();
 	void			click(t_vect mouse);
 }					t_iterator;
 
+typedef struct		s_entry : t_gui_obj
+{
+	t_entry_comp	*entry;
+	string			text;
+
+					s_entry(t_entry_comp *p_entry);
+	void			draw_self();
+	void			click(t_vect mouse);
+}					t_entry;
+
 typedef struct	s_gui
 {
 	vector<t_gui_obj *>	object_list;
-	t_gui_obj			*selected_entry;
+	t_entry_comp		*entry;
 
 	t_vect				unit;
 

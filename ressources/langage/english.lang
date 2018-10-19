@@ -7,3 +7,12 @@ quit;Quit
 quit ?;Did you wanna quit ?
 yes;Yes
 no;No
+entry name;Enter the character name
+pool point;Attribute point left :
++;+
+-;-
+<;<
+>;>
+health;Health :
+pa;Action points :
+pm;Mouvement points :

@@ -2,7 +2,7 @@
 
 s_gui::s_gui()
 {
-	selected_entry = NULL;
+	entry = NULL;
 	unit = t_vect(get_win_size().x / 15, get_win_size().y / 10);
 }
 
@@ -22,9 +22,9 @@ void		s_gui::click()
 	size_t i = 0;
 	t_vect mouse = get_mouse_coord();
 
-	if (selected_entry != NULL)
+	if (entry != NULL)
 	{
-		selected_entry = NULL;
+		entry = NULL;
 		SDL_StopTextInput();
 	}
 	while (i < object_list.size())

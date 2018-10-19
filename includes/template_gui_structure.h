@@ -59,7 +59,9 @@ typedef struct		s_image_button : t_button_comp
 typedef struct		s_entry_comp : t_gui_comp
 {
 	string			*text; //text to draw on screen
+	string			*desc; //text to draw on screen
 	int				text_size;
+	int				desc_size;
 	int				text_color;
 	t_vect			coord[3]; // 0 - coord tl | 1 - coord + border | 2 - coord text
  	t_vect			size[2]; // 0 - size totale | 1 - size + border
@@ -74,20 +76,21 @@ typedef struct		s_entry_comp : t_gui_comp
 
 typedef struct		s_text_entry : t_entry_comp
 {
-	t_color			color[2]; //0 - color back || 1 - color front
-					s_text_entry(	string *p_text, int p_text_color, //text info
+	t_color			color[3]; //0 - color back || 1 - color front || color_back when selected
+					s_text_entry(	string *p_desc, string *p_text, int p_text_color, //text info
 								t_entry_comp **p_selected_entry, //info about the pointer in the gui object
 								t_vect p_coord, t_vect p_size, int border, // coord / size info
-								t_color p_color1, t_color p_color2); // color info
+								t_color p_color1, t_color p_color2, t_color p_color3); // color info
 	void			draw_self(); // draw the button
 }					t_text_entry;
 
 typedef struct		s_image_entry : t_entry_comp
 {
 	t_image			image; //image to draw on the screen
-					s_image_entry(	string *p_text, int p_text_color, //text info
+	t_image			selec_image; //image to draw on the screen when selected
+					s_image_entry(	string *p_desc, string *p_text, int p_text_color, //text info
 							t_entry_comp **p_selected_entry, //info about the pointer in the gui object
-							t_image p_image, t_vect p_coord, t_vect p_size, int border); //info about the image and it's place
+							t_image p_image, t_image p_selec_image, t_vect p_coord, t_vect p_size, int border); //info about the image and it's place
 	void			draw_self(); // draw the button
 }					t_image_entry;
 
