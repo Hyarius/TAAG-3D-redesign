@@ -23,7 +23,7 @@ void			t_entry_comp::click(t_vect mouse)
 	}
 }
 
-void			t_entry_comp::set_funct_param(gui_funct p_funct, t_data p_data)
+void			t_entry_comp::set_funct_param(gui_funct p_funct, t_data p_data, d_funct p_draw_funct)
 {
 
 }

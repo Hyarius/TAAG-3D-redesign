@@ -3,6 +3,7 @@
 
 using namespace std;
 
+
 typedef struct		s_data
 {
 	vector<void *>	data;
@@ -13,11 +14,13 @@ typedef struct		s_data
 	void			operator + (void *p_ptr);
 }					t_data;
 
-typedef 			void(*gui_funct)(t_data p_data);
+typedef 			void(*gui_funct)(t_data);
+
+typedef				int(*d_funct)(string, int, t_vect, int, int);
 
 typedef struct		s_gui_comp
 {
-	virtual void	set_funct_param(gui_funct p_funct, t_data p_data) = 0;
+	virtual void	set_funct_param(gui_funct p_funct, t_data p_data, d_funct p_draw_funct) = 0;
 	virtual void	draw_self() = 0;
 	virtual void	click(t_vect mouse) = 0;
 }					t_gui_comp;
@@ -31,8 +34,9 @@ typedef struct 		s_button_comp : t_gui_comp
 	t_vect			size[2]; //0 - size first rect || 1 - size second rect
 	gui_funct		funct; //function to use when clicked : initialized empty
 	t_data			data; // data to send to the function : initialized empty
+	d_funct			draw_funct;
 
-	void			set_funct_param(gui_funct p_funct, t_data p_data);
+	void			set_funct_param(gui_funct p_funct, t_data p_data, d_funct p_draw_funct);
 	virtual void	draw_self() = 0;
 	void			click(t_vect mouse);
 }					t_button_comp;
@@ -67,7 +71,7 @@ typedef struct		s_entry_comp : t_gui_comp
  	t_vect			size[2]; // 0 - size totale | 1 - size + border
 	s_entry_comp	**selected_entry;
 
-	void			set_funct_param(gui_funct p_funct, t_data p_data);
+	void			set_funct_param(gui_funct p_funct, t_data p_data, d_funct p_draw_funct);
 	void			add_text(string new_text);
 	void			delete_text();
 	virtual void	draw_self() = 0; // draw the button

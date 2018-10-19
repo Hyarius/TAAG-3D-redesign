@@ -4,26 +4,27 @@ static double	calc_line(int line, double space)
 {
 	double result;
 
-	result = line + space;
+	result = (double)line + (double)line * (double)space;
 	return (result);
 }
 
 void		menu_player_editor(t_data data)
 {
-	SDL_Event	event;
-	bool		quit = false;
+	SDL_Event		event;
+	bool			quit = false;
 
-	t_gui	gui;
+	t_gui			gui = t_gui(30, 20);
 
-	gui.unit = get_win_size() / t_vect(30, 20);
+	vector<double>	button_pos = {1, 9, 10.25, 12};
+	vector<double>	button_size = {7.75, 1, 1.5, 1};
+	int				pool = 30;
+	vector<int>		value = {45, 6, 3};
 
-	double	pos[4] = {1, 6.25, 7.5, 9.25};
-	double	size[4] = {5, 1, 1.5, 1};
-	int		pool = 30;
+	t_color			color[3] = {t_color(0.5, 0.5, 0.5),
+								t_color(0.6, 0.6, 0.6),
+								t_color(1.0, 1.0, 0.7)};
 
-	t_color	color[3] = {t_color(0.5, 0.5, 0.5), t_color(0.6, 0.6, 0.6), t_color(1.0, 1.0, 0.7)};
 
-	int		health = 45, pa = 6, pm = 3;
 
 	gui.add(new s_button(new s_image_button(//image de fond
 			t_image(t_color(0.7, 0.7, 0.7)),
@@ -31,46 +32,45 @@ void		menu_player_editor(t_data data)
 			NULL, NULL));
 
 
-	int line = calc_line(1, 0.25);
+	double line = calc_line(1, 0.25);
 	gui.add(new s_entry(new t_text_entry(get_text("entry name"), NULL, DARK_GREY,//name
 									&(gui.entry),
-									gui.unit * t_vect(pos[0], line), gui.unit * t_vect(9, 1), 3,
+									gui.unit * t_vect(button_pos[0], line), gui.unit * t_vect(9, 1), 3,
 									color[0], color[1], color[2])));
-
 
 
 	line = calc_line(2, 0.25);
 	gui.add(new s_iterator(	new t_text_button(get_text("health"), DARK_GREY, //health
-								gui.unit * t_vect(pos[0], line), gui.unit * t_vect(size[0], 1), 3,
+								gui.unit * t_vect(button_pos[0], line), gui.unit * t_vect(button_size[0], 1), 3,
 								color[0], color[1]),
 							new t_text_button(get_text("-"), DARK_GREY, //minus button
-								gui.unit * t_vect(pos[1], line), gui.unit * t_vect(size[1], 1), 3,
+								gui.unit * t_vect(button_pos[1], line), gui.unit * t_vect(button_size[1], 1), 3,
 								color[0], color[1]),
 							new t_text_button(NULL, DARK_GREY, //value button
-								gui.unit * t_vect(pos[2], line), gui.unit * t_vect(size[2], 1), 3,
+								gui.unit * t_vect(button_pos[2], line), gui.unit * t_vect(button_size[2], 1), 3,
 								color[0], color[1]),
 							new t_text_button(get_text("+"), DARK_GREY, //plus button
-								gui.unit * t_vect(pos[3], line), gui.unit * t_vect(size[3], 1), 3,
+								gui.unit * t_vect(button_pos[3], line), gui.unit * t_vect(button_size[3], 1), 3,
 								color[0], color[1]),
-							&health, 5, 15, 150,
+							&value[0], 5, 15, 150,
 							&pool, 1));
 
 
 
 	line = calc_line(3, 0.25);
 	gui.add(new s_iterator(	new t_text_button(get_text("pa"), DARK_GREY, //health
-								gui.unit * t_vect(pos[0], line), gui.unit * t_vect(size[0], 1), 3,
+								gui.unit * t_vect(button_pos[0], line), gui.unit * t_vect(button_size[0], 1), 3,
 								color[0], color[1]),
 							new t_text_button(get_text("-"), DARK_GREY, //minus button
-								gui.unit * t_vect(pos[1], line), gui.unit * t_vect(size[1], 1), 3,
+								gui.unit * t_vect(button_pos[1], line), gui.unit * t_vect(button_size[1], 1), 3,
 								color[0], color[1]),
 							new t_text_button(NULL, DARK_GREY, //value button
-								gui.unit * t_vect(pos[2], line), gui.unit * t_vect(size[2], 1), 3,
+								gui.unit * t_vect(button_pos[2], line), gui.unit * t_vect(button_size[2], 1), 3,
 								color[0], color[1]),
 							new t_text_button(get_text("+"), DARK_GREY, //plus button
-								gui.unit * t_vect(pos[3], line), gui.unit * t_vect(size[3], 1), 3,
+								gui.unit * t_vect(button_pos[3], line), gui.unit * t_vect(button_size[3], 1), 3,
 								color[0], color[1]),
-							&pa, 1, 4, 12,
+							&value[1], 1, 4, 12,
 							&pool, 5));
 
 
@@ -78,18 +78,18 @@ void		menu_player_editor(t_data data)
 
 	line = calc_line(4, 0.25);
 	gui.add(new s_iterator(	new t_text_button(get_text("pm"), DARK_GREY, //health
-								gui.unit * t_vect(pos[0], line), gui.unit * t_vect(size[0], 1), 3,
+								gui.unit * t_vect(button_pos[0], line), gui.unit * t_vect(button_size[0], 1), 3,
 								color[0], color[1]),
 							new t_text_button(get_text("-"), DARK_GREY, //minus button
-								gui.unit * t_vect(pos[1], line), gui.unit * t_vect(size[1], 1), 3,
+								gui.unit * t_vect(button_pos[1], line), gui.unit * t_vect(button_size[1], 1), 3,
 								color[0], color[1]),
 							new t_text_button(NULL, DARK_GREY, //value button
-								gui.unit * t_vect(pos[2], line), gui.unit * t_vect(size[2], 1), 3,
+								gui.unit * t_vect(button_pos[2], line), gui.unit * t_vect(button_size[2], 1), 3,
 								color[0], color[1]),
 							new t_text_button(get_text("+"), DARK_GREY, //plus button
-								gui.unit * t_vect(pos[3], line), gui.unit * t_vect(size[3], 1), 3,
+								gui.unit * t_vect(button_pos[3], line), gui.unit * t_vect(button_size[3], 1), 3,
 								color[0], color[1]),
-							&pm, 1, 3, 8,
+							&value[2], 1, 3, 8,
 							&pool, 3));
 
 	line = calc_line(15, 0.25);

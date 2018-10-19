@@ -17,6 +17,7 @@ typedef struct		s_button : t_gui_obj
 	t_button_comp	*button;
 
 					s_button(t_button_comp *p_button, gui_funct p_funct, t_data p_data);
+					s_button(t_button_comp *p_button, gui_funct p_funct, t_data p_data, d_funct p_draw_funct);
 	void			draw_self();
 	void			click(t_vect mouse);
 }					t_button;
@@ -60,6 +61,7 @@ typedef struct	s_gui
 	t_vect				unit;
 
 				s_gui();
+				s_gui(int x, int y);
 	void		add(t_gui_obj *object);
 	void		draw_self();
 	void		click();

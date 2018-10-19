@@ -6,6 +6,12 @@ s_gui::s_gui()
 	unit = t_vect(get_win_size().x / 15, get_win_size().y / 10);
 }
 
+s_gui::s_gui(int x, int y)
+{
+	entry = NULL;
+	unit = t_vect(get_win_size().x / x, get_win_size().y / y);
+}
+
 void		s_gui::draw_self()
 {
 	size_t i = 0;
