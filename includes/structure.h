@@ -20,7 +20,7 @@ typedef struct	s_element
 	s_element(int p_atk, int p_def);
 }				t_element;
 
-typedef struct s_stat
+typedef struct	s_stat
 {
 	t_value		hp;
 	t_value		pa;
@@ -30,5 +30,14 @@ typedef struct s_stat
 	s_stat();
 	s_stat(t_value p_hp, t_value p_pa, t_value p_pm, t_element p_phy, t_element p_mag);
 }				t_stat;
+
+typedef struct	s_actor
+{
+	string		name;
+	t_stat		stat;
+	int			sprite;
+				s_actor();
+				s_actor(string p_name, t_stat p_stat, int p_sprite);
+}				t_actor;
 
 #endif

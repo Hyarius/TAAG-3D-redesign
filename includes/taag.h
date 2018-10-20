@@ -12,4 +12,7 @@ void		menu_quit(t_data data);
 void		menu_shop(t_data data);
 void		menu_map_editor(t_data data);
 
+t_actor		read_actor(string p_name);
+void		save_actor(t_actor *p_save);
+
 #endif

@@ -8,7 +8,7 @@ quit ?;Did you wanna quit ?
 yes;Yes
 no;No
 entry name;Enter the character name
-pool point;Attribute point left :
+pool point;Point left :
 +;+
 -;-
 <;<
@@ -16,3 +16,7 @@ pool point;Attribute point left :
 health;Health :
 pa;Action points :
 pm;Mouvement points :
+atk_phy;Physical attack
+atk_mag;Magical attack
+def_phy;Physical defense
+def_mag;Magical defense

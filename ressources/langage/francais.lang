@@ -8,7 +8,15 @@ quit ?;Voulez-vous quitter ?
 yes;Oui
 no;Non
 entry name;Entrer le nom du personnage
-pool point;Points d'attribut a distribuer :
-health;Health :
-pa;Action points :
-pm;Mouvement points :
+pool point;Points restants :
++;+
+-;-
+<;<
+>;>
+health;Points de vie :
+pa;Points d'action :
+pm;Mobilité :
+atk_phy;Attaque physique
+atk_mag;Attaque magique
+def_phy;Armure physique
+def_mag;Armure magique
