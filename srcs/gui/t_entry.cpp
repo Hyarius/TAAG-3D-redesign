@@ -3,7 +3,8 @@
 s_entry::s_entry(t_entry_comp *p_entry)
 {
 	this->entry = p_entry;
-	this->entry->text = &this->text;
+	if (this->entry->text == NULL)
+		this->entry->text = &this->text;
 }
 
 

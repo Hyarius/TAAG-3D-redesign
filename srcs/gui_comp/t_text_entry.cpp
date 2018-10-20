@@ -29,8 +29,8 @@ void		s_text_entry::draw_self()
 	else
 		draw_rectangle(coord[0], size[0], color[2]);
 	draw_rectangle(coord[1], size[1], color[1]);
-	if (text != NULL && *text == "" && desc != NULL && *desc != "")
+	if ((text == NULL || *text == "") && desc != NULL && *desc != "")
 		draw_lined_text(*desc, desc_size, coord[2], NORMAL, text_color);
-	if (text != NULL && *text != "")
+	else if (text != NULL && *text != "")
 		draw_lined_text(*text, text_size, coord[2], NORMAL, text_color);
 }

@@ -34,10 +34,12 @@ typedef struct	s_stat
 typedef struct	s_actor
 {
 	string		name;
+	int			level;
+	int			attrib_point;
 	t_stat		stat;
 	int			sprite;
 				s_actor();
-				s_actor(string p_name, t_stat p_stat, int p_sprite);
+				s_actor(string p_name, int p_level, t_stat p_stat, int p_sprite);
 }				t_actor;
 
 #endif

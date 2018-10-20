@@ -1,22 +1,23 @@
 play;Jouer
 player_editor;Editeur de personnage
 map_editor;Editeur de carte
-shop;Boutique
+shop;Magasin
 option;Option
 quit;Quitter
-quit ?;Voulez-vous quitter ?
+quit ?;Voulez-vous vraiment quitter ?
 yes;Oui
 no;Non
-entry name;Entrer le nom du personnage
+entry name;Entrez le nom de votre personnage
 pool point;Points restants :
+level;Niveau :
 +;+
 -;-
 <;<
 >;>
 health;Points de vie :
 pa;Points d'action :
-pm;Mobilité :
-atk_phy;Attaque physique
-atk_mag;Attaque magique
-def_phy;Armure physique
-def_mag;Armure magique
+pm;Points de mouvement :
+atk_phy;Attaque physique :
+atk_mag;Attaque magique :
+def_phy;Armure physique :
+def_mag;Armure magique :
