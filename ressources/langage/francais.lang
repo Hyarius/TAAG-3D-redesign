@@ -15,6 +15,7 @@ level;Niveau :
 <;<
 >;>
 health;Points de vie :
+init;Initative :
 pa;Points d'action :
 pm;Points de mouvement :
 atk_phy;Attaque physique :

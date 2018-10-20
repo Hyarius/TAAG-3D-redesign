@@ -13,7 +13,6 @@
 #	define strtok_r strtok_s
 #endif
 
-# define ACTOR_PATH		"ressources/actor/"
 # define ACTOR_EXT		".act"
 
 #endif

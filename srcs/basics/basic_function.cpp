@@ -42,7 +42,7 @@ vector<string>		list_files(string path, string extension)
 	vector<string>	files;
 	string			line;
 	DIR				*dir = opendir(path.c_str());
-	char	*context = NULL;
+	char			*context = NULL;
 
 	size_t i = 2;
 	struct dirent *dirent_ptr;
