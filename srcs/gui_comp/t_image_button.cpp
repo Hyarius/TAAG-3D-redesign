@@ -33,7 +33,8 @@ void		s_image_button::draw_self()
 	image.draw_self(coord[0], size[0]);
 	if (text != NULL && *text != "")
 	{
-		text_size = calc_text_size(*text, size[1] - (size[0] - size[1]));
+		if (text_size == -1)
+			text_size = calc_text_size(*text, size[1] - (size[0] - size[1]));
 		this->draw_funct(*text, text_size, coord[2], NORMAL, text_color);
 	}
 }
