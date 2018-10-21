@@ -7,6 +7,7 @@ quit;Quit
 quit ?;Did you wanna quit ?
 yes;Yes
 no;No
+save;Save
 entry name;Enter the character name
 pool point;Points left :
 level;Level :

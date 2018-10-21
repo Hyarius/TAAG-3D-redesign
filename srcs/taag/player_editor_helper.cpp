@@ -197,14 +197,22 @@ void			create_def_mag_iterator(t_gui *gui, t_actor *player, int p_line)
 void			create_pool_iterator(t_gui *gui, t_actor *player, int p_line)
 {
 	double line = calc_line(p_line, 0.25);
-	gui->add(new s_iterator(	new t_text_button(get_text("pool point"), DARK_GREY, //pool point
-								gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], 1), 3,
-								color[0], color[1]),
-						NULL,
-						new t_text_button(NULL, DARK_GREY,
-								gui->unit * t_vect(b_pos[2], line), gui->unit * t_vect(b_size[2], 1), 3,
-								color[0], color[1]),
-						NULL,
-						&(player->attrib_point), 0, 0, 0,
-						NULL, 0));
+	gui->add(new s_iterator(new t_text_button(get_text("pool point"), DARK_GREY, //pool point
+		gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], 1), 3,
+		color[0], color[1]),
+		NULL,
+		new t_text_button(NULL, DARK_GREY,
+			gui->unit * t_vect(b_pos[1], line), gui->unit * t_vect(b_pos[3] - b_pos[1] + b_size[3], 1), 3,
+			color[0], color[1]),
+		NULL,
+		&(player->attrib_point), 0, 0, 0,
+		NULL, 0));
+}
+
+void			create_save_button(t_gui *gui, t_actor *player, int p_line, string *p_path)
+{
+	double line = calc_line(p_line, 0.25);
+	gui->add(new s_button(new t_text_button(get_text("save"), DARK_GREY, //pa
+		gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(5, 1), 3,
+		color[0], color[1]), save_actor, t_data(2, player, p_path)));
 }

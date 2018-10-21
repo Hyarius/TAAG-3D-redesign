@@ -8,6 +8,7 @@ void		menu_player_editor(t_data data)
 
 	t_actor			player = s_actor("Hyarius", 1, 15, s_stat(t_value(45), t_value(6), t_value(3), t_value(100), t_element(3, 3), t_element(3, 3)));
 
+	string			saved_path = "ressources/actor/test.act";
 
 	gui.add(new s_button(new s_image_button( t_image(t_color(0.7, 0.7, 0.7)), t_vect(0, 0), get_win_size()), NULL, NULL));
 
@@ -15,6 +16,7 @@ void		menu_player_editor(t_data data)
 
 	create_entry_name(&gui, &player, i++);
 	create_level_iterator(&gui, &player, i++);
+	create_pool_iterator(&gui, &player, i++);
 	create_health_iterator(&gui, &player, i++);
 	create_pa_iterator(&gui, &player, i++);
 	create_pm_iterator(&gui, &player, i++);
@@ -23,9 +25,9 @@ void		menu_player_editor(t_data data)
 	create_atk_mag_iterator(&gui, &player, i++);
 	create_def_phy_iterator(&gui, &player, i++);
 	create_def_mag_iterator(&gui, &player, i++);
-	create_pool_iterator(&gui, &player, i++);
+	create_save_button(&gui, &player, i++, &saved_path);
 
-	save_actor(&player, "ressources/actor/", "test");
+	//save_actor(t_data(2, &player, "ressources/actor/test.act"));
 
 	while (quit == false)
 	{

@@ -1,10 +1,11 @@
 #include "taag.h"
 
-t_actor		read_actor(string p_path, string p_name)
+t_actor		read_actor(t_data data)
 {
+	string	p_path = *((string *)(data.data[0]));
 	vector<string>	tab;
 	ifstream 		myfile;
-	myfile.open(p_path + p_name + ACTOR_EXT);
+	myfile.open(p_path);
 	string	name = get_strsplit(&myfile, ":", 2)[1];
 	string	tile = get_strsplit(&myfile, ":", 2)[1];
 	tab = get_strsplit(&myfile, ":", 3);
@@ -24,10 +25,12 @@ t_actor		read_actor(string p_path, string p_name)
 	return (s_actor(name, level, point, s_stat(hp, pa, pm, ini, t_element(phy_atk, phy_def), t_element(mag_atk, mag_def))));
 }
 
-void		save_actor(t_actor *to_save, string p_path, string p_name)
+void		save_actor(t_data data)
 {
+	t_actor *to_save = (t_actor *)(data.data[0]);
+	string	p_path = *((string *)(data.data[1]));
 	ofstream myfile;
-	myfile.open (p_path + p_name + ACTOR_EXT);
+	myfile.open (p_path);
 	myfile << "name:" + to_save->name + "\n";
 	myfile << "tileset: NULL\n";
 	myfile << "sprite_pos: 0:0\n";

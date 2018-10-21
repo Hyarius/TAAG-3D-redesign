@@ -12,8 +12,8 @@ void			menu_quit(t_data data);
 void			menu_shop(t_data data);
 void			menu_map_editor(t_data data);
 
-t_actor			read_actor(string p_path, string p_name);
-void			save_actor(t_actor *p_save, string p_path, string p_name);
+t_actor			read_actor(t_data data);
+void			save_actor(t_data data);
 
 void			create_entry_name(t_gui *gui, t_actor *player, int p_line);
 void			create_level_iterator(t_gui *gui, t_actor *player, int p_line);
@@ -26,5 +26,6 @@ void			create_atk_mag_iterator(t_gui *gui, t_actor *player, int p_line);
 void			create_def_phy_iterator(t_gui *gui, t_actor *player, int p_line);
 void			create_def_mag_iterator(t_gui *gui, t_actor *player, int p_line);
 void			create_pool_iterator(t_gui *gui, t_actor *player, int p_line);
+void			create_save_button(t_gui *gui, t_actor *player, int p_line, string *p_path);
 
 #endif

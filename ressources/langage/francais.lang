@@ -7,6 +7,7 @@ quit;Quitter
 quit ?;Voulez-vous vraiment quitter ?
 yes;Oui
 no;Non
+save;Sauvegarder
 entry name;Entrez le nom de votre personnage
 pool point;Points restants :
 level;Niveau :
