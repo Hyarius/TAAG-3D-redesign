@@ -5,6 +5,7 @@ shop;Magasin
 option;Option
 quit;Quitter
 quit ?;Voulez-vous vraiment quitter ?
+save ?;Voulez-vous vraiment sauvegarder ?
 yes;Oui
 no;Non
 save;Sauvegarder

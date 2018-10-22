@@ -3,8 +3,9 @@
 void			t_entry_comp::add_text(string new_text)
 {
 	if (text != NULL)
-		if (calc_text_len(*text + new_text, text_size, NORMAL) <= size[1].x)
-			*text += new_text;
+		if (text->size() < max_len)
+			if (calc_text_len(*text + new_text, text_size, NORMAL) <= size[1].x)
+				*text += new_text;
 }
 
 void			t_entry_comp::delete_text()

@@ -36,48 +36,6 @@ vector<string>		strsplit(string input, string c)
 	return (tab);
 }
 
-vector<string>		list_files(string path, string extension)
-{
-	vector<string>	brut_files;
-	vector<string>	files;
-	string			line;
-	DIR				*dir = opendir(path.c_str());
-	char			*context = NULL;
-
-	size_t i = 2;
-	struct dirent *dirent_ptr;
-
-	while ((dirent_ptr = readdir(dir)) != NULL)
-        brut_files.push_back(dirent_ptr->d_name);
-	while (i < brut_files.size())
-	{
-		if (brut_files[i].find(extension.c_str(), 0, extension.size()) != string::npos)
-			files.push_back(strsplit(brut_files[i], extension)[0]);
-		i++;
-	}
-	return files;
-}
-
-bool				check_file_exist(string path, string name)
-{
-	vector<string>	brut_files;
-	DIR				*dir = opendir(path.c_str());
-	char			*context = NULL;
-
-	size_t i = 2;
-	struct dirent *dirent_ptr;
-
-	while ((dirent_ptr = readdir(dir)) != NULL)
-        brut_files.push_back(dirent_ptr->d_name);
-	while (i < brut_files.size())
-	{
-		if (brut_files[i] == name)
-			return (true);
-		i++;
-	}
-	return (false);
-}
-
 SDL_Surface			*create_surface_color(t_color p_color)
 {
 	SDL_Surface		*surface;

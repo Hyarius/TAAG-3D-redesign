@@ -8,6 +8,7 @@ s_image_entry::s_image_entry(	string *p_desc, string *p_text, int p_text_color,
 	desc = p_desc;
 	text = p_text;
 	text_color = p_text_color;
+	max_len = 16;
 	coord[0] = p_coord;
 	size[0] = p_size;
 	coord[1] = p_coord + border;

@@ -26,11 +26,11 @@ typedef struct		s_vect
 {
 	double			x;
 	double			y;
-	s_vect();
-	s_vect(int x, int y);
-	s_vect(double x, double y);
-	s_vect(int x, double y);
-	s_vect(double x, int y);
+					s_vect();
+					s_vect(int x, int y);
+					s_vect(double x, double y);
+					s_vect(int x, double y);
+					s_vect(double x, int y);
 	s_vect			operator * (int mult);
 	s_vect			operator * (double mult);
 	s_vect			operator * (s_vect mult);

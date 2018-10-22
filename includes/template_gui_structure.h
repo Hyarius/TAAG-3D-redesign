@@ -65,6 +65,7 @@ typedef struct		s_entry_comp : t_gui_comp
 	string			*text; //text to draw on screen
 	string			*desc; //text to draw on screen
 	int				text_size;
+	size_t			max_len;
 	int				desc_size;
 	int				text_color;
 	t_vect			coord[3]; // 0 - coord tl | 1 - coord + border | 2 - coord text

@@ -4,7 +4,8 @@ map_editor;Map editor
 shop;Shop
 option;Option
 quit;Quit
-quit ?;Did you wanna quit ?
+quit ?;Did you want to quit ?
+save ?;Did you want to save ?
 yes;Yes
 no;No
 save;Save

@@ -3,8 +3,8 @@ tileset: NULL
 sprite_pos: 0:0
 sprite_size: 0:0
 level:1
-point:6
-90:6:3:100:3:3:3:3
+point:15
+45:6:3:100:3:3:3:3
 NULL
 NULL
 NULL

@@ -1,6 +1,6 @@
 #include "taag.h"
 
-t_actor		read_actor(t_data data)
+t_actor			read_actor(t_data data)
 {
 	string	p_path = *((string *)(data.data[0]));
 	vector<string>	tab;
@@ -25,7 +25,7 @@ t_actor		read_actor(t_data data)
 	return (s_actor(name, level, point, s_stat(hp, pa, pm, ini, t_element(phy_atk, phy_def), t_element(mag_atk, mag_def))));
 }
 
-void		save_actor(t_data data)
+void			save_actor(t_data data)
 {
 	t_actor *to_save = (t_actor *)(data.data[0]);
 	string	p_path = *((string *)(data.data[1]));
@@ -50,6 +50,55 @@ void		save_actor(t_data data)
 	myfile << "NULL\n";
 	myfile << "NULL\n";
 	myfile.close();
+}
+
+void			menu_save_actor(t_data data)
+{
+	t_gui	gui;
+	t_gui	*prev_gui = (t_gui *)(data.data[0]);
+
+	bool		continu = false;
+	t_color		color[2] = {t_color(0.6, 0.6, 0.6), t_color(0.8, 0.8, 0.8)};
+
+	gui.add(new s_button(new s_text_button(//button did you wanna quit
+						get_text("save ?"), DARK_GREY, //text info
+						gui.unit * t_vect(4, 2), gui.unit * t_vect(7, 5), 8, //object info
+						color[0], color[1]),
+						NULL, NULL));
+
+	t_vect *tmp = &(((s_button *)(gui.object_list[0]))->button->coord[2]);
+	*tmp = *tmp - (gui.unit * t_vect(0, 0.5));
+
+	gui.add(new s_button(new s_text_button(//button yes
+						get_text("yes"), DARK_GREY, //text info
+						gui.unit * t_vect(4.25, 5.25), gui.unit * t_vect(3, 1.5), 8, //object info
+						color[0], color[1]),
+						save_actor, t_data(2, data.data[1], data.data[2])));
+
+	gui.add(new s_button(new s_text_button(//button no
+						get_text("no"), DARK_GREY, //text info
+						gui.unit * t_vect(7.75, 5.25), gui.unit * t_vect(3, 1.5), 8, //object info
+						color[0], color[1]),
+						stand, &continu));
+
+	while (continu == false)
+	{
+		prepare_screen();
+
+		if (data.data.size() != 0)
+			(*((t_gui *)(data.data[0]))).draw_self();
+		gui.draw_self();
+
+		render_screen(true);
+
+		if (SDL_PollEvent(&(event)) == 1)
+		{
+			if (event.type == SDL_QUIT || (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE))
+				continu = true;
+			else if (event.type == SDL_MOUSEBUTTONUP)
+				gui.click();
+		}
+	}
 }
 
 s_actor::s_actor()

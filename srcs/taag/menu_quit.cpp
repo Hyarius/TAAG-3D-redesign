@@ -1,11 +1,11 @@
 #include "taag.h"
 
-static void		stand(t_data data)
+void			stand(t_data data)
 {
 	*((bool *)data.data[0]) = true;
 }
 
-static void		quit(t_data data)
+void			quit(t_data data)
 {
 	if (data.data[0] == NULL)
 		exit(0);
@@ -14,7 +14,7 @@ static void		quit(t_data data)
 		*((bool *)data.data[1]) = true;;
 }
 
-void		menu_quit(t_data data)
+void			menu_quit(t_data data)
 {
 	SDL_Event	event;
 	bool		continu = false;
