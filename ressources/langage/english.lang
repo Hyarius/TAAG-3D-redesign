@@ -7,6 +7,7 @@ quit;Quit
 quit ?;Did you want to quit ?
 save ?;Did you want to overwrite this file ?
 player to load;What player do you want to load ?
+no file;No character saved
 yes;Yes
 no;No
 save;Save

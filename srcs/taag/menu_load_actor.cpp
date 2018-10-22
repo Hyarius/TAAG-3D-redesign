@@ -22,8 +22,6 @@ void			menu_load_actor(t_data data)
 {
 	vector<string> list_file = list_files(ACT_PATH, ACT_EXT);
 
-	if (list_file.size() == 0)
-		return ;
 	t_gui		gui = t_gui(30, 20);
 	SDL_Event	event;
 
@@ -42,18 +40,28 @@ void			menu_load_actor(t_data data)
 	double b_size[2] = {11, 11};
 
 	size_t i = 0;
-
-	while (i < list_file.size() && i < 10)
+	if (list_file.size() == 0)
 	{
-		double line = calc_line((i / 2) * 2 + 5, 0.15);
 		s_button *button = new s_button(new s_text_button(//button did you wanna quit
-						&(list_file[i]), DARK_GREY, //text info
-						gui.unit * t_vect(b_pos[i % 2], line), gui.unit * t_vect(b_size[i % 2], 2), 6, //object info
+						get_text("no file"), DARK_GREY, //text info
+						gui.unit * t_vect(7, 9), gui.unit * t_vect(16, 5), 6, //object info
 						color[0], color[1]),
-						quit_load, t_data(4, data.data[1], &(list_file[i]), &continu, data.data[2]));
+						stand, t_data(1, &continu));
 		gui.add(button);
 		i++;
 	}
+	else
+		while (i < list_file.size() && i < 10)
+		{
+			double line = calc_line((i / 2) * 2 + 5, 0.15);
+			s_button *button = new s_button(new s_text_button(//button did you wanna quit
+							&(list_file[i]), DARK_GREY, //text info
+							gui.unit * t_vect(b_pos[i % 2], line), gui.unit * t_vect(b_size[i % 2], 2), 6, //object info
+							color[0], color[1]),
+							quit_load, t_data(4, data.data[1], &(list_file[i]), &continu, data.data[2]));
+			gui.add(button);
+			i++;
+		}
 
 	while (continu == false)
 	{
