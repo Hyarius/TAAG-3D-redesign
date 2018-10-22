@@ -5,12 +5,15 @@ shop;Shop
 option;Option
 quit;Quit
 quit ?;Did you want to quit ?
-save ?;Did you want to save ?
+save ?;Did you want to overwrite this file ?
+player to load;What player do you want to load ?
 yes;Yes
 no;No
 save;Save
+load;Load
 entry name;Enter the character name
-pool point;Points left :
+entry file_name;Enter the file name
+pool point;Points used :
 level;Level :
 +;+
 -;-

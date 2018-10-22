@@ -7,6 +7,8 @@ s_image_entry::s_image_entry(	string *p_desc, string *p_text, int p_text_color,
 {
 	desc = p_desc;
 	text = p_text;
+	back = "";
+	front = "";
 	text_color = p_text_color;
 	max_len = 16;
 	coord[0] = p_coord;
@@ -20,6 +22,7 @@ s_image_entry::s_image_entry(	string *p_desc, string *p_text, int p_text_color,
 	selected_entry = p_selected_entry;
 	image = p_image;
 	selec_image = p_selec_image;
+	draw_funct = draw_lined_text;
 }
 
 void		s_image_entry::draw_self()
@@ -29,7 +32,7 @@ void		s_image_entry::draw_self()
 	else
 		image.draw_self(coord[0], size[0]);
 	if (text != NULL && *text == "" && desc != NULL && *desc != "")
-		draw_lined_text(*desc, desc_size, coord[2], NORMAL, text_color);
+		this->draw_funct(*desc, desc_size, coord[2], NORMAL, text_color);
 	if (text != NULL && *text != "")
-		draw_lined_text(*text, text_size, coord[2], NORMAL, text_color);
+		this->draw_funct(front + *text + back, text_size, coord[2], NORMAL, text_color);
 }

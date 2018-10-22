@@ -28,3 +28,13 @@ void			t_entry_comp::set_funct_param(gui_funct p_funct, t_data p_data, d_funct p
 {
 
 }
+
+void		t_entry_comp::set_back(string p_back)
+{
+	back = p_back;
+}
+
+void		t_entry_comp::set_front(string p_front)
+{
+	front = p_front;
+}

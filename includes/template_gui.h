@@ -38,7 +38,7 @@ typedef struct		s_iterator : t_gui_obj
 								t_button_comp *p_button2,
 								t_button_comp *p_button3,
 								int *p_value, int p_delta, int p_min, int p_max,
-								int	*p_pool, int p_cost);
+								int	*p_pool, int p_cost, int *p_level);
 	void			draw_self();
 	void			click(t_vect mouse);
 }					t_iterator;

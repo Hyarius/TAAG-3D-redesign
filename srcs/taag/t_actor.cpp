@@ -6,6 +6,8 @@ t_actor			read_actor(t_data data)
 	vector<string>	tab;
 	ifstream 		myfile;
 	myfile.open(p_path);
+	if (myfile.good() == false)
+		return (s_actor("", 0, 0, s_stat(g_hp[1], g_pa[1], g_pm[1], g_init[1], t_element(g_atk_phy[1], g_def_phy[1]), t_element(g_atk_mag[1], g_def_mag[1]))));
 	string	name = get_strsplit(&myfile, ":", 2)[1];
 	string	tile = get_strsplit(&myfile, ":", 2)[1];
 	tab = get_strsplit(&myfile, ":", 3);
@@ -28,19 +30,23 @@ t_actor			read_actor(t_data data)
 void			save_actor(t_data data)
 {
 	t_actor *to_save = (t_actor *)(data.data[0]);
-	string	p_path = *((string *)(data.data[1]));
+	string	p_path = ACT_PATH + *((string *)(data.data[1])) + ACT_EXT;
 	ofstream myfile;
 	myfile.open (p_path);
-	myfile << "name:" + to_save->name + "\n";
+	myfile << "name:" + (to_save->name == "" ? "Default" : to_save->name) + "\n";
 	myfile << "tileset: NULL\n";
 	myfile << "sprite_pos: 0:0\n";
 	myfile << "sprite_size: 0:0\n";
 	myfile << "level:" + to_string(to_save->level) + "\n";
 	myfile << "point:" + to_string(to_save->attrib_point) + "\n";
-	myfile << to_string(to_save->stat.hp.max) + ":" + to_string(to_save->stat.pa.max)
-				+ ":" + to_string(to_save->stat.pm.max) + ":" + to_string(to_save->stat.ini.max)
-				+ ":" + to_string(to_save->stat.phy.atk) + ":" + to_string(to_save->stat.phy.def)
-				+ ":" + to_string(to_save->stat.mag.atk) + ":" + to_string(to_save->stat.mag.def) + "\n";
+	myfile << "health:" + to_string(to_save->stat.hp.max) + "\n";
+	myfile << "action:" + to_string(to_save->stat.pa.max) + "\n";
+	myfile << "mouvement:" + to_string(to_save->stat.pm.max) + "\n";
+	myfile << "initiative:" + to_string(to_save->stat.ini.max) + "\n";
+	myfile << "attack phy:" + to_string(to_save->stat.phy.atk) + "\n";
+	myfile << "defense phy:" + to_string(to_save->stat.phy.atk) + "\n";
+	myfile << "attack mag:" + to_string(to_save->stat.mag.atk) + "\n";
+	myfile << "defense mag:" + to_string(to_save->stat.mag.def) + "\n";
 	myfile << "NULL\n";
 	myfile << "NULL\n";
 	myfile << "NULL\n";
@@ -50,55 +56,6 @@ void			save_actor(t_data data)
 	myfile << "NULL\n";
 	myfile << "NULL\n";
 	myfile.close();
-}
-
-void			menu_save_actor(t_data data)
-{
-	t_gui	gui;
-	t_gui	*prev_gui = (t_gui *)(data.data[0]);
-
-	bool		continu = false;
-	t_color		color[2] = {t_color(0.6, 0.6, 0.6), t_color(0.8, 0.8, 0.8)};
-
-	gui.add(new s_button(new s_text_button(//button did you wanna quit
-						get_text("save ?"), DARK_GREY, //text info
-						gui.unit * t_vect(4, 2), gui.unit * t_vect(7, 5), 8, //object info
-						color[0], color[1]),
-						NULL, NULL));
-
-	t_vect *tmp = &(((s_button *)(gui.object_list[0]))->button->coord[2]);
-	*tmp = *tmp - (gui.unit * t_vect(0, 0.5));
-
-	gui.add(new s_button(new s_text_button(//button yes
-						get_text("yes"), DARK_GREY, //text info
-						gui.unit * t_vect(4.25, 5.25), gui.unit * t_vect(3, 1.5), 8, //object info
-						color[0], color[1]),
-						save_actor, t_data(2, data.data[1], data.data[2])));
-
-	gui.add(new s_button(new s_text_button(//button no
-						get_text("no"), DARK_GREY, //text info
-						gui.unit * t_vect(7.75, 5.25), gui.unit * t_vect(3, 1.5), 8, //object info
-						color[0], color[1]),
-						stand, &continu));
-
-	while (continu == false)
-	{
-		prepare_screen();
-
-		if (data.data.size() != 0)
-			(*((t_gui *)(data.data[0]))).draw_self();
-		gui.draw_self();
-
-		render_screen(true);
-
-		if (SDL_PollEvent(&(event)) == 1)
-		{
-			if (event.type == SDL_QUIT || (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE))
-				continu = true;
-			else if (event.type == SDL_MOUSEBUTTONUP)
-				gui.click();
-		}
-	}
 }
 
 s_actor::s_actor()

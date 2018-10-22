@@ -3,6 +3,7 @@
 map< int, TTF_Font *> 						font_list;
 vector<vector<vector<vector<t_image *>>>>	char_list;
 SDL_Color									g_color_tab[NB_COLOR];
+string			font_path = "ressources/font/MonospaceTypewriter.ttf";
 
 static SDL_Color	create_color(int r, int g, int b, int a)
 {
@@ -78,7 +79,7 @@ t_image				*get_char(int size, int style, int p_color, char c)
 	if (char_list[size][style][p_color][c] == NULL)
 	{
 		if (font_list.find(size) == font_list.end())
-			font_list[size] = TTF_OpenFont(FONT_PATH, size);
+			font_list[size] = TTF_OpenFont(font_path.c_str(), size);
 		text = c + '\0';
 		char_list[size][style][p_color][c] = new t_image(
 					TTF_RenderText_Blended(font_list[size],

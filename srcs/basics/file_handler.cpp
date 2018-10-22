@@ -62,22 +62,8 @@ vector<string>		list_files(string path, string extension)
 	return files;
 }
 
-bool				check_file_exist(string path, string name)
+bool				check_file_exist(string path)
 {
-	vector<string>	brut_files;
-	DIR				*dir = opendir(path.c_str());
-	char			*context = NULL;
-
-	size_t i = 2;
-	struct dirent *dirent_ptr;
-
-	while ((dirent_ptr = readdir(dir)) != NULL)
-        brut_files.push_back(dirent_ptr->d_name);
-	while (i < brut_files.size())
-	{
-		if (brut_files[i] == name)
-			return (true);
-		i++;
-	}
-	return (false);
+	ifstream file(path.c_str());
+    return file.good();
 }

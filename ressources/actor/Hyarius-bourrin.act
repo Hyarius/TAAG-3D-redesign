@@ -1,0 +1,22 @@
+name:Hyarius
+tileset: NULL
+sprite_pos: 0:0
+sprite_size: 0:0
+level:11
+point:57
+health:135
+action:8
+mouvement:4
+initiative:52
+attack phy:3
+defense phy:3
+attack mag:5
+defense mag:6
+NULL
+NULL
+NULL
+NULL
+NULL
+NULL
+NULL
+NULL

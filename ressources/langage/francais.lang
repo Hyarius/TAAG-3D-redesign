@@ -5,12 +5,15 @@ shop;Magasin
 option;Option
 quit;Quitter
 quit ?;Voulez-vous vraiment quitter ?
-save ?;Voulez-vous vraiment sauvegarder ?
+save ?;Voulez-vous vraiment enregistrer sur ce fichier ?
+player to load;Quel fichier voulez-vous charger ?
 yes;Oui
 no;Non
 save;Sauvegarder
+load;Charger
 entry name;Entrez le nom de votre personnage
-pool point;Points restants :
+entry file_name;Entrez le nom du fichier
+pool point;Points utilises :
 level;Niveau :
 +;+
 -;-

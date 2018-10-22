@@ -7,6 +7,8 @@ s_text_entry::s_text_entry(	string *p_desc, string *p_text, int p_text_color,
 {
 	desc = p_desc;
 	text = p_text;
+	back = "";
+	front = "";
 	text_color = p_text_color;
 	max_len = 16;
 	coord[0] = p_coord;
@@ -21,6 +23,7 @@ s_text_entry::s_text_entry(	string *p_desc, string *p_text, int p_text_color,
 	color[1] = p_color2;
 	color[2] = p_color3;
 	selected_entry = p_selected_entry;
+	draw_funct = draw_lined_text;
 }
 
 void		s_text_entry::draw_self()
@@ -31,7 +34,7 @@ void		s_text_entry::draw_self()
 		draw_rectangle(coord[0], size[0], color[2]);
 	draw_rectangle(coord[1], size[1], color[1]);
 	if ((text == NULL || *text == "") && desc != NULL && *desc != "")
-		draw_lined_text(*desc, desc_size, coord[2], NORMAL, text_color);
+		this->draw_funct(*desc, desc_size, coord[2], NORMAL, text_color);
 	else if (text != NULL && *text != "")
-		draw_lined_text(*text, text_size, coord[2], NORMAL, text_color);
+		this->draw_funct(front + *text + back, text_size, coord[2], NORMAL, text_color);
 }

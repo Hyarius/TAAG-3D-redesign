@@ -63,6 +63,8 @@ typedef struct		s_image_button : t_button_comp
 typedef struct		s_entry_comp : t_gui_comp
 {
 	string			*text; //text to draw on screen
+	string			front;
+	string			back;
 	string			*desc; //text to draw on screen
 	int				text_size;
 	size_t			max_len;
@@ -71,8 +73,11 @@ typedef struct		s_entry_comp : t_gui_comp
 	t_vect			coord[3]; // 0 - coord tl | 1 - coord + border | 2 - coord text
  	t_vect			size[2]; // 0 - size totale | 1 - size + border
 	s_entry_comp	**selected_entry;
+	d_funct			draw_funct;
 
 	void			set_funct_param(gui_funct p_funct, t_data p_data, d_funct p_draw_funct);
+	void			set_back(string p_back);
+	void			set_front(string p_front);
 	void			add_text(string new_text);
 	void			delete_text();
 	virtual void	draw_self() = 0; // draw the button

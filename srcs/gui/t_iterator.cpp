@@ -7,13 +7,15 @@ static void		increment_value(t_data data)
 	int			max = *((int *)(data.data[2]));
 	int			*pool = (int *)(data.data[3]);
 	int			cost = *((int *)(data.data[4]));
+	int			*level = (int *)(data.data[5]);
 
-	if (pool == NULL || *pool - cost < 0)
+	if (pool == NULL)
 		return ;
 	if (value != NULL && *value + delta <= max)
 	{
 		*value += delta;
-		*pool -= cost;
+		*pool += cost;
+		*level = *pool / 5;
 	}
 }
 
@@ -24,13 +26,15 @@ static void		decrement_value(t_data data)
 	int			min = *((int *)(data.data[2]));
 	int			*pool = (int *)(data.data[3]);
 	int			cost = *((int *)(data.data[4]));
+	int			*level = (int *)(data.data[5]);
 
 	if (pool == NULL)
 		return ;
 	if (value != NULL && *value - delta >= min)
 	{
 		*value -= delta;
-		*pool += cost;
+		*pool -= cost;
+		*level = *pool / 5;
 	}
 }
 
@@ -39,7 +43,7 @@ s_iterator::s_iterator(	t_button_comp *p_button0,
 						t_button_comp *p_button2,
 						t_button_comp *p_button3,
 						int *p_value, int p_delta, int p_min, int p_max,
-						int	*p_pool, int p_cost)
+						int	*p_pool, int p_cost, int *p_level)
 {
 	value = p_value;
 	pool = p_pool;
@@ -53,7 +57,7 @@ s_iterator::s_iterator(	t_button_comp *p_button0,
 	button[0]->coord[2] = button[0]->coord[1] + t_vect(0, button[0]->size[1].y / 2);
 	button[1] = p_button1;
 	if (button[1] != NULL)
-		button[1]->set_funct_param(decrement_value, t_data(5, p_value, &delta, &min, p_pool, &cost), NULL);
+		button[1]->set_funct_param(decrement_value, t_data(6, p_value, &delta, &min, p_pool, &cost, p_level), NULL);
 	button[2] = p_button2;
 	if (value != NULL)
 	{
@@ -62,7 +66,7 @@ s_iterator::s_iterator(	t_button_comp *p_button0,
 	}
 	button[3] = p_button3;
 	if (button[3] != NULL)
-		button[3]->set_funct_param(increment_value, t_data(5, p_value, &delta, &max, p_pool, &cost), NULL);
+		button[3]->set_funct_param(increment_value, t_data(6, p_value, &delta, &max, p_pool, &cost, p_level), NULL);
 }
 
 void			s_iterator::draw_self()
