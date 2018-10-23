@@ -4,6 +4,7 @@
 # include "include.h"
 # include "text_define.h"
 # include "define.h"
+# include "tileset.h"
 # include "template_structure.h"
 # include "template_gui.h"
 # include "template_class.h"
@@ -33,8 +34,9 @@ t_point				screen_to_opengl(t_vect source);
 void				draw_triangle_texture(t_point a, t_point b, t_point c);
 void				draw_triangle_color(t_point a, t_point b, t_point c);
 
-void				draw_image(t_vect tl, t_vect tr, t_vect dl, t_vect dr);
+void				draw_image(t_vect tl, t_vect tr, t_vect dl, t_vect dr, double p_alpha);
 void				draw_image(t_vect coord, t_vect size);
+void				draw_image(t_vect coord, t_vect size, double p_alpha);
 
 void				draw_rectangle(t_vect p_tl, t_vect p_tr, t_vect p_dl, t_vect p_dr, t_color c);
 void				draw_rectangle(t_vect p_coord, t_vect p_size, t_color c);

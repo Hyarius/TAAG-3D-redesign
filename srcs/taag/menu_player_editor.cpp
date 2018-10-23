@@ -7,8 +7,8 @@ void		menu_player_editor(t_data data)
 	bool			quit = false;
 	t_gui			gui = t_gui(30, 20);
 
-	string path =	"ressources/actor/Hyarius.act";
-	t_actor			player = read_actor(&path);
+	string			path;
+	t_actor			player;
 
 	string			file_name;
 
@@ -33,14 +33,14 @@ void		menu_player_editor(t_data data)
 	create_save_button(&gui, &player, i, &file_name);
 	create_load_button(&gui, &player, i++, &file_name);
 
-	//save_actor(t_data(2, &player, "ressources/actor/test.act"));
+	t_tileset	tile = s_tileset("ressources/assets/interface/cursor.png", t_vect(3, 3));
 
 	while (quit == false)
 	{
-		//printf("player level = [%d]\n", player.level);
 		prepare_screen();
 
 		gui.draw_self();
+		tile.draw_self(t_vect(560, 480), t_vect(60, 60), 3);
 
 		render_screen();
 

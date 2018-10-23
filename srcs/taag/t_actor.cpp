@@ -61,7 +61,7 @@ void			save_actor(t_data data)
 s_actor::s_actor()
 {
 	this->name = "";
-	this->level = 1;
+	this->level = 0;
 	this->attrib_point = 0;
 	this->stat = t_stat();
 }

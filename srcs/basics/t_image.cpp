@@ -128,5 +128,5 @@ void				s_image::draw_self(t_vect p_coord, t_vect p_size)
 void				s_image::draw_self(t_vect tl, t_vect tr, t_vect dl, t_vect dr)
 {
 	glBindTexture(GL_TEXTURE_2D, texture_id);
-	draw_image(tl, tr, dl, dr);
+	draw_image(tl, tr, dl, dr, 1.0);
 }
