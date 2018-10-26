@@ -56,5 +56,6 @@ SDL_Surface			*create_surface_color(t_color p_color)
     surface = SDL_CreateRGBSurface(0, 1, 1, 32, rmask, gmask, bmask, amask);
 	SDL_FillRect(surface, NULL, SDL_MapRGBA(surface->format,
 		p_color.r * 255, p_color.g * 255, p_color.b * 255, p_color.a * 255));
+
 	return (surface);
 }

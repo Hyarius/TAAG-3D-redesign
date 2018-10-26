@@ -3,7 +3,7 @@
 
 using namespace std;
 
-enum X_ROTATE { X };
+enum X_ROTATE { X};
 enum Y_ROTATE { Y };
 enum Z_ROTATE { Z };
 enum ROTATION { R };

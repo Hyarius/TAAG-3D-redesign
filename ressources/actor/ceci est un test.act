@@ -1,0 +1,22 @@
+name:Le gros bourrin
+tileset: NULL
+sprite_pos: 0:0
+sprite_size: 0:0
+level:14
+point:72
+health:50
+action:7
+mouvement:5
+initiative:8
+attack phy:2
+defense phy:2
+attack mag:2
+defense mag:0
+NULL
+NULL
+NULL
+NULL
+NULL
+NULL
+NULL
+NULL

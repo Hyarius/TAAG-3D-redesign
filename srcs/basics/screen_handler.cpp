@@ -15,8 +15,6 @@ GLuint				texture_buffer;
 
 GLenum				texture_format;
 
-GLvoid				*pixels;
-
 GLuint				textureID;
 
 void				window_initialisation(string window_name)
@@ -32,9 +30,9 @@ void				window_initialisation(string window_name)
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 	SDL_GetDesktopDisplayMode(0, &current);
 	g_window = SDL_CreateWindow(window_name.c_str(),
-						SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
-						(int)(current.w * SCREEN_RATIO_X), (int)(current.h * SCREEN_RATIO_Y),
-						SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+		SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED,
+		(int)(current.w * SCREEN_RATIO_X), (int)(current.h * SCREEN_RATIO_Y),
+		SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 	SDL_GetWindowSize(g_window, &win_x, &win_y);
 	g_window_size = t_vect(win_x, win_y);
 	g_context = SDL_GL_CreateContext(g_window);
@@ -58,12 +56,11 @@ void				window_initialisation(string window_name)
 	glGenBuffers(1, &color_buffer);
 	glGenBuffers(1, &texture_buffer);
 
-	glGenTextures(1, &textureID);
-	glBindTexture(GL_TEXTURE_2D, textureID);
-
 	program_color = LoadShaders(	"ressources/shader/colorshader.vertexshader",	"ressources/shader/colorshader.fragmentshader");
 	program_sprite = LoadShaders(	"ressources/shader/textureshader.vertexshader", "ressources/shader/textureshader.fragmentshader");
 
+	glGenTextures(1, &textureID);
+	glBindTexture(GL_TEXTURE_2D, textureID);
 
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT );
 	glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT );
@@ -74,7 +71,7 @@ void				window_initialisation(string window_name)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	set_color_tab();
-	set_lang_text("ressources/langage/english.lang");
+	set_lang_text("ressources/langage/francais.lang");
 	TTF_Init();
 }
 

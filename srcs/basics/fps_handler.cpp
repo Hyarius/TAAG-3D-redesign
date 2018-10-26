@@ -2,17 +2,17 @@
 
 using namespace std;
 
-int				g_fps = 60000;
+int				g_fps = 60;
+
+unsigned int	framedelay = 1000 / g_fps;
 
 void			check_frame()
 {
-	unsigned int	framedelay;
 	int				frame_actual;
 	static Uint32	framestart;
-	static int		beginsecond;
+	static int		beginsecond = 0;
 	static int		nb_frame;
 
-	framedelay = 1000 / g_fps;
 	frame_actual = SDL_GetTicks();
 	if (beginsecond == 0)
 		beginsecond = frame_actual;
