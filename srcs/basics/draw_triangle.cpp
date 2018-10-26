@@ -41,7 +41,7 @@ void			draw_triangle_texture(t_point a, t_point b, t_point c)
 	glBindBuffer(GL_ARRAY_BUFFER, get_texture_buffer());
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, NULL);
 
-	glEnableVertexAttribArray(1);
+	glEnableVertexAttribArray(2);
 	glBindBuffer(GL_ARRAY_BUFFER, get_color_buffer());
 	glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, NULL);
 
@@ -49,7 +49,7 @@ void			draw_triangle_texture(t_point a, t_point b, t_point c)
 
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(3);
+	glDisableVertexAttribArray(2);
 }
 
 void			draw_triangle_color(t_point a, t_point b, t_point c)

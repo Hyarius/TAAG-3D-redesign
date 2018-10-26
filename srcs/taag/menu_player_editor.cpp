@@ -40,7 +40,7 @@ void		menu_player_editor(t_data data)
 		prepare_screen();
 
 		gui.draw_self();
-		tile.draw_self(t_vect(560, 480), t_vect(60, 60), 3);
+		tile.draw_self(t_vect(560, 480), t_vect(60, 60), 3, 0.6);
 
 		render_screen();
 

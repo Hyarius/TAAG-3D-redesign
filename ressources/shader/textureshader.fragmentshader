@@ -10,5 +10,5 @@ uniform sampler2D myTextureSampler;
 void main()
 {
 	color = texture( myTextureSampler, UV ).rgba;
-	color.a = ALPHA;
+	color.a = color.a * ALPHA;
 }
