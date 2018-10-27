@@ -14,8 +14,7 @@ void		menu_player_editor(t_data data)
 
 	gui.add(new s_button(new s_image_button( t_image(t_color(0.7, 0.7, 0.7)), t_vect(0, 0), get_win_size()), NULL, NULL));
 
-	int i = 1;
-
+	int i = 0;
 	set_b_value();
 
 	create_file_entry(&gui, &file_name, i++);
@@ -33,18 +32,15 @@ void		menu_player_editor(t_data data)
 	create_save_button(&gui, &player, i, &file_name);
 	create_load_button(&gui, &player, i++, &file_name);
 
-	gui.add(new t_spell_card());
-
-	t_tileset	tile = s_tileset("ressources/assets/interface/cursor.png", t_vect(3, 3));
+	//create_spell_cards(&gui, &player);
 
 	while (quit == false)
 	{
 		prepare_screen();
 
 		gui.draw_self();
-		tile.draw_self(t_vect(560, 480), t_vect(60, 60), 4, 1);
 
-		render_screen();
+		render_screen(true);
 
 		if (SDL_PollEvent(&(event)) == 1)
 		{

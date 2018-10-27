@@ -54,7 +54,7 @@ s_iterator::s_iterator(	t_button_comp *p_button0,
 
 	button[0] = p_button0;
 	button[0]->set_funct_param(NULL, NULL, draw_lined_text);
-	button[0]->coord[2] = button[0]->coord[1] + t_vect(0, button[0]->size[1].y / 2);
+	button[0]->coord[2] = button[0]->coord[1] + t_vect(button[0]->size[0].y - button[0]->size[1].y, button[0]->size[1].y / 2);
 	button[1] = p_button1;
 	if (button[1] != NULL)
 		button[1]->set_funct_param(decrement_value, t_data(6, p_value, &delta, &min, p_pool, &cost, p_level), NULL);
