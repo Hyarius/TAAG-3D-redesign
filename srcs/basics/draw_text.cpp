@@ -57,3 +57,18 @@ int				draw_lined_text(string text, int text_size, t_vect coord, int typo, int c
 
 	return (draw_text(text, text_size, coord + t_vect(0, (-y / 2)), typo, color_type));
 }
+
+int				calc_paragraphe_size(string text, t_vect size, int typo)
+{
+	int text_size = 1;
+
+	vector<string>	line;
+	line = strsplit(text, " ");
+}
+
+int				draw_paragraphe(string text, t_vect coord, t_vect size, int typo, int color_type)
+{
+	int			text_size;
+
+
+}
