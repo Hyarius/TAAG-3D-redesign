@@ -5,7 +5,7 @@ t_color			color[3] = {t_color(0.5, 0.5, 0.5),
 							t_color(0.6, 0.6, 0.6),
 							t_color(1.0, 1.0, 0.7)};
 
-t_vect			offset = t_vect(1.5, 1.5);
+t_vect			offset = t_vect(SCREEN_RATIO_X * 8.0 - 4.0, SCREEN_RATIO_X * 8.0 - 4.0);
 double			space = 0.25;
 double			line_height = (20 - (offset.x * 2) - space * 14) / 13;
 vector<double>	b_pos;
