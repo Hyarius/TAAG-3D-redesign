@@ -16,23 +16,32 @@ s_spell_card::s_spell_card(t_spell *p_spell, t_vect p_coord, t_vect p_size, gui_
 	t_button_comp	*button2 = NULL;
 	t_button_comp	*button3 = NULL;
 
+	t_vect			coord = p_coord;
+	t_vect			size = p_size;
+
 	button0 = new t_text_button(NULL, DARK_GREY, //text info
-						p_coord, p_size, 4, //object info
+						coord, size, 4, //object info
 						t_color(0.5, 0.5, 0.5), t_color(0.6, 0.6, 0.6));
-	button1 = new t_text_button(NULL, DARK_GREY, //text info
-						p_coord + p_size.x / 20, t_vect(p_size.x - p_size.x / 10, p_size.x - p_size.x / 10), 4, //object info
-						t_color(0.5, 0.5, 0.5), t_color(1.0, 1.0, 0.7));
-	button2 = new t_text_button(NULL, DARK_GREY, //text info
-						t_vect(0, 0), t_vect(0, 0), 0, //object info
+	coord = coord + 7;
+	size = t_vect(size.x / 4, size.x / 4);
+	button1 = new t_image_button((p_spell != NULL ? p_spell->image : NULL), coord, size);
+
+	coord = coord + t_vect(size.x + 4, 0);
+	size = t_vect(p_size.x - size.x - 21, size.x);
+	button2 = new t_text_button((p_spell != NULL ? &(p_spell->name) : NULL), DARK_GREY, //text info
+						coord, size, 4, //object info
 						t_color(0.5, 0.5, 0.5), t_color(0.6, 0.6, 0.6));
-	button3 = new t_text_button(NULL, DARK_GREY, //text info
-						t_vect(0, 0), t_vect(0, 0), 0, //object info
+
+	coord = p_coord + t_vect(7, size.y + 10);
+	size = t_vect(p_size.x - 14, p_size.y - size.y - 17);
+	button3 = new t_text_button((p_spell != NULL ? &(p_spell->desc) : NULL), DARK_GREY, //text info
+						coord, size, 4, //object info
 						t_color(0.5, 0.5, 0.5), t_color(0.6, 0.6, 0.6));
 
 	button[0] = button0;
-	button[1] = NULL;
-	button[2] = NULL;
-	button[3] = NULL;
+	button[1] = button1;
+	button[2] = button2;
+	button[3] = button3;
 	spell = p_spell;
 }
 

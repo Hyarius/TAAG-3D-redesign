@@ -2,7 +2,7 @@
 
 s_image::s_image()
 {
-
+	this->surface = NULL;
 }
 
 s_image::s_image(string path)
@@ -121,12 +121,27 @@ s_image::s_image(SDL_Surface *p_surface)
 
 void				s_image::draw_self(t_vect p_coord, t_vect p_size)
 {
-	glBindTexture(GL_TEXTURE_2D, texture_id);
-	draw_image(p_coord, p_size);
+	if (surface != NULL)
+	{
+		glBindTexture(GL_TEXTURE_2D, texture_id);
+		draw_image(p_coord, p_size);
+	}
+	else
+	{
+		draw_rectangle(p_coord, p_size, t_color(0.2, 0.2, 0.2));
+		draw_rectangle(p_coord + 4, p_size - 8, t_color(0.4, 0.4, 0.4));
+	}
 }
 
 void				s_image::draw_self(t_vect tl, t_vect tr, t_vect dl, t_vect dr)
 {
-	glBindTexture(GL_TEXTURE_2D, texture_id);
-	draw_image(tl, tr, dl, dr, 1.0);
+	if (surface != NULL)
+	{
+		glBindTexture(GL_TEXTURE_2D, texture_id);
+		draw_image(tl, tr, dl, dr, 1.0);
+	}
+	else
+	{
+		draw_rectangle(tl, tr, dl, dr, t_color(0.2, 0.2, 0.2));
+	}
 }
