@@ -2,9 +2,9 @@ name:Default
 tileset: NULL
 sprite_pos: 0:0
 sprite_size: 0:0
-level:2
-point:11
-health:55
+level:0
+point:0
+health:0
 action:0
 mouvement:0
 initiative:0

@@ -2,6 +2,7 @@
 # define TAAG_H
 
 #include "template.h"
+#include "structure.h"
 #include "base_value.h"
 
 void			menu_start();

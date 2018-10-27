@@ -33,6 +33,8 @@ void		menu_player_editor(t_data data)
 	create_save_button(&gui, &player, i, &file_name);
 	create_load_button(&gui, &player, i++, &file_name);
 
+	gui.add(new t_spell_card());
+
 	t_tileset	tile = s_tileset("ressources/assets/interface/cursor.png", t_vect(3, 3));
 
 	while (quit == false)
