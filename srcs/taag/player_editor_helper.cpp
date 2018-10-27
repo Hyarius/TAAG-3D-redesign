@@ -5,13 +5,13 @@ t_color			color[3] = {t_color(0.5, 0.5, 0.5),
 							t_color(0.6, 0.6, 0.6),
 							t_color(1.0, 1.0, 0.7)};
 
-t_vect			offset = t_vect(SCREEN_RATIO_X * 8.0 - 4.0, SCREEN_RATIO_X * 8.0 - 4.0);
+t_vect			offset = t_vect(SCREEN_RATIO_X * 8.0 - 4.0, SCREEN_RATIO_Y * 8.0 - 4.0);
 double			space = 0.25;
 double			line_height = (20 - (offset.x * 2) - space * 14) / 13;
 vector<double>	b_pos;
 vector<double>	b_size;
 vector<t_vect>	c_pos;
-vector<t_vect>	c_size;
+t_vect			c_size = t_vect(((30 - offset.x * 2) / 2.0) / 4.0, (16 - offset.y * 2) / 2.0 - space * 3 / 2.0);
 
 
 static double	calc_line(double line, double space)
@@ -26,8 +26,6 @@ void			set_b_value()
 {
 	b_pos.resize(6);
 	b_size.resize(6);
-	c_pos.resize(32);
-	c_size.resize(32);
 
 	b_pos[0] = space + offset.x;
 	b_size[0] = 6.75;
@@ -48,27 +46,24 @@ void			set_b_value()
 	b_size[5] = b_size[4];
 }
 
+void			set_c_value()
+{
+	c_pos.resize(8);
+
+	double base = b_pos[5] + b_size[5] + space;
+	c_pos[0] = t_vect(base + (c_size.x + space) * 0, offset.y + space + 4);
+	c_pos[1] = t_vect(c_pos[0].x + (c_size.x + space) * 1, c_pos[0].y);
+	c_pos[2] = t_vect(c_pos[0].x + (c_size.x + space) * 2, c_pos[0].y);
+	c_pos[3] = t_vect(c_pos[0].x + (c_size.x + space) * 3, c_pos[0].y);
+	c_pos[4] = t_vect(c_pos[0].x + (c_size.x + space) * 0, c_pos[0].y + space + c_size.y);
+	c_pos[5] = t_vect(c_pos[0].x + (c_size.x + space) * 1, c_pos[0].y + space + c_size.y);
+	c_pos[6] = t_vect(c_pos[0].x + (c_size.x + space) * 2, c_pos[0].y + space + c_size.y);
+	c_pos[7] = t_vect(c_pos[0].x + (c_size.x + space) * 3, c_pos[0].y + space + c_size.y);
+}
+
 static void		create_card(t_gui *gui, t_actor *player, int i)
 {
-	t_button_comp	*button0;
-	t_button_comp	*button1;
-	t_button_comp	*button2;
-	t_button_comp	*button3;
-
-	button0 = new t_text_button(NULL, DARK_GREY, //text info
-						gui->unit * c_pos[i * 4], gui->unit * c_size[i * 4], 4, //object info
-						color[0], color[1]);
-	button1 = new t_text_button(NULL, DARK_GREY, //text info
-						gui->unit * t_vect(0, 0), gui->unit * t_vect(0, 0), 0, //object info
-						color[0], color[1]);
-	button2 = new t_text_button(NULL, DARK_GREY, //text info
-						gui->unit * t_vect(0, 0), gui->unit * t_vect(0, 0), 0, //object info
-						color[0], color[1]);
-	button3 = new t_text_button(NULL, DARK_GREY, //text info
-						gui->unit * t_vect(0, 0), gui->unit * t_vect(0, 0), 0, //object info
-						color[0], color[1]);
-
-	gui->add(new s_spell_card(button0, button1, button2, button3, NULL));
+	gui->add(new s_spell_card(NULL, gui->unit * c_pos[i], gui->unit * c_size, NULL, NULL));
 }
 
 void			create_spell_cards(t_gui *gui, t_actor *player)

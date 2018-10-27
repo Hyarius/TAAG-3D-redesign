@@ -9,6 +9,9 @@
 # include "template_gui.h"
 # include "template_class.h"
 
+extern double	SCREEN_RATIO_X;
+extern double	SCREEN_RATIO_Y;
+
 using namespace std;
 
 //			BASIC_FUNCTION

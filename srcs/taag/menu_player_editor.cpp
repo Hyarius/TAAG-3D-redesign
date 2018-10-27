@@ -16,6 +16,7 @@ void		menu_player_editor(t_data data)
 
 	int i = 0;
 	set_b_value();
+	set_c_value();
 
 	create_file_entry(&gui, &file_name, i++);
 	create_entry_name(&gui, &player, i++);
@@ -32,7 +33,7 @@ void		menu_player_editor(t_data data)
 	create_save_button(&gui, &player, i, &file_name);
 	create_load_button(&gui, &player, i++, &file_name);
 
-	//create_spell_cards(&gui, &player);
+	create_spell_cards(&gui, &player);
 
 	while (quit == false)
 	{

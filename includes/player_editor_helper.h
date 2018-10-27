@@ -4,6 +4,7 @@
 #include "template.h"
 
 void			set_b_value();
+void			set_c_value();
 
 void			menu_save_actor(t_data data);
 void			menu_load_actor(t_data data);

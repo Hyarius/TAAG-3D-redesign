@@ -12,11 +12,7 @@ typedef struct		s_spell_card : t_gui_obj
 	t_spell			*spell;//spell of the card
 
 					s_spell_card();
-					s_spell_card(	t_button_comp	*p_button0,
-									t_button_comp	*p_button1,
-									t_button_comp	*p_button2,
-									t_button_comp	*p_button3,
-									t_spell			*p_spell);
+					s_spell_card(t_spell *p_spell, t_vect coord, t_vect size, gui_funct p_funct, t_data p_data);
 	void			draw_self();
 	void			click(t_vect mouse);
 }					t_spell_card;

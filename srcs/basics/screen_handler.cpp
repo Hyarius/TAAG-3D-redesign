@@ -1,5 +1,8 @@
 #include "template.h"
 
+double				SCREEN_RATIO_X = 0.9;
+double				SCREEN_RATIO_Y = 0.9;
+
 SDL_GLContext		g_context;
 SDL_Window			*g_window;
 t_vect				g_window_size;
