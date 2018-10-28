@@ -88,14 +88,14 @@ int					calc_paragraphe_size(string text, t_vect size, int typo)
 	vector<string>	line;
 
 	line = strsplit(text, " ");
-	/*while (verify_paragraphe_size(line, size, i + 100, typo) == true)
+	while (verify_paragraphe_size(line, size, i + 100, typo) == true)
 		i += 100;
 	while (verify_paragraphe_size(line, size, i + 50, typo) == true)
 		i += 50;
 	while (verify_paragraphe_size(line, size, i + 25, typo) == true)
 		i += 25;
 	while (verify_paragraphe_size(line, size, i + 10, typo) == true)
-		i += 10;*/
+		i += 10;
 	while (verify_paragraphe_size(line, size, i + 1, typo) == true)
 		i += 1;
 
@@ -109,7 +109,7 @@ void				draw_paragraphe(string text, t_vect coord, t_vect size, int typo, int co
 	vector<string>	line;
 	line = strsplit(text, " ");
 	t_vect	tmp = t_vect(0, 0);
-	size_t text_size = calc_paragraphe_size(text, size, typo) - 1;
+	size_t text_size = calc_paragraphe_size(text, size, typo);
 
 	printf("text_size = %d\n", text_size);
 
