@@ -25,7 +25,8 @@ vector<string>		strsplit(string input, string c)
 	while( (endIndex = input.find(c, startIndex)) < input.size() )
 	{
 		val = input.substr(startIndex, endIndex - startIndex);
-		tab.push_back(val);
+		if (val.size())
+			tab.push_back(val);
 		startIndex = endIndex + c.size();
 	}
 	if(startIndex < input.size())

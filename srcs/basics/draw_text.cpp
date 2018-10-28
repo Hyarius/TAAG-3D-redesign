@@ -58,17 +58,69 @@ int				draw_lined_text(string text, int text_size, t_vect coord, int typo, int c
 	return (draw_text(text, text_size, coord + t_vect(0, (-y / 2)), typo, color_type));
 }
 
-int				calc_paragraphe_size(string text, t_vect size, int typo)
+static bool			verify_paragraphe_size(vector<string> line, t_vect size, int text_size, int typo)
 {
-	int text_size = 1;
+	t_vect	tmp = t_vect(0, 0);
+	size_t	i = 0;
 
-	vector<string>	line;
-	line = strsplit(text, " ");
+	while (i < line.size())
+	{
+		if (calc_text_len(line[i] + " ", text_size, typo) > size.x)
+			return (false);
+		if (tmp.y + get_char(text_size, typo, BLACK, 'M')->surface->h > size.y)
+			return (false);
+		if (tmp.x + calc_text_len(line[i] + " ", text_size, typo) >= size.x)
+		{
+			tmp.x = 0;
+			tmp.y = tmp.y + get_char(text_size, typo, BLACK, 'M')->surface->h;
+			if (tmp.y + get_char(text_size, typo, BLACK, 'M')->surface->h > size.y)
+				return (false);
+		}
+		tmp.x += calc_text_len(line[i] + " ", text_size, typo);
+		i++;
+	}
+	return (true);
 }
 
-int				draw_paragraphe(string text, t_vect coord, t_vect size, int typo, int color_type)
+int					calc_paragraphe_size(string text, t_vect size, int typo)
 {
-	int			text_size;
+	int				i = 1;
+	vector<string>	line;
 
+	line = strsplit(text, " ");
+	/*while (verify_paragraphe_size(line, size, i + 100, typo) == true)
+		i += 100;
+	while (verify_paragraphe_size(line, size, i + 50, typo) == true)
+		i += 50;
+	while (verify_paragraphe_size(line, size, i + 25, typo) == true)
+		i += 25;
+	while (verify_paragraphe_size(line, size, i + 10, typo) == true)
+		i += 10;*/
+	while (verify_paragraphe_size(line, size, i + 1, typo) == true)
+		i += 1;
 
+	return (i);
+}
+
+void				draw_paragraphe(string text, t_vect coord, t_vect size, int typo, int color_type)
+{
+	int		delta;
+	size_t i = 0;
+	vector<string>	line;
+	line = strsplit(text, " ");
+	t_vect	tmp = t_vect(0, 0);
+	size_t text_size = calc_paragraphe_size(text, size, typo) - 1;
+
+	printf("text_size = %d\n", text_size);
+
+	while (i < line.size())
+	{
+		if (tmp.x + calc_text_len(line[i], text_size, typo) > size.x)
+		{
+			tmp.x = 0;
+			tmp.y = tmp.y + get_char(text_size, typo, BLACK, 'M')->surface->h;
+		}
+		tmp.x += draw_text(line[i] + " ", text_size, tmp + coord, typo, color_type);
+		i++;
+	}
 }
