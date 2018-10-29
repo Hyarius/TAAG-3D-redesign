@@ -23,7 +23,7 @@ void	s_tileset::draw_self(t_vect p_tl, t_vect p_tr, t_vect p_dl, t_vect p_dr, in
 	t_point		dr = screen_to_opengl(p_dr);
 
 	int			i;
-	if (sprite >= sprite_list.size())
+	if ((unsigned int)sprite >= sprite_list.size())
 		i = 0;
 	else
 		i = sprite;
@@ -91,7 +91,6 @@ s_tileset::s_tileset(string p_path, t_vect p_size)
 
 	size = t_vect(1.0 / p_size.x, 1.0 / p_size.y);
 	t_vect	tmp = t_vect(0, 0);
-	int i;
 
 	while (tmp.x * tmp.y < p_size.x * (p_size.y - 1))
 	{

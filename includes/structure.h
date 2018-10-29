@@ -8,7 +8,7 @@ using namespace std;
 
 typedef struct		s_spell_card : t_gui_obj
 {
-	t_button_comp	*button[4]; //0 - background | 1 - image | 2 - name | 3 - description
+	t_button_comp	*button[4]; //0 - background | 1 - image | 2 - name
 	t_spell			*spell;//spell of the card
 
 					s_spell_card();

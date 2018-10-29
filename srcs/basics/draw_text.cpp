@@ -104,15 +104,13 @@ int					calc_paragraphe_size(string text, t_vect size, int typo)
 
 void				draw_paragraphe(string text, t_vect coord, t_vect size, int typo, int color_type)
 {
-	int		delta;
-	size_t i = 0;
+	size_t			i = 0;
 	vector<string>	line;
+	t_vect			tmp = t_vect(0, 0);
+	size_t			text_size;
+
 	line = strsplit(text, " ");
-	t_vect	tmp = t_vect(0, 0);
-	size_t text_size = calc_paragraphe_size(text, size, typo);
-
-	printf("text_size = %d\n", text_size);
-
+	text_size = calc_paragraphe_size(text, size, typo);
 	while (i < line.size())
 	{
 		if (tmp.x + calc_text_len(line[i], text_size, typo) > size.x)

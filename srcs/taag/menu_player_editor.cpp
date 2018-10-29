@@ -46,7 +46,7 @@ void		menu_player_editor(t_data data)
 		if (SDL_PollEvent(&(event)) == 1)
 		{
 			if (event.type == SDL_QUIT)
-				menu_quit(t_data(2, &gui, &quit));
+				menu_quit(&gui);
 			else if ((event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_RETURN) || (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE))
 			{
 				if (gui.entry != NULL)
@@ -55,7 +55,7 @@ void		menu_player_editor(t_data data)
 					SDL_StopTextInput();
 				}
 				else
-					quit = true;
+					menu_quit(t_data(2, &gui, &quit));
 			}
 			else if (event.type == SDL_TEXTINPUT)
 				gui.entry->add_text(event.text.text);

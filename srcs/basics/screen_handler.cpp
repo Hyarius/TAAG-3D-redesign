@@ -44,7 +44,7 @@ void				window_initialisation(string window_name)
 		glewInit();
 	#endif
 
-	SDL_WarpMouseInWindow(g_window, g_window_size.x / 2, g_window_size.y / 2);
+	SDL_WarpMouseInWindow(g_window, (int)(g_window_size.x / 2), (int)(g_window_size.y) / 2);
 	SDL_SetWindowGrab(g_window, SDL_FALSE);
 	SDL_ShowCursor(1);
 

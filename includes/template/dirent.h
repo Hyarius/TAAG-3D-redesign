@@ -6,7 +6,6 @@
 * under the MIT license.  For all details and documentation, see
 * https://github.com/tronkko/dirent
 */
-#ifndef __APPLE__
 #ifndef DIRENT_H
 #define DIRENT_H
 
@@ -1251,6 +1250,5 @@ extern "C" {
 
 #ifdef __cplusplus
 }
-#endif
 #endif
 #endif /*DIRENT_H*/

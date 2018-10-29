@@ -18,23 +18,24 @@ t_vect				get_mouse_coord()
 vector<string>		strsplit(string input, string c)
 {
 	vector<string>	tab;
-	string			val;
-	int 			startIndex = 0;
-	int 			endIndex = 0;
+	string			line;
+	string			saved_line;
+	char			*word;
+	char			*context = NULL;
 
-	while( (endIndex = input.find(c, startIndex)) < input.size() )
+	if (input == "")
 	{
-		val = input.substr(startIndex, endIndex - startIndex);
-		if (val.size())
-			tab.push_back(val);
-		startIndex = endIndex + c.size();
+		tab.resize(0);
+		return (tab);
 	}
-	if(startIndex < input.size())
+	word = strtok_r((char *)(input.c_str()), c.c_str(), &context);
+	while (word != NULL)
 	{
-		val = input.substr(startIndex);
-		tab.push_back(val);
+		if (word != c)
+			tab.push_back(word);
+		word = strtok_r(NULL, c.c_str(), &context);
 	}
-	return (tab);
+	return tab;
 }
 
 SDL_Surface			*create_surface_color(t_color p_color)
@@ -56,7 +57,8 @@ SDL_Surface			*create_surface_color(t_color p_color)
 
     surface = SDL_CreateRGBSurface(0, 1, 1, 32, rmask, gmask, bmask, amask);
 	SDL_FillRect(surface, NULL, SDL_MapRGBA(surface->format,
-		p_color.r * 255, p_color.g * 255, p_color.b * 255, p_color.a * 255));
+		(Uint8)(p_color.r * 255), (Uint8)(p_color.g * 255),
+		(Uint8)(p_color.b * 255), (Uint8)(p_color.a * 255)));
 
 	return (surface);
 }
