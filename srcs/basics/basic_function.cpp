@@ -18,24 +18,22 @@ t_vect				get_mouse_coord()
 vector<string>		strsplit(string input, string c)
 {
 	vector<string>	tab;
-	string			line;
-	string			saved_line;
-	char			*word;
-	char			*context = NULL;
+	string			val;
+	int 			startIndex = 0;
+	int 			endIndex = 0;
 
-	if (input == "")
+	while ((endIndex = input.find(c, startIndex)) < (int)input.size())
 	{
-		tab.resize(0);
-		return (tab);
+		val = input.substr(startIndex, endIndex - startIndex);
+		tab.push_back(val);
+		startIndex = endIndex + c.size();
 	}
-	word = strtok_r((char *)(input.c_str()), c.c_str(), &context);
-	while (word != NULL)
+	if (startIndex < (int)input.size())
 	{
-		if (word != c)
-			tab.push_back(word);
-		word = strtok_r(NULL, c.c_str(), &context);
+		val = input.substr(startIndex);
+		tab.push_back(val);
 	}
-	return tab;
+	return (tab);
 }
 
 SDL_Surface			*create_surface_color(t_color p_color)

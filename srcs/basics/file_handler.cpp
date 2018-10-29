@@ -48,6 +48,8 @@ vector<string>		list_files(string path, string extension)
 	DIR				*dir = opendir(path.c_str());
 	char			*context = NULL;
 
+	string			test;
+
 	size_t i = 2;
 	struct dirent *dirent_ptr;
 
@@ -56,7 +58,12 @@ vector<string>		list_files(string path, string extension)
 	while (i < brut_files.size())
 	{
 		if (brut_files[i].find(extension.c_str(), 0, extension.size()) != string::npos)
-			files.push_back(strsplit(brut_files[i], extension)[0]);
+		{
+			printf("brut file = [%s]\n", brut_files[i].c_str());
+			test = strsplit(brut_files[i], extension)[0];
+			printf("test = [%s]\n", test.c_str());
+			files.push_back(test);
+		}
 		i++;
 	}
 	return files;
