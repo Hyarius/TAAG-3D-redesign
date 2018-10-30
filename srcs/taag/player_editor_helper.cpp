@@ -308,3 +308,19 @@ void			create_load_button(t_gui *gui, t_actor *player, double p_line, string *p_
 		gui->unit * t_vect(b_pos[5], line), gui->unit * t_vect(b_size[5], line_height), 3,
 		color[0], color[1]), menu_load_actor, t_data(3, gui, player, p_path)));
 }
+
+void			create_duplicate_button(t_gui *gui, t_actor *player, double p_line, string *p_path)
+{
+	double line = calc_line(p_line, space);
+	gui->add(new s_button(new t_text_button(get_text("duplicate"), DARK_GREY, //pa
+		gui->unit * t_vect(b_pos[4], line), gui->unit * t_vect(b_size[4], line_height), 3,
+		color[0], color[1]), menu_duplicate_actor, t_data(3, gui, player, p_path)));
+}
+
+void			create_erase_button(t_gui *gui, t_actor *player, double p_line, string *p_path)
+{
+	double line = calc_line(p_line, space);
+	gui->add(new s_button(new t_text_button(get_text("erase"), DARK_GREY, //pa
+		gui->unit * t_vect(b_pos[5], line), gui->unit * t_vect(b_size[5], line_height), 3,
+		color[0], color[1]), menu_erase_actor, t_data(3, gui, player, p_path)));
+}

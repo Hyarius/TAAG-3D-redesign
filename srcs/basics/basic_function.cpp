@@ -19,19 +19,16 @@ vector<string>		strsplit(string input, string c)
 {
 	vector<string>	tab;
 	string			val;
-	int 			startIndex = 0;
-	int 			endIndex = 0;
+	int 			start = 0;
+	int 			end = 0;
 
-	while ((endIndex = input.find(c, startIndex)) < (int)input.size())
+	while (end != -1)
 	{
-		val = input.substr(startIndex, endIndex - startIndex);
-		tab.push_back(val);
-		startIndex = endIndex + c.size();
-	}
-	if (startIndex < (int)input.size())
-	{
-		val = input.substr(startIndex);
-		tab.push_back(val);
+		end = input.find(c, start);
+		val = input.substr(start, end - start);
+		if (val.size() != 0)
+			tab.push_back(val);
+		start = end + c.size();
 	}
 	return (tab);
 }

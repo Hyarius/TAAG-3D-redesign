@@ -1,0 +1,22 @@
+name:Default
+tileset: NULL
+sprite_pos: 0:0
+sprite_size: 0:0
+level:0
+point:0
+health:100
+action:6
+mouvement:3
+initiative:50
+attack phy:0
+defense phy:0
+attack mag:0
+defense mag:0
+NULL
+NULL
+NULL
+NULL
+NULL
+NULL
+NULL
+NULL
