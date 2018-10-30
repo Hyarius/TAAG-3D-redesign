@@ -12,11 +12,11 @@ attack phy:2
 defense phy:2
 attack mag:2
 defense mag:0
-NULL
-NULL
-NULL
-NULL
-NULL
-NULL
-NULL
-NULL
+spell 1:ressources/spell/fire0.spell
+spell 2:ressources/spell/fire1.spell
+spell 3:ressources/spell/fire2.spell
+spell 4:ressources/spell/fire3.spell
+spell 5:ressources/spell/fire4.spell
+spell 6:ressources/spell/fire5.spell
+spell 7:ressources/spell/fire6.spell
+spell 8:ressources/spell/fire7.spell

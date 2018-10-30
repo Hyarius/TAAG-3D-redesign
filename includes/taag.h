@@ -5,6 +5,8 @@
 #include "structure.h"
 #include "base_value.h"
 
+void			initialize_spell();
+
 void			menu_start();
 void			menu_option(t_data data);
 void			menu_play(t_data data);

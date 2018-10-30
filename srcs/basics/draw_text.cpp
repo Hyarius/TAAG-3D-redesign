@@ -65,11 +65,11 @@ static bool			verify_paragraphe_size(vector<string> line, t_vect size, int text_
 
 	while (i < line.size())
 	{
-		if (calc_text_len(line[i] + " ", text_size, typo) > size.x)
+		if (calc_text_len(line[i], text_size, typo) > size.x)
 			return (false);
 		if (tmp.y + get_char(text_size, typo, BLACK, 'M')->surface->h > size.y)
 			return (false);
-		if (tmp.x + calc_text_len(line[i] + " ", text_size, typo) >= size.x)
+		if (tmp.x + calc_text_len(line[i], text_size, typo) >= size.x)
 		{
 			tmp.x = 0;
 			tmp.y = tmp.y + get_char(text_size, typo, BLACK, 'M')->surface->h;
@@ -87,6 +87,8 @@ int					calc_paragraphe_size(string text, t_vect size, int typo)
 	int				i = 1;
 	vector<string>	line;
 
+	if (text.size() == 0)
+		return (0);
 	line = strsplit(text, " ");
 	while (verify_paragraphe_size(line, size, i + 100, typo) == true)
 		i += 100;
@@ -109,8 +111,31 @@ void				draw_paragraphe(string text, t_vect coord, t_vect size, int typo, int co
 	t_vect			tmp = t_vect(0, 0);
 	size_t			text_size;
 
+	if (text == "")
+		return ;
 	line = strsplit(text, " ");
 	text_size = calc_paragraphe_size(text, size, typo);
+	while (i < line.size())
+	{
+		if (tmp.x + calc_text_len(line[i], text_size, typo) > size.x)
+		{
+			tmp.x = 0;
+			tmp.y = tmp.y + get_char(text_size, typo, BLACK, 'M')->surface->h;
+		}
+		tmp.x += draw_text(line[i] + " ", text_size, tmp + coord, typo, color_type);
+		i++;
+	}
+}
+
+void				draw_paragraphe(string text, int text_size, t_vect coord, t_vect size, int typo, int color_type)
+{
+	size_t			i = 0;
+	vector<string>	line;
+	t_vect			tmp = t_vect(0, 0);
+
+	if (text == "")
+		return ;
+	line = strsplit(text, " ");
 	while (i < line.size())
 	{
 		if (tmp.x + calc_text_len(line[i], text_size, typo) > size.x)

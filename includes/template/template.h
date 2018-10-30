@@ -75,6 +75,7 @@ int					draw_centred_text(string text, int text_size, t_vect coord, int typo, in
 int					draw_lined_text(string text, int text_size, t_vect coord, int typo, int color_type);
 int					calc_paragraphe_size(string text, t_vect size, int typo);
 void				draw_paragraphe(string text, t_vect coord, t_vect size, int typo, int color_type);
+void				draw_paragraphe(string text, int text_size, t_vect coord, t_vect size, int typo, int color_type);
 
 void				set_color_tab();
 t_image				*get_char(int size, int style, int p_color, char c);

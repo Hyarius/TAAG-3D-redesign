@@ -41,7 +41,7 @@ typedef struct	s_actor
 	int			level;
 	int			attrib_point;
 	t_stat		stat;
-	t_spell		spell_list[8];
+	t_spell		spell[8];
 				s_actor();
 				s_actor(string p_name, int p_level, int p_pool, t_stat p_stat);
 }				t_actor;

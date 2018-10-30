@@ -35,7 +35,7 @@ vector<string>			get_strsplit(ifstream *myfile, const string c, int size)
         tab.push_back(word);
         word = strtok_r(NULL, c.c_str(), &context);
     }
-	if ((int)(tab.size()) != size)
+	if (size != -1 && (int)(tab.size()) != size)
 		error_exit("Bad splited line (" + saved_line + ")!", 134);
     return tab;
 }
@@ -59,9 +59,7 @@ vector<string>		list_files(string path, string extension)
 	{
 		if (brut_files[i].find(extension.c_str(), 0, extension.size()) != string::npos)
 		{
-			printf("brut file = [%s]\n", brut_files[i].c_str());
 			test = strsplit(brut_files[i], extension)[0];
-			printf("test = [%s]\n", test.c_str());
 			files.push_back(test);
 		}
 		i++;

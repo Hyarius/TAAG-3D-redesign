@@ -1,56 +1,9 @@
 #include "template.h"
 
-/*
-s_tileset			*create_s_tileset(string path)
+s_tileset::s_tileset()
 {
-	ifstream file;
-	string line;
-	vector<string> split_line;
-
-	file.open(path);
-	if (!file.good())
-		error_exit("Cant open such file : " + path, 7946);
-	line = get_strsplit(&file, ":", 2)[1];
-	split_line = get_strsplit(&file, ":", 3);
-	return (new s_tileset(line, atoi(split_line[1].c_str()), atoi(split_line[2].c_str())));
+	surface = NULL;
 }
-*/
-void	s_tileset::draw_self(t_vect p_tl, t_vect p_tr, t_vect p_dl, t_vect p_dr, int sprite, double p_alpha)
-{
-	t_point		tl = screen_to_opengl(p_tl);
-	t_point		tr = screen_to_opengl(p_tr);
-	t_point		dl = screen_to_opengl(p_dl);
-	t_point		dr = screen_to_opengl(p_dr);
-
-	int			i;
-	if ((unsigned int)sprite >= sprite_list.size())
-		i = 0;
-	else
-		i = sprite;
-
-	draw_triangle_texture(	t_point(tl.x, tl.y, sprite_list[i].x, sprite_list[i].y, p_alpha),
-							t_point(tr.x, tr.y, sprite_list[i].x + size.x, sprite_list[i].y, p_alpha),
-							t_point(dl.x, dl.y, sprite_list[i].x, sprite_list[i].y + size.y, p_alpha));
-
-	draw_triangle_texture(	t_point(dl.x, dl.y, sprite_list[i].x, sprite_list[i].y + size.y, p_alpha),
-							t_point(dr.x, dr.y, sprite_list[i].x + size.x, sprite_list[i].y + size.y, p_alpha),
-							t_point(tr.x, tr.y, sprite_list[i].x + size.x, sprite_list[i].y, p_alpha));
-}
-
-
-void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, int p_sprite)
-{
-	glBindTexture(GL_TEXTURE_2D, texture_id);
-	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, p_sprite, 1.0);
-}
-
-
-void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, int p_sprite, double p_alpha)
-{
-	glBindTexture(GL_TEXTURE_2D, texture_id);
-	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, p_sprite, p_alpha);
-}
-
 
 s_tileset::s_tileset(string p_path, t_vect p_size)
 {
@@ -89,6 +42,7 @@ s_tileset::s_tileset(string p_path, t_vect p_size)
 
 	glBindTexture(GL_TEXTURE_2D, 0);
 
+	nb_sprite = p_size;
 	size = t_vect(1.0 / p_size.x, 1.0 / p_size.y);
 	t_vect	tmp = t_vect(0, 0);
 
@@ -102,4 +56,62 @@ s_tileset::s_tileset(string p_path, t_vect p_size)
 		sprite_list.push_back(t_vect(tmp.x / p_size.x, tmp.y / p_size.y));
 		tmp.x++;
 	}
+}
+
+void	s_tileset::draw_self(t_vect p_tl, t_vect p_tr, t_vect p_dl, t_vect p_dr, int p_sprite, double p_alpha)
+{
+	t_point		tl = screen_to_opengl(p_tl);
+	t_point		tr = screen_to_opengl(p_tr);
+	t_point		dl = screen_to_opengl(p_dl);
+	t_point		dr = screen_to_opengl(p_dr);
+
+	int			i;
+	if ((unsigned int)p_sprite >= sprite_list.size())
+		i = 0;
+	else
+		i = p_sprite;
+
+	draw_triangle_texture(	t_point(tl.x, tl.y, sprite_list[i].x, sprite_list[i].y, p_alpha),
+							t_point(tr.x, tr.y, sprite_list[i].x + size.x, sprite_list[i].y, p_alpha),
+							t_point(dl.x, dl.y, sprite_list[i].x, sprite_list[i].y + size.y, p_alpha));
+
+	draw_triangle_texture(	t_point(dl.x, dl.y, sprite_list[i].x, sprite_list[i].y + size.y, p_alpha),
+							t_point(dr.x, dr.y, sprite_list[i].x + size.x, sprite_list[i].y + size.y, p_alpha),
+							t_point(tr.x, tr.y, sprite_list[i].x + size.x, sprite_list[i].y, p_alpha));
+}
+
+
+void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, int p_sprite)
+{
+	glBindTexture(GL_TEXTURE_2D, texture_id);
+	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, p_sprite, 1.0);
+}
+
+
+void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, int p_sprite, double p_alpha)
+{
+	glBindTexture(GL_TEXTURE_2D, texture_id);
+	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, p_sprite, p_alpha);
+}
+
+void	s_tileset::draw_self(t_vect p_tl, t_vect p_tr, t_vect p_dl, t_vect p_dr, t_vect p_sprite, double p_alpha)
+{
+	int value = p_sprite.y * size.x + p_sprite.x;
+	draw_self(p_tl, p_tr, p_dl, p_dr, value, p_alpha);
+}
+
+
+void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, t_vect p_sprite)
+{
+	int value = (p_sprite.y * nb_sprite.x) + p_sprite.x;
+	glBindTexture(GL_TEXTURE_2D, texture_id);
+	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, value, 1.0);
+}
+
+
+void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, t_vect p_sprite, double p_alpha)
+{
+	int value = p_sprite.y * (nb_sprite.x - 1) + p_sprite.x;
+	glBindTexture(GL_TEXTURE_2D, texture_id);
+	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, value, p_alpha);
 }

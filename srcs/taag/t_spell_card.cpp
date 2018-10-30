@@ -26,7 +26,9 @@ s_spell_card::s_spell_card(t_spell *p_spell, t_vect p_coord, t_vect p_size, gui_
 						t_color(0.5, 0.5, 0.5), t_color(0.6, 0.6, 0.6));
 	coord = coord + 7;
 	size = t_vect(size.x / 4, size.x / 4);
-	button1 = new t_image_button((spell != NULL ? spell->image : NULL), coord, size);
+	button1 = new t_text_button(NULL, DARK_GREY, //text info
+						coord, size, 4, //object info
+						t_color(0.5, 0.5, 0.5), t_color(0.6, 0.6, 0.6));
 
 	coord = coord + t_vect(size.x + 4, 0);
 	size = t_vect(p_size.x - size.x - 21, size.x);
@@ -45,6 +47,8 @@ s_spell_card::s_spell_card(t_spell *p_spell, t_vect p_coord, t_vect p_size, gui_
 	button[1] = button1;
 	button[2] = button2;
 	button[3] = button3;
+
+	desc_size = calc_paragraphe_size(spell->desc, button[3]->size[1], NORMAL);
 }
 
 void			s_spell_card::draw_self()
@@ -57,7 +61,9 @@ void			s_spell_card::draw_self()
 			button[i]->draw_self();
 		i++;
 	}
-	draw_paragraphe(spell->desc, button[3]->coord[1], button[3]->size[1], NORMAL, DARK_GREY);
+	if (spell->tile.surface != NULL)
+		spell->tile.draw_self(button[1]->coord[1], button[1]->size[1], spell->sprite);
+	draw_paragraphe(spell->desc, desc_size, button[3]->coord[1], button[3]->size[1], NORMAL, DARK_GREY);
 }
 
 void			s_spell_card::click(t_vect mouse)

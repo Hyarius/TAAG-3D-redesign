@@ -12,6 +12,8 @@ yes;Oui
 no;Non
 save;Sauvegarder
 load;Charger
+duplicate;Duplication
+erase;Supprimer
 entry name;Entrez le nom de votre personnage
 entry file_name;Entrez le nom du fichier
 pool point;Points utilises :

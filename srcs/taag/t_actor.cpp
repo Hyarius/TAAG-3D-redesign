@@ -2,6 +2,7 @@
 
 t_actor			read_actor(t_data data)
 {
+
 	string	p_path = *((string *)(data.data[0]));
 	vector<string>	tab;
 	ifstream 		myfile;
@@ -24,7 +25,14 @@ t_actor			read_actor(t_data data)
 	int		phy_def = atoi(get_strsplit(&myfile, ":", 2)[1].c_str());
 	int		mag_atk = atoi(get_strsplit(&myfile, ":", 2)[1].c_str());
 	int		mag_def = atoi(get_strsplit(&myfile, ":", 2)[1].c_str());
-	return (s_actor(name, level, point, s_stat(hp, pa, pm, ini, t_element(phy_atk, phy_def), t_element(mag_atk, mag_def))));
+	t_actor	actor = s_actor(name, level, point, s_stat(hp, pa, pm, ini, t_element(phy_atk, phy_def), t_element(mag_atk, mag_def)));
+	int i = 0;
+	while (i < 8)
+	{
+		actor.spell[i] = spell_list.at(get_strsplit(&myfile, ":", 2)[1]);
+		i++;
+	}
+	return (actor);
 }
 
 void			save_actor(t_data data)
@@ -47,14 +55,14 @@ void			save_actor(t_data data)
 	myfile << "defense phy:" + to_string(to_save->stat.phy.atk) + "\n";
 	myfile << "attack mag:" + to_string(to_save->stat.mag.atk) + "\n";
 	myfile << "defense mag:" + to_string(to_save->stat.mag.def) + "\n";
-	myfile << "NULL\n";
-	myfile << "NULL\n";
-	myfile << "NULL\n";
-	myfile << "NULL\n";
-	myfile << "NULL\n";
-	myfile << "NULL\n";
-	myfile << "NULL\n";
-	myfile << "NULL\n";
+	myfile << "spell1:" + to_save->spell[0].path + "\n";
+	myfile << "spell2:" + to_save->spell[1].path + "\n";
+	myfile << "spell3:" + to_save->spell[2].path + "\n";
+	myfile << "spell4:" + to_save->spell[3].path + "\n";
+	myfile << "spell5:" + to_save->spell[4].path + "\n";
+	myfile << "spell6:" + to_save->spell[5].path + "\n";
+	myfile << "spell7:" + to_save->spell[6].path + "\n";
+	myfile << "spell8:" + to_save->spell[7].path + "\n";
 	myfile.close();
 }
 
@@ -64,6 +72,12 @@ s_actor::s_actor()
 	this->level = 0;
 	this->attrib_point = 0;
 	this->stat = t_stat();
+	int i = 0;
+	while (i < 8)
+	{
+		this->spell[i] = spell_list.at("NULL");
+		i++;
+	}
 }
 
 s_actor::s_actor(string p_name, int p_level, int p_pool, t_stat p_stat)
@@ -72,4 +86,10 @@ s_actor::s_actor(string p_name, int p_level, int p_pool, t_stat p_stat)
 	this->level = p_level;
 	this->attrib_point = p_pool;
 	this->stat = p_stat;
+	int i = 0;
+	while (i < 8)
+	{
+		this->spell[i] = spell_list.at("NULL");
+		i++;
+	}
 }

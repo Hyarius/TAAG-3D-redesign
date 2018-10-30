@@ -12,6 +12,8 @@ yes;Yes
 no;No
 save;Save
 load;Load
+duplicate;Duplication
+erase;Erase
 entry name;Enter the character name
 entry file_name;Enter the file name
 pool point;Points used :

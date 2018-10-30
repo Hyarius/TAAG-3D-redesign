@@ -9,6 +9,8 @@ void		menu_start()
 
 	t_color		color[2] = {t_color(0.3, 0.3, 0.3), t_color(0.5, 0.5, 0.5)};
 
+	initialize_spell();
+
 	gui.add(new s_button(new s_image_button(//image de fond
 			t_image("ressources/assets/interface/Menu_start.png"),
 			t_vect(0, 0), get_win_size()),
