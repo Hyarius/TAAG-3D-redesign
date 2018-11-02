@@ -1,10 +1,6 @@
 #include "taag.h"
 #include "player_editor_helper.h"
 
-t_color			color[3] = {t_color(0.5, 0.5, 0.5),
-							t_color(0.6, 0.6, 0.6),
-							t_color(1.0, 1.0, 0.7)};
-
 t_vect			offset = t_vect(SCREEN_RATIO_X * 8.0 - 4.0, SCREEN_RATIO_Y * 8.0 - 4.0);
 double			space = 0.25;
 double			line_height = (20 - (offset.x * 2) - space * 14) / 13;
@@ -69,7 +65,7 @@ void			set_c_value()
 
 static void		create_card(t_gui *gui, t_actor *player, int i)
 {
-	gui->add(new s_spell_card(&(player->spell[i]), gui->unit * c_pos[i], gui->unit * c_size, NULL, NULL));
+	gui->add(SPELL_CARD_ID, new s_spell_card(&(player->spell[i]), gui->unit * c_pos[i], gui->unit * c_size, NULL, NULL));
 }
 
 void			create_spell_cards(t_gui *gui, t_actor *player)
@@ -95,7 +91,7 @@ void			create_entry_name(t_gui *gui, t_actor *player, double p_line)
 				3, color[0], color[1], color[2]));
 	entry->entry->draw_funct = draw_centred_text;
 	entry->entry->coord[2] = gui->unit * t_vect(b_pos[0] + (b_pos[3] + b_size[3] - b_pos[0]) / 2, line + line_height / 2);
-	gui->add(entry);
+	gui->add(GUI_OBJ_ID, entry);
 }
 
 void			create_file_entry(t_gui *gui, string *p_name, double p_line)
@@ -112,13 +108,13 @@ void			create_file_entry(t_gui *gui, string *p_name, double p_line)
 	entry->entry->set_back(ACT_EXT);
 	entry->entry->draw_funct = draw_centred_text;
 	entry->entry->coord[2] = gui->unit * t_vect(b_pos[0] + (b_pos[3] + b_size[3] - b_pos[0]) / 2, line + line_height / 2);
-	gui->add(entry);
+	gui->add(GUI_OBJ_ID, entry);
 }
 
 void			create_level_iterator(t_gui *gui, t_actor *player, double p_line)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_iterator(new t_text_button(get_text("level"), DARK_GREY, //pool point
+	gui->add(ITERATOR_ID, new s_iterator(new t_text_button(get_text("level"), DARK_GREY, //pool point
 		gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], line_height), 3,
 		color[0], color[1]),
 		NULL,
@@ -133,7 +129,7 @@ void			create_level_iterator(t_gui *gui, t_actor *player, double p_line)
 void			create_pool_iterator(t_gui *gui, t_actor *player, double p_line)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_iterator(new t_text_button(get_text("pool point"), DARK_GREY, //pool point
+	gui->add(ITERATOR_ID, new s_iterator(new t_text_button(get_text("pool point"), DARK_GREY, //pool point
 		gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], line_height), 3,
 		color[0], color[1]),
 		NULL,
@@ -148,7 +144,7 @@ void			create_pool_iterator(t_gui *gui, t_actor *player, double p_line)
 void			create_health_iterator(t_gui *gui, t_actor *player, double p_line)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_iterator(
+	gui->add(ITERATOR_ID, new s_iterator(
 				new t_text_button(get_text("health"), DARK_GREY, //health
 					gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], line_height), 3,
 					color[0], color[1]),
@@ -168,7 +164,7 @@ void			create_health_iterator(t_gui *gui, t_actor *player, double p_line)
 void			create_pa_iterator(t_gui *gui, t_actor *player, double p_line)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_iterator(
+	gui->add(ITERATOR_ID, new s_iterator(
 				new t_text_button(get_text("pa"), DARK_GREY, //pa
 								gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], line_height), 3,
 								color[0], color[1]),
@@ -188,7 +184,7 @@ void			create_pa_iterator(t_gui *gui, t_actor *player, double p_line)
 void			create_pm_iterator(t_gui *gui, t_actor *player, double p_line)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_iterator(	new t_text_button(get_text("pm"), DARK_GREY, //pm
+	gui->add(ITERATOR_ID, new s_iterator(	new t_text_button(get_text("pm"), DARK_GREY, //pm
 								gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], line_height), 3,
 								color[0], color[1]),
 							new t_text_button(get_text("-"), DARK_GREY, //minus button
@@ -207,7 +203,7 @@ void			create_pm_iterator(t_gui *gui, t_actor *player, double p_line)
 void			create_init_iterator(t_gui *gui, t_actor *player, double p_line)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_iterator(	new t_text_button(get_text("init"), DARK_GREY, //initiative
+	gui->add(ITERATOR_ID, new s_iterator(	new t_text_button(get_text("init"), DARK_GREY, //initiative
 							gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], line_height), 3,
 							color[0], color[1]),
 						new t_text_button(get_text("-"), DARK_GREY, //minus button
@@ -226,7 +222,7 @@ void			create_init_iterator(t_gui *gui, t_actor *player, double p_line)
 void			create_atk_phy_iterator(t_gui *gui, t_actor *player, double p_line)
 {
 	double line = calc_line(p_line, space);
-		gui->add(new s_iterator(	new t_text_button(get_text("atk_phy"), DARK_GREY, //atk phy
+		gui->add(ITERATOR_ID, new s_iterator(	new t_text_button(get_text("atk_phy"), DARK_GREY, //atk phy
 									gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], line_height), 3,
 									color[0], color[1]),
 								new t_text_button(get_text("-"), DARK_GREY, //minus button
@@ -245,7 +241,7 @@ void			create_atk_phy_iterator(t_gui *gui, t_actor *player, double p_line)
 void			create_atk_mag_iterator(t_gui *gui, t_actor *player, double p_line)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_iterator(	new t_text_button(get_text("atk_mag"), DARK_GREY, //atk mag
+	gui->add(ITERATOR_ID, new s_iterator(	new t_text_button(get_text("atk_mag"), DARK_GREY, //atk mag
 								gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], line_height), 3,
 								color[0], color[1]),
 							new t_text_button(get_text("-"), DARK_GREY, //minus button
@@ -264,7 +260,7 @@ void			create_atk_mag_iterator(t_gui *gui, t_actor *player, double p_line)
 void			create_def_phy_iterator(t_gui *gui, t_actor *player, double p_line)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_iterator(	new t_text_button(get_text("def_phy"), DARK_GREY, //def phy
+	gui->add(ITERATOR_ID, new s_iterator(	new t_text_button(get_text("def_phy"), DARK_GREY, //def phy
 								gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], line_height), 3,
 								color[0], color[1]),
 							new t_text_button(get_text("-"), DARK_GREY, //minus button
@@ -283,7 +279,7 @@ void			create_def_phy_iterator(t_gui *gui, t_actor *player, double p_line)
 void			create_def_mag_iterator(t_gui *gui, t_actor *player, double p_line)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_iterator(	new t_text_button(get_text("def_mag"), DARK_GREY, //def mag
+	gui->add(ITERATOR_ID, new s_iterator(	new t_text_button(get_text("def_mag"), DARK_GREY, //def mag
 								gui->unit * t_vect(b_pos[0], line), gui->unit * t_vect(b_size[0], line_height), 3,
 								color[0], color[1]),
 							new t_text_button(get_text("-"), DARK_GREY, //minus button
@@ -302,7 +298,7 @@ void			create_def_mag_iterator(t_gui *gui, t_actor *player, double p_line)
 void			create_save_button(t_gui *gui, t_actor *player, double p_line, string *p_path)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_button(new t_text_button(get_text("save"), DARK_GREY, //pa
+	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("save"), DARK_GREY, //pa
 		gui->unit * t_vect(b_pos[4], line), gui->unit * t_vect(b_size[4], line_height), 3,
 		color[0], color[1]), menu_save_actor, t_data(3, gui, player, p_path)));
 }
@@ -310,7 +306,7 @@ void			create_save_button(t_gui *gui, t_actor *player, double p_line, string *p_
 void			create_load_button(t_gui *gui, t_actor *player, double p_line, string *p_path)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_button(new t_text_button(get_text("load"), DARK_GREY, //pa
+	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("load"), DARK_GREY, //pa
 		gui->unit * t_vect(b_pos[5], line), gui->unit * t_vect(b_size[5], line_height), 3,
 		color[0], color[1]), menu_load_actor, t_data(3, gui, player, p_path)));
 }
@@ -318,7 +314,7 @@ void			create_load_button(t_gui *gui, t_actor *player, double p_line, string *p_
 void			create_duplicate_button(t_gui *gui, t_actor *player, double p_line, string *p_path)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_button(new t_text_button(get_text("duplicate"), DARK_GREY, //pa
+	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("duplicate"), DARK_GREY, //pa
 		gui->unit * t_vect(b_pos[6], line), gui->unit * t_vect(b_size[6], line_height), 3,
 		color[0], color[1]), NULL, NULL));
 }
@@ -326,7 +322,7 @@ void			create_duplicate_button(t_gui *gui, t_actor *player, double p_line, strin
 void			create_erase_button(t_gui *gui, t_actor *player, double p_line, string *p_path)
 {
 	double line = calc_line(p_line, space);
-	gui->add(new s_button(new t_text_button(get_text("erase"), DARK_GREY, //pa
+	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("erase"), DARK_GREY, //pa
 		gui->unit * t_vect(b_pos[7], line), gui->unit * t_vect(b_size[7], line_height), 3,
 		color[0], color[1]), NULL, NULL));
 }

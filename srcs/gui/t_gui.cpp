@@ -15,10 +15,16 @@ s_gui::s_gui(int x, int y)
 void		s_gui::draw_self()
 {
 	size_t i = 0;
+	size_t j;
 
 	while (i < object_list.size())
 	{
-		object_list.at(i)->draw_self();
+		j = 0;
+		while (j < object_list[i].size())
+		{
+			object_list[i].at(j)->draw_self();
+			j++;
+		}
 		i++;
 	}
 }
@@ -26,6 +32,7 @@ void		s_gui::draw_self()
 void		s_gui::click()
 {
 	size_t i = 0;
+	size_t j = 0;
 	t_vect mouse = get_mouse_coord();
 
 	if (entry != NULL)
@@ -35,12 +42,18 @@ void		s_gui::click()
 	}
 	while (i < object_list.size())
 	{
-		object_list.at(i)->click(mouse);
+		while (j < object_list[i].size())
+		{
+			object_list[i].at(j)->click(mouse);
+			j++;
+		}
 		i++;
 	}
 }
 
-void		s_gui::add(t_gui_obj *object)
+void		s_gui::add(int rep, t_gui_obj *object)
 {
-	object_list.push_back(object);
+	if (object_list.size() < rep + 1)
+		object_list.resize(rep + 1);
+	object_list[rep].push_back(object);
 }

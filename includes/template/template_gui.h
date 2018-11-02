@@ -39,6 +39,7 @@ typedef struct		s_iterator : t_gui_obj
 								t_button_comp *p_button3,
 								int *p_value, int p_delta, int p_min, int p_max,
 								int	*p_pool, int p_cost, int *p_level);
+	void			set_text_value();
 	void			draw_self();
 	void			click(t_vect mouse);
 }					t_iterator;
@@ -53,18 +54,18 @@ typedef struct		s_entry : t_gui_obj
 	void			click(t_vect mouse);
 }					t_entry;
 
-typedef struct	s_gui
+typedef struct		s_gui
 {
-	vector<t_gui_obj *>	object_list;
-	t_entry_comp		*entry;
+	vector<vector<t_gui_obj *>>
+					object_list;
+	t_entry_comp	*entry;
+	t_vect			unit;
 
-	t_vect				unit;
-
-				s_gui();
-				s_gui(int x, int y);
-	void		add(t_gui_obj *object);
-	void		draw_self();
-	void		click();
-}				t_gui;
+					s_gui();
+					s_gui(int x, int y);
+	void			add(int rep, t_gui_obj *object);
+	void			draw_self();
+	void			click();
+}					t_gui;
 
 #endif

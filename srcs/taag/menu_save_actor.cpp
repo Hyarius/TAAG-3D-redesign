@@ -17,7 +17,6 @@ void			menu_save_actor(t_data data)
 	SDL_Event	event;
 
 	bool		continu = false;
-	t_color		color[2] = {t_color(0.6, 0.6, 0.6), t_color(0.8, 0.8, 0.8)};
 
 
 	s_button *button = new s_button(new s_text_button(//button did you wanna quit
@@ -27,7 +26,7 @@ void			menu_save_actor(t_data data)
 						NULL, NULL);
 	button->button->coord[2] = button->button->coord[2] - (gui.unit * t_vect(0, 1));
 
-	gui.add(button);
+	gui.add(GUI_OBJ_ID, button);
 
 	s_button *button2 = new s_button(new s_text_button(//button did you wanna quit
 						&full_path, DARK_GREY, //text info
@@ -35,15 +34,15 @@ void			menu_save_actor(t_data data)
 						t_color(0, 0, 0, 0), t_color(0, 0, 0, 0)),
 						NULL, NULL);
 
-	gui.add(button2);
+	gui.add(GUI_OBJ_ID, button2);
 
-	gui.add(new s_button(new s_text_button(//button yes
+	gui.add(GUI_OBJ_ID, new s_button(new s_text_button(//button yes
 						get_text("yes"), DARK_GREY, //text info
 						gui.unit * t_vect(4.25, 5.25), gui.unit * t_vect(3, 1.5), 8, //object info
 						color[0], color[1]),
 						quit_save, t_data(3, data.data[1], &name, &continu)));
 
-	gui.add(new s_button(new s_text_button(//button no
+	gui.add(GUI_OBJ_ID, new s_button(new s_text_button(//button no
 						get_text("no"), DARK_GREY, //text info
 						gui.unit * t_vect(7.75, 5.25), gui.unit * t_vect(3, 1.5), 8, //object info
 						color[0], color[1]),
@@ -57,7 +56,7 @@ void			menu_save_actor(t_data data)
 			(*((t_gui *)(data.data[0]))).draw_self();
 		gui.draw_self();
 
-		render_screen();
+		render_screen(draw_fps);
 
 		if (SDL_PollEvent(&(event)) == 1)
 		{

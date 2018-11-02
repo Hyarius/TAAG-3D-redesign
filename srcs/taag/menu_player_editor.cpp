@@ -12,7 +12,7 @@ void		menu_player_editor(t_data data)
 
 	string			file_name;
 
-	gui.add(new s_button(new s_image_button( t_image(t_color(0.7, 0.7, 0.7)), t_vect(0, 0), get_win_size()), NULL, NULL));
+	gui.add(GUI_OBJ_ID, new s_button(new s_image_button( t_image(t_color(0.7, 0.7, 0.7)), t_vect(0, 0), get_win_size()), NULL, NULL));
 
 	int i = 0;
 	set_b_value();
@@ -43,7 +43,7 @@ void		menu_player_editor(t_data data)
 
 		gui.draw_self();
 
-		render_screen(true);
+		render_screen(draw_fps);
 
 		if (SDL_PollEvent(&(event)) == 1)
 		{

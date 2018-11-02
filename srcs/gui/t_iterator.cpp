@@ -8,6 +8,7 @@ static void		increment_value(t_data data)
 	int			*pool = (int *)(data.data[3]);
 	int			cost = *((int *)(data.data[4]));
 	int			*level = (int *)(data.data[5]);
+	string		*text_value = (string *)(data.data[6]);
 
 	if (pool == NULL)
 		return ;
@@ -16,6 +17,7 @@ static void		increment_value(t_data data)
 		*value += delta;
 		*pool += cost;
 		*level = *pool / 5;
+		*text_value = to_string(*value);
 	}
 }
 
@@ -27,6 +29,7 @@ static void		decrement_value(t_data data)
 	int			*pool = (int *)(data.data[3]);
 	int			cost = *((int *)(data.data[4]));
 	int			*level = (int *)(data.data[5]);
+	string		*text_value = (string *)(data.data[6]);
 
 	if (pool == NULL)
 		return ;
@@ -35,6 +38,7 @@ static void		decrement_value(t_data data)
 		*value -= delta;
 		*pool -= cost;
 		*level = *pool / 5;
+		*text_value = to_string(*value);
 	}
 }
 
@@ -57,7 +61,7 @@ s_iterator::s_iterator(	t_button_comp *p_button0,
 	button[0]->coord[2] = button[0]->coord[1] + t_vect(button[0]->size[0].y - button[0]->size[1].y, button[0]->size[1].y / 2);
 	button[1] = p_button1;
 	if (button[1] != NULL)
-		button[1]->set_funct_param(decrement_value, t_data(6, p_value, &delta, &min, p_pool, &cost, p_level), NULL);
+		button[1]->set_funct_param(decrement_value, t_data(7, p_value, &delta, &min, p_pool, &cost, p_level, &text_value), NULL);
 	button[2] = p_button2;
 	if (value != NULL)
 	{
@@ -66,14 +70,18 @@ s_iterator::s_iterator(	t_button_comp *p_button0,
 	}
 	button[3] = p_button3;
 	if (button[3] != NULL)
-		button[3]->set_funct_param(increment_value, t_data(6, p_value, &delta, &max, p_pool, &cost, p_level), NULL);
+		button[3]->set_funct_param(increment_value, t_data(7, p_value, &delta, &max, p_pool, &cost, p_level, &text_value), NULL);
+}
+
+void			s_iterator::set_text_value()
+{
+	text_value = to_string(*value);
 }
 
 void			s_iterator::draw_self()
 {
 	size_t i = 0;
 
-	text_value = to_string(*value);
 	while (i < 4)
 	{
 		if (button[i] != NULL)

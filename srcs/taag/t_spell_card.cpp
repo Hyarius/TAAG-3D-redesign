@@ -51,6 +51,11 @@ s_spell_card::s_spell_card(t_spell *p_spell, t_vect p_coord, t_vect p_size, gui_
 	desc_size = calc_paragraphe_size(spell->desc, button[3]->size[1], NORMAL);
 }
 
+void			s_spell_card::set_desc_size()
+{
+	desc_size = calc_paragraphe_size(spell->desc, button[3]->size[1], NORMAL);
+}
+
 void			s_spell_card::draw_self()
 {
 	size_t i = 0;
