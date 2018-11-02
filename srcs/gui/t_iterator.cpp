@@ -80,8 +80,14 @@ void			s_iterator::set_text_value()
 
 void			s_iterator::draw_self()
 {
+	static int saved_value = 0;
 	size_t i = 0;
 
+	if (*value != saved_value)
+	{
+		text_value = to_string(*value);
+		saved_value = *value;
+	}
 	while (i < 4)
 	{
 		if (button[i] != NULL)

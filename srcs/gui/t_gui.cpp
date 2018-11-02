@@ -42,6 +42,7 @@ void		s_gui::click()
 	}
 	while (i < object_list.size())
 	{
+		j = 0;
 		while (j < object_list[i].size())
 		{
 			object_list[i].at(j)->click(mouse);
@@ -56,4 +57,11 @@ void		s_gui::add(int rep, t_gui_obj *object)
 	if (object_list.size() < rep + 1)
 		object_list.resize(rep + 1);
 	object_list[rep].push_back(object);
+}
+
+void		s_gui::add(t_gui_obj *object)
+{
+	if (object_list.size() < 1)
+		object_list.resize(1);
+	object_list[0].push_back(object);
 }

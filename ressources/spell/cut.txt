@@ -1,0 +1,4 @@
+Name	:Cut
+icon	:ressources/assets/iconset/gladius.png
+3:0:1:2
+1:10:0.8:0:0

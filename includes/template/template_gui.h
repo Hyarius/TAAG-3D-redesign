@@ -63,6 +63,7 @@ typedef struct		s_gui
 
 					s_gui();
 					s_gui(int x, int y);
+	void			add(t_gui_obj *object);
 	void			add(int rep, t_gui_obj *object);
 	void			draw_self();
 	void			click();

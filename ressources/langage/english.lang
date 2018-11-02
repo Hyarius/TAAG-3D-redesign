@@ -10,6 +10,8 @@ player to load;What player do you want to load ?
 no file;No character saved
 yes;Yes
 no;No
+up;Next
+down;Previous
 save;Save
 load;Load
 duplicate;Duplication

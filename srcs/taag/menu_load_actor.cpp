@@ -1,6 +1,23 @@
 #include "taag.h"
 #include "player_editor_helper.h"
 
+static void		increment_index(int *index, int delta, vector<string> *file_list, vector<string> *final_list)
+{
+	int				i = 0;
+
+	final_list->clear();
+	if (*index + delta >= 0 && *index + delta < (*file_list).size() && (*file_list).size() > 10)
+		*index += delta;
+	while (i < 10)
+	{
+		if (i + *index >= (*file_list).size())
+			(*final_list).push_back("");
+		else
+			(*final_list).push_back((*file_list)[i + *index]);
+		i++;
+	}
+}
+
 static double	calc_line(double line, double space)
 {
 	double result;
@@ -35,7 +52,9 @@ static void		quit_load(t_data data)
 
 void			menu_load_actor(t_data data)
 {
-	vector<string> list_file = list_files(ACT_PATH, ACT_EXT);
+	int				index = 0;
+	vector<string>	list_file = list_files(ACT_PATH, ACT_EXT);
+	vector<string>	final_list;
 
 	t_gui		gui = t_gui(30, 20);
 	SDL_Event	event;
@@ -65,17 +84,28 @@ void			menu_load_actor(t_data data)
 		i++;
 	}
 	else
-		while (i < list_file.size() && i < 10)
+	{
+		while (i < 10)
+		{
+			if (i + index < list_file.size())
+				final_list.push_back(list_file[i + index]);
+			else
+				final_list.push_back("");
+			i++;
+		}
+		i = 0;
+		while (i < 10)
 		{
 			double line = calc_line((i / 2) * 2 + 5, 0.15);
 			s_button *button = new s_button(new s_text_button(//button did you wanna quit
-							&(list_file[i]), DARK_GREY, //text info
-							gui.unit * t_vect(b_pos[i % 2], line), gui.unit * t_vect(b_size[i % 2], 2), 6, //object info
-							color[0], color[3]),
-							quit_load, t_data(5, data.data[1], &(list_file[i]), &continu, data.data[2], data.data[0]));
+				&(final_list[i]), DARK_GREY, //text info
+				gui.unit * t_vect(b_pos[i % 2], line), gui.unit * t_vect(b_size[i % 2], 2), 6, //object info
+				color[0], color[3]),
+				quit_load, t_data(5, data.data[1], &(final_list[i]), &continu, data.data[2], data.data[0]));
 			gui.add(GUI_OBJ_ID, button);
 			i++;
 		}
+	}
 
 	while (continu == false)
 	{
@@ -93,6 +123,10 @@ void			menu_load_actor(t_data data)
 				continu = true;
 			else if (event.type == SDL_MOUSEBUTTONUP)
 				gui.click();
+			if (event.type == SDL_MOUSEWHEEL && event.wheel.y > 0)
+				increment_index(&index, -2, &list_file, &final_list);
+			else if (event.type == SDL_MOUSEWHEEL && event.wheel.y < 0)
+				increment_index(&index, 2, &list_file, &final_list);
 		}
 	}
 }

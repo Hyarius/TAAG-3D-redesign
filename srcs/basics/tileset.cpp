@@ -96,14 +96,14 @@ void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, int p_sprite, double
 
 void	s_tileset::draw_self(t_vect p_tl, t_vect p_tr, t_vect p_dl, t_vect p_dr, t_vect p_sprite, double p_alpha)
 {
-	int value = p_sprite.y * size.x + p_sprite.x;
+	int value = (int)(p_sprite.y) * (int)(size.x) + (int)(p_sprite.x);
 	draw_self(p_tl, p_tr, p_dl, p_dr, value, p_alpha);
 }
 
 
 void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, t_vect p_sprite)
 {
-	int value = (p_sprite.y * nb_sprite.x) + p_sprite.x;
+	int value = (int)(p_sprite.y) * (int)(size.x) + (int)(p_sprite.x);
 	glBindTexture(GL_TEXTURE_2D, texture_id);
 	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, value, 1.0);
 }
@@ -111,7 +111,7 @@ void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, t_vect p_sprite)
 
 void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, t_vect p_sprite, double p_alpha)
 {
-	int value = p_sprite.y * (nb_sprite.x - 1) + p_sprite.x;
+	int value = (int)(p_sprite.y) * (int)(size.x) + (int)(p_sprite.x);
 	glBindTexture(GL_TEXTURE_2D, texture_id);
 	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, value, p_alpha);
 }

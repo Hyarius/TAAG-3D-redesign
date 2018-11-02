@@ -10,6 +10,8 @@ player to load;Quel fichier voulez-vous charger ?
 no file;Aucun personnage sauvegarder
 yes;Oui
 no;Non
+up;Suivant
+down;Precedent
 save;Sauvegarder
 load;Charger
 duplicate;Duplication
