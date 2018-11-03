@@ -37,6 +37,7 @@ typedef struct 		s_button_comp : t_gui_comp
 	d_funct			draw_funct;
 
 	void			set_funct_param(gui_funct p_funct, t_data p_data, d_funct p_draw_funct);
+	void			reset_text(string *text);
 	virtual void	draw_self() = 0;
 	void			click(t_vect mouse);
 }					t_button_comp;

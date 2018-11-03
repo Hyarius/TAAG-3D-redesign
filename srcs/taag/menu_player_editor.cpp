@@ -32,7 +32,6 @@ void		menu_player_editor(t_data data)
 	create_def_mag_iterator(&gui, &player, i++);
 	create_save_button(&gui, &player, i, &file_name);
 	create_load_button(&gui, &player, i, &file_name);
-	create_duplicate_button(&gui, &player, i, &file_name);
 	create_erase_button(&gui, &player, i++, &file_name);
 
 	create_spell_cards(&gui, &player);

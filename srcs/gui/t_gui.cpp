@@ -54,7 +54,7 @@ void		s_gui::click()
 
 void		s_gui::add(int rep, t_gui_obj *object)
 {
-	if (object_list.size() < rep + 1)
+	if (object_list.size() < (size_t)(rep + 1))
 		object_list.resize(rep + 1);
 	object_list[rep].push_back(object);
 }

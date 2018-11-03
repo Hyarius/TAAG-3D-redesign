@@ -8,8 +8,8 @@ void			set_c_value();
 
 void			menu_save_actor(t_data data);
 void			menu_load_actor(t_data data);
-void			menu_duplicate_actor(t_data data);
-void			menu_erase_actor(t_data data);
+void			menu_delete_actor(t_data data);
+void			menu_choose_spell(t_data data);
 
 void			create_file_entry(t_gui *gui, string *p_name, double p_line);
 void			create_entry_name(t_gui *gui, t_actor *player, double p_line);
@@ -25,7 +25,6 @@ void			create_def_mag_iterator(t_gui *gui, t_actor *player, double p_line);
 void			create_pool_iterator(t_gui *gui, t_actor *player, double p_line);
 void			create_save_button(t_gui *gui, t_actor *player, double p_line, string *p_path);
 void			create_load_button(t_gui *gui, t_actor *player, double p_line, string *p_path);
-void			create_duplicate_button(t_gui *gui, t_actor *player, double p_line, string *p_path);
 void			create_erase_button(t_gui *gui, t_actor *player, double p_line, string *p_path);
 
 void			create_spell_cards(t_gui *gui, t_actor *player);

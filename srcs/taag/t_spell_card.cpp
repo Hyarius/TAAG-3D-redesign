@@ -44,6 +44,7 @@ s_spell_card::s_spell_card(t_spell *p_spell, t_vect p_coord, t_vect p_size, gui_
 		t_color(0.5, 0.5, 0.5), t_color(0.6, 0.6, 0.6));
 
 	button[0] = button0;
+	button[0]->set_funct_param(p_funct, p_data, NULL);
 	button[1] = button1;
 	button[2] = button2;
 	button[3] = button3;

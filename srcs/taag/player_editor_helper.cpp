@@ -36,23 +36,20 @@ void			set_b_value()
 	b_size[3] = line_height;
 
 	b_pos[4] = b_pos[0];
-	b_size[4] = (b_pos[3] + b_size[3] - b_pos[0]) / 4 - space + space / 4;
+	b_size[4] = (b_pos[3] + b_size[3] - b_pos[0]) / 3 - space + space / 3;
 
 	b_pos[5] = b_pos[4] + b_size[4] + space;
 	b_size[5] = b_size[4];
 
 	b_pos[6] = b_pos[5] + b_size[5] + space;
 	b_size[6] = b_size[5];
-
-	b_pos[7] = b_pos[6] + b_size[6] + space;
-	b_size[7] = b_size[6];
 }
 
 void			set_c_value()
 {
 	c_pos.resize(8);
 
-	double base = b_pos[7] + b_size[7] + space;
+	double base = b_pos[6] + b_size[6] + space;
 	c_pos[0] = t_vect(base + (c_size.x + space) * 0, offset.y + space + 4);
 	c_pos[1] = t_vect(c_pos[0].x + (c_size.x + space) * 1, c_pos[0].y);
 	c_pos[2] = t_vect(c_pos[0].x + (c_size.x + space) * 2, c_pos[0].y);
@@ -65,7 +62,8 @@ void			set_c_value()
 
 static void		create_card(t_gui *gui, t_actor *player, int i)
 {
-	gui->add(SPELL_CARD_ID, new s_spell_card(&(player->spell[i]), gui->unit * c_pos[i], gui->unit * c_size, NULL, NULL));
+	s_spell_card *card = new s_spell_card(&(player->spell[i]), gui->unit * c_pos[i], gui->unit * c_size, menu_choose_spell, t_data(3, gui, &(player->spell[i]), &card));
+	gui->add(SPELL_CARD_ID, card);
 }
 
 void			create_spell_cards(t_gui *gui, t_actor *player)
@@ -311,18 +309,10 @@ void			create_load_button(t_gui *gui, t_actor *player, double p_line, string *p_
 		color[0], color[1]), menu_load_actor, t_data(3, gui, player, p_path)));
 }
 
-void			create_duplicate_button(t_gui *gui, t_actor *player, double p_line, string *p_path)
-{
-	double line = calc_line(p_line, space);
-	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("duplicate"), DARK_GREY, //pa
-		gui->unit * t_vect(b_pos[6], line), gui->unit * t_vect(b_size[6], line_height), 3,
-		color[0], color[1]), NULL, NULL));
-}
-
 void			create_erase_button(t_gui *gui, t_actor *player, double p_line, string *p_path)
 {
 	double line = calc_line(p_line, space);
 	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("erase"), DARK_GREY, //pa
-		gui->unit * t_vect(b_pos[7], line), gui->unit * t_vect(b_size[7], line_height), 3,
-		color[0], color[1]), NULL, NULL));
+		gui->unit * t_vect(b_pos[6], line), gui->unit * t_vect(b_size[6], line_height), 3,
+		color[0], color[1]), menu_delete_actor, t_data(3, gui, player, p_path)));
 }

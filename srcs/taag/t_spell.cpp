@@ -12,7 +12,7 @@ void		initialize_spell()
 	spell_list["NULL"] = s_spell();
 	while (i < spell_files.size())
 	{
-		spell_list[SPELL_PATH + spell_files[i] + SPELL_EXT] = s_spell(SPELL_PATH + spell_files[i] + SPELL_EXT);
+		spell_list[spell_files[i]] = s_spell(SPELL_PATH + spell_files[i] + SPELL_EXT);
 		i++;
 	}
 }
