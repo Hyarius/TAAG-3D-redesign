@@ -3,21 +3,27 @@
 t_vect			card_size = t_vect(5, 7);
 t_vect			c_pos[8];
 
-static void		increment_index(int *index, int delta, vector<string> *file_list, vector<t_gui_obj *> card_list)
+static void		increment_index(int *index, int delta, vector<string> *file_list, vector<string> *final_list, vector<t_gui_obj *> card_list)
 {
 	s_spell_card	*card;
 	int				i = 0;
 
 	if (*index + delta >= 0 && (size_t)(*index + delta) < (*file_list).size() && (*file_list).size() > 10)
 		*index += delta;
+	final_list->clear();
 	while (i < 8)
 	{
-		printf("seg fault at = %d\n", i);
 		card = (s_spell_card *)(card_list[i]);
 		if ((size_t)(*index + i) >= (*file_list).size())
+		{
 			card->spell = &(spell_list.at("NULL"));
+			final_list->push_back("NULL");
+		}
 		else
+		{
 			card->spell = &(spell_list.at((*file_list)[i + *index]));
+			final_list->push_back((*file_list)[i + *index]);
+		}
 		(card->button[2])->reset_text(&(card->spell->name));
 		i++;
 	}
@@ -31,23 +37,22 @@ static double	calc_line(double line, double space)
 	return (result);
 }
 
-static void		quit_choose_spell(t_data data)//0 = spell ptr | 1 = spell_name | 2 = continue | 3 = spell_card
+static void		quit_choose_spell(t_data data)
 {
-	s_spell			**ptr = (s_spell **)(data.data[0]);
-	string			*spell_name = (string *)(data.data[1]);
-	bool			*continu = (bool *)(data.data[2]);
-	t_spell_card	*spell_card = (t_spell_card *)(data.data[3]);
+	bool			*continu = (bool *)(data.data[0]);
+	string			*new_name = (string *)(data.data[1]);
+	t_gui			*gui = (t_gui *)(data.data[2]);
+	t_actor			*player = (t_actor *)(data.data[3]);
+	int				i = (int)(data.data[4]);
 
-	*ptr = &(spell_list.at(*spell_name));
-	spell_card->set_desc_size();
-
+	player->spell[i] = spell_list.at(*new_name);
+	gui->verify_ID_object(SPELL_CARD_ID);
 	*continu = true;
 }
 
-void		menu_choose_spell(t_data data)
+void		menu_choose_spell(t_data data)//0 - t_gui * | 1 = t_player * | 2 = int
 {
 	t_gui			gui = t_gui(30, 20);
-	s_spell			*selected_spell = ((s_spell *)(data.data[1]));
 	int				index = 0;
 	vector<string>	list_file = list_files(SPELL_PATH, SPELL_EXT);
 	vector<string>	final_list;
@@ -55,10 +60,10 @@ void		menu_choose_spell(t_data data)
 	bool			continu = false;
 
 	s_button *button = new s_button(new s_text_button(//button did you wanna quit
-		NULL, DARK_GREY, //text info
-		gui.unit * t_vect(2, 2), gui.unit * t_vect(26, 16), 8, //object info
-		color[0], color[1]),
-		NULL, NULL);
+				NULL, DARK_GREY, //text info
+				gui.unit * t_vect(2, 2), gui.unit * t_vect(26, 16), 8, //object info
+				color[0], color[1]),
+				NULL, NULL);
 	gui.add(GUI_OBJ_ID, button);
 	
 	size_t i = 0;
@@ -93,7 +98,7 @@ void		menu_choose_spell(t_data data)
 		{
 			s_spell_card *card = new s_spell_card(&(spell_list.at(final_list[i + index])),
 						gui.unit * c_pos[i], gui.unit * card_size,
-						NULL, NULL);
+						quit_choose_spell, t_data(5, &continu, &(final_list[i + index]), data.data[0], data.data[1], data.data[2]));
 			gui.add(SPELL_CARD_ID, card);
 			i++;
 		}
@@ -118,9 +123,9 @@ void		menu_choose_spell(t_data data)
 			else if (event.type == SDL_MOUSEBUTTONUP)
 				gui.click();
 			if (event.type == SDL_MOUSEWHEEL && event.wheel.y > 0)
-				increment_index(&index, -8, &list_file, gui.object_list[SPELL_CARD_ID]);
+				increment_index(&index, -8, &list_file, &final_list, gui.object_list[SPELL_CARD_ID]);
 			else if (event.type == SDL_MOUSEWHEEL && event.wheel.y < 0)
-				increment_index(&index, 8, &list_file, gui.object_list[SPELL_CARD_ID]);
+				increment_index(&index, 8, &list_file, &final_list, gui.object_list[SPELL_CARD_ID]);
 		}
 	}
 

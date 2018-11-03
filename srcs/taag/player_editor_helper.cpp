@@ -62,7 +62,7 @@ void			set_c_value()
 
 static void		create_card(t_gui *gui, t_actor *player, int i)
 {
-	s_spell_card *card = new s_spell_card(&(player->spell[i]), gui->unit * c_pos[i], gui->unit * c_size, menu_choose_spell, t_data(3, gui, &(player->spell[i]), &card));
+	s_spell_card *card = new s_spell_card(&(player->spell[i]), gui->unit * c_pos[i], gui->unit * c_size, menu_choose_spell, t_data(3, gui, player, i));
 	gui->add(SPELL_CARD_ID, card);
 }
 

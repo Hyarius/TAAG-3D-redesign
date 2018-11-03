@@ -12,11 +12,11 @@ attack phy:0
 defense phy:0
 attack mag:0
 defense mag:0
-spell1:fire9
+spell1:fire15
 spell2:fire1
-spell3:fire10
-spell4:fire7
-spell5:fire0
-spell6:fire13
-spell7:fire13
-spell8:fire11
+spell3:fire11
+spell4:fire14
+spell5:NULL
+spell6:NULL
+spell7:fire10
+spell8:NULL

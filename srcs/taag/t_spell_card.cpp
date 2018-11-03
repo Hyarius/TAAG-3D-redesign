@@ -83,3 +83,8 @@ void			s_spell_card::click(t_vect mouse)
 		i++;
 	}
 }
+
+void			s_spell_card::verify()
+{
+	this->set_desc_size();
+}

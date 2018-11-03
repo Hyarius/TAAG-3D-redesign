@@ -17,6 +17,7 @@ typedef struct		s_spell_card : t_gui_obj
 	void			set_desc_size();
 	void			draw_self();
 	void			click(t_vect mouse);
+	void			verify();
 }					t_spell_card;
 
 #endif

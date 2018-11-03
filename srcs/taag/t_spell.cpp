@@ -12,7 +12,7 @@ void		initialize_spell()
 	spell_list["NULL"] = s_spell();
 	while (i < spell_files.size())
 	{
-		spell_list[spell_files[i]] = s_spell(SPELL_PATH + spell_files[i] + SPELL_EXT);
+		spell_list[spell_files[i]] = s_spell(spell_files[i]);
 		i++;
 	}
 }
@@ -30,7 +30,7 @@ s_spell::s_spell(string p_path)
 	ifstream	myfile;
 	vector<string>	tab;
 
-	if (check_file_exist(p_path) == false)
+	if (check_file_exist(SPELL_PATH + p_path + SPELL_EXT) == false)
 	{
 		path = "NULL";
 		name = "Empty";
@@ -40,7 +40,7 @@ s_spell::s_spell(string p_path)
 	else
 	{
 		path = p_path;
-		myfile.open(p_path);
+		myfile.open(SPELL_PATH + p_path + SPELL_EXT);
 		name = get_strsplit(&myfile, ":", 2)[1];
 		desc = get_strsplit(&myfile, ":", 2)[1];
 		tab = get_strsplit(&myfile, ":", 4);

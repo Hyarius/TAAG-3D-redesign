@@ -9,6 +9,7 @@ typedef struct		s_gui_obj
 {
 	virtual void	draw_self() = 0;
 	virtual void	click(t_vect mouse) = 0;
+	virtual void	verify();
 	virtual 		~s_gui_obj() {}
 }					t_gui_obj;
 
@@ -65,6 +66,7 @@ typedef struct		s_gui
 					s_gui(int x, int y);
 	void			add(t_gui_obj *object);
 	void			add(int rep, t_gui_obj *object);
+	void			verify_ID_object(int ID_OBJ);
 	void			draw_self();
 	void			click();
 }					t_gui;
