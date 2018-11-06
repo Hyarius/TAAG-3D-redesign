@@ -27,5 +27,7 @@ void			create_save_button(t_gui *gui, t_actor *player, double p_line, string *p_
 void			create_load_button(t_gui *gui, t_actor *player, double p_line, string *p_path);
 void			create_erase_button(t_gui *gui, t_actor *player, double p_line, string *p_path);
 
+void			create_sprite_selector(t_gui *gui, t_actor *player, double p_line);
+
 void			create_spell_cards(t_gui *gui, t_actor *player);
 #endif

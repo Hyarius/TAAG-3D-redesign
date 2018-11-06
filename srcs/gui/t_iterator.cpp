@@ -61,7 +61,7 @@ s_iterator::s_iterator(	t_button_comp *p_button0,
 	button[0]->coord[2] = button[0]->coord[1] + t_vect(button[0]->size[0].y - button[0]->size[1].y, button[0]->size[1].y / 2);
 	button[1] = p_button1;
 	if (button[1] != NULL)
-		button[1]->set_funct_param(decrement_value, t_data(7, p_value, &delta, &min, p_pool, &cost, p_level, &text_value), NULL);
+		button[1]->set_funct_param(decrement_value, t_data(7, p_value, &delta, &min, p_pool, &cost, p_level, &text_value));
 	button[2] = p_button2;
 	if (value != NULL)
 	{
@@ -70,7 +70,7 @@ s_iterator::s_iterator(	t_button_comp *p_button0,
 	}
 	button[3] = p_button3;
 	if (button[3] != NULL)
-		button[3]->set_funct_param(increment_value, t_data(7, p_value, &delta, &max, p_pool, &cost, p_level, &text_value), NULL);
+		button[3]->set_funct_param(increment_value, t_data(7, p_value, &delta, &max, p_pool, &cost, p_level, &text_value));
 }
 
 void			s_iterator::set_text_value()

@@ -8,6 +8,7 @@ void		menu_start()
 	t_gui		gui;
 
 	initialize_spell();
+	initiate_sprite();
 
 	gui.add(GUI_OBJ_ID, new s_button(new s_image_button(//image de fond
 			t_image("ressources/assets/interface/Menu_start.png"),

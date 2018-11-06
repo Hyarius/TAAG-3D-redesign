@@ -14,6 +14,7 @@ extern bool					draw_fps;
 extern t_color				color[4];
 
 extern map<string, t_spell>	spell_list;
+extern vector<t_tileset *>	tile_list;
 
 extern string				ACT_EXT;
 extern string				ACT_PATH;
@@ -22,4 +23,5 @@ extern string				SPELL_PATH;
 
 extern int					GUI_OBJ_ID;
 extern int					ITERATOR_ID;
+extern int					SPRITE_SELECTOR_ID;
 extern int					SPELL_CARD_ID;

@@ -3,6 +3,7 @@
 void				error_exit(string msg, int error)
 {
 	printf("Error %d : %s\n", error, msg.c_str());
+	getchar();
 	exit(error);
 }
 

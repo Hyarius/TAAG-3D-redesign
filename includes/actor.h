@@ -42,6 +42,9 @@ typedef struct	s_actor
 	int			attrib_point;
 	t_stat		stat;
 	t_spell		spell[8];
+	int			tile_index;
+	t_vect		sprite_pos;
+	t_vect		sprite_size;
 				s_actor();
 				s_actor(string p_name, int p_level, int p_pool, t_stat p_stat);
 }				t_actor;

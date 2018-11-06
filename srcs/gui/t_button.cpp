@@ -5,7 +5,7 @@ s_button::s_button(t_button_comp *p_button, gui_funct p_funct, t_data p_data)
 	int i = 0;
 
 	this->button = p_button;
-	this->button->set_funct_param(p_funct, p_data, NULL);
+	this->button->set_funct_param(p_funct, p_data);
 }
 
 s_button::s_button(t_button_comp *p_button, gui_funct p_funct, t_data p_data, d_funct p_draw_funct)

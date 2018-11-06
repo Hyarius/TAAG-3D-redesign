@@ -3,7 +3,7 @@
 
 t_vect			offset = t_vect(SCREEN_RATIO_X * 8.0 - 4.0, SCREEN_RATIO_Y * 8.0 - 4.0);
 double			space = 0.25;
-double			line_height = (20 - (offset.x * 2) - space * 14) / 13;
+double			line_height = (20 - (offset.x * 2) - space * 13) / 13;
 vector<double>	b_pos;
 vector<double>	b_size;
 vector<t_vect>	c_pos;
@@ -14,7 +14,7 @@ static double	calc_line(double line, double space)
 {
 	double result;
 
-	result = space + ((line_height + space) * line) + offset.y;
+	result = ((line_height + space) * line) + offset.y;
 	return (result);
 }
 
@@ -23,7 +23,7 @@ void			set_b_value()
 	b_pos.resize(8);
 	b_size.resize(8);
 
-	b_pos[0] = space + offset.x;
+	b_pos[0] = offset.x;
 	b_size[0] = 6.75;
 
 	b_pos[1] = b_pos[0] + b_size[0] + space;
@@ -315,4 +315,20 @@ void			create_erase_button(t_gui *gui, t_actor *player, double p_line, string *p
 	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("erase"), DARK_GREY, //pa
 		gui->unit * t_vect(b_pos[6], line), gui->unit * t_vect(b_size[6], line_height), 3,
 		color[0], color[1]), menu_delete_actor, t_data(3, gui, player, p_path)));
+}
+
+void			create_sprite_selector(t_gui *gui, t_actor *player, double p_line)
+{
+	t_vect		left_space = t_vect(12.5, 4);
+	double		line = calc_line(p_line, space);
+	t_button_comp	*button1 = new s_text_button(get_text("sprite"), DARK_GREY, // text info
+		gui->unit * t_vect(c_pos[0].x, offset.y + (4.0 / 2.0) - 0.5), gui->unit * t_vect(7 - space, 1) , 3, // coord / size info
+		color[0], color[1]);
+	t_button_comp	*button2 = new s_text_button(NULL, DARK_GREY, // text info
+		gui->unit * t_vect(c_pos[0].x + space + 7, offset.y), t_vect(gui->unit.y * 4, gui->unit.y * 4), 3, // coord / size info
+		color[0], color[1]);
+
+	t_vect			increment = t_vect(1, 1);
+
+	gui->add(SPRITE_SELECTOR_ID, new s_sprite_selector(button1, button2, &(player->tile_index), &(player->sprite_pos), increment));
 }

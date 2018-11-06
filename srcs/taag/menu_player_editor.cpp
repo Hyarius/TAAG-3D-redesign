@@ -34,6 +34,8 @@ void		menu_player_editor(t_data data)
 	create_load_button(&gui, &player, i, &file_name);
 	create_erase_button(&gui, &player, i++, &file_name);
 
+	create_sprite_selector(&gui, &player, 0);
+
 	create_spell_cards(&gui, &player);
 
 	while (quit == false)

@@ -1,22 +1,5 @@
 #include "taag.h"
 
-string					SPELL_EXT = ".spell";
-string					SPELL_PATH = "ressources/spell/";
-map<string, t_spell>	spell_list;
-
-void		initialize_spell()
-{
-	vector<string> spell_files = list_files(SPELL_PATH, SPELL_EXT);
-	size_t i = 0;
-
-	spell_list["NULL"] = s_spell();
-	while (i < spell_files.size())
-	{
-		spell_list[spell_files[i]] = s_spell(spell_files[i]);
-		i++;
-	}
-}
-
 s_spell::s_spell()
 {
 	path = "NULL";

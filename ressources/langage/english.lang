@@ -16,6 +16,7 @@ save;Save
 load;Load
 duplicate;Duplication
 erase;Erase
+sprite;Sprite :
 player to delete;Witch player did you want to erase ?
 entry name;Enter the character name
 entry file_name;Enter the file name

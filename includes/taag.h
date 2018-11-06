@@ -5,6 +5,7 @@
 #include "structure.h"
 #include "base_value.h"
 
+void			initiate_sprite();
 void			initialize_spell();
 
 void			menu_start();
