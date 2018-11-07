@@ -25,3 +25,4 @@ extern int					GUI_OBJ_ID;
 extern int					ITERATOR_ID;
 extern int					SPRITE_SELECTOR_ID;
 extern int					SPELL_CARD_ID;
+extern int					SPRITE_IMAGE_ID;

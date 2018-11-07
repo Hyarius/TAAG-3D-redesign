@@ -28,7 +28,7 @@ void		s_text_button::draw_self()
 		draw_rectangle(coord[i], size[i], color[i]);
 	if (text != NULL && *text != "")
 	{
-		if (text_size == -1 || size[1].x > (*text, text_size, NORMAL)
+		if (text_size == -1 || size[1].x > calc_text_len(*text, text_size, NORMAL)
 							|| size[1].y > get_char(text_size, NORMAL, BLACK, 'M')->surface->h)
 			text_size = calc_text_size(*text, size[1] - (size[0] - size[1]));
 		this->draw_funct(*text, text_size, coord[2], NORMAL, text_color);

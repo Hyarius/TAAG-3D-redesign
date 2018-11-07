@@ -62,6 +62,19 @@ typedef struct		s_image_button : t_button_comp
 	void			draw_self(); // draw the button
 }					t_image_button;
 
+typedef struct		s_tileset_button : t_button_comp
+{
+	int				*index;
+	t_vect			selected;
+
+					s_tileset_button(string *p_text, int p_text_color,
+								int *p_index, t_vect p_selected,
+								t_vect p_coord, t_vect p_size, int border);
+					s_tileset_button(int *p_index, t_vect p_selected,
+								t_vect p_coord, t_vect p_size, int border);
+	void			draw_self(); // draw the button
+}					t_tileset_button;
+
 typedef struct		s_entry_comp : t_gui_comp
 {
 	string			*text; //text to draw on screen

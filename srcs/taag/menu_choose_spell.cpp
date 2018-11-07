@@ -1,7 +1,7 @@
 #include "taag.h"
 
 t_vect			card_size = t_vect(5, 7);
-t_vect			c_pos[8];
+t_vect			card_pos[8];
 
 static void		increment_index(int *index, int delta, vector<string> *file_list, vector<string> *final_list, vector<t_gui_obj *> card_list)
 {
@@ -44,7 +44,7 @@ static void		quit_choose_spell(t_data data)
 	string			*new_name = (string *)(data.data[1]);
 	t_gui			*gui = (t_gui *)(data.data[2]);
 	t_actor			*player = (t_actor *)(data.data[3]);
-	int				i = (int)(data.data[4]);
+	int				i = (int &)(data.data[4]);
 
 	player->spell[i] = spell_list.at(*new_name);
 	gui->verify_ID_object(SPELL_CARD_ID);
@@ -93,14 +93,14 @@ void		menu_choose_spell(t_data data)//0 - t_gui * | 1 = t_player * | 2 = int
 		i = 0;
 		while (i < 8)
 		{
-			c_pos[i] = t_vect(3 + ((card_size.x + 1.2) * (i % 4)), 3 + ((card_size.y + 0.5) * (i / 4)));
+			card_pos[i] = t_vect(3 + ((card_size.x + 1.2) * (i % 4)), 3 + ((card_size.y + 0.5) * (i / 4)));
 			i++;
 		}
 		i = 0;
 		while (i < 8)
 		{
 			s_spell_card *card = new s_spell_card(&(spell_list.at(final_list[i + index])),
-						gui.unit * c_pos[i], gui.unit * card_size,
+						gui.unit * card_pos[i], gui.unit * card_size,
 						quit_choose_spell, t_data(5, &continu, &(final_list[i + index]), data.data[0], data.data[1], data.data[2]));
 			gui.add(SPELL_CARD_ID, card);
 			i++;
@@ -125,9 +125,11 @@ void		menu_choose_spell(t_data data)//0 - t_gui * | 1 = t_player * | 2 = int
 				continu = true;
 			else if (event.type == SDL_MOUSEBUTTONUP)
 				gui.click();
-			if (event.type == SDL_MOUSEWHEEL && event.wheel.y > 0)
+			if ((event.type == SDL_MOUSEWHEEL && event.wheel.y > 0) ||
+				(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_UP))
 				increment_index(&index, -8, &list_file, &final_list, gui.object_list[SPELL_CARD_ID]);
-			else if (event.type == SDL_MOUSEWHEEL && event.wheel.y < 0)
+			else if ((event.type == SDL_MOUSEWHEEL && event.wheel.y < 0) ||
+				(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_DOWN))
 				increment_index(&index, 8, &list_file, &final_list, gui.object_list[SPELL_CARD_ID]);
 		}
 	}

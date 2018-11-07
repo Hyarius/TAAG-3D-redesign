@@ -339,5 +339,5 @@ void			create_sprite_selector(t_gui *gui, t_actor *player, double p_line)
 		gui->unit * coord, t_vect(gui->unit.y * 1.5, gui->unit.y * 1.5), 3, // coord / size info
 		color[0], color[1]);
 	t_vect			increment = t_vect(1, 1);
-	gui->add(SPRITE_SELECTOR_ID, new s_sprite_selector(button1, button2, button3, button4, &(player->tile_index), &(player->sprite_pos), increment));
+	gui->add(SPRITE_SELECTOR_ID, new s_sprite_selector(button1, button2, button3, button4, &(player->tile_index), &(player->sprite_pos), increment, gui));
 }

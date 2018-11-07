@@ -1,7 +1,9 @@
 #include "template.h"
+#include "base_value.h"
 
-s_image_button::s_image_button(string *p_text, int p_text_color,
-					t_image p_image, t_vect p_coord, t_vect p_size, int border)
+s_tileset_button::s_tileset_button(string *p_text, int p_text_color,
+							int *p_index, t_vect p_selected,
+							t_vect p_coord, t_vect p_size, int border)
 {
 	text = p_text;
 	text_color = p_text_color;
@@ -12,25 +14,34 @@ s_image_button::s_image_button(string *p_text, int p_text_color,
 	coord[2] = coord[1] + size[1] / 2;
 	if (text != NULL && *text != "")
 		text_size = calc_text_size(*text, size[1] - border * 2);
-	image = p_image;
+	index = p_index;
+	selected = p_selected;
 	funct = NULL;
 	data = NULL;
 	draw_funct = draw_centred_text;
 }
 
-s_image_button::s_image_button(t_image p_image, t_vect p_coord, t_vect p_size)
+s_tileset_button::s_tileset_button(int *p_index, t_vect p_selected,
+							t_vect p_coord, t_vect p_size, int border)
 {
 	text = NULL;
 	coord[0] = p_coord;
 	size[0] = p_size;
-	image = p_image;
+	coord[1] = p_coord + border;
+	size[1] = p_size - (border * 2);
+	coord[2] = coord[1] + size[1] / 2;
+	index = p_index;
+	selected = p_selected;
 	funct = NULL;
 	data = NULL;
+	draw_funct = draw_centred_text;
 }
 
-void		s_image_button::draw_self()
+void			s_tileset_button::draw_self()
 {
-	image.draw_self(coord[0], size[0]);
+	draw_rectangle(coord[0], size[0], color[0]);
+	draw_rectangle(coord[1], size[1], color[3]);
+	tile_list[*index]->draw_self(coord[1], size[1], selected);
 	if (text != NULL && *text != "")
 	{
 		if (text_size == -1 || size[1].x > calc_text_len(*text, text_size, NORMAL)

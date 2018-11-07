@@ -31,6 +31,7 @@ int						GUI_OBJ_ID = 0;
 int						ITERATOR_ID = 1;
 int						SPELL_CARD_ID = 2;
 int						SPRITE_SELECTOR_ID = 3;
+int						SPRITE_IMAGE_ID = 3;
 
 void			initiate_sprite()
 {

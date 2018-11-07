@@ -23,28 +23,6 @@ typedef struct		s_button : t_gui_obj
 	void			click(t_vect mouse);
 }					t_button;
 
-typedef struct		s_iterator : t_gui_obj
-{
-	t_button_comp	*button[4]; //0 - description | 1 - button minus | 2 - value | 3 - button plus
-	string			text_value;
-	int				*value;
-	int				*pool;
-	int				cost;
-	int				delta;
-	int				min;
-	int				max;
-
-					s_iterator(	t_button_comp *p_button0,
-								t_button_comp *p_button1,
-								t_button_comp *p_button2,
-								t_button_comp *p_button3,
-								int *p_value, int p_delta, int p_min, int p_max,
-								int	*p_pool, int p_cost, int *p_level);
-	void			set_text_value();
-	void			draw_self();
-	void			click(t_vect mouse);
-}					t_iterator;
-
 typedef struct		s_entry : t_gui_obj
 {
 	t_entry_comp	*entry;
@@ -54,21 +32,6 @@ typedef struct		s_entry : t_gui_obj
 	void			draw_self();
 	void			click(t_vect mouse);
 }					t_entry;
-
-typedef struct		s_sprite_selector : t_gui_obj
-{
-	t_button_comp	*button[4]; //0 - description | 1 - button image
-	t_vect			*sprite_selected;
-	t_vect			increment;
-	int				*index;
-
-					s_sprite_selector(	t_button_comp *p_button1, t_button_comp *p_button2,
-										t_button_comp *p_button3, t_button_comp *p_button4,
-										int *p_index, t_vect *p_selected, t_vect p_increment);
-	void			draw_self();
-	void			click(t_vect mouse);
-	void			reset_actor(struct s_actor *actor);
-}					t_sprite_selector;
 
 typedef struct		s_gui
 {

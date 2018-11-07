@@ -1,9 +1,10 @@
 #include "taag.h"
+#include "player_editor_helper.h"
 
 static void		increment_value(t_data data)
 {
-	int *index = *((int **)(data.data[0]));
-	t_vect *selected = *((t_vect **)(data.data[1]));
+	int *index = ((int *)(data.data[0]));
+	t_vect *selected = ((t_vect *)(data.data[1]));
 	t_vect	increment = *((t_vect *)(data.data[2]));
 
 	selected->x += increment.x;
@@ -24,8 +25,8 @@ static void		increment_value(t_data data)
 
 static void		decrement_value(t_data data)
 {
-	int *index = *((int **)(data.data[0]));
-	t_vect *selected = *((t_vect **)(data.data[1]));
+	int *index = ((int *)(data.data[0]));
+	t_vect *selected = ((t_vect *)(data.data[1]));
 	t_vect	increment = *((t_vect *)(data.data[2]));
 
 	selected->x -= increment.x;
@@ -44,21 +45,21 @@ static void		decrement_value(t_data data)
 		*index = tile_list.size() - 1;
 }
 
-s_sprite_selector::s_sprite_selector(t_button_comp *p_button1, t_button_comp *p_button2, t_button_comp *p_button3, t_button_comp *p_button4, int *p_index, t_vect *p_selected, t_vect p_increment)
+s_sprite_selector::s_sprite_selector(t_button_comp *p_button1, t_button_comp *p_button2, t_button_comp *p_button3, t_button_comp *p_button4, int *p_index, t_vect *p_selected, t_vect p_increment, t_gui *gui)
 {
 	button[0] = p_button1;
 	button[1] = p_button2;
 	button[2] = p_button3;
 	button[3] = p_button4;
-	if (button[1] != NULL)
-		button[1]->set_funct_param(decrement_value, t_data(3, &index, &sprite_selected, &increment));
-	if (button[2] != NULL)
-		button[2]->set_funct_param(NULL, NULL);
-	if (button[3] != NULL)
-		button[3]->set_funct_param(increment_value, t_data(3, &index, &sprite_selected, &increment));
 	index = p_index;
 	sprite_selected = p_selected;
 	increment = p_increment;
+	if (button[1] != NULL)
+		button[1]->set_funct_param(decrement_value, t_data(3, index, sprite_selected, &increment));
+	if (button[2] != NULL)
+		button[2]->set_funct_param(menu_choose_sprite, t_data(4, index, sprite_selected, &increment, gui));
+	if (button[3] != NULL)
+		button[3]->set_funct_param(increment_value, t_data(3, index, sprite_selected, &increment));
 }
 
 void			s_sprite_selector::draw_self()

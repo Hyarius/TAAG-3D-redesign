@@ -10,6 +10,7 @@ void			menu_save_actor(t_data data);
 void			menu_load_actor(t_data data);
 void			menu_delete_actor(t_data data);
 void			menu_choose_spell(t_data data);
+void			menu_choose_sprite(t_data data);
 
 void			create_file_entry(t_gui *gui, string *p_name, double p_line);
 void			create_entry_name(t_gui *gui, t_actor *player, double p_line);

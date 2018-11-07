@@ -1,6 +1,6 @@
 name:Snaky the snake
 tileset: 0
-sprite_pos: 1.000000:1.000000
+sprite_pos: 0.000000:1.000000
 sprite_size: 1.000000:1.000000
 level:0
 point:0

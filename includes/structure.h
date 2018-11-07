@@ -3,21 +3,6 @@
 
 using namespace std;
 
-#include "actor.h"
-#include "spell.h"
-
-typedef struct		s_spell_card : t_gui_obj
-{
-	t_button_comp	*button[4]; //0 - background | 1 - image | 2 - name
-	t_spell			*spell;//spell of the card
-	int				desc_size;
-
-					s_spell_card();
-					s_spell_card(t_spell *p_spell, t_vect coord, t_vect size, gui_funct p_funct, t_data p_data);
-	void			set_desc_size();
-	void			draw_self();
-	void			click(t_vect mouse);
-	void			verify();
-}					t_spell_card;
+#include "gui_object.h"
 
 #endif

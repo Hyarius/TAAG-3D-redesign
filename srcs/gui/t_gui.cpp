@@ -71,7 +71,7 @@ void		s_gui::verify_ID_object(int ID_OBJ)
 	size_t i = 0;
 	while (i < this->object_list[ID_OBJ].size())
 	{
-		((t_spell_card *)(this->object_list[ID_OBJ][i]))->verify();
+		this->object_list[ID_OBJ][i]->verify();
 		i++;
 	}
 }
