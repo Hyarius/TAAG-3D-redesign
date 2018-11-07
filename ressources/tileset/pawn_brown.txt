@@ -1,2 +1,0 @@
-tileset 		:ressources/assets/charset/pawn_brown.png
-size tile		:4:4

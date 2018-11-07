@@ -1,2 +1,0 @@
-shortcut_sprite	:ressources/assets/interface/GUI_shortcut.png
-cursor_sprite	:ressources/tileset/cursor.txt

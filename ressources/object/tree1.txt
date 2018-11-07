@@ -1,5 +1,0 @@
-name			:Tree
-tileset 		:ressources/tileset/object_forest.txt
-sprite_pos 		:0:2
-sprite_size		:1:2
-15:0:0:0:0:2:0:5

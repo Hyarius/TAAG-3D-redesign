@@ -1,4 +1,0 @@
-name			:Stone
-tileset 		:ressources/tileset/texture_domolia.txt
-sprite_pos 		:8:5
-cost			:1

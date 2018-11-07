@@ -1,4 +1,0 @@
-name			:Vegetative wall
-tileset 		:ressources/tileset/texture_domolia.txt
-sprite_pos 		:7:0
-cost			:1

@@ -1,4 +1,0 @@
-name			:Path
-tileset 		:ressources/tileset/texture_domolia.txt
-sprite_pos 		:2:0
-cost			:1
