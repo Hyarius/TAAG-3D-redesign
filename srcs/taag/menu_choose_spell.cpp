@@ -25,6 +25,7 @@ static void		increment_index(int *index, int delta, vector<string> *file_list, v
 			final_list->push_back((*file_list)[i + *index]);
 		}
 		(card->button[2])->reset_text(&(card->spell->name));
+		card->set_desc_size();
 		i++;
 	}
 }
@@ -54,7 +55,7 @@ void		menu_choose_spell(t_data data)//0 - t_gui * | 1 = t_player * | 2 = int
 {
 	t_gui			gui = t_gui(30, 20);
 	int				index = 0;
-	vector<string>	list_file = list_files(SPELL_PATH, SPELL_EXT);
+	vector<string>	list_file;
 	vector<string>	final_list;
 	SDL_Event		event;
 	bool			continu = false;
@@ -65,7 +66,9 @@ void		menu_choose_spell(t_data data)//0 - t_gui * | 1 = t_player * | 2 = int
 				color[0], color[1]),
 				NULL, NULL);
 	gui.add(GUI_OBJ_ID, button);
-	
+
+	list_file = list_files(SPELL_PATH, SPELL_EXT);
+	list_file.insert(list_file.begin(), "NULL");
 	size_t i = 0;
 	if (list_file.size() == 0)
 	{

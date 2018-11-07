@@ -12,9 +12,9 @@ t_actor			read_actor(t_data data)
 	string	name = get_strsplit(&myfile, ":", 2)[1];
 	int		index = atoi(get_strsplit(&myfile, ":", 2)[1].c_str());
 	tab = get_strsplit(&myfile, ":", 3);
-	t_vect	pos = t_vect(atoi(tab[1].c_str()), atoi(tab[1].c_str()));
+	t_vect	pos = t_vect(atoi(tab[1].c_str()), atoi(tab[2].c_str()));
 	tab = get_strsplit(&myfile, ":", 3);
-	t_vect	size = t_vect(atoi(tab[1].c_str()), atoi(tab[1].c_str()));
+	t_vect	size = t_vect(atoi(tab[1].c_str()), atoi(tab[2].c_str()));
 	int		level = atoi(get_strsplit(&myfile, ":", 2)[1].c_str());
 	int		point = atoi(get_strsplit(&myfile, ":", 2)[1].c_str());
 	int		hp = atoi(get_strsplit(&myfile, ":", 2)[1].c_str());

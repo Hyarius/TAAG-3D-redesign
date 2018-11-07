@@ -57,14 +57,17 @@ typedef struct		s_entry : t_gui_obj
 
 typedef struct		s_sprite_selector : t_gui_obj
 {
-	t_button_comp	*button[2]; //0 - description | 1 - button image
+	t_button_comp	*button[4]; //0 - description | 1 - button image
 	t_vect			*sprite_selected;
 	t_vect			increment;
 	int				*index;
 
-					s_sprite_selector(t_button_comp *p_button1, t_button_comp *p_button2, int *p_index, t_vect *p_selected, t_vect p_increment);
+					s_sprite_selector(	t_button_comp *p_button1, t_button_comp *p_button2,
+										t_button_comp *p_button3, t_button_comp *p_button4,
+										int *p_index, t_vect *p_selected, t_vect p_increment);
 	void			draw_self();
 	void			click(t_vect mouse);
+	void			reset_actor(struct s_actor *actor);
 }					t_sprite_selector;
 
 typedef struct		s_gui

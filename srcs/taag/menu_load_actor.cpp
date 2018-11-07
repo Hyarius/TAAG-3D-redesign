@@ -46,6 +46,13 @@ static void		quit_load(t_data data)
 		((t_iterator *)(gui->object_list[ITERATOR_ID].at(i)))->set_text_value();
 		i++;
 	}
+
+	i = 0;
+	while (i < gui->object_list[SPRITE_SELECTOR_ID].size())
+	{
+		((t_sprite_selector *)(gui->object_list[SPRITE_SELECTOR_ID].at(i)))->reset_actor((t_actor *)(data.data[0]));
+		i++;
+	}
 	bool *continu = (bool *)(data.data[2]);
 	*continu = true;
 }

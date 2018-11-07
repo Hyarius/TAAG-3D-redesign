@@ -40,6 +40,7 @@ void		menu_player_editor(t_data data)
 
 	while (quit == false)
 	{
+		printf("index = %d - pos = %f / %f\n", player.tile_index, player.sprite_pos.x, player.sprite_pos.y);
 		prepare_screen();
 
 		gui.draw_self();

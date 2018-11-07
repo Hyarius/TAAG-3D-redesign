@@ -321,14 +321,23 @@ void			create_sprite_selector(t_gui *gui, t_actor *player, double p_line)
 {
 	t_vect		left_space = t_vect(12.5, 4);
 	double		line = calc_line(p_line, space);
+
+	t_vect		coord = t_vect(c_pos[0].x, offset.y + 1.5);
 	t_button_comp	*button1 = new s_text_button(get_text("sprite"), DARK_GREY, // text info
-		gui->unit * t_vect(c_pos[0].x, offset.y + (4.0 / 2.0) - 0.5), gui->unit * t_vect(7 - space, 1) , 3, // coord / size info
+		gui->unit * coord, gui->unit * t_vect(6, 1) , 3, // coord / size info
 		color[0], color[1]);
-	t_button_comp	*button2 = new s_text_button(NULL, DARK_GREY, // text info
-		gui->unit * t_vect(c_pos[0].x + space + 7, offset.y), t_vect(gui->unit.y * 4, gui->unit.y * 4), 3, // coord / size info
+	coord = t_vect(coord.x + space + 6, coord.y - 0.25);
+	t_button_comp	*button2 = new s_text_button(get_text("<"), DARK_GREY, // text info
+		gui->unit * coord, t_vect(gui->unit.y * 1.5, gui->unit.y * 1.5), 3, // coord / size info
 		color[0], color[1]);
-
+	coord = t_vect(coord.x + space + (gui->unit.y * 1.5 / gui->unit.x), offset.y);
+	t_button_comp	*button3 = new s_text_button(NULL, DARK_GREY, // text info
+		gui->unit * coord, t_vect(gui->unit.y * 4, gui->unit.y * 4), 3, // coord / size info
+		color[0], color[1]);
+	coord = t_vect(coord.x + gui->unit.y * 4 / gui->unit.x + space, offset.y + 1.25);
+	t_button_comp	*button4 = new s_text_button(get_text(">"), DARK_GREY, // text info
+		gui->unit * coord, t_vect(gui->unit.y * 1.5, gui->unit.y * 1.5), 3, // coord / size info
+		color[0], color[1]);
 	t_vect			increment = t_vect(1, 1);
-
-	gui->add(SPRITE_SELECTOR_ID, new s_sprite_selector(button1, button2, &(player->tile_index), &(player->sprite_pos), increment));
+	gui->add(SPRITE_SELECTOR_ID, new s_sprite_selector(button1, button2, button3, button4, &(player->tile_index), &(player->sprite_pos), increment));
 }

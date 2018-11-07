@@ -98,7 +98,7 @@ void			s_iterator::draw_self()
 
 void			s_iterator::click(t_vect mouse)
 {
-	size_t i = 0;
+	size_t i = 1;
 
 	while (i < 4)
 	{
