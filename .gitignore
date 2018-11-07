@@ -1,4 +1,5 @@
 Makefile
+dirent.h
 *.o
 *.vcxproj
 *.filters
