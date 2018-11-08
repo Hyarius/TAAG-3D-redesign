@@ -66,3 +66,11 @@ void		initialize_spell()
 		i++;
 	}
 }
+
+void		initialize_uniform()
+{
+	GLuint M_Matrix_ID = glGetUniformLocation(get_program_matrix(), "MVP");
+	GLuint C_Matrix_ID = glGetUniformLocation(get_program_color_matrix(), "MVP");
+	GLuint M_Texture_ID  = glGetUniformLocation(get_program_matrix(), "myTextureSampler");
+	GLuint T_Texture_ID  = glGetUniformLocation(get_program_sprite(), "myTextureSampler");
+}

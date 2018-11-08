@@ -9,8 +9,8 @@ t_vect				g_window_size;
 
 GLuint				program_color;
 GLuint				program_sprite;
-GLuint				program_matrix_color;
-GLuint				program_matrix_sprite;
+GLuint				program_matrix;
+GLuint				program_color_matrix;
 
 GLuint				vertex_array;
 
@@ -54,6 +54,9 @@ void				window_initialisation(string window_name)
 
 	glClearColor((GLclampf)color.r, (GLclampf)color.g, (GLclampf)color.b, 0.0f);
 
+	glEnable(GL_DEPTH_TEST);
+	glDepthFunc(GL_LEQUAL);
+
 	glGenVertexArrays(1, &vertex_array);
 	glBindVertexArray(vertex_array);
 
@@ -63,6 +66,8 @@ void				window_initialisation(string window_name)
 
 	program_color = LoadShaders(	"ressources/shader/color_shader.vert",	"ressources/shader/color_shader.frag");
 	program_sprite = LoadShaders(	"ressources/shader/texture_shader.vert", "ressources/shader/texture_shader.frag");
+	program_matrix = LoadShaders(	"ressources/shader/matrix_shader.vert", "ressources/shader/matrix_shader.frag");
+	program_color_matrix = LoadShaders(	"ressources/shader/matrix_color_shader.vert", "ressources/shader/matrix_color_shader.frag");
 
 	glGenTextures(1, &textureID);
 	glBindTexture(GL_TEXTURE_2D, textureID);
@@ -123,14 +128,14 @@ GLuint				get_program_sprite()
 	return (program_sprite);
 }
 
-GLuint				get_program_matrix_color()
+GLuint				get_program_matrix()
 {
-	return (program_matrix_color);
+	return (program_matrix);
 }
 
-GLuint				get_program_matrix_sprite()
+GLuint				get_program_color_matrix()
 {
-	return (program_matrix_sprite);
+	return (program_color_matrix);
 }
 
 GLuint				get_vertex_array()

@@ -7,6 +7,7 @@
 
 void			initiate_sprite();
 void			initialize_spell();
+void			initialize_uniform();
 
 void			menu_start();
 void			menu_option(t_data data);

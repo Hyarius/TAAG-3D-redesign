@@ -11,6 +11,11 @@ extern vector<int>			g_def_mag;
 
 extern bool					draw_fps;
 
+extern GLuint				M_Matrix_ID;
+extern GLuint				M_Texture_ID;
+extern GLuint				T_Texture_ID;
+extern GLuint				C_Matrix_ID;
+
 extern t_color				color[4];
 
 extern map<string, t_spell>	spell_list;
