@@ -3,13 +3,14 @@
 
 using namespace std;
 
-enum X_ROTATE { X};
+enum X_ROTATE { X };
 enum Y_ROTATE { Y };
 enum Z_ROTATE { Z };
 enum ROTATION { R };
 enum TRANSLATION { T };
 enum SCALE { S };
 enum PERSPECTIVE { P };
+enum IDENTITY { I };
 
 typedef struct		s_color
 {
@@ -72,22 +73,6 @@ typedef struct	s_point
 				s_point(double p_x, double p_y, double p_r, double p_g, double p_b, double p_a);
 }				t_point;
 
-struct matrice
-{
-	double value[4][4];
-
-	matrice(double a0, double a1, double a2, double a3, double b0, double b1, double b2, double b3, double c0, double c1, double c2, double c3,
-					double d0, double d1, double d2, double d3);
-	matrice(X_ROTATE, double angle);
-	matrice(Y_ROTATE, double angle);
-	matrice(Z_ROTATE, double angle);
-	matrice(ROTATION, double x, double y, double z);
-	matrice(TRANSLATION, double t_x, double t_y, double t_z);
-	matrice(SCALE, double t_x, double t_y, double t_z);
-	matrice 		operator * (matrice p_matrice);
-	t_vertex 		operator * (t_vertex vertex);
-};
-
 typedef struct		s_image
 {
 	SDL_Surface		*surface;
@@ -101,5 +86,14 @@ typedef struct		s_image
 	void			draw_self(t_vect p_coordd, t_vect p_size);
 	void			draw_self(t_vect tl, t_vect tr, t_vect dl, t_vect dr);
 }					t_image;
+
+typedef struct		s_angle
+{
+	double x;
+	double y;
+	double z;
+					s_angle();
+					s_angle(double x, double y, double z);
+}					t_angle;
 
 #endif
