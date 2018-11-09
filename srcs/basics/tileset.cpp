@@ -58,6 +58,15 @@ s_tileset::s_tileset(string p_path, t_vect p_size)
 	}
 }
 
+int		s_tileset::get_sprite(t_vect p_sprite)
+{
+	int value = (int)(p_sprite.y) * (int)(nb_sprite.x) + (int)(p_sprite.x);
+
+	if (value >= nb_sprite.x * nb_sprite.y || value < 0)
+		return (0);
+	return (value);
+}
+
 void	s_tileset::draw_self(t_vect p_tl, t_vect p_tr, t_vect p_dl, t_vect p_dr, int p_sprite, double p_alpha)
 {
 	t_point		tl = screen_to_opengl(p_tl);

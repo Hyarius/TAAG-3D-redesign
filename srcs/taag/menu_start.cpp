@@ -10,6 +10,8 @@ void		menu_start()
 	initialize_spell();
 	initiate_sprite();
 	initialize_uniform();
+	initiate_texture();
+
 	gui.add(GUI_OBJ_ID, new s_button(new s_image_button(//image de fond
 			t_image("ressources/assets/interface/Menu_start.png"),
 			t_vect(0, 0), get_win_size()),

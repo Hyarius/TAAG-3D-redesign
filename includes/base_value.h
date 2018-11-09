@@ -20,6 +20,7 @@ extern t_color				color[4];
 
 extern map<string, t_spell>	spell_list;
 extern vector<t_tileset *>	tile_list;
+extern vector<t_tileset *>	texture_list;
 
 extern string				ACT_EXT;
 extern string				ACT_PATH;

@@ -11,6 +11,10 @@ vector<int>				g_def_mag = {1, 0, 50};
 
 bool					draw_fps = true;
 
+GLuint					M_Matrix_ID;
+GLuint					C_Matrix_ID;
+GLuint					T_Texture_ID;
+GLuint					M_Texture_ID;
 
 t_color					color[4] = {t_color(0.5, 0.5, 0.5),
 							t_color(0.6, 0.6, 0.6),
@@ -23,9 +27,12 @@ string					SPELL_EXT = ".spell";
 string					SPELL_PATH = "ressources/spell/";
 string					SPRITE_EXT = ".spr";
 string					SPRITE_PATH = "ressources/charset/";
+string					TEXTURE_EXT = ".tex";
+string					TEXTURE_PATH = "ressources/tileset/";
 
 map<string, t_spell>	spell_list;
 vector<t_tileset *>		tile_list;
+vector<t_tileset *>		texture_list;
 
 int						GUI_OBJ_ID = 0;
 int						ITERATOR_ID = 1;
@@ -49,6 +56,27 @@ void			initiate_sprite()
 		line = get_strsplit(&file, ":", 3);
 		size = t_vect(atoi(line[1].c_str()), atoi(line[2].c_str()));
 		tile_list.push_back(new t_tileset(path, size));
+		file.close();
+		i++;
+	}
+}
+
+void			initiate_texture()
+{
+	ifstream		file;
+	vector<string>	texture_files = list_files(TEXTURE_PATH, TEXTURE_EXT);
+	size_t			i = 0;
+	string			path;
+	vector<string>	line;
+	t_vect			size;
+
+	while (i < texture_files.size())
+	{
+		file.open(TEXTURE_PATH + texture_files[i] + TEXTURE_EXT);
+		path = get_strsplit(&file, ":", 2)[1];
+		line = get_strsplit(&file, ":", 3);
+		size = t_vect(atoi(line[1].c_str()), atoi(line[2].c_str()));
+		texture_list.push_back(new t_tileset(path, size));
 		file.close();
 		i++;
 	}
