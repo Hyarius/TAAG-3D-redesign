@@ -11,6 +11,9 @@ extern vector<int>			g_def_mag;
 
 extern bool					draw_fps;
 
+extern mat4					camera;
+extern mat4					projection;
+
 extern GLuint				M_Matrix_ID;
 extern GLuint				M_Texture_ID;
 extern GLuint				T_Texture_ID;

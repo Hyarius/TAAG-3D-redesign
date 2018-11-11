@@ -46,6 +46,7 @@ void				draw_rectangle(t_vect p_coord, t_vect p_size, t_color c);
 void				draw_centred_rectangle(t_vect p_coord, t_vect p_size, t_color c);
 
 void				window_initialisation(string window_name);
+SDL_Window			*get_window();
 t_vect				get_win_size(void);
 void				prepare_screen();
 void				prepare_screen(t_color color);

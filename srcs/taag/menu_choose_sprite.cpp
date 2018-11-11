@@ -79,7 +79,7 @@ void			menu_choose_sprite(t_data data)
 				tmp_index = (tmp_index - 1 < 0 ? tile_list.size() - 1 : tmp_index - 1);
 			else if ((event.type == SDL_MOUSEWHEEL && event.wheel.y < 0) ||
 				(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_DOWN))
-				tmp_index = (tmp_index + 1 >= tile_list.size() ? 0 : tmp_index + 1);
+				tmp_index = (tmp_index + 1 >= (int)(tile_list.size()) ? 0 : tmp_index + 1);
 		}
 	}
 }

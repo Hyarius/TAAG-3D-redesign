@@ -9,7 +9,7 @@ s_image::s_image(string path)
 {
 	this->surface = IMG_Load(path.c_str());
 	if (this->surface == NULL)
-		error_exit("Can't charge a surface into an image", 245);
+		error_exit("Can't charge a surface into an image at path : " + path, 245);
 
 	if (this->surface->format->BytesPerPixel == 3)
 	{

@@ -19,7 +19,7 @@ static void		increment_value(t_data data)
 		selected->y = 0;
 		(*index)++;
 	}
-	if (*index >= tile_list.size())
+	if (*index >= (int)(tile_list.size()))
 		*index = 0;
 }
 

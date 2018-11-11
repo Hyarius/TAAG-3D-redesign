@@ -22,6 +22,11 @@ GLenum				texture_format;
 
 GLuint				textureID;
 
+SDL_Window			*get_window()
+{
+	return (g_window);
+}
+
 void				window_initialisation(string window_name)
 {
 	SDL_DisplayMode current;
