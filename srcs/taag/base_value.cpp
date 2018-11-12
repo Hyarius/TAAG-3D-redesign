@@ -11,11 +11,6 @@ vector<int>				g_def_mag = {1, 0, 50};
 
 bool					draw_fps = true;
 
-GLuint					M_Matrix_ID;
-GLuint					C_Matrix_ID;
-GLuint					T_Texture_ID;
-GLuint					M_Texture_ID;
-
 t_color					color[4] = {t_color(0.5, 0.5, 0.5),
 							t_color(0.6, 0.6, 0.6),
 							t_color(1.0, 1.0, 0.7),
@@ -29,16 +24,21 @@ string					SPRITE_EXT = ".spr";
 string					SPRITE_PATH = "ressources/charset/";
 string					TEXTURE_EXT = ".tex";
 string					TEXTURE_PATH = "ressources/tileset/";
+string					NODE_EXT = ".node";
+string					NODE_PATH = "ressources/node/";
+string					MAP_EXT = ".map";
+string					MAP_PATH = "ressources/map/";
 
 map<string, t_spell>	spell_list;
 vector<t_tileset *>		tile_list;
 vector<t_tileset *>		texture_list;
+vector<t_node *>		node_list;
 
 int						GUI_OBJ_ID = 0;
 int						ITERATOR_ID = 1;
 int						SPELL_CARD_ID = 2;
 int						SPRITE_SELECTOR_ID = 3;
-int						SPRITE_IMAGE_ID = 3;
+int						SPRITE_IMAGE_ID = 4;
 
 void			initiate_sprite()
 {
@@ -95,10 +95,14 @@ void		initialize_spell()
 	}
 }
 
-void		initialize_uniform()
+void		initialize_node()
 {
-	GLuint M_Matrix_ID = glGetUniformLocation(get_program_matrix(), "MVP");
-	GLuint C_Matrix_ID = glGetUniformLocation(get_program_color_matrix(), "MVP");
-	GLuint M_Texture_ID  = glGetUniformLocation(get_program_matrix(), "myTextureSampler");
-	GLuint T_Texture_ID  = glGetUniformLocation(get_program_sprite(), "myTextureSampler");
+	vector<string>	node_files = list_files(NODE_PATH, NODE_EXT);
+	size_t			i = 0;
+
+	while (i < node_files.size())
+	{
+		node_list.push_back(new t_node(NODE_PATH + node_files[i] + NODE_EXT));
+		i++;
+	}
 }

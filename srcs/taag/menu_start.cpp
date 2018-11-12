@@ -9,7 +9,7 @@ void		menu_start()
 
 	initialize_spell();
 	initiate_sprite();
-	initialize_uniform();
+	initialize_node();
 	initiate_texture();
 
 	gui.add(GUI_OBJ_ID, new s_button(new s_image_button(//image de fond

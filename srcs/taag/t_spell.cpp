@@ -24,6 +24,8 @@ s_spell::s_spell(string p_path)
 	{
 		path = p_path;
 		myfile.open(SPELL_PATH + p_path + SPELL_EXT);
+		if (myfile.good() == false)
+			error_exit("Can't open a spell at : " + p_path, 12342);
 		name = get_strsplit(&myfile, ":", 2)[1];
 		desc = get_strsplit(&myfile, ":", 2)[1];
 		tab = get_strsplit(&myfile, ":", 4);

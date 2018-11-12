@@ -55,8 +55,6 @@ void				render_screen(bool value);
 
 GLuint				get_program_color();
 GLuint				get_program_sprite();
-GLuint				get_program_matrix();
-GLuint				get_program_color_matrix();
 
 GLuint				get_vertex_array();
 

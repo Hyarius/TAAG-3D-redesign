@@ -11,24 +11,25 @@ extern vector<int>			g_def_mag;
 
 extern bool					draw_fps;
 
-extern mat4					camera;
-extern mat4					projection;
-
-extern GLuint				M_Matrix_ID;
-extern GLuint				M_Texture_ID;
-extern GLuint				T_Texture_ID;
-extern GLuint				C_Matrix_ID;
-
 extern t_color				color[4];
 
 extern map<string, t_spell>	spell_list;
 extern vector<t_tileset *>	tile_list;
 extern vector<t_tileset *>	texture_list;
+extern vector<t_node *>		node_list;
 
 extern string				ACT_EXT;
 extern string				ACT_PATH;
 extern string				SPELL_EXT;
 extern string				SPELL_PATH;
+extern string				SPRITE_EXT;
+extern string				SPRITE_PATH;
+extern string				TEXTURE_EXT;
+extern string				TEXTURE_PATH;
+extern string				NODE_EXT;
+extern string				NODE_PATH;
+extern string				MAP_EXT;
+extern string				MAP_PATH;
 
 extern int					GUI_OBJ_ID;
 extern int					ITERATOR_ID;

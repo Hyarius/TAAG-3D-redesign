@@ -7,7 +7,7 @@
 
 void			initiate_sprite();
 void			initialize_spell();
-void			initialize_uniform();
+void			initialize_node();
 void			initiate_texture();
 
 void			menu_start();
@@ -24,7 +24,5 @@ void			save_actor(t_data data);
 
 void			stand(t_data data);
 void			quit(t_data data);
-
-mat4 computeMatricesFromInputs(SDL_Event *event);
 
 #endif
