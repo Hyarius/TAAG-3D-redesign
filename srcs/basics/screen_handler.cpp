@@ -59,9 +59,6 @@ void				window_initialisation(string window_name)
 
 	glClearColor((GLclampf)color.r, (GLclampf)color.g, (GLclampf)color.b, 0.0f);
 
-	glEnable(GL_DEPTH_TEST);
-	glDepthFunc(GL_LEQUAL);
-
 	glGenVertexArrays(1, &vertex_array);
 	glBindVertexArray(vertex_array);
 
