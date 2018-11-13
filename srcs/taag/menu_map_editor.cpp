@@ -11,6 +11,8 @@ void				menu_map_editor(t_data data)
 	while (quit == false)
 	{
 		prepare_screen(t_color(0.5, 0.5, 0.5));
+		
+		board.draw_board();
 
 		render_screen(draw_fps);
 

@@ -16,31 +16,31 @@
 
 void					s_game_engine::calc_camera()
 {
-	if (angle.z % 360 >= 0 && angle.z % 360 < 90)
+	if ((int)(camera->angle.z) % 360 >= 0 && (int)(camera->angle.z) % 360 < 90)
 	{
 		iter_coord[0] = t_vect(0, 0);
-		iter_coord[1] = t_vect(map_size.x, map_size.y);
+		iter_coord[1] = t_vect(board->size.x, board->size.y);
 		iter_coord[2] = t_vect(1, 1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
 	}
-	else if (angle.z % 360 >= 90 && angle.z % 360 < 180)
+	else if ((int)(camera->angle.z) % 360 >= 90 && (int)(camera->angle.z) % 360 < 180)
 	{
-		iter_coord[0] = t_vect(0, map_size.y - 1);
-		iter_coord[1] = t_vect(map_size.x, -1);
+		iter_coord[0] = t_vect(0, board->size.y - 1);
+		iter_coord[1] = t_vect(board->size.x, -1);
 		iter_coord[2] = t_vect(1, -1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
 	}
-	else if (angle.z % 360 >= 180 && angle.z % 360 < 270)
+	else if ((int)(camera->angle.z) % 360 >= 180 && (int)(camera->angle.z) % 360 < 270)
 	{
-		iter_coord[0] = t_vect(map_size.x - 1, map_size.y - 1);
+		iter_coord[0] = t_vect(board->size.x - 1, board->size.y - 1);
 		iter_coord[1] = t_vect(-1, -1);
 		iter_coord[2] = t_vect(-1, -1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
 	}
 	else
 	{
-		iter_coord[0] = t_vect(map_size.x - 1, 0);
-		iter_coord[1] = t_vect(-1, map_size.y);
+		iter_coord[0] = t_vect(board->size.x - 1, 0);
+		iter_coord[1] = t_vect(-1, board->size.y);
 		iter_coord[2] = t_vect(-1, 1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
 	}
@@ -62,7 +62,7 @@ void				s_game_engine::draw_board()
 	iter_coord[0] = iter_coord[3];
 }
 
-void				s_game_engine::calc_cell(t_vect *coord, t_cell *cell, int coord_z)
+void				s_game_engine::calc_cell(t_vect *coord, t_cell *cell, double coord_z)
 {
 	coord[0] = camera->vertex_to_vect(t_vertex(cell->coord.x, cell->coord.y, coord_z));
 	coord[1] = camera->vertex_to_vect(t_vertex(cell->coord.x + 1, cell->coord.y, coord_z));
@@ -74,7 +74,7 @@ void				s_game_engine::calc_cell(t_vect *coord, t_cell *cell, int coord_z)
 	coord[7] = camera->vertex_to_vect(t_vertex(cell->coord.x + 1, cell->coord.y + 1, coord_z - 1));
 }
 
-int					s_game_engine::get_height_sprite(int x, int y, int z)
+int					s_game_engine::get_height_sprite(int index, int x, int y, int z)
 {
 	int result;
 	int delta;
@@ -83,15 +83,15 @@ int					s_game_engine::get_height_sprite(int x, int y, int z)
 		delta = 0;
 	else
 		delta = 1;
-	result = x + (this->nb_tile.x * (y + delta));
-	if (result > this->nb_tile.x * this->nb_tile.y)
+	result = x + (texture_list[index]->nb_sprite.x * (y + delta));
+	if (result > texture_list[index]->nb_sprite.x * texture_list[index]->nb_sprite.y)
 		return (0);
 	return (result);
 }
 
 t_cell				*s_game_engine::get_cell(int i, int j)
 {
-	return (&(board.board[i][j]);
+	return (&(board->board[i][j]));
 }
 
 void				s_game_engine::draw_cell(int i, int j)
@@ -107,15 +107,16 @@ void				s_game_engine::draw_cell(int i, int j)
 	rel_height = 0;
 	while (rel_height <= cell->coord.z)
 	{
-		coord = this->calc_cell(coord, cell, rel_height);
-		sprite = cell->node->tile->get_height_sprite(cell->node->sprite_pos.x, cell->node->sprite_pos.y, cell->coord.z - rel_height);
+		calc_cell(coord, cell, rel_height);
+		sprite = get_height_sprite(cell->node->index, cell->node->pos.x, cell->node->pos.y, cell->coord.z - rel_height);
 		if (rel_height == cell->coord.z)
 		{
-			draw_wall(cell, cell->node->tile->get_height_sprite(cell->node->sprite_pos.x, cell->node->sprite_pos.y, cell->coord.z - (rel_height - 1)), coord);
-			draw_uv_texture(cell->node->tile, sprite, coord[0], coord[1], coord[2], coord[3]);
+			printf("print de la surface\n");
 		}
 		else
-			draw_wall(cell, cell->node->tile->get_height_sprite(cell->node->sprite_pos.x, cell->node->sprite_pos.y, cell->coord.z - (rel_height - 1)), coord);
+		{
+			printf("print d'un mur\n");
+		}
 		rel_height++;
 	}
 }

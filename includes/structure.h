@@ -61,8 +61,8 @@ typedef struct		s_game_engine
 					s_game_engine(string p_path);
 	void			calc_camera();
 	void			draw_board();
-	void			calc_cell(t_vect *coord, t_cell *cell, int coord_z);
-	int				get_height_sprite(int x, int y, int z);
+	void			calc_cell(t_vect *coord, t_cell *cell, double coord_z);
+	int				get_height_sprite(int index, int x, int y, int z);
 	t_cell			*get_cell(int i, int j);
 	void			draw_cell(int i, int j);
 }					t_game_engine;
