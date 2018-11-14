@@ -45,8 +45,9 @@ typedef struct		s_camera
 					s_camera();
 					s_camera(int angle_x, int angle_y, int angle_z);
 	void 			calc_axe();
-	void			camera_motion(int motion_x, int motion_y);
-	void			camera_move_target(int motion_x, int motion_y);
+	void			handle_rot(double delta);
+	void			handle_zoom(double modif);
+	void			handle_move(int motion_x, int motion_y);
 	t_vect			coord_to_vect(double x, double y, double z);
 	t_vect			coord_to_vect(int x, int y, int z);
 	t_vect			vertex_to_vect(t_vertex source);
@@ -60,6 +61,7 @@ typedef struct		s_game_engine
 					s_game_engine();
 					s_game_engine(string p_path);
 	void			calc_camera();
+	void			handle_rot(double modif);
 	void			draw_board();
 	void			calc_cell(t_vect *coord, t_cell *cell, double coord_z);
 	int				get_height_sprite(int index, int x, int y, int z);
