@@ -4,7 +4,7 @@ void			t_entry_comp::add_text(string new_text)
 {
 	if (text != NULL)
 		if (text->size() < max_len)
-			if (calc_text_len(*text + new_text, text_size, NORMAL) <= size[1].x)
+			if (calc_text_len(*text + new_text, text_size) <= size[1].x)
 				*text += new_text;
 }
 

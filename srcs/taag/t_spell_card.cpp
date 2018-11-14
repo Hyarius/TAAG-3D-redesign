@@ -49,12 +49,12 @@ s_spell_card::s_spell_card(t_spell *p_spell, t_vect p_coord, t_vect p_size, gui_
 	button[2] = button2;
 	button[3] = button3;
 
-	desc_size = calc_paragraphe_size(spell->desc, button[3]->size[1], NORMAL);
+	desc_size = calc_paragraphe_size(spell->desc, button[3]->size[1]);
 }
 
 void			s_spell_card::set_desc_size()
 {
-	desc_size = calc_paragraphe_size(spell->desc, button[3]->size[1], NORMAL);
+	desc_size = calc_paragraphe_size(spell->desc, button[3]->size[1]);
 }
 
 void			s_spell_card::draw_self()
@@ -69,7 +69,7 @@ void			s_spell_card::draw_self()
 	}
 	if (spell->tile.surface != NULL)
 		spell->tile.draw_self(button[1]->coord[1], button[1]->size[1], spell->sprite);
-	draw_paragraphe(spell->desc, desc_size, button[3]->coord[1], button[3]->size[1], NORMAL, DARK_GREY);
+	draw_paragraphe(spell->desc, desc_size, button[3]->coord[1], button[3]->size[1], DARK_GREY);
 }
 
 void			s_spell_card::click(t_vect mouse)

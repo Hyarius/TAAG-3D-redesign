@@ -42,7 +42,7 @@ void			check_frame(bool draw)
 	framedelay = 1000 / g_fps;
 	frame_actual = SDL_GetTicks();
 	if (draw == true)
-		draw_text(str.c_str(), 12, coord, NORMAL, WHITE);
+		draw_text(str.c_str(), 12, coord, WHITE);
 	if (beginsecond == 0)
 		beginsecond = frame_actual;
 	if (frame_actual - beginsecond > 1000)

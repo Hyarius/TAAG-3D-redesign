@@ -44,9 +44,9 @@ void			s_tileset_button::draw_self()
 	tile_list[*index]->draw_self(coord[1], size[1], selected);
 	if (text != NULL && *text != "")
 	{
-		if (text_size == -1 || size[1].x > calc_text_len(*text, text_size, NORMAL)
-							|| size[1].y > get_char(text_size, NORMAL, BLACK, 'M')->surface->h)
+		if (text_size == -1 || size[1].x > calc_text_len(*text, text_size)
+							|| size[1].y > get_char(text_size, BLACK, 'M')->surface->h)
 			text_size = calc_text_size(*text, size[1] - (size[0] - size[1]));
-		this->draw_funct(*text, text_size, coord[2], NORMAL, text_color);
+		this->draw_funct(*text, text_size, coord[2], text_color);
 	}
 }

@@ -28,10 +28,4 @@
 # define YELLOW			21
 # define DARK_YELLOW	22
 
-# define NB_STYLE		4
-# define NORMAL			0
-# define BOLD			1
-# define ITALIC			2
-# define UNDERLINE		3
-
 #endif

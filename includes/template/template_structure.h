@@ -21,6 +21,8 @@ typedef struct		s_color
 	s_color();
 	s_color(double p_r, double p_g, double p_b);
 	s_color(double p_r, double p_g, double p_b, double p_a);
+	s_color			operator + (double add);
+	s_color			operator - (double add);
 }					t_color;
 
 typedef struct		s_vect

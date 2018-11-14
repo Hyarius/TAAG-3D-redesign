@@ -23,3 +23,15 @@ s_color::s_color(double p_r, double p_g, double p_b, double p_a)
 	this->b = p_b;
 	this->a = p_a;
 }
+
+s_color			s_color:: operator + (double add)
+{
+	s_color result = s_color(this->r + add, this->g + add, this->b + add);
+	return (result);
+}
+
+s_color			s_color:: operator - (double add)
+{
+	s_color result = s_color(this->r - add, this->g - add, this->b - add);
+	return (result);
+}
