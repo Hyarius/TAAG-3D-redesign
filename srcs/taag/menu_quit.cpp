@@ -27,7 +27,7 @@ void			menu_quit(t_data data)
 						color[0], color[1]),
 						NULL, NULL));
 
-	t_vect *tmp = &(((s_button *)(gui.object_list[GUI_OBJ_ID][0]))->button->coord[2]);
+	t_vect *tmp = &(((s_button *)(gui.object_list[GUI_OBJ_ID][0]))->button->image_coord);
 	*tmp = *tmp - (gui.unit * t_vect(0, 0.5));
 
 	gui.add(GUI_OBJ_ID, new s_button(new s_text_button(//button yes

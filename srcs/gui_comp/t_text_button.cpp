@@ -33,13 +33,6 @@ s_text_button::s_text_button(	string *p_text, int p_text_color, //text info
 	draw_funct = draw_centred_text;
 }
 
-
-
-
-
-
-
-
 void		s_text_button::draw_self()
 {
 	for (int i = 0 ; i < 2 ; i++)

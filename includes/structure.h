@@ -58,7 +58,7 @@ typedef struct		s_game_engine
 	t_camera		*camera;
 	t_game_board	*board;
 	t_vect			iter_coord[4];
-	int				_index[8];
+	int				i_index[8];
 					s_game_engine();
 					s_game_engine(string p_path);
 	void			calc_camera();

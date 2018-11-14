@@ -62,7 +62,7 @@ void			menu_delete_actor(t_data data)
 		gui.unit * t_vect(2, 2), gui.unit * t_vect(26, 16), 8, //object info
 		color[0], color[1]),
 		NULL, NULL);
-	button->button->coord[2] = button->button->coord[2] - (gui.unit * t_vect(0, 6.5));
+	button->button->image_coord = button->button->image_coord - (gui.unit * t_vect(0, 6.5));
 	gui.add(GUI_OBJ_ID, button);
 
 	size_t i = 0;

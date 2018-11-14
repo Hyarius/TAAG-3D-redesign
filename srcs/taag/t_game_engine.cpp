@@ -34,7 +34,7 @@ void					s_game_engine::calc_camera()
 		iter_coord[1] = t_vect(board->size.x, board->size.y);
 		iter_coord[2] = t_vect(1, 1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
-		set_index_value(_index, 2, 3, 6, 7, 3, 1, 7, 5);
+		set_index_value(i_index, 2, 3, 6, 7, 3, 1, 7, 5);
 	}
 	else if ((int)(camera->angle.z) % 360 >= 90 && (int)(camera->angle.z) % 360 < 180)
 	{
@@ -42,7 +42,7 @@ void					s_game_engine::calc_camera()
 		iter_coord[1] = t_vect(board->size.x, -1);
 		iter_coord[2] = t_vect(1, -1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
-		set_index_value(_index, 3, 1, 7, 5, 0, 1, 4, 5);
+		set_index_value(i_index, 3, 1, 7, 5, 0, 1, 4, 5);
 	}
 	else if ((int)(camera->angle.z) % 360 >= 180 && (int)(camera->angle.z) % 360 < 270)
 	{
@@ -50,7 +50,7 @@ void					s_game_engine::calc_camera()
 		iter_coord[1] = t_vect(-1, -1);
 		iter_coord[2] = t_vect(-1, -1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
-		set_index_value(_index, 0, 1, 4, 5, 0, 2, 4, 6);
+		set_index_value(i_index, 0, 1, 4, 5, 0, 2, 4, 6);
 	}
 	else
 	{
@@ -58,7 +58,7 @@ void					s_game_engine::calc_camera()
 		iter_coord[1] = t_vect(-1, board->size.y);
 		iter_coord[2] = t_vect(-1, 1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
-		set_index_value(_index, 0, 2, 4, 6, 2, 3, 6, 7);
+		set_index_value(i_index, 0, 2, 4, 6, 2, 3, 6, 7);
 	}
 }
 
@@ -131,10 +131,11 @@ void				s_game_engine::draw_cell(int i, int j)
 	{
 		calc_cell(coord, cell, rel_height + 1);
 		sprite = get_height_sprite(cell->node->index, cell->node->pos.x, cell->node->pos.y, cell->coord.z - rel_height);
-		draw_rectangle(coord[_index[0]], coord[_index[1]], coord[_index[2]], coord[_index[3]], color[(i % 3) + (j % 3)]);
-		draw_rectangle(coord[_index[4]], coord[_index[5]], coord[_index[6]], coord[_index[7]], color[(i % 3) + (j % 3)]);
+
+		draw_rectangle(coord[i_index[0]], coord[i_index[1]], coord[i_index[2]], coord[i_index[3]], color[(i + j) % 3] - 0.2);
+		draw_rectangle(coord[i_index[4]], coord[i_index[5]], coord[i_index[6]], coord[i_index[7]], color[(i + j) % 3] - 0.2);
 		if (rel_height == cell->coord.z)
-			draw_rectangle(coord[0], coord[1], coord[2], coord[3], color[(i % 3) + (j % 3)]);
+			draw_rectangle(coord[0], coord[1], coord[2], coord[3], color[(i + j) % 3]);
 		rel_height++;
 	}
 }

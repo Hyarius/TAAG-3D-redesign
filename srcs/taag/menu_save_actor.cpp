@@ -24,7 +24,7 @@ void			menu_save_actor(t_data data)
 						gui.unit * t_vect(4, 2), gui.unit * t_vect(7, 5), 8, //object info
 						color[0], color[1]),
 						NULL, NULL);
-	button->button->coord[2] = button->button->coord[2] - (gui.unit * t_vect(0, 1));
+	button->button->image_coord = button->button->image_coord - (gui.unit * t_vect(0, 1));
 
 	gui.add(GUI_OBJ_ID, button);
 
