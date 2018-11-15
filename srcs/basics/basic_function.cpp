@@ -58,3 +58,18 @@ SDL_Surface			*create_surface_color(t_color p_color)
 
 	return (surface);
 }
+
+t_vect				second_degree_solver(double a, double b, double c, double d, double e, double f)
+{
+	double	x, y;
+	
+	double delta = a * d - b * c;
+	if (delta != 0)
+	{
+		x = (e * d - b * f) / delta;
+		y = (a * f - e * c) / delta;
+	}
+	else
+		error_exit("Error on calc cell", 15642);
+	return (t_vect(x, y));
+}

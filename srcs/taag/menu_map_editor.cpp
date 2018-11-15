@@ -10,6 +10,7 @@ void				menu_map_editor(t_data data)
 
 	while (quit == false)
 	{
+		printf("[%.2f] / [%.2f]\n", board.mouse_to_vect().x, board.mouse_to_vect().y);
 		prepare_screen(t_color(0.2, 0.2, 0.2));
 
 		board.draw_board();
@@ -29,9 +30,9 @@ void				menu_map_editor(t_data data)
 				board.handle_rot(2);
 			else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_RIGHT)
 				board.handle_rot(-2);
-			else if (event.type == SDL_MOUSEMOTION && event.button.button == SDL_BUTTON_MIDDLE)
+			else if (event.type == SDL_MOUSEMOTION && event.motion.state == SDL_BUTTON_MMASK)
 				board.handle_rot(0 - event.motion.xrel);
-			else if (event.type == SDL_MOUSEMOTION && event.button.button == SDL_BUTTON_LEFT)
+			else if (event.type == SDL_MOUSEMOTION && event.motion.state == SDL_BUTTON_RMASK)
 				board.camera->handle_move(event.motion.xrel, event.motion.yrel);
 			else if (event.type == SDL_MOUSEWHEEL)
 			{

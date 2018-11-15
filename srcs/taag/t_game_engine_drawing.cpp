@@ -58,14 +58,12 @@ void				s_game_engine::draw_cell(int i, int j)
 	{
 		calc_cell(coord, cell, rel_height + 1);
 		sprite = get_height_sprite(cell->node->index, cell->node->pos.x, cell->node->pos.y, cell->coord.z - rel_height);
-		texture_list[cell->node->index]->draw_self(coord[i_index[0]], coord[i_index[1]],
-													coord[i_index[2]], coord[i_index[3]],
-													sprite, 1.0);
-		texture_list[cell->node->index]->draw_self(coord[i_index[4]], coord[i_index[5]],
-													coord[i_index[6]], coord[i_index[7]],
-													sprite, 1.0);
+		if (get_cell(i + next_cell_right.x, j + next_cell_right.y) == NULL || get_cell(i + next_cell_right.x, j + next_cell_right.y)->coord.z < cell->coord.z)
+			texture_list[cell->node->index]->draw_self(coord[i_index[0]], coord[i_index[1]], coord[i_index[2]], coord[i_index[3]], sprite, 1.0);
+		if (get_cell(i + next_cell_left.x, j + next_cell_left.y) == NULL || get_cell(i + next_cell_left.x, j + next_cell_left.y)->coord.z < cell->coord.z)
+			texture_list[cell->node->index]->draw_self(coord[i_index[4]], coord[i_index[5]], coord[i_index[6]], coord[i_index[7]], sprite, 1.0);
 		if (rel_height == cell->coord.z)
-		texture_list[cell->node->index]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->node->pos, 1.0);
+			texture_list[cell->node->index]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->node->pos, 1.0);
 		rel_height++;
 	}
 }
