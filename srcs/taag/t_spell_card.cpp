@@ -32,10 +32,10 @@ s_spell_card::s_spell_card(t_spell *p_spell, t_vect p_coord, t_vect p_size, gui_
 
 	coord = coord + t_vect(size.x + 4, 0);
 	size = t_vect(p_size.x - size.x - 21, size.x);
-	button2 = new t_text_button((spell != NULL ? &(spell->name) : NULL), DARK_GREY, //text info
+	button2 = new t_text_button(NULL, DARK_GREY, //text info
 						coord, size, 4, //object info
 						t_color(0.5, 0.5, 0.5), t_color(0.6, 0.6, 0.6));
-
+	button2->text = (spell != NULL ? &(spell->name) : NULL);
 	coord = p_coord + t_vect(7, size.y + 10);
 	size = t_vect(p_size.x - 14, p_size.y - size.y - 17);
 

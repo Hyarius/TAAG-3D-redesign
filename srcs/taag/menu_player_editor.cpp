@@ -66,6 +66,7 @@ void		menu_player_editor(t_data data)
 				gui.entry->delete_text();
 			else if (event.type == SDL_MOUSEBUTTONUP)
 				gui.click();
+			SDL_FlushEvents(SDL_KEYDOWN, SDL_MOUSEWHEEL);
 		}
 	}
 }

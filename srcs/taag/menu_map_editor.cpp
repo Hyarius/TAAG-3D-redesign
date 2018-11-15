@@ -41,8 +41,6 @@ void				menu_map_editor(t_data data)
 					board.camera->handle_zoom(0.9);
 			}
 		}
-		SDL_FlushEvent(SDL_KEYDOWN);
-		SDL_FlushEvent(SDL_MOUSEBUTTONDOWN);
-		SDL_FlushEvents(SDL_MOUSEMOTION, SDL_MOUSEWHEEL);
+		SDL_FlushEvents(SDL_KEYDOWN, SDL_MOUSEWHEEL);
 	}
 }

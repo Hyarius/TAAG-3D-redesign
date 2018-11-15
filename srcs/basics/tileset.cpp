@@ -69,6 +69,7 @@ int		s_tileset::get_sprite(t_vect p_sprite)
 
 void	s_tileset::draw_self(t_vect p_tl, t_vect p_tr, t_vect p_dl, t_vect p_dr, int p_sprite, double p_alpha)
 {
+	glBindTexture(GL_TEXTURE_2D, texture_id);
 	t_point		tl = screen_to_opengl(p_tl);
 	t_point		tr = screen_to_opengl(p_tr);
 	t_point		dl = screen_to_opengl(p_dl);
@@ -92,14 +93,12 @@ void	s_tileset::draw_self(t_vect p_tl, t_vect p_tr, t_vect p_dl, t_vect p_dr, in
 
 void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, int p_sprite)
 {
-	glBindTexture(GL_TEXTURE_2D, texture_id);
 	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, p_sprite, 1.0);
 }
 
 
 void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, int p_sprite, double p_alpha)
 {
-	glBindTexture(GL_TEXTURE_2D, texture_id);
 	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, p_sprite, p_alpha);
 }
 
@@ -113,7 +112,6 @@ void	s_tileset::draw_self(t_vect p_tl, t_vect p_tr, t_vect p_dl, t_vect p_dr, t_
 void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, t_vect p_sprite)
 {
 	int value = (int)(p_sprite.y) * (int)(nb_sprite.x) + (int)(p_sprite.x);
-	glBindTexture(GL_TEXTURE_2D, texture_id);
 	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, value, 1.0);
 }
 
@@ -121,6 +119,5 @@ void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, t_vect p_sprite)
 void 			s_tileset::draw_self(t_vect p_coord, t_vect p_size, t_vect p_sprite, double p_alpha)
 {
 	int value = (int)(p_sprite.y) * (int)(nb_sprite.x) + (int)(p_sprite.x);
-	glBindTexture(GL_TEXTURE_2D, texture_id);
 	draw_self(p_coord, p_coord + t_vect(p_size.x, 0), p_coord + t_vect(0, p_size.y), p_coord + p_size, value, p_alpha);
 }
