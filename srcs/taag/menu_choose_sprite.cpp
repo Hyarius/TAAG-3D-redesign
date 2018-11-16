@@ -72,7 +72,7 @@ void			menu_choose_sprite(t_data data)
 				menu_quit(&gui);
 			else if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE)
 				continu = true;
-			else if (event.type == SDL_MOUSEBUTTONUP)
+			else if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT)
 				gui.click();
 			if ((event.type == SDL_MOUSEWHEEL && event.wheel.y > 0) ||
 				(event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_UP))

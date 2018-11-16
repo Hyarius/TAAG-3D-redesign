@@ -59,7 +59,7 @@ void		menu_start()
 		{
 			if (event.type == SDL_QUIT || (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE))
 				menu_quit(&gui);
-			else if (event.type == SDL_MOUSEBUTTONUP)
+			else if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT)
 				gui.click();
 		}
 	}

@@ -1,4 +1,5 @@
 #include "template.h"
+#include "base_value.h"
 
 void				error_exit(string msg, int error)
 {
@@ -14,6 +15,14 @@ t_vect				get_mouse_coord()
 
 	SDL_GetMouseState(&x, &y);
 	return(t_vect(x, y));
+}
+
+double				calc_line(double line, double space)
+{
+	double result;
+
+	result = ((line_height + space) * line) + offset.y;
+	return (result);
 }
 
 vector<string>		strsplit(string input, string c)
@@ -59,10 +68,13 @@ SDL_Surface			*create_surface_color(t_color p_color)
 	return (surface);
 }
 
-t_vect				second_degree_solver(double a, double b, double c, double d, double e, double f)
+t_vect				second_degree_solver(double a, double b, double e, double c, double d, double f)
 {
+	// Equation type of :
+	//	ax + by = e
+	//	cx + dy = f
 	double	x, y;
-	
+
 	double delta = a * d - b * c;
 	if (delta != 0)
 	{

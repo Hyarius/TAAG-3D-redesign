@@ -62,7 +62,7 @@ void			menu_save_actor(t_data data)
 		{
 			if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE)
 				continu = true;
-			else if (event.type == SDL_MOUSEBUTTONUP)
+			else if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT)
 				gui.click();
 		}
 	}

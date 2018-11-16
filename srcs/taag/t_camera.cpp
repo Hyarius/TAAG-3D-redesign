@@ -3,13 +3,11 @@
 s_camera::s_camera()
 {
 	angle = t_vertex(0, 0, 0);
-	axe_x = t_vertex(1, 0, 0);
-	axe_y = t_vertex(0, 1, 0);
-	axe_z = t_vertex(0, 0, 1);
 	offset = get_win_size() / 2;
 	target = t_vect(0, 0);
 	sprite_unit = t_vertex(60, 60, 30);
 	zoom = 1;
+	calc_axe();
 }
 
 s_camera::s_camera(int angle_x, int angle_y, int angle_z)
@@ -25,7 +23,7 @@ s_camera::s_camera(int angle_x, int angle_y, int angle_z)
 void				s_camera::calc_axe()
 {
 	matrice 		rot_mat = matrice(R, angle.x, angle.y, angle.z);
-	matrice			sca_matrice = matrice(S, zoom, zoom, 1);
+	matrice			sca_matrice = matrice(S, zoom, zoom, zoom);
 
 	axe_x = t_vertex(sprite_unit.x, 0.0, 0.0);
 	axe_y = t_vertex(0.0, -sprite_unit.y, 0.0);
@@ -68,6 +66,19 @@ void				s_camera::handle_rot(double delta)
 	calc_axe();
 }
 
+void				s_camera::handle_vertical_rot(double delta)
+{
+	int			result;
+
+	if (angle.x + delta < 0)
+		angle.x = 0;
+	else if (angle.x + delta > 90)
+		angle.x = 90;
+	else
+		angle.x = angle.x + delta;
+	calc_axe();
+}
+
 void				s_camera::handle_zoom(double modif)
 {
 	zoom *= modif;
@@ -97,7 +108,7 @@ t_vect				s_camera::vertex_to_vect(t_vertex source)
 	result = t_vertex(((source.x - target.x) * axe_x.x) - ((source.y - target.y) * axe_y.x),
 					  ((source.x - target.x) * axe_x.y) - ((source.y - target.y) * axe_y.y), source.z);
 
-	matrice tra_matrice = matrice(T, offset.x, offset.y - ((source.z - 1) * (this->sprite_unit.z * this->zoom)), 0.0);
+	matrice tra_matrice = matrice(T, offset.x, offset.y + ((source.z - 1) * axe_z.y), 0.0);
 
 	result = tra_matrice * result;
 

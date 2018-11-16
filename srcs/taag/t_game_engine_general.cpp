@@ -21,7 +21,7 @@ static void			set_index_value(int *index, int a, int b, int c, int d, int e, int
 					s_game_engine::s_game_engine(string p_path)
 {
 	board = new s_game_board(p_path);
-	camera = new s_camera(60, 0, 270);
+	camera = new s_camera(60, 0, 0);
 	camera->target = t_vect(board->size.x / 2.0, board->size.y / 2.0);
 	calc_camera();
 }
@@ -76,6 +76,12 @@ void				s_game_engine::handle_rot(double modif)
 	calc_camera();
 }
 
+void				s_game_engine::handle_vertical_rot(double modif)
+{
+	camera->handle_vertical_rot(modif);
+	calc_camera();
+}
+
 t_cell				*s_game_engine::get_cell(int i, int j)
 {
 	if (i < 0 || j < 0 || i >= board->size.x || j >= board->size.y)
@@ -93,20 +99,22 @@ t_vect				s_game_engine::mouse_to_vect()
 {
 	t_vect		mouse = get_mouse_coord();
 
-	t_vect		coord[4];
+	t_vect		result = t_vect(-1, -1);
+	double		height = board->size.z;
+	t_vect		start = camera->coord_to_vect(0.0, 0.0, 0.0);
 
-	for (int i = 0; i < 4;i++)
-		coord[i] = iter_coord[i];
-
-	while (coord[0].x != coord[1].x)
+	double a = -camera->axe_x.x;
+	double b = camera->axe_y.x;
+	double c = -camera->axe_x.y;
+	double d = camera->axe_y.y;
+	while (height >= 0)
 	{
-		coord[0].y = coord[3].y;
-		while (coord[0].y != coord[1].y)
-		{
-			printf("coord = [%.2f] / [%.2f]\n", coord[0].x, coord[0].y);
-			coord[0].y += coord[2].y;
-		}
-		coord[0].x += coord[2].x;
+		double e = start.x - mouse.x + (camera->axe_z.x * height);
+		double f = start.y - mouse.y + (camera->axe_z.y * height);
+		result = second_degree_solver(a, b, e, c, d, f);
+		if (get_cell(result.x, result.y) != NULL && get_cell(result.x, result.y)->coord.z == height)
+			return (t_vect((int)result.x, (int)result.y));
+		height--;
 	}
-	return (mouse);
+	return (t_vect((int)result.x, (int)result.y));
 }

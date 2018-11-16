@@ -19,6 +19,7 @@ typedef struct		s_node
 typedef struct		s_cell
 {
 	t_vertex		coord;
+	t_vect			cursor;
 	t_node			*node;
 	t_actor			*actor;
 					s_cell();
@@ -28,7 +29,7 @@ typedef struct		s_cell
 typedef struct		s_game_board
 {
 	vector<vector<s_cell>>	board;
-	t_vect			size;
+	t_vertex		size;
 					s_game_board(string p_path);
 }					t_game_board;
 
@@ -46,6 +47,7 @@ typedef struct		s_camera
 					s_camera(int angle_x, int angle_y, int angle_z);
 	void 			calc_axe();
 	void			handle_rot(double delta);
+	void			handle_vertical_rot(double delta);
 	void			handle_zoom(double modif);
 	void			handle_move(int motion_x, int motion_y);
 	t_vect			coord_to_vect(double x, double y, double z);
@@ -61,15 +63,18 @@ typedef struct		s_game_engine
 	int				i_index[8];
 	t_vect			next_cell_left;
 	t_vect			next_cell_right;
+	t_vect			cube_vertex[8];
 					s_game_engine();
 					s_game_engine(string p_path);
 	void			calc_camera();
 	void			handle_rot(double modif);
+	void			handle_vertical_rot(double modif);
 	void			draw_board();
+	void			draw_mouse_cursor(int i, int j);
+	void			draw_cell(int i, int j);
 	void			calc_cell(t_vect *coord, t_cell *cell, double coord_z);
 	int				get_height_sprite(int index, int x, int y, int z);
 	t_cell			*get_cell(int i, int j);
-	void			draw_cell(int i, int j);
 	int				test_cell(t_vect mouse, int x, int y, int z);
 	t_vect			mouse_to_vect();
 }					t_game_engine;

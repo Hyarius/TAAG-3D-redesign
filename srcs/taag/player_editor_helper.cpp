@@ -9,15 +9,6 @@ vector<double>	b_size;
 vector<t_vect>	c_pos;
 t_vect			c_size = t_vect(((30 - offset.x * 2) / 2.0) / 4.0, (16 - offset.y * 2) / 2.0 - space * 3 / 2.0);
 
-
-static double	calc_line(double line, double space)
-{
-	double result;
-
-	result = ((line_height + space) * line) + offset.y;
-	return (result);
-}
-
 void			set_b_value()
 {
 	b_pos.resize(8);

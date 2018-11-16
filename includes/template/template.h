@@ -22,6 +22,7 @@ vector<string>		list_files(string path, string extension);
 bool				check_file_exist(string path);
 SDL_Surface			*create_surface_color(t_color p_color);
 t_vect				second_degree_solver(double a, double b, double c, double d, double e, double f);
+double				calc_line(double line, double space);
 
 void				set_lang_text(string path);
 string				*get_text(string key);

@@ -47,7 +47,11 @@ void			menu_quit(t_data data)
 		prepare_screen();
 
 		if (data.data.size() != 0)
+		{
 			(*((t_gui *)(data.data[0]))).draw_self();
+			if (data.data.size() == 3)
+				(*((t_game_engine *)(data.data[2]))).draw_board();
+		}
 		gui.draw_self();
 
 		render_screen(draw_fps);

@@ -11,5 +11,6 @@ int main(int argc, char **argv)
 		window_initialisation(argv[0]);
 		menu_start();
 	}
+
 	return 0;
 }

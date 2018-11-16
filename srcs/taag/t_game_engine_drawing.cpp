@@ -2,13 +2,16 @@
 
 void				s_game_engine::draw_board()
 {
+	t_vect	mouse = mouse_to_vect();
+
 	while (iter_coord[0].x != iter_coord[1].x)
 	{
 		iter_coord[0].y = iter_coord[3].y;
 		while (iter_coord[0].y != iter_coord[1].y)
 		{
-			if (board->board[iter_coord[0].x][iter_coord[0].y].node != NULL)
-				draw_cell(iter_coord[0].x, iter_coord[0].y);
+			draw_cell(iter_coord[0].x, iter_coord[0].y);
+			if (iter_coord[0].x == mouse.x && iter_coord[0].y == mouse.y)
+				draw_mouse_cursor(iter_coord[0].x, iter_coord[0].y);
 			iter_coord[0].y += iter_coord[2].y;
 		}
 		iter_coord[0].x += iter_coord[2].x;
@@ -56,14 +59,30 @@ void				s_game_engine::draw_cell(int i, int j)
 	rel_height = 0;
 	while (rel_height <= cell->coord.z)
 	{
-		calc_cell(coord, cell, rel_height + 1);
+		calc_cell(coord, cell, rel_height);
 		sprite = get_height_sprite(cell->node->index, cell->node->pos.x, cell->node->pos.y, cell->coord.z - rel_height);
 		if (get_cell(i + next_cell_right.x, j + next_cell_right.y) == NULL || get_cell(i + next_cell_right.x, j + next_cell_right.y)->coord.z < cell->coord.z)
 			texture_list[cell->node->index]->draw_self(coord[i_index[0]], coord[i_index[1]], coord[i_index[2]], coord[i_index[3]], sprite, 1.0);
 		if (get_cell(i + next_cell_left.x, j + next_cell_left.y) == NULL || get_cell(i + next_cell_left.x, j + next_cell_left.y)->coord.z < cell->coord.z)
 			texture_list[cell->node->index]->draw_self(coord[i_index[4]], coord[i_index[5]], coord[i_index[6]], coord[i_index[7]], sprite, 1.0);
 		if (rel_height == cell->coord.z)
+		{
 			texture_list[cell->node->index]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->node->pos, 1.0);
+			texture_list[0]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->cursor, 1.0);
+		}
 		rel_height++;
 	}
+}
+
+void				s_game_engine::draw_mouse_cursor(int i, int j)
+{
+	t_cell				*cell;
+	t_vect				coord[8];
+
+	cell = get_cell(i, j);
+	if (cell == NULL || cell->node == NULL || cell->node->index == -1)
+		return ;
+	calc_cell(coord, cell, cell->coord.z);
+	texture_list[0]->draw_self(coord[0], coord[1], coord[2], coord[3], t_vect(0, 1), 1.0);
+
 }

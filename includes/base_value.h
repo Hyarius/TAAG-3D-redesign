@@ -9,6 +9,10 @@ extern vector<int>			g_atk_mag;
 extern vector<int>			g_def_phy;
 extern vector<int>			g_def_mag;
 
+extern t_vect				offset;
+extern double				line_height;
+extern t_vect				offset;
+
 extern bool					draw_fps;
 
 extern t_color				color[4];

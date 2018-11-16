@@ -7,7 +7,7 @@
 	ifstream		file;
 	vector<string>	line;
 
-	size = t_vect(0, 0);
+	size = t_vertex(0, 0, 0);
 	file.open(p_path);
 	if (file.good() == false)
 		error_exit("Can't open a map at : " + p_path, 12342);
@@ -33,6 +33,8 @@
 			if (size.y < y + 1)
 				size.y = y + 1;
 		}
+		if (size.z < z + 1)
+			size.z = z + 1;
 		board[x][y] = s_cell(t_vertex(x, y, z), node_list[t], NULL);
 	}
 }

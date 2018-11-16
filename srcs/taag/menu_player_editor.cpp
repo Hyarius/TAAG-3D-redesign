@@ -64,7 +64,7 @@ void		menu_player_editor(t_data data)
 				gui.entry->add_text(event.text.text);
 			else if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_BACKSPACE && gui.entry != NULL)
 				gui.entry->delete_text();
-			else if (event.type == SDL_MOUSEBUTTONUP)
+			else if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT)
 				gui.click();
 		}
 	}

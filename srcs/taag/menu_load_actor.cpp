@@ -18,14 +18,6 @@ static void		increment_index(int *index, int delta, vector<string> *file_list, v
 	}
 }
 
-static double	calc_line(double line, double space)
-{
-	double result;
-
-	result = (double)line + (double)line * (double)space;
-	return (result);
-}
-
 static void		quit_load(t_data data)
 {
 	string		full_path = ACT_PATH + *((string *)(data.data[1])) + ACT_EXT;
@@ -130,7 +122,7 @@ void			menu_load_actor(t_data data)
 				menu_quit(&gui);
 			else if (event.type == SDL_KEYUP && event.key.keysym.sym == SDLK_ESCAPE)
 				continu = true;
-			else if (event.type == SDL_MOUSEBUTTONUP)
+			else if (event.type == SDL_MOUSEBUTTONUP && event.button.button == SDL_BUTTON_LEFT)
 				gui.click();
 			if (event.type == SDL_MOUSEWHEEL && event.wheel.y > 0)
 				increment_index(&index, -2, &list_file, &final_list);
