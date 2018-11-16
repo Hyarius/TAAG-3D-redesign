@@ -74,8 +74,8 @@ void			control_selected(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine 
 	else if (event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_UP)
 	{
 		(*(target))->coord.z++;
-		if (board->board->size.z < (*(target))->coord.z)
-			board->board->size.z = (*(target))->coord.z;
+		if (board->board->map_size.z < (*(target))->coord.z)
+			board->board->map_size.z = (*(target))->coord.z;
 	}
 	else if (event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_DOWN)
 		(*(target))->coord.z--;
@@ -84,8 +84,8 @@ void			control_selected(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine 
 		if (event->wheel.y > 0 && (*(target))->coord.z < 10)
 		{
 			(*(target))->coord.z++;
-			if (board->board->size.z < (*(target))->coord.z)
-				board->board->size.z = (*(target))->coord.z;
+			if (board->board->map_size.z < (*(target))->coord.z)
+				board->board->map_size.z = (*(target))->coord.z;
 		}
 		else if (event->wheel.y < 0 && (*(target))->coord.z >= 0)
 			(*(target))->coord.z--;
@@ -118,5 +118,12 @@ void			create_load_button(t_gui *gui, t_game_engine *board, string *p_path)
 {
 	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("load"), DARK_GREY, //pa
 		gui->unit * t_vect(20, 20 - 1 - line_height), gui->unit * t_vect(9, line_height), 3,
+		color[0], color[1]), NULL, NULL));
+}
+
+void			create_generate_button(t_gui *gui, t_game_engine *board)
+{
+	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("generate"), DARK_GREY, //pa
+		gui->unit * t_vect(1, 20 - 2 - line_height), gui->unit * t_vect(9, line_height), 3,
 		color[0], color[1]), NULL, NULL));
 }

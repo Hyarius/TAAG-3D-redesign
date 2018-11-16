@@ -22,7 +22,7 @@ static void			set_index_value(int *index, int a, int b, int c, int d, int e, int
 {
 	board = new s_game_board(p_path);
 	camera = new s_camera(60, 0, 0);
-	camera->target = t_vect(board->size.x / 2.0, board->size.y / 2.0);
+	camera->target = t_vect(board->map_size.x / 2.0, board->map_size.y / 2.0);
 	calc_camera();
 }
 
@@ -31,7 +31,7 @@ void					s_game_engine::calc_camera()
 	if ((int)(camera->angle.z) % 360 >= 0 && (int)(camera->angle.z) % 360 < 90)
 	{
 		iter_coord[0] = t_vect(0, 0);
-		iter_coord[1] = t_vect(board->size.x, board->size.y);
+		iter_coord[1] = t_vect(board->map_size.x, board->map_size.y);
 		iter_coord[2] = t_vect(1, 1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
 		set_index_value(i_index, 2, 3, 6, 7, 3, 1, 7, 5);
@@ -40,8 +40,8 @@ void					s_game_engine::calc_camera()
 	}
 	else if ((int)(camera->angle.z) % 360 >= 90 && (int)(camera->angle.z) % 360 < 180)
 	{
-		iter_coord[0] = t_vect(0, board->size.y - 1);
-		iter_coord[1] = t_vect(board->size.x, -1);
+		iter_coord[0] = t_vect(0, board->map_size.y - 1);
+		iter_coord[1] = t_vect(board->map_size.x, -1);
 		iter_coord[2] = t_vect(1, -1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
 		set_index_value(i_index, 3, 1, 7, 5, 0, 1, 4, 5);
@@ -50,7 +50,7 @@ void					s_game_engine::calc_camera()
 	}
 	else if ((int)(camera->angle.z) % 360 >= 180 && (int)(camera->angle.z) % 360 < 270)
 	{
-		iter_coord[0] = t_vect(board->size.x - 1, board->size.y - 1);
+		iter_coord[0] = t_vect(board->map_size.x - 1, board->map_size.y - 1);
 		iter_coord[1] = t_vect(-1, -1);
 		iter_coord[2] = t_vect(-1, -1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
@@ -60,8 +60,8 @@ void					s_game_engine::calc_camera()
 	}
 	else
 	{
-		iter_coord[0] = t_vect(board->size.x - 1, 0);
-		iter_coord[1] = t_vect(-1, board->size.y);
+		iter_coord[0] = t_vect(board->map_size.x - 1, 0);
+		iter_coord[1] = t_vect(-1, board->map_size.y);
 		iter_coord[2] = t_vect(-1, 1);
 		iter_coord[3] = t_vect(iter_coord[0].x, iter_coord[0].y);
 		set_index_value(i_index, 0, 2, 4, 6, 2, 3, 6, 7);
@@ -84,7 +84,7 @@ void				s_game_engine::handle_vertical_rot(double modif)
 
 t_cell				*s_game_engine::get_cell(int i, int j)
 {
-	if (i < 0 || j < 0 || i >= board->size.x || j >= board->size.y)
+	if (i < 0 || j < 0 || i >= board->map_size.x || j >= board->map_size.y)
 		return (NULL);
 	return (&(board->board[i][j]));
 }
@@ -100,7 +100,7 @@ t_vect				s_game_engine::mouse_to_vect()
 	t_vect		mouse = get_mouse_coord();
 
 	t_vect		result = t_vect(-1, -1);
-	double		height = board->size.z;
+	double		height = board->map_size.z;
 	t_vect		start = camera->coord_to_vect(0.0, 0.0, 0.0);
 
 	double a = -camera->axe_x.x;

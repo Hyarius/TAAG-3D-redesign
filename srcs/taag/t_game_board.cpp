@@ -1,13 +1,17 @@
 #include "taag.h"
 #include "base_value.h"
 
+					s_game_board::s_game_board()
+{
+	map_size = t_vertex(0, 0, 0);
+}
 					s_game_board::s_game_board(string p_path)
 {
 	int				x, y, z, t;
 	ifstream		file;
 	vector<string>	line;
 
-	size = t_vertex(0, 0, 0);
+	map_size = t_vertex(0, 0, 0);
 	file.open(p_path);
 	if (file.good() == false)
 		error_exit("Can't open a map at : " + p_path, 12342);
@@ -24,17 +28,17 @@
 		if (board.size() <= x)
 		{
 			board.resize(x + 1);
-			if (size.x < x + 1)
-				size.x = x + 1;
+			if (map_size.x < x + 1)
+				map_size.x = x + 1;
 		}
 		if (board[x].size() <= y)
 		{
 			board[x].resize(y + 1);
-			if (size.y < y + 1)
-				size.y = y + 1;
+			if (map_size.y < y + 1)
+				map_size.y = y + 1;
 		}
-		if (size.z < z + 1)
-			size.z = z + 1;
+		if (map_size.z < z + 1)
+			map_size.z = z + 1;
 		board[x][y] = s_cell(t_vertex(x, y, z), node_list[t], NULL);
 	}
 }

@@ -25,6 +25,6 @@ void			save_actor(t_data data);
 void			stand(t_data data);
 void			quit(t_data data);
 
-void			map_generator(string p_path, int p_x, int p_y);
+t_game_board	map_generator(int p_x, int p_y);
 
 #endif

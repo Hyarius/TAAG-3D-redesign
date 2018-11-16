@@ -29,7 +29,8 @@ typedef struct		s_cell
 typedef struct		s_game_board
 {
 	vector<vector<s_cell>>	board;
-	t_vertex		size;
+	t_vertex		map_size;
+					s_game_board();
 					s_game_board(string p_path);
 }					t_game_board;
 

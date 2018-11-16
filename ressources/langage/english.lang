@@ -16,6 +16,7 @@ save;Save
 load;Load
 duplicate;Duplication
 erase;Erase
+generate;Generate map
 sprite;Sprite :
 player to delete;Witch player did you want to erase ?
 entry name;Enter the character name

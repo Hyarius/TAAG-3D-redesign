@@ -14,6 +14,7 @@ void				menu_map_editor(t_data data)
 	create_file_entry(&gui, &path);
 	create_save_button(&gui, &board, &path);
 	create_load_button(&gui, &board, &path);
+	create_generate_button(&gui, &board);
 
 	while (quit == false)
 	{
