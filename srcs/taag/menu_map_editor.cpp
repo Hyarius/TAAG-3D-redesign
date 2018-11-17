@@ -5,7 +5,7 @@ void				menu_map_editor(t_data data)
 {
 	SDL_Event		event;
 	bool			quit = false;
-	t_cell			*target = NULL;
+	vector<t_cell *>target;
 	t_gui			gui = t_gui(30, 20);
 	string			path;
 
@@ -28,7 +28,7 @@ void				menu_map_editor(t_data data)
 
 		if (SDL_PollEvent(&(event)) == 1)
 		{
-			if (target == NULL)
+			if (target.size() == 0)
 				control_empty(&event, &gui, &quit, &board, &target);
 			else
 				control_selected(&event, &gui, &quit, &board, &target);

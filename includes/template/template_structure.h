@@ -48,6 +48,7 @@ typedef struct		s_vect
 	s_vect			operator - (s_vect min);
 	bool			operator < (s_vect delta);
 	bool			operator > (s_vect delta);
+	bool			operator == (s_vect delta);
 }					t_vect;
 
 typedef struct		s_vertex

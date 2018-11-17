@@ -64,7 +64,6 @@ typedef struct		s_game_engine
 	int				i_index[8];
 	t_vect			next_cell_left;
 	t_vect			next_cell_right;
-	t_vect			cube_vertex[8];
 					s_game_engine();
 					s_game_engine(string p_path);
 	void			calc_camera();

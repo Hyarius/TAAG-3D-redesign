@@ -115,3 +115,10 @@ bool			s_vect::operator > (s_vect delta)
 		return (true);
 	return (false);
 }
+
+bool			s_vect::operator == (s_vect delta)
+{
+	if (this->x == delta.x && this->y == delta.y)
+		return (true);
+	return (false);
+}
