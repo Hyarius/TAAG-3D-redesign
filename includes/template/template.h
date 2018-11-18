@@ -63,6 +63,7 @@ GLuint				get_vertex_array();
 GLuint				get_vertex_buffer();
 GLuint				get_color_buffer();
 GLuint				get_texture_buffer();
+GLuint				get_alpha_buffer();
 
 GLuint				get_texture_id();
 

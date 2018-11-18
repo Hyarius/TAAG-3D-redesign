@@ -15,6 +15,7 @@ GLuint				vertex_array;
 GLuint				vertex_buffer;
 GLuint				color_buffer;
 GLuint				texture_buffer;
+GLuint				alpha_buffer;
 
 GLenum				texture_format;
 
@@ -63,6 +64,23 @@ void				window_initialisation(string window_name)
 	glGenBuffers(1, &vertex_buffer);
 	glGenBuffers(1, &color_buffer);
 	glGenBuffers(1, &texture_buffer);
+	glGenBuffers(1, &alpha_buffer);
+
+	glEnableVertexAttribArray(0);
+	glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+
+	glEnableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, texture_buffer);
+	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+
+	glEnableVertexAttribArray(2);
+	glBindBuffer(GL_ARRAY_BUFFER, alpha_buffer);
+	glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, NULL);
+
+	glEnableVertexAttribArray(1);
+	glBindBuffer(GL_ARRAY_BUFFER, color_buffer);
+	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, NULL);
 
 	program_color = LoadShaders(	"ressources/shader/color_shader.vert",	"ressources/shader/color_shader.frag");
 	program_sprite = LoadShaders(	"ressources/shader/texture_shader.vert", "ressources/shader/texture_shader.frag");
@@ -79,7 +97,7 @@ void				window_initialisation(string window_name)
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
 	set_color_tab();
-	set_lang_text("ressources/langage/francais.lang");
+	set_lang_text("ressources/langage/english.lang");
 	TTF_Init();
 }
 
@@ -144,6 +162,11 @@ GLuint				get_color_buffer()
 GLuint				get_texture_buffer()
 {
 	return (texture_buffer);
+}
+
+GLuint				get_alpha_buffer()
+{
+	return (alpha_buffer);
 }
 
 GLuint				get_texture_id()

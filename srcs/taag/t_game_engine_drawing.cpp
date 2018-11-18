@@ -1,5 +1,7 @@
 #include "taag.h"
 
+int				test = 0;
+
 void				s_game_engine::draw_board()
 {
 	t_vect	mouse = mouse_to_vect();
@@ -52,29 +54,34 @@ void				s_game_engine::draw_cell(int i, int j)
 	t_vect				coord[8];
 	double				rel_height;
 	int					sprite;
+	bool				left = true;
+	bool				right = true;
 
 	cell = get_cell(i, j);
 	if (cell == NULL || cell->node == NULL || cell->node->index == -1)
 		return ;
-	rel_height = 0;
+	rel_height = cell->coord.z;
 	calc_cell(coord, cell, cell->coord.z);
-	while (rel_height <= cell->coord.z)
+	if (get_cell(i + next_cell_right.x, j + next_cell_right.y) != NULL && get_cell(i + next_cell_right.x, j + next_cell_right.y)->coord.z >= cell->coord.z)
+		right = false;
+	if (get_cell(i + next_cell_left.x, j + next_cell_left.y) != NULL && get_cell(i + next_cell_left.x, j + next_cell_left.y)->coord.z >= cell->coord.z)
+		left = false;
+	while (rel_height >= 0)
 	{
 		sprite = get_height_sprite(cell->node->index, cell->node->pos.x, cell->node->pos.y, cell->coord.z - rel_height);
-		if (get_cell(i + next_cell_right.x, j + next_cell_right.y) == NULL || get_cell(i + next_cell_right.x, j + next_cell_right.y)->coord.z < cell->coord.z)
+
+		if (right == true)
 			texture_list[cell->node->index]->draw_self(	coord[i_index[0]] + t_vect(0, camera->axe_z.y * (rel_height - cell->coord.z) - 1), coord[i_index[1]] + t_vect(0, camera->axe_z.y * (rel_height - cell->coord.z) - 1),
 														coord[i_index[2]] + t_vect(0, camera->axe_z.y * (rel_height - cell->coord.z)), coord[i_index[3]] + t_vect(0, camera->axe_z.y * (rel_height - cell->coord.z)), sprite, 1.0);
-		if (get_cell(i + next_cell_left.x, j + next_cell_left.y) == NULL || get_cell(i + next_cell_left.x, j + next_cell_left.y)->coord.z < cell->coord.z)
+		if (left == true)
 			texture_list[cell->node->index]->draw_self(	coord[i_index[4]] + t_vect(0, camera->axe_z.y * (rel_height - cell->coord.z) - 1), coord[i_index[5]] + t_vect(0, camera->axe_z.y * (rel_height - cell->coord.z) - 1),
 														coord[i_index[6]] + t_vect(0, camera->axe_z.y * (rel_height - cell->coord.z)), coord[i_index[7]] + t_vect(0, camera->axe_z.y * (rel_height - cell->coord.z)), sprite, 1.0);
-		if (rel_height == cell->coord.z)
-		{
-			texture_list[cell->node->index]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->node->pos, 1.0);
-			if (cell->cursor.x != 0 && cell->cursor.y != 0)
-				texture_list[0]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->cursor, 1.0);
-		}
-		rel_height++;
+		rel_height--;
 	}
+	if (test == 0)
+		texture_list[cell->node->index]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->node->pos, 1.0);
+	if (cell->cursor != t_vect(0, 0))
+		texture_list[0]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->cursor, 1.0);
 }
 
 void				s_game_engine::draw_mouse_cursor(int i, int j)

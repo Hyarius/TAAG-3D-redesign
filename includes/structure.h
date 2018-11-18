@@ -75,6 +75,8 @@ typedef struct		s_game_engine
 	void			calc_cell(t_vect *coord, t_cell *cell, double coord_z);
 	int				get_height_sprite(int index, int x, int y, int z);
 	void			update_z_coord(vector<t_cell *> *vector, double modif);
+	void			add_cell_to_vect(vector<t_cell *> *vector, t_cell *cell, bool motion);
+	void			reset_vector(vector<t_cell *> *target);
 	t_cell			*get_cell(int i, int j);
 	int				test_cell(t_vect mouse, int x, int y, int z);
 	t_vect			mouse_to_vect();

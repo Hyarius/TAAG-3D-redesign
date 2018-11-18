@@ -27,7 +27,7 @@ t_game_board		map_generator(int p_x, int p_y)
 			}
 			if ((board.map_size).z < z + 1)
 				(board.map_size).z = z + 1;
-			board.board[x][y] = s_cell(t_vertex(x, y, z), 0, NULL);
+			board.board[x][y] = s_cell(t_vertex(x, y, z), node_list[0], NULL);
 			x++;
 		}
 		y++;

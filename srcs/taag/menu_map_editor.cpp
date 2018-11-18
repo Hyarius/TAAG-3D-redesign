@@ -1,6 +1,8 @@
 #include "taag.h"
 #include "map_editor_helper.h"
 
+extern int			test;
+
 void				menu_map_editor(t_data data)
 {
 	SDL_Event		event;
@@ -32,6 +34,8 @@ void				menu_map_editor(t_data data)
 				control_empty(&event, &gui, &quit, &board, &target);
 			else
 				control_selected(&event, &gui, &quit, &board, &target);
+			if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_f)
+				test = (test == 0 ? 1 : 0);
 		}
 		SDL_FlushEvents(SDL_MOUSEMOTION, SDL_MOUSEWHEEL);
 	}

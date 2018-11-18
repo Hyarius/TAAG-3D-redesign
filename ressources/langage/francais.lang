@@ -17,6 +17,11 @@ load;Charger
 duplicate;Duplication
 erase;Supprimer
 generate;Generation d'une map
+generate ?;Quelle doit-etre la taille de la nouvelle carte ?
+okay;Valider
+cancel;Annuler
+map size x;Taille de la map sur x :
+map size y;Taille de la map sur y :
 sprite;Apparence :
 player to delete;Quel personnage voulez-vous supprimer ?
 entry name;Entrez le nom de votre personnage

@@ -10,13 +10,14 @@ static void		increment_value(t_data data)
 	int			*level = (int *)(data.data[5]);
 	string		*text_value = (string *)(data.data[6]);
 
-	if (pool == NULL)
-		return ;
 	if (value != NULL && *value + delta <= max)
 	{
 		*value += delta;
-		*pool += cost;
-		*level = *pool / 5;
+		if (pool != NULL)
+		{
+			*pool += cost;
+			*level = *pool / 5;
+		}
 		*text_value = to_string(*value);
 	}
 }
@@ -31,13 +32,14 @@ static void		decrement_value(t_data data)
 	int			*level = (int *)(data.data[5]);
 	string		*text_value = (string *)(data.data[6]);
 
-	if (pool == NULL)
-		return ;
 	if (value != NULL && *value - delta >= min)
 	{
 		*value -= delta;
-		*pool -= cost;
-		*level = *pool / 5;
+		if (pool != NULL)
+		{
+			*pool -= cost;
+			*level = *pool / 5;
+		}
 		*text_value = to_string(*value);
 	}
 }

@@ -1,5 +1,6 @@
 #include "taag.h"
 #include "base_value.h"
+#include "map_editor_helper.h"
 
 void			t_game_engine::update_z_coord(vector<t_cell *> *vector, double modif)
 {
@@ -14,8 +15,39 @@ void			t_game_engine::update_z_coord(vector<t_cell *> *vector, double modif)
 	}
 }
 
+void			t_game_engine::add_cell_to_vect(vector<t_cell *> *vector, t_cell *cell, bool motion)
+{
+	size_t i = 0;
+
+	if (cell != NULL && cell->cursor == t_vect(0, 0))
+	{
+		vector->push_back(cell);
+		cell->cursor = t_vect(1, 1);
+	}
+	else if (motion == false && cell != NULL && cell->cursor == t_vect(1, 1))
+	{
+		while (i < vector->size() && (*vector)[i] != cell)
+			i++;
+		vector->erase (vector->begin()+i);
+		cell->cursor = t_vect(0, 0);
+	}
+}
+
+void			t_game_engine::reset_vector(vector<t_cell *> *target)
+{
+	size_t i = 0;
+
+	while (i < target->size())
+	{
+		(*target)[i]->cursor = t_vect(0, 0);
+		i++;
+	}
+	target->clear();
+}
+
 void			control_empty(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine *board, vector<t_cell *> *target)
 {
+	t_vect mouse = board->mouse_to_vect();
 	if (event->type == SDL_QUIT ||
 		(event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_RETURN) ||
 		(event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_ESCAPE))
@@ -38,13 +70,7 @@ void			control_empty(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine *bo
 		board->handle_rot(-2);
 	else if (event->type == SDL_MOUSEBUTTONDOWN && event->button.button == SDL_BUTTON_LEFT)
 	{
-		t_vect result = board->mouse_to_vect();
-		t_cell	*cell = board->get_cell(result.x, result.y);
-		if (cell != NULL)
-		{
-			target->push_back(cell);
-			cell->cursor = t_vect(1, 1);
-		}
+		board->add_cell_to_vect(target, board->get_cell(mouse.x, mouse.y), false);
 		gui->click();
 	}
 	else if (event->type == SDL_MOUSEMOTION && event->motion.state == SDL_BUTTON_MMASK)
@@ -61,14 +87,15 @@ void			control_empty(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine *bo
 		else if (event->wheel.y < 0)
 			board->camera->handle_zoom(0.9);
 	}
-	else if (event->type == SDL_TEXTINPUT)
+	else if (gui->entry != NULL && event->type == SDL_TEXTINPUT)
 		gui->entry->add_text(event->text.text);
-	else if (event->type == SDL_KEYDOWN && event->key.keysym.sym == SDLK_BACKSPACE && gui->entry != NULL)
+	else if (gui->entry != NULL && event->type == SDL_KEYDOWN && event->key.keysym.sym == SDLK_BACKSPACE && gui->entry != NULL)
 		gui->entry->delete_text();
 }
 
 void			control_selected(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine *board, vector<t_cell *> *target)
 {
+	t_vect mouse = board->mouse_to_vect();
 	size_t i = 0;
 	if (event->type == SDL_QUIT)
 		menu_quit(t_data(3, gui, quit, board));
@@ -86,45 +113,18 @@ void			control_selected(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine 
 	else if (event->type == SDL_MOUSEMOTION && event->motion.state == SDL_BUTTON_RMASK)
 		board->camera->handle_move(event->motion.xrel, event->motion.yrel);
 	else if (event->type == SDL_MOUSEMOTION && event->button.button == SDL_BUTTON_LEFT)
-	{
-		t_vect result = board->mouse_to_vect();
-		t_cell	*cell = board->get_cell(result.x, result.y);
-		if (cell != NULL && cell->cursor == t_vect(0, 0))
-		{
-			target->push_back(cell);
-			cell->cursor = t_vect(1, 1);
-		}
-		gui->click();
-	}
+		board->add_cell_to_vect(target, board->get_cell(mouse.x, mouse.y), true);
 	else if (event->type == SDL_MOUSEBUTTONDOWN && event->button.button == SDL_BUTTON_LEFT)
 	{
-		t_vect result = board->mouse_to_vect();
-		t_cell	*cell = board->get_cell(result.x, result.y);
-		if (cell != NULL && cell->cursor == t_vect(0, 0))
-		{
-			target->push_back(cell);
-			cell->cursor = t_vect(1, 1);
-		}
-		else if (cell != NULL && cell->cursor == t_vect(1, 1))
-		{
-			while (i < target->size() && (*target)[i] != cell)
-				i++;
-			target->erase (target->begin()+i);
-			cell->cursor = t_vect(0, 0);
-		}
+		board->add_cell_to_vect(target, board->get_cell(mouse.x, mouse.y), false);
 		gui->click();
 	}
-	else if (event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_UP)
+	else if ((event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_UP) ||
+			 (event->type == SDL_MOUSEWHEEL && event->wheel.y > 0 && ((*target)[0])->coord.z < 10))
 		board->update_z_coord(target, 1);
-	else if (event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_DOWN)
-		board->update_z_coord(target, 1);
-	else if (event->type == SDL_MOUSEWHEEL)
-	{
-		if (event->wheel.y > 0 && ((*target)[0])->coord.z < 10)
-			board->update_z_coord(target, 1);
-		else if (event->wheel.y < 0 && ((*target)[0])->coord.z >= 0)
-			board->update_z_coord(target, -1);
-	}
+	else if ((event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_DOWN) ||
+			 (event->type == SDL_MOUSEWHEEL && event->wheel.y < 0 && ((*target)[0])->coord.z >= 0))
+		board->update_z_coord(target, -1);
 }
 
 void			create_file_entry(t_gui *gui, string *p_name)
@@ -160,5 +160,5 @@ void			create_generate_button(t_gui *gui, t_game_engine *board)
 {
 	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("generate"), DARK_GREY, //pa
 		gui->unit * t_vect(1, 20 - 2 - line_height), gui->unit * t_vect(9, line_height), 3,
-		color[0], color[1]), NULL, NULL));
+		color[0], color[1]), menu_map_generation, t_data(3, gui, quit, board)));
 }
