@@ -8,7 +8,8 @@ void			t_game_engine::update_z_coord(vector<t_cell *> *vector, double modif)
 
 	while (i < vector->size())
 	{
-		(*vector)[i]->coord.z += modif;
+		if ((*vector)[i]->coord.z + modif >= -1 && (*vector)[i]->coord.z + modif < 10)
+			(*vector)[i]->coord.z += modif;
 		if (board->map_size.z < ((*vector)[i])->coord.z)
 			board->map_size.z = ((*vector)[i])->coord.z;
 		i++;
@@ -109,7 +110,10 @@ void			control_selected(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine 
 		target->clear();
 	}
 	else if (event->type == SDL_MOUSEMOTION && event->motion.state == SDL_BUTTON_MMASK)
+	{
 		board->handle_rot(0 - event->motion.xrel);
+		board->handle_vertical_rot(0 - event->motion.yrel);
+	}
 	else if (event->type == SDL_MOUSEMOTION && event->motion.state == SDL_BUTTON_RMASK)
 		board->camera->handle_move(event->motion.xrel, event->motion.yrel);
 	else if (event->type == SDL_MOUSEMOTION && event->button.button == SDL_BUTTON_LEFT)

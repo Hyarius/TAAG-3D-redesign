@@ -70,9 +70,9 @@ typedef struct		s_game_engine
 	void			handle_rot(double modif);
 	void			handle_vertical_rot(double modif);
 	void			draw_board();
-	void			draw_mouse_cursor(int i, int j);
-	void			draw_cell(int i, int j);
-	void			calc_cell(t_vect *coord, t_cell *cell, double coord_z);
+	void			draw_mouse_cursor(int i, int j, t_vect *coord);
+	void			draw_cell(int i, int j, t_vect *coord);
+	void			calc_cell(t_vect *coord);
 	int				get_height_sprite(int index, int x, int y, int z);
 	void			update_z_coord(vector<t_cell *> *vector, double modif);
 	void			add_cell_to_vect(vector<t_cell *> *vector, t_cell *cell, bool motion);
