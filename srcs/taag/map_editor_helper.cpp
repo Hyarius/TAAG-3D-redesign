@@ -1,6 +1,19 @@
 #include "taag.h"
 #include "base_value.h"
 
+void			t_game_engine::update_z_coord(vector<t_cell *> *vector, double modif)
+{
+	size_t i = 0;
+
+	while (i < vector->size())
+	{
+		(*vector)[i]->coord.z += modif;
+		if (board->map_size.z < ((*vector)[i])->coord.z)
+			board->map_size.z = ((*vector)[i])->coord.z;
+		i++;
+	}
+}
+
 void			control_empty(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine *board, vector<t_cell *> *target)
 {
 	if (event->type == SDL_QUIT ||
@@ -23,7 +36,7 @@ void			control_empty(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine *bo
 		board->handle_rot(2);
 	else if (event->type == SDL_KEYDOWN && event->key.keysym.sym == SDLK_RIGHT)
 		board->handle_rot(-2);
-	else if (event->type == SDL_MOUSEBUTTONUP && event->button.button == SDL_BUTTON_LEFT)
+	else if (event->type == SDL_MOUSEBUTTONDOWN && event->button.button == SDL_BUTTON_LEFT)
 	{
 		t_vect result = board->mouse_to_vect();
 		t_cell	*cell = board->get_cell(result.x, result.y);
@@ -72,7 +85,18 @@ void			control_selected(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine 
 		board->handle_rot(0 - event->motion.xrel);
 	else if (event->type == SDL_MOUSEMOTION && event->motion.state == SDL_BUTTON_RMASK)
 		board->camera->handle_move(event->motion.xrel, event->motion.yrel);
-	else if (event->type == SDL_MOUSEBUTTONUP && event->button.button == SDL_BUTTON_LEFT)
+	else if (event->type == SDL_MOUSEMOTION && event->button.button == SDL_BUTTON_LEFT)
+	{
+		t_vect result = board->mouse_to_vect();
+		t_cell	*cell = board->get_cell(result.x, result.y);
+		if (cell != NULL && cell->cursor == t_vect(0, 0))
+		{
+			target->push_back(cell);
+			cell->cursor = t_vect(1, 1);
+		}
+		gui->click();
+	}
+	else if (event->type == SDL_MOUSEBUTTONDOWN && event->button.button == SDL_BUTTON_LEFT)
 	{
 		t_vect result = board->mouse_to_vect();
 		t_cell	*cell = board->get_cell(result.x, result.y);
@@ -91,44 +115,15 @@ void			control_selected(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine 
 		gui->click();
 	}
 	else if (event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_UP)
-	{
-		while (i < target->size())
-		{
-			(*target)[i]->coord.z++;
-			if (board->board->map_size.z < ((*target)[0])->coord.z)
-				board->board->map_size.z = ((*target)[0])->coord.z;
-			i++;
-		}
-	}
+		board->update_z_coord(target, 1);
 	else if (event->type == SDL_KEYUP && event->key.keysym.sym == SDLK_DOWN)
-	{
-		while (i < target->size())
-		{
-			(*target)[i]->coord.z--;
-			i++;
-		}
-	}
-
+		board->update_z_coord(target, 1);
 	else if (event->type == SDL_MOUSEWHEEL)
 	{
 		if (event->wheel.y > 0 && ((*target)[0])->coord.z < 10)
-		{
-			while (i < target->size())
-			{
-				(*target)[i]->coord.z++;
-				if (board->board->map_size.z < ((*target)[0])->coord.z)
-					board->board->map_size.z = ((*target)[0])->coord.z;
-				i++;
-			}
-		}
+			board->update_z_coord(target, 1);
 		else if (event->wheel.y < 0 && ((*target)[0])->coord.z >= 0)
-		{
-			while (i < target->size())
-			{
-				(*target)[i]->coord.z--;
-				i++;
-			}
-		}
+			board->update_z_coord(target, -1);
 	}
 }
 
