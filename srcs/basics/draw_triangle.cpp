@@ -1,5 +1,7 @@
 #include "template.h"
 
+static int type = -1;
+
 void			draw_triangle_texture(t_point a, t_point b, t_point c)
 {
 	GLfloat g_vertex_buffer_data[] = {
@@ -31,25 +33,28 @@ void			draw_triangle_texture(t_point a, t_point b, t_point c)
 	glBindBuffer(GL_ARRAY_BUFFER, get_alpha_buffer());
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_alpha_buffer_data), g_alpha_buffer_data, GL_STATIC_DRAW);
 
-	glUseProgram(get_program_sprite());
+	if (type != 0)
+	{
+		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
+		
+		glUseProgram(get_program_sprite());
 
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, get_vertex_buffer());
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+		glEnableVertexAttribArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, get_vertex_buffer());
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
 
-	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, get_texture_buffer());
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+		glEnableVertexAttribArray(1);
+		glBindBuffer(GL_ARRAY_BUFFER, get_texture_buffer());
+		glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, NULL);
 
-	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, get_alpha_buffer());
-	glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, NULL);
+		glEnableVertexAttribArray(2);
+		glBindBuffer(GL_ARRAY_BUFFER, get_alpha_buffer());
+		glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, NULL);
+		type = 0;
+	}
 
 	glDrawArrays(GL_TRIANGLES, 0, 3);
-
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
-	glDisableVertexAttribArray(2);
 }
 
 void			draw_triangle_color(t_point a, t_point b, t_point c)
@@ -74,18 +79,23 @@ void			draw_triangle_color(t_point a, t_point b, t_point c)
 	glBindBuffer(GL_ARRAY_BUFFER, get_color_buffer());
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_color_buffer_data), g_color_buffer_data, GL_STATIC_DRAW);
 
-	glUseProgram(get_program_color());
+	if (type != 1)
+	{
+		glDisableVertexAttribArray(0);
+		glDisableVertexAttribArray(1);
+		glDisableVertexAttribArray(2);
 
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, get_vertex_buffer());
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+		glUseProgram(get_program_color());
 
-	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, get_color_buffer());
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, NULL);
+		glEnableVertexAttribArray(0);
+		glBindBuffer(GL_ARRAY_BUFFER, get_vertex_buffer());
+		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
+
+		glEnableVertexAttribArray(1);
+		glBindBuffer(GL_ARRAY_BUFFER, get_color_buffer());
+		glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, NULL);
+		type = 1;
+	}
 
 	glDrawArrays(GL_TRIANGLES, 0, 3);
-
-	glDisableVertexAttribArray(0);
-	glDisableVertexAttribArray(1);
 }
