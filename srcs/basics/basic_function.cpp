@@ -17,6 +17,14 @@ t_vect				get_mouse_coord()
 	return(t_vect(x, y));
 }
 
+void				get_leaks(string msg)
+{
+	//system("clear");
+	system("leaks taag>/dev/null | grep 'total leaked bytes'");
+	cout << msg << "\n\n\n"<< endl;
+	//getchar();
+}
+
 double				calc_line(double line, double space)
 {
 	double result;

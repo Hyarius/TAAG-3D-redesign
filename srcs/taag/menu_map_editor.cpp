@@ -2,6 +2,7 @@
 #include "map_editor_helper.h"
 
 extern int			test;
+int	value = 0;
 
 void				menu_map_editor(t_data data)
 {

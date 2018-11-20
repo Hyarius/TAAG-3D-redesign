@@ -23,6 +23,7 @@ bool				check_file_exist(string path);
 SDL_Surface			*create_surface_color(t_color p_color);
 t_vect				second_degree_solver(double a, double b, double c, double d, double e, double f);
 double				calc_line(double line, double space);
+void				get_leaks(string msg);
 
 void				set_lang_text(string path);
 string				*get_text(string key);
@@ -38,6 +39,10 @@ t_point				screen_to_opengl(t_vect source);
 
 void				draw_triangle_texture(t_point a, t_point b, t_point c);
 void				draw_triangle_color(t_point a, t_point b, t_point c);
+void				add_triangle_texture(t_point a, t_point b, t_point c);
+void				add_triangle_color(t_point a, t_point b, t_point c);
+void				render_triangle_texture(GLuint texture_id);
+void				render_triangle_color();
 
 void				draw_image(t_vect tl, t_vect tr, t_vect dl, t_vect dr, double p_alpha);
 void				draw_image(t_vect coord, t_vect size);

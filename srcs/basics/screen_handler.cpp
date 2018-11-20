@@ -46,6 +46,8 @@ void				window_initialisation(string window_name)
 	g_window_size = t_vect(win_x, win_y);
 	g_context = SDL_GL_CreateContext(g_window);
 
+	SDL_GL_SetSwapInterval(0);
+
 	#ifndef __APPLE__
 		glewInit();
 	#endif

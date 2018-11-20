@@ -36,12 +36,5 @@ string 				convert_int(int i)
 
 t_point				screen_to_opengl(t_vect source)
 {
-	double		result[3];
-	t_vertex	vertex = t_vertex((double)source.x / ((double)get_win_size().x / 2), (double)source.y / ((double)get_win_size().y / 2), 0.0);
-
-	result[0] = vertex.x + (-1);
-	result[1] = vertex.y + (-1);
-	result[2] = vertex.z + 0;
-
-	return (t_point(result[0], -result[1]));
+	return (t_point(source.x / (get_win_size().x / 2.0) - 1 , -(source.y / (get_win_size().y / 2.0) - 1)));
 }
