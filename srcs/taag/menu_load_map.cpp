@@ -10,58 +10,33 @@ static void		increment_index(int *index, int delta, vector<string> *file_list, v
 		*index += delta;
 	while (i < 10)
 	{
-		if ((size_t)((*index) + i) >= (*file_list).size())
+		if ((size_t)(*index + i) >= (*file_list).size())
 			(*final_list).push_back("");
 		else
-			(*final_list).push_back((*file_list)[i + (*index)]);
+			(*final_list).push_back((*file_list)[i + *index]);
 		i++;
 	}
 }
 
 static void		quit_load(t_data data)
 {
-	string		full_path = ACT_PATH + *((string *)(data.data[1])) + ACT_EXT;
-	*((string *)(data.data[3])) = *((string *)(data.data[1]));
-	*((t_actor *)(data.data[0])) = read_actor(t_data(&full_path));
-	size_t i = 0;
-	t_gui	*gui = ((t_gui *)(data.data[4]));
-
-	while (i < gui->object_list[SPELL_CARD_ID].size())
-	{
-		((t_spell_card *)(gui->object_list[SPELL_CARD_ID].at(i)))->set_desc_size();
-		i++;
-	}
-
-	i = 0;
-	while (i < gui->object_list[ITERATOR_ID].size())
-	{
-		((t_iterator *)(gui->object_list[ITERATOR_ID].at(i)))->set_text_value();
-		i++;
-	}
-
-	i = 0;
-	while (i < gui->object_list[SPRITE_SELECTOR_ID].size())
-	{
-		((t_sprite_selector *)(gui->object_list[SPRITE_SELECTOR_ID].at(i)))->reset_actor((t_actor *)(data.data[0]));
-		i++;
-	}
 	bool *continu = (bool *)(data.data[2]);
 	*continu = true;
 }
 
-void			menu_load_actor(t_data data)
+void			menu_load_map(t_data data)
 {
 	int				index = 0;
-	vector<string>	list_file = list_files(ACT_PATH, ACT_EXT);
+	vector<string>	list_file = list_files(MAP_PATH, MAP_EXT);
 	vector<string>	final_list;
-	vector<t_button *>	button_list;
+
 	t_gui		gui = t_gui(30, 20);
 	SDL_Event	event;
 
 	bool		continu = false;
 
 	s_button *button = new s_button(new s_text_button(//button did you wanna quit
-						get_text("player to load"), DARK_GREY, //text info
+						get_text("map to load"), DARK_GREY, //text info
 						gui.unit * t_vect(2, 2), gui.unit * t_vect(26, 16), 8, //object info
 						color[0], color[1]),
 						NULL, NULL);
@@ -100,9 +75,8 @@ void			menu_load_actor(t_data data)
 				NULL, DARK_GREY, //text info
 				gui.unit * t_vect(b_pos[i % 2], line), gui.unit * t_vect(b_size[i % 2], 2), 6, //object info
 				color[0], color[3]),
-				quit_load, t_data(5, data.data[1], &(final_list[i]), &continu, data.data[2], data.data[0]));
+				NULL, NULL);
 			button->button->text = &(final_list[i]);
-			button_list.push_back(button);
 			gui.add(GUI_OBJ_ID, button);
 			i++;
 		}

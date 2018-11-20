@@ -18,8 +18,6 @@ void				menu_map_editor(t_data data)
 
 	while (quit == false)
 	{
-		printf("map size = %.2f / %.2f\n", board.board->map_size.x, board.board->map_size.y);
-		
 		prepare_screen(t_color(0.2, 0.2, 0.2));
 
 		board.draw_board();

@@ -157,7 +157,7 @@ void			create_load_button(t_gui *gui, t_game_engine *board, string *p_path)
 {
 	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("load"), DARK_GREY, //pa
 		gui->unit * t_vect(20, 20 - 1 - line_height), gui->unit * t_vect(9, line_height), 3,
-		color[0], color[1]), NULL, NULL));
+		color[0], color[1]), menu_load_map, t_data(2, gui, quit)));
 }
 
 void			create_generate_button(t_gui *gui, t_game_engine *board)
