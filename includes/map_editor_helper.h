@@ -12,5 +12,5 @@ void			create_load_button(t_gui *gui, t_game_engine *board, string *p_path);
 void			create_generate_button(t_gui *gui, t_game_engine *board);
 
 void			menu_map_generation(t_data data);
-
+void			menu_save_map(t_data data);
 #endif

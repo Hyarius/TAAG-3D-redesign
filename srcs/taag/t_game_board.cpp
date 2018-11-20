@@ -42,3 +42,28 @@
 		board[x][y] = s_cell(t_vertex(x, y, z), node_list[t], NULL);
 	}
 }
+
+void				save_map(t_data data)
+{
+	t_game_engine *board = ((t_game_engine *)(data.data[0]));
+	string	p_path = MAP_PATH + *((string *)(data.data[1])) + MAP_EXT;
+
+	ofstream myfile;
+	myfile.open(p_path);
+	int i = 0, j, h;
+	while (i < board->board->map_size.y)
+	{
+		printf("test y - map size = %.2f / %.2f\n", board->board->map_size.x, board->board->map_size.y);
+		j = 0;
+		while (j < board->board->map_size.x)
+		{
+			printf("test x\n");
+			h = 0;
+			while (h < node_list.size() && node_list[h] != board->board->board[i][j].node)
+				h++;
+			myfile << i << ":" << j << ":" << board->board->board[i][j].coord.z << ":" << h << "\n";
+			j++;
+		}
+		i++;
+	}
+}

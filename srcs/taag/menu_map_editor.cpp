@@ -1,9 +1,6 @@
 #include "taag.h"
 #include "map_editor_helper.h"
 
-extern int			test;
-int	value = 0;
-
 void				menu_map_editor(t_data data)
 {
 	SDL_Event		event;
@@ -21,6 +18,8 @@ void				menu_map_editor(t_data data)
 
 	while (quit == false)
 	{
+		printf("map size = %.2f / %.2f\n", board.board->map_size.x, board.board->map_size.y);
+		
 		prepare_screen(t_color(0.2, 0.2, 0.2));
 
 		board.draw_board();
@@ -35,8 +34,6 @@ void				menu_map_editor(t_data data)
 				control_empty(&event, &gui, &quit, &board, &target);
 			else
 				control_selected(&event, &gui, &quit, &board, &target);
-			if (event.type == SDL_KEYDOWN && event.key.keysym.sym == SDLK_f)
-				test = (test == 0 ? 1 : 0);
 		}
 		SDL_FlushEvents(SDL_MOUSEMOTION, SDL_MOUSEWHEEL);
 	}

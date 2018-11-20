@@ -81,16 +81,13 @@ void				s_game_engine::draw_cell(int i, int j)
 			texture_list[cell->node->index]->prepare_print(coord[i_index[4]], coord[i_index[5]], coord[i_index[6]], coord[i_index[7]], sprite, 1.0);
 		rel_height++;
 	}
-	if (test == 0)
+	calc_cell(coord, cell, cell->coord.z);
+	if (cell->coord.z != -1)
+		texture_list[cell->node->index]->prepare_print(coord[0], coord[1], coord[2], coord[3], cell->node->pos, 1.0);
+	if (cell->cursor.x != 0 && cell->cursor.y != 0)
 	{
-		calc_cell(coord, cell, cell->coord.z);
-		if (cell->coord.z != -1)
-			texture_list[cell->node->index]->prepare_print(coord[0], coord[1], coord[2], coord[3], cell->node->pos, 1.0);
-		if (cell->cursor.x != 0 && cell->cursor.y != 0)
-		{
-			render_triangle_texture(texture_list[cell->node->index]->texture_id);
-			texture_list[0]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->cursor, 1.0);
-		}
+		render_triangle_texture(texture_list[cell->node->index]->texture_id);
+		texture_list[0]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->cursor, 1.0);
 	}
 }
 

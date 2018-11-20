@@ -21,6 +21,7 @@ void			menu_map_editor(t_data data);
 
 t_actor			read_actor(t_data data);
 void			save_actor(t_data data);
+void			save_map(t_data data);
 
 void			stand(t_data data);
 void			quit(t_data data);
