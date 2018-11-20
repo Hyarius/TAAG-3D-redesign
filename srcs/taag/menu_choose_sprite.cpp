@@ -42,7 +42,7 @@ void			menu_choose_sprite(t_data data)
 	while (coord.y + size.y < 15)
 	{
 		t_tileset_button *tile_button = new s_tileset_button(NULL, BLACK,
-				&tmp_index, tmp_selected,
+				tile_list[tmp_index], tmp_selected,
 				gui.unit * (coord + t_vect(3, 3)), gui.unit * size, 8);
 		button = new s_button(tile_button,
 				quit_choose_sprite, t_data(5, data.data[0], data.data[1], &tmp_index, &(tile_button->selected), &continu));

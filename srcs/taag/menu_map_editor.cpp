@@ -16,6 +16,8 @@ void				menu_map_editor(t_data data)
 	create_load_button(&gui, &board, &path);
 	create_generate_button(&gui, &board);
 
+	create_swap_button(&gui, &target);
+
 	while (quit == false)
 	{
 		prepare_screen(t_color(0.2, 0.2, 0.2));

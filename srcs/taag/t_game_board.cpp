@@ -53,11 +53,9 @@ void				save_map(t_data data)
 	int i = 0, j, h;
 	while (i < board->board->map_size.y)
 	{
-		printf("test y - map size = %.2f / %.2f\n", board->board->map_size.x, board->board->map_size.y);
 		j = 0;
 		while (j < board->board->map_size.x)
 		{
-			printf("test x\n");
 			h = 0;
 			while (h < node_list.size() && node_list[h] != board->board->board[i][j].node)
 				h++;

@@ -68,13 +68,13 @@ typedef struct		s_image_button : t_button_comp
 
 typedef struct		s_tileset_button : t_button_comp
 {
-	int				*index;
+	t_tileset			*tile;
 	t_vect			selected;
 
 					s_tileset_button(string *p_text, int p_text_color,
-								int *p_index, t_vect p_selected,
+								t_tileset *p_tile, t_vect p_selected,
 								t_vect p_coord, t_vect p_size, int border);
-					s_tileset_button(int *p_index, t_vect p_selected,
+					s_tileset_button(t_tileset *p_tile, t_vect p_selected,
 								t_vect p_coord, t_vect p_size, int border);
 	void			draw_self(); // draw the button
 }					t_tileset_button;

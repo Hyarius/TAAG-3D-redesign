@@ -20,11 +20,15 @@ static void		increment_index(int *index, int delta, vector<string> *file_list, v
 
 static void		quit_load(t_data data)
 {
+	t_game_engine	*board = (t_game_engine *)(data.data[0]);
+	string			*path = (string *)(data.data[1]);
 	bool *continu = (bool *)(data.data[2]);
+
+	(*board) = t_game_engine(MAP_PATH + (*path) + MAP_EXT);
 	*continu = true;
 }
 
-void			menu_load_map(t_data data)
+void			menu_load_map(t_data data) //t_data(3, gui, board, quit)
 {
 	int				index = 0;
 	vector<string>	list_file = list_files(MAP_PATH, MAP_EXT);
@@ -75,7 +79,7 @@ void			menu_load_map(t_data data)
 				NULL, DARK_GREY, //text info
 				gui.unit * t_vect(b_pos[i % 2], line), gui.unit * t_vect(b_size[i % 2], 2), 6, //object info
 				color[0], color[3]),
-				NULL, NULL);
+				quit_load, t_data(3, data.data[1], &(final_list[i]), &continu));
 			button->button->text = &(final_list[i]);
 			gui.add(GUI_OBJ_ID, button);
 			i++;

@@ -2,6 +2,8 @@
 #include "base_value.h"
 #include "map_editor_helper.h"
 
+static int tileset_index = 1;
+
 void			t_game_engine::update_z_coord(vector<t_cell *> *vector, double modif)
 {
 	size_t i = 0;
@@ -157,7 +159,7 @@ void			create_load_button(t_gui *gui, t_game_engine *board, string *p_path)
 {
 	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("load"), DARK_GREY, //pa
 		gui->unit * t_vect(20, 20 - 1 - line_height), gui->unit * t_vect(9, line_height), 3,
-		color[0], color[1]), menu_load_map, t_data(2, gui, quit)));
+		color[0], color[1]), menu_load_map, t_data(3, gui, board, quit)));
 }
 
 void			create_generate_button(t_gui *gui, t_game_engine *board)
@@ -165,4 +167,24 @@ void			create_generate_button(t_gui *gui, t_game_engine *board)
 	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("generate"), DARK_GREY, //pa
 		gui->unit * t_vect(1, 20 - 2 - line_height), gui->unit * t_vect(9, line_height), 3,
 		color[0], color[1]), menu_map_generation, t_data(3, gui, quit, board)));
+}
+
+void			create_swap_button(t_gui *gui, vector<t_cell *> *target)
+{
+	int i = 0;
+
+	double b_pos[] = {27, 28.5};
+	t_vect increment = t_vect(1, 3);
+	t_vect pos = t_vect(0, 0);
+	while (pos.x < texture_list[1]->nb_sprite.x && pos.y < texture_list[1]->nb_sprite.y )
+	{
+		gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[1], pos,
+			gui->unit * t_vect(b_pos[i % 2], 2 + (((i / 2) + (i / 2) * 0.5))), gui->unit * t_vect(1, 1), 3), NULL, NULL));
+
+		pos.x += increment.x;
+		if (pos.x >= texture_list[1]->nb_sprite.x)
+			pos = t_vect(0, pos.y + increment.y);
+
+			i++;
+	}
 }

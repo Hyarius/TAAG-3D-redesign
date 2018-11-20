@@ -21,7 +21,7 @@ static void			set_index_value(int *index, int a, int b, int c, int d, int e, int
 					s_game_engine::s_game_engine(string p_path)
 {
 	board = new s_game_board(p_path);
-	camera = new s_camera(60, 0, 0);
+	camera = new s_camera(60, 0, 45);
 	calc_camera();
 }
 
