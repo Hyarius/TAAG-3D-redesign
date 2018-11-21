@@ -169,22 +169,35 @@ void			create_generate_button(t_gui *gui, t_game_engine *board)
 		color[0], color[1]), menu_map_generation, t_data(3, gui, quit, board)));
 }
 
+static void		change_block_texture(t_data data)
+{
+	vector<t_cell *>	*target = (vector<t_cell *> *)(data.data[0]);
+	t_node				*new_node = (t_node *)(data.data[1]);
+
+	size_t i = 0;
+	while (i < target->size())
+	{
+		(*target)[i]->node = new_node;
+		i++;
+	}
+}
+
 void			create_swap_button(t_gui *gui, vector<t_cell *> *target)
 {
-	int i = 0;
+	size_t i = 0;
 
 	double b_pos[] = {27, 28.5};
 	t_vect increment = t_vect(1, 3);
 	t_vect pos = t_vect(0, 0);
-	while (pos.x < texture_list[1]->nb_sprite.x && pos.y < texture_list[1]->nb_sprite.y )
+	while (i < node_list.size())
 	{
 		gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[1], pos,
-			gui->unit * t_vect(b_pos[i % 2], 2 + (((i / 2) + (i / 2) * 0.5))), gui->unit * t_vect(1, 1), 3), NULL, NULL));
+			gui->unit * t_vect(b_pos[i % 2], 2 + (((i / 2) + (i / 2) * 0.5))), gui->unit * t_vect(1, 1), 3), change_block_texture, t_data(2, target, node_list[i])));
 
 		pos.x += increment.x;
 		if (pos.x >= texture_list[1]->nb_sprite.x)
 			pos = t_vect(0, pos.y + increment.y);
 
-			i++;
+		i++;
 	}
 }
