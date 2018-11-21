@@ -120,6 +120,8 @@ void			add_triangle_color(t_point a, t_point b, t_point c)
 
 void			render_triangle_texture(GLuint texture_id)
 {
+	if (g_vertex_vector_data.size() == 0 || g_uv_vector_data.size() == 0 || g_alpha_vector_data.size() == 0)
+		return ;
 	glBindTexture(GL_TEXTURE_2D, texture_id);
 	glBindVertexArray(get_vertex_array());
 
@@ -162,6 +164,8 @@ void			render_triangle_texture(GLuint texture_id)
 
 void			render_triangle_color()
 {
+	if (g_vertex_vector_data.size() == 0 || g_color_vector_data.size() == 0)
+		return;
 	glBindVertexArray(get_vertex_array());
 
 	glBindBuffer(GL_ARRAY_BUFFER, get_vertex_buffer());

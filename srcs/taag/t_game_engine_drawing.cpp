@@ -23,7 +23,9 @@ void				s_game_engine::draw_board()
 			draw_cell(iter_coord[0].x, iter_coord[0].y);
 			previous_coord = t_vect(iter_coord[0].x, iter_coord[0].y);
 			if (iter_coord[0].x == mouse.x && iter_coord[0].y == mouse.y)
+			{
 				draw_mouse_cursor(iter_coord[0].x, iter_coord[0].y);
+			}
 			iter_coord[0].y += iter_coord[2].y;
 		}
 		iter_coord[0].x += iter_coord[2].x;
