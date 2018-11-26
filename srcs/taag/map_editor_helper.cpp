@@ -4,6 +4,19 @@
 
 static int tileset_index = 1;
 
+static void		change_cell_cursor(t_data data)
+{
+	vector<t_cell *>	*target = ((vector<t_cell *> *)(data.data[0]));
+	t_vect				*new_cursor = ((t_vect *)(data.data[1]));
+
+	size_t i = 0;
+	while (i < target->size())
+	{
+		(*target)[i]->cursor = *new_cursor;
+		i++;
+	}
+}
+
 void			t_game_engine::update_z_coord(vector<t_cell *> *vector, double modif)
 {
 	size_t i = 0;
@@ -22,17 +35,17 @@ void			t_game_engine::add_cell_to_vect(vector<t_cell *> *vector, t_cell *cell, b
 {
 	size_t i = 0;
 
-	if (cell != NULL && cell->cursor == t_vect(0, 0))
+	if (cell != NULL && cell->is_selected == t_vect(0, 0))
 	{
 		vector->push_back(cell);
-		cell->cursor = t_vect(1, 1);
+		cell->is_selected = t_vect(1, 1);
 	}
-	else if (motion == false && cell != NULL && cell->cursor == t_vect(1, 1))
+	else if (motion == false && cell != NULL && cell->is_selected == t_vect(1, 1))
 	{
 		while (i < vector->size() && (*vector)[i] != cell)
 			i++;
 		vector->erase (vector->begin()+i);
-		cell->cursor = t_vect(0, 0);
+		cell->is_selected = t_vect(0, 0);
 	}
 }
 
@@ -106,7 +119,7 @@ void			control_selected(SDL_Event *event, t_gui *gui, bool *quit, t_game_engine 
 	{
 		while (i < target->size())
 		{
-			(*target)[i]->cursor = t_vect(0, 0);
+			(*target)[i]->is_selected = t_vect(0, 0);
 			i++;
 		}
 		target->clear();
@@ -193,11 +206,22 @@ void			create_swap_button(t_gui *gui, vector<t_cell *> *target)
 	{
 		gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[1], pos,
 			gui->unit * t_vect(b_pos[i % 2], 2 + (((i / 2) + (i / 2) * 0.5))), gui->unit * t_vect(1, 1), 3), change_block_texture, t_data(2, target, node_list[i])));
-
 		pos.x += increment.x;
 		if (pos.x >= texture_list[1]->nb_sprite.x)
 			pos = t_vect(0, pos.y + increment.y);
-
 		i++;
 	}
+}
+
+void			create_spawn_selector_button(t_gui *gui, vector<t_cell *> *target)
+{
+	static t_vect pos = t_vect(1, 3);
+	gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[0], pos,
+		gui->unit * t_vect(1, 2), gui->unit * t_vect(1, 1), 3), change_cell_cursor, t_data(2, target, &pos)));
+	static t_vect pos2 = t_vect(2, 3);
+	gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[0], pos2,
+		gui->unit * t_vect(3, 2), gui->unit * t_vect(1, 1), 3), change_cell_cursor, t_data(2, target, &pos2)));
+	static t_vect pos3 = t_vect(0, 0);
+	gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[0], pos2,
+		gui->unit * t_vect(4, 2), gui->unit * t_vect(1, 1), 3), change_cell_cursor, t_data(2, target, &pos3)));
 }

@@ -11,6 +11,7 @@ void			create_save_button(t_gui *gui, t_game_engine *board, string *p_path);
 void			create_load_button(t_gui *gui, t_game_engine *board, string *p_path);
 void			create_generate_button(t_gui *gui, t_game_engine *board);
 void			create_swap_button(t_gui *gui, vector<t_cell *> *target);
+void			create_spawn_selector_button(t_gui *gui, vector<t_cell *> *target);
 
 void			menu_map_generation(t_data data);
 void			menu_save_map(t_data data);

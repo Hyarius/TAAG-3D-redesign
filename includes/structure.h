@@ -20,6 +20,7 @@ typedef struct		s_cell
 {
 	t_vertex		coord;
 	t_vect			cursor;
+	t_vect			is_selected;
 	t_node			*node;
 	t_actor			*actor;
 					s_cell();

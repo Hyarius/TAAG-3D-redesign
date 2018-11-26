@@ -91,6 +91,11 @@ void				s_game_engine::draw_cell(int i, int j)
 		render_triangle_texture(texture_list[cell->node->index]->texture_id);
 		texture_list[0]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->cursor, 1.0);
 	}
+	if (cell->is_selected.x != 0 && cell->is_selected.y != 0)
+	{
+		render_triangle_texture(texture_list[cell->node->index]->texture_id);
+		texture_list[0]->draw_self(coord[0], coord[1], coord[2], coord[3], cell->is_selected, 1.0);
+	}
 }
 
 void				s_game_engine::draw_mouse_cursor(int i, int j)
