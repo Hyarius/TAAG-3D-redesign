@@ -222,6 +222,6 @@ void			create_spawn_selector_button(t_gui *gui, vector<t_cell *> *target)
 	gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[0], pos2,
 		gui->unit * t_vect(3, 2), gui->unit * t_vect(1, 1), 3), change_cell_cursor, t_data(2, target, &pos2)));
 	static t_vect pos3 = t_vect(0, 0);
-	gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[0], pos2,
+	gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[0], pos3,
 		gui->unit * t_vect(4, 2), gui->unit * t_vect(1, 1), 3), change_cell_cursor, t_data(2, target, &pos3)));
 }
