@@ -26,6 +26,6 @@ void			save_map(t_data data);
 void			stand(t_data data);
 void			quit(t_data data);
 
-t_game_board	map_generator(int p_x, int p_y);
+t_game_board	map_generator(int p_x, int p_y, t_node *p_node_type);
 
 #endif

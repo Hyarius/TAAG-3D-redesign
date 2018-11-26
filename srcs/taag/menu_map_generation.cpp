@@ -6,8 +6,9 @@ void			quit_generate(t_data data)
 	t_game_engine *board = ((t_game_engine *)(data.data[1]));
 	int *size_x = ((int *)(data.data[2]));
 	int *size_y = ((int *)(data.data[3]));
+	t_node *node = node_list[*((int *)(data.data[4]))];
 
-	*(board->board) = map_generator(*size_x, *size_y);
+	*(board->board) = map_generator(*size_x, *size_y, node);
 	board->calc_camera();
 	*continu = true;
 }
@@ -18,6 +19,7 @@ void			menu_map_generation(t_data data)
 	bool		continu = false;
 	int			size_x = 10;
 	int			size_y = 10;
+	int			node_type = 0;
 
 	t_gui		gui = t_gui(30, 20);
 
@@ -59,18 +61,35 @@ void			menu_map_generation(t_data data)
 				new t_text_button(get_text(">"), DARK_GREY, //plus button
 					gui.unit * t_vect(18, 10), gui.unit * t_vect(1, 1), 3,
 					color[0], color[3]),
-				&size_y, 1, 1, 25,
+				&size_y, 1, 5, 25,
 				NULL, 0, NULL));
+
+	t_text_button *button0 = new t_text_button(get_text("node type"), DARK_GREY, //health
+					gui.unit * t_vect(7.5, 12), gui.unit * t_vect(7, 1), 3,
+					color[0], color[3]);
+	t_text_button *button1 = new t_text_button(get_text("<"), DARK_GREY, //minus button
+					gui.unit * t_vect(15, 12), gui.unit * t_vect(1, 1), 3,
+					color[0], color[3]);
+	t_text_button *button2 = new t_text_button(NULL, DARK_GREY, //value button
+					gui.unit * t_vect(16.5, 12), gui.unit * t_vect(1, 1), 3,
+					color[0], color[3]);
+	t_text_button *button3 = new t_text_button(get_text(">"), DARK_GREY, //plus button
+					gui.unit * t_vect(18, 12), gui.unit * t_vect(1, 1), 3,
+					color[0], color[3]);
+
+
+	t_node_selector *node_selector = new t_node_selector(button0, button1, button2, button3, &node_type, &gui);
+	gui.add(SPRITE_SELECTOR_ID, node_selector);
 
 	gui.add(GUI_OBJ_ID, new s_button(new s_text_button(//button yes
 						get_text("okay"), DARK_GREY, //text info
-						gui.unit * t_vect(7.5, 13), gui.unit * t_vect(3, 1.5), 8, //object info
+						gui.unit * t_vect(7.5, 14), gui.unit * t_vect(3, 1.5), 8, //object info
 						color[0], color[1]),
-						quit_generate, t_data(4, &continu, data.data[2], &size_x, &size_y)));
+						quit_generate, t_data(5, &continu, data.data[2], &size_x, &size_y, &node_type)));
 
 	gui.add(GUI_OBJ_ID, new s_button(new s_text_button(//button no
 						get_text("cancel"), DARK_GREY, //text info
-						gui.unit * t_vect(16, 13), gui.unit * t_vect(3, 1.5), 8, //object info
+						gui.unit * t_vect(16, 14), gui.unit * t_vect(3, 1.5), 8, //object info
 						color[0], color[1]),
 						stand, &continu));
 

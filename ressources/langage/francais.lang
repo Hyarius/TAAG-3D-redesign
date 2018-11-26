@@ -23,6 +23,7 @@ okay;Valider
 cancel;Annuler
 map size x;Taille de la map sur x :
 map size y;Taille de la map sur y :
+node type;Type de node :
 sprite;Apparence :
 player to delete;Quel personnage voulez-vous supprimer ?
 entry name;Entrez le nom de votre personnage

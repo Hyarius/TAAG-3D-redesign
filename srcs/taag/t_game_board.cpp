@@ -39,6 +39,8 @@
 		}
 		if (map_size.z < z + 1)
 			map_size.z = z + 1;
+		if (t >= node_list.size())
+			t = 0;
 		board[x][y] = s_cell(t_vertex(x, y, z), node_list[t], NULL);
 	}
 }
@@ -57,9 +59,9 @@ void				save_map(t_data data)
 		while (j < board->board->map_size.x)
 		{
 			h = 0;
-			while (h < node_list.size() && node_list[h] != board->board->board[i][j].node)
+			while (h < node_list.size() && node_list[h] != board->board->board[j][i].node)
 				h++;
-			myfile << i << ":" << j << ":" << board->board->board[i][j].coord.z << ":" << h << "\n";
+			myfile << j << ":" << i << ":" << board->board->board[j][i].coord.z << ":" << h << "\n";
 			j++;
 		}
 		i++;
