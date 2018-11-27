@@ -22,9 +22,11 @@ static void		quit_load(t_data data)
 {
 	t_game_engine	*board = (t_game_engine *)(data.data[0]);
 	string			*path = (string *)(data.data[1]);
-	bool *continu = (bool *)(data.data[2]);
+	string			*saved_path = (string *)(data.data[2]);
+	bool *continu = (bool *)(data.data[3]);
 
 	(*board) = t_game_engine(MAP_PATH + (*path) + MAP_EXT);
+	*saved_path = *path;
 	*continu = true;
 }
 
@@ -79,7 +81,7 @@ void			menu_load_map(t_data data) //t_data(3, gui, board, quit)
 				NULL, DARK_GREY, //text info
 				gui.unit * t_vect(b_pos[i % 2], line), gui.unit * t_vect(b_size[i % 2], 2), 6, //object info
 				color[0], color[3]),
-				quit_load, t_data(3, data.data[1], &(final_list[i]), &continu));
+				quit_load, t_data(4, data.data[1], &(final_list[i]), data.data[2], &continu));
 			button->button->text = &(final_list[i]);
 			gui.add(GUI_OBJ_ID, button);
 			i++;

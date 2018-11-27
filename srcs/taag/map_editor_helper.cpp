@@ -13,8 +13,10 @@ static void		change_cell_cursor(t_data data)
 	while (i < target->size())
 	{
 		(*target)[i]->cursor = *new_cursor;
+		(*target)[i]->is_selected = t_vect(0, 0);
 		i++;
 	}
+	target->clear();
 }
 
 void			t_game_engine::update_z_coord(vector<t_cell *> *vector, double modif)
@@ -172,7 +174,14 @@ void			create_load_button(t_gui *gui, t_game_engine *board, string *p_path)
 {
 	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("load"), DARK_GREY, //pa
 		gui->unit * t_vect(20, 20 - 1 - line_height), gui->unit * t_vect(9, line_height), 3,
-		color[0], color[1]), menu_load_map, t_data(3, gui, board, quit)));
+		color[0], color[1]), menu_load_map, t_data(4, gui, board, p_path, quit)));
+}
+
+void			create_erase_button(t_gui *gui, string *p_path)
+{
+	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("erase"), DARK_GREY, //pa
+		gui->unit * t_vect(10.5, 20 - 1 - line_height), gui->unit * t_vect(9, line_height), 3,
+		color[0], color[1]), NULL, NULL));
 }
 
 void			create_generate_button(t_gui *gui, t_game_engine *board)
@@ -217,11 +226,11 @@ void			create_spawn_selector_button(t_gui *gui, vector<t_cell *> *target)
 {
 	static t_vect pos = t_vect(1, 3);
 	gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[0], pos,
-		gui->unit * t_vect(1, 2), gui->unit * t_vect(1, 1), 3), change_cell_cursor, t_data(2, target, &pos)));
+		gui->unit * t_vect(1, 2), t_vect(gui->unit.y, gui->unit.y), 3), change_cell_cursor, t_data(2, target, &pos)));
 	static t_vect pos2 = t_vect(2, 3);
 	gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[0], pos2,
-		gui->unit * t_vect(3, 2), gui->unit * t_vect(1, 1), 3), change_cell_cursor, t_data(2, target, &pos2)));
+		gui->unit * t_vect(1 + (gui->unit.y / gui->unit.x) + 0.2, 2), t_vect(gui->unit.y, gui->unit.y), 3), change_cell_cursor, t_data(2, target, &pos2)));
 	static t_vect pos3 = t_vect(0, 0);
 	gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(texture_list[0], pos3,
-		gui->unit * t_vect(4, 2), gui->unit * t_vect(1, 1), 3), change_cell_cursor, t_data(2, target, &pos3)));
+		gui->unit * t_vect(1 + (gui->unit.y / gui->unit.x) * 2 + 0.4, 2), t_vect(gui->unit.y, gui->unit.y), 3), change_cell_cursor, t_data(2, target, &pos3)));
 }
