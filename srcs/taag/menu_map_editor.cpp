@@ -17,6 +17,8 @@ void				menu_map_editor(t_data data)
 	create_generate_button(&gui, &board);
 	create_erase_button(&gui, &path);
 
+	create_object_editor(&gui, );
+
 	create_spawn_selector_button(&gui, &target);
 
 	create_swap_button(&gui, &target);
