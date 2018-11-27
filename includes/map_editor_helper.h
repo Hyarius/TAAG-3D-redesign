@@ -17,5 +17,6 @@ void			create_erase_button(t_gui *gui, string *p_path);
 void			menu_map_generation(t_data data);
 void			menu_save_map(t_data data);
 void			menu_load_map(t_data data);
+void			menu_delete_map(t_data data);
 
 #endif

@@ -26,6 +26,7 @@ map size y;Taille de la map sur y :
 node type;Type de node :
 sprite;Apparence :
 player to delete;Quel personnage voulez-vous supprimer ?
+map to delete;Quel carte voulez-vous supprimer ?
 entry name;Entrez le nom de votre personnage
 entry file_name;Entrez le nom du fichier
 pool point;Points utilises :

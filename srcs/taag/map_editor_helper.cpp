@@ -181,7 +181,7 @@ void			create_erase_button(t_gui *gui, string *p_path)
 {
 	gui->add(GUI_OBJ_ID, new s_button(new t_text_button(get_text("erase"), DARK_GREY, //pa
 		gui->unit * t_vect(10.5, 20 - 1 - line_height), gui->unit * t_vect(9, line_height), 3,
-		color[0], color[1]), NULL, NULL));
+		color[0], color[1]), menu_delete_map, t_data(2, gui, p_path)));
 }
 
 void			create_generate_button(t_gui *gui, t_game_engine *board)

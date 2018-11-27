@@ -72,19 +72,23 @@ void					s_game_engine::calc_camera()
 
 void				s_game_engine::handle_rot(double modif)
 {
+	if (camera == NULL)
+		return ;
 	camera->handle_rot(modif);
 	calc_camera();
 }
 
 void				s_game_engine::handle_vertical_rot(double modif)
 {
+	if (camera == NULL)
+		return ;
 	camera->handle_vertical_rot(modif);
 	calc_camera();
 }
 
 t_cell				*s_game_engine::get_cell(int i, int j)
 {
-	if (i < 0 || j < 0 || i >= board->map_size.x || j >= board->map_size.y)
+	if (board == NULL || i < 0 || j < 0 || i >= board->map_size.x || j >= board->map_size.y)
 		return (NULL);
 	return (&(board->board[i][j]));
 }
@@ -97,6 +101,8 @@ int					s_game_engine::test_cell(t_vect mouse, int x, int y, int z)
 
 t_vect				s_game_engine::mouse_to_vect()
 {
+	if (board == NULL)
+		return (t_vect(-1, -1));
 	t_vect		mouse = get_mouse_coord();
 
 	t_vect		result = t_vect(-1, -1);

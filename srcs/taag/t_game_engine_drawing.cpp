@@ -29,7 +29,8 @@ void				s_game_engine::draw_board()
 		iter_coord[0].x += iter_coord[2].x;
 	}
 	iter_coord[0] = iter_coord[3];
-	render_triangle_texture(texture_list[get_cell(previous_coord.x, previous_coord.y)->node->index]->texture_id);
+	if (get_cell(previous_coord.x, previous_coord.y) != NULL)
+		render_triangle_texture(texture_list[get_cell(previous_coord.x, previous_coord.y)->node->index]->texture_id);
 }
 
 void				s_game_engine::calc_cell(t_vect *coord, t_cell *cell, double coord_z)

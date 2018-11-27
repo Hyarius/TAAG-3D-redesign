@@ -9,7 +9,7 @@ void				menu_map_editor(t_data data)
 	t_gui			gui = t_gui(30, 20);
 	string			path;
 
-	t_game_engine board = s_game_engine("ressources/map/test.map");
+	t_game_engine board = s_game_engine();
 
 	create_file_entry(&gui, &path);
 	create_save_button(&gui, &board, &path);

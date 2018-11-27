@@ -8,7 +8,13 @@ void			quit_generate(t_data data)
 	int *size_y = ((int *)(data.data[3]));
 	t_node *node = node_list[*((int *)(data.data[4]))];
 
-	*(board->board) = map_generator(*size_x, *size_y, node);
+	if (board->board == NULL)
+	{
+		board->board = new t_game_board(map_generator(*size_x, *size_y, node));
+		board->camera = new s_camera(60, 0, 45);
+	}
+	else
+		*(board->board) = map_generator(*size_x, *size_y, node);
 	board->calc_camera();
 	*continu = true;
 }

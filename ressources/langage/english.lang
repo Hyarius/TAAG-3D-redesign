@@ -26,6 +26,7 @@ map size y;Map size on y :
 node type;Node type :
 sprite;Sprite :
 player to delete;Witch player did you want to erase ?
+map to delete;Witch map did you want to erase ?
 entry name;Enter the character name
 entry file_name;Enter the file name
 pool point;Points used :

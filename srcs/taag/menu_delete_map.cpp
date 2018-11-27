@@ -5,13 +5,13 @@ static void		delete_file(t_data data)
 	int				*index = (int *)(data.data[0]);
 	vector<string>	*list_file = (vector<string> *)(data.data[1]);
 	vector<string>	*final_list = (vector<string> *)(data.data[2]);
-	string			file_to_delete = ACT_PATH + *((string *)(data.data[3])) + ACT_EXT;
+	string			file_to_delete = MAP_PATH + *((string *)(data.data[3])) + MAP_EXT;
 	size_t i = 0;
 
 	remove(file_to_delete.c_str());
 	if (*index - 1 >= 0)
 		*index -= 1;
-	*list_file = list_files(ACT_PATH, ACT_EXT);
+	*list_file = list_files(MAP_PATH, MAP_EXT);
 	final_list->clear();
 	while (i < 10)
 	{
@@ -40,17 +40,17 @@ static void		increment_index(int *index, int delta, vector<string> *file_list, v
 	}
 }
 
-void			menu_delete_actor(t_data data)
+void			menu_delete_map(t_data data)
 {
 	int				index = 0;
-	vector<string>	list_file = list_files(ACT_PATH, ACT_EXT);
+	vector<string>	list_file = list_files(MAP_PATH, MAP_EXT);
 	vector<string>	final_list;
 	SDL_Event		event;
 	bool			quit = false;
 	t_gui			gui = t_gui(30, 20);
 
 	s_button *button = new s_button(new s_text_button(//button did you wanna quit
-		get_text("player to delete"), DARK_GREY, //text info
+		get_text("map to delete"), DARK_GREY, //text info
 		gui.unit * t_vect(2, 2), gui.unit * t_vect(26, 16), 8, //object info
 		color[0], color[1]),
 		NULL, NULL);
