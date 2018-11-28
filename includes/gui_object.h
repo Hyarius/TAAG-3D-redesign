@@ -79,19 +79,13 @@ typedef struct		s_game_object_card : t_gui_obj
 					*sprite;
 	t_button		*name;
 	t_iterator		*hp;
-	t_iterator		*pa;
-	t_iterator		*pm;
-	t_iterator		*atk_phy;
-	t_iterator		*def_phy;
-	t_iterator		*atk_mag;
-	t_iterator		*def_mag;
+	t_button		*create;
 	t_button		*choose;
 	t_button		*place;
+	t_button		*erase;
 					s_game_object_card();
 					s_game_object_card(t_button *p_mini, t_button *p_back, t_tileset_button *p_sprite, t_button *p_name,
-										t_iterator *p_hp, t_iterator *p_pa, t_iterator *p_pm,
-										t_iterator *p_atk_phy, t_iterator *p_def_phy,
-										t_iterator *p_atk_mag, t_iterator *p_def_mag, t_button *p_choose, t_button *p_place);
+							t_iterator *p_hp, t_button *p_create, t_button *p_choose, t_button *p_place, t_button *p_erase);
 	void			draw_self();
 	void			click(t_vect mouse);
 }					t_game_object_card;

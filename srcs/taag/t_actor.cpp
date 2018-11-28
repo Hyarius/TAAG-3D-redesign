@@ -13,8 +13,6 @@ t_actor			read_actor(t_data data)
 	int		index = atoi(get_strsplit(&myfile, ":", 2)[1].c_str());
 	tab = get_strsplit(&myfile, ":", 3);
 	t_vect	pos = t_vect(atoi(tab[1].c_str()), atoi(tab[2].c_str()));
-	tab = get_strsplit(&myfile, ":", 3);
-	t_vect	size = t_vect(atoi(tab[1].c_str()), atoi(tab[2].c_str()));
 	int		level = atoi(get_strsplit(&myfile, ":", 2)[1].c_str());
 	int		point = atoi(get_strsplit(&myfile, ":", 2)[1].c_str());
 	int		hp = atoi(get_strsplit(&myfile, ":", 2)[1].c_str());
@@ -28,7 +26,6 @@ t_actor			read_actor(t_data data)
 	t_actor	actor = s_actor(name, level, point, s_stat(hp, pa, pm, ini, t_element(phy_atk, phy_def), t_element(mag_atk, mag_def)));
 	actor.tile_index = index;
 	actor.sprite_pos = pos;
-	actor.sprite_size = size;
 	int i = 0;
 	while (i < 8)
 	{
@@ -47,7 +44,6 @@ void			save_actor(t_data data)
 	myfile << "name:" + (to_save->name == "" ? "Default" : to_save->name) + "\n";
 	myfile << "tileset: " + to_string(to_save->tile_index) + "\n";
 	myfile << "sprite_pos: " + to_string(to_save->sprite_pos.x) + ":" + to_string(to_save->sprite_pos.y) + "\n";
-	myfile << "sprite_size: " + to_string(to_save->sprite_size.x) + ":" + to_string(to_save->sprite_size.y) + "\n";
 	myfile << "level:" + to_string(to_save->level) + "\n";
 	myfile << "point:" + to_string(to_save->attrib_point) + "\n";
 	myfile << "health:" + to_string(to_save->stat.hp.max) + "\n";
@@ -77,7 +73,6 @@ s_actor::s_actor()
 	this->stat = t_stat();
 	this->tile_index = 0;
 	this->sprite_pos = t_vect(0, 0);
-	this->sprite_size = t_vect(1, 1);
 	int i = 0;
 	while (i < 8)
 	{
@@ -94,7 +89,6 @@ s_actor::s_actor(string p_name, int p_level, int p_pool, t_stat p_stat)
 	this->stat = p_stat;
 	this->tile_index = 0;
 	this->sprite_pos = t_vect(0, 0);
-	this->sprite_size = t_vect(1, 1);
 	int i = 0;
 	while (i < 8)
 	{

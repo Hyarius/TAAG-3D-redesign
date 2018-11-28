@@ -44,5 +44,7 @@ atk_phy;Physical attack :
 atk_mag;Magical attack :
 def_phy;Physical armor :
 def_mag;Magical armor :
+create object;Create object
 choose object;Choose object
 place object;Place object
+delete object;Delete object

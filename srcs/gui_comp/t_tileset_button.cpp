@@ -43,7 +43,8 @@ void			s_tileset_button::draw_self()
 {
 	draw_rectangle(coord[0], size[0], color[0]);
 	draw_rectangle(coord[1], size[1], color[3]);
-	((*tile)[*index])->draw_self(coord[1], size[1], selected);
+	if (*index >= 0 && selected.x >= 0 && selected.y >= 0)
+		((*tile)[*index])->draw_self(coord[1], size[1], selected);
 	if (text != NULL && *text != "")
 	{
 		if (text_size == -1 || size[1].x > calc_text_len(*text, text_size)

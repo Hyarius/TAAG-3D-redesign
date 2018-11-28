@@ -13,7 +13,7 @@ void			create_generate_button(t_gui *gui, t_game_engine *board);
 void			create_swap_button(t_gui *gui, vector<t_cell *> *target);
 void			create_spawn_selector_button(t_gui *gui, vector<t_cell *> *target);
 void			create_erase_button(t_gui *gui, string *p_path);
-void			create_object_editor(t_gui *gui, t_game_object *object);
+void			create_object_editor(t_gui *gui, t_entities *object);
 
 void			menu_map_generation(t_data data);
 void			menu_save_map(t_data data);

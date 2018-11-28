@@ -17,7 +17,7 @@ t_color					color[4] = {t_color(0.5, 0.5, 0.5),
 							t_color(0.7, 0.7, 0.7)};
 
 string					ACT_EXT = ".act";
-string					ACT_PATH = "ressources/actor/";
+string					ACT_PATH = "ressources/game_object/actor/";
 string					SPELL_EXT = ".spell";
 string					SPELL_PATH = "ressources/spell/";
 string					SPRITE_EXT = ".spr";
@@ -28,8 +28,8 @@ string					NODE_EXT = ".node";
 string					NODE_PATH = "ressources/node/";
 string					MAP_EXT = ".map";
 string					MAP_PATH = "ressources/map/";
-string					OBJ_EXT = ".act";
-string					OBJ_PATH = "ressources/object/";
+string					OBJ_EXT = ".ent";
+string					OBJ_PATH = "ressources/game_object/entities/";
 
 map<string, t_spell>	spell_list;
 vector<t_tileset *>		tile_list;

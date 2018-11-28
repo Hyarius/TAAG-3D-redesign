@@ -1,5 +1,4 @@
 #include "taag.h"
-#include "base_value.h"
 #include "map_editor_helper.h"
 
 static int tileset_index = 1;
@@ -240,7 +239,7 @@ void			create_spawn_selector_button(t_gui *gui, vector<t_cell *> *target)
 		gui->unit * t_vect(1 + (gui->unit.y / gui->unit.x) * 2 + 0.4, 2), t_vect(gui->unit.y, gui->unit.y), 3), change_cell_cursor, t_data(2, target, &pos3)));
 }
 
-void			create_object_editor(t_gui *gui, t_game_object *object)
+void			create_object_editor(t_gui *gui, t_entities *object)
 {
 	t_vect		coord = t_vect(1, 3.33);
 	t_vect		size = t_vect(6, 10);
@@ -269,76 +268,14 @@ void			create_object_editor(t_gui *gui, t_game_object *object)
 		new t_text_button(NULL, DARK_GREY,
 			gui->unit * coord2, gui->unit * size2, 2, color[0], color[1]),
 		NULL,
-		&(object->stat.hp.max), 0, 0, 0,
+		&(object->hp.max), 0, 0, 0,
 		NULL, 0, NULL);
 
-	coord = t_vect(coord.x, coord.y + size.y + 0.2);
-	coord2 = t_vect(coord2.x, coord2.y + size2.y + 0.2);
-	t_iterator *pa = new s_iterator(new t_text_button(get_text("pa"), BLACK,
-		gui->unit * coord, gui->unit * size, 2, color[0], color[1]),
-		NULL,
-		new t_text_button(NULL, DARK_GREY,
-			gui->unit * coord2, gui->unit * size2, 2, color[0], color[1]),
-		NULL,
-		&(object->stat.pa.max), 0, 0, 0,
-		NULL, 0, NULL);;
-
-	coord = t_vect(coord.x, coord.y + size.y + 0.2);
-	coord2 = t_vect(coord2.x, coord2.y + size2.y + 0.2);
-	t_iterator *pm = new s_iterator(new t_text_button(get_text("pm"), BLACK,
-		gui->unit * coord, gui->unit * size, 2, color[0], color[1]),
-		NULL,
-		new t_text_button(NULL, DARK_GREY,
-			gui->unit * coord2, gui->unit * size2, 2, color[0], color[1]),
-		NULL,
-		&(object->stat.pm.max), 0, 0, 0,
-		NULL, 0, NULL);;
-
-	coord = t_vect(coord.x, coord.y + size.y + 0.2);
-	coord2 = t_vect(coord2.x, coord2.y + size2.y + 0.2);
-	t_iterator *atk_phy = new s_iterator(new t_text_button(get_text("atk_phy"), BLACK,
-		gui->unit * coord, gui->unit * size, 2, color[0], color[1]),
-		NULL,
-		new t_text_button(NULL, DARK_GREY,
-			gui->unit * coord2, gui->unit * size2, 2, color[0], color[1]),
-		NULL,
-		&(object->stat.phy.atk), 0, 0, 0,
-		NULL, 0, NULL);;
-
-	coord = t_vect(coord.x, coord.y + size.y + 0.2);
-	coord2 = t_vect(coord2.x, coord2.y + size2.y + 0.2);
-	t_iterator *def_phy = new s_iterator(new t_text_button(get_text("def_phy"), BLACK,
-		gui->unit * coord, gui->unit * size, 2, color[0], color[1]),
-		NULL,
-		new t_text_button(NULL, DARK_GREY,
-			gui->unit * coord2, gui->unit * size2, 2, color[0], color[1]),
-		NULL,
-		&(object->stat.phy.def), 0, 0, 0,
-		NULL, 0, NULL);;
-
-	coord = t_vect(coord.x, coord.y + size.y + 0.2);
-	coord2 = t_vect(coord2.x, coord2.y + size2.y + 0.2);
-	t_iterator *atk_mag = new s_iterator(new t_text_button(get_text("atk_mag"), BLACK,
-		gui->unit * coord, gui->unit * size, 2, color[0], color[1]),
-		NULL,
-		new t_text_button(NULL, DARK_GREY,
-			gui->unit * coord2, gui->unit * size2, 2, color[0], color[1]),
-		NULL,
-		&(object->stat.mag.atk), 0, 0, 0,
-		NULL, 0, NULL);;
-
-	coord = t_vect(coord.x, coord.y + size.y + 0.2);
-	coord2 = t_vect(coord2.x, coord2.y + size2.y + 0.2);
-	t_iterator *def_mag = new s_iterator(new t_text_button(get_text("def_mag"), BLACK,
-		gui->unit * coord, gui->unit * size, 2, color[0], color[1]),
-		NULL,
-		new t_text_button(NULL, DARK_GREY,
-			gui->unit * coord2, gui->unit * size2, 2, color[0], color[1]),
-		NULL,
-		&(object->stat.mag.def), 0, 0, 0,
-		NULL, 0, NULL);;
-
 	size = t_vect(5.5, line_height / 1.5);
+	coord = t_vect(1.25, coord.y + size.y + 0.2);
+	t_button *create = new s_button(new t_text_button(get_text("create object"), BLACK,
+		gui->unit * coord, gui->unit * size, 2, color[0], color[1]), NULL, NULL);
+
 	coord = t_vect(1.25, coord.y + size.y + 0.2);
 	t_button *choose = new s_button(new t_text_button(get_text("choose object"), BLACK,
 		gui->unit * coord, gui->unit * size, 2, color[0], color[1]), NULL, NULL);
@@ -347,11 +284,15 @@ void			create_object_editor(t_gui *gui, t_game_object *object)
 	t_button *place = new s_button(new t_text_button(get_text("place object"), BLACK,
 		gui->unit * coord, gui->unit * size, 2, color[0], color[1]), NULL, NULL);
 
+	coord = t_vect(1.25, coord.y + size.y + 0.2);
+	t_button *erase = new s_button(new t_text_button(get_text("delete object"), BLACK,
+		gui->unit * coord, gui->unit * size, 2, color[0], color[1]), NULL, NULL);
+
 	size = t_vect(6, coord.y + size.y + 0.2 - 3.33);
 	coord = t_vect(1, 3.33);
 	t_button 	*back = new s_button(new t_text_button(NULL, BLACK,
 		gui->unit * coord, gui->unit * size, 2, color[0], color[1]), NULL, NULL);
 
-	gui->add(GUI_OBJ_ID, new s_game_object_card(mini, back, sprite, name, hp, pa, pm, atk_phy, def_phy, atk_mag, def_mag, choose, place));
+	gui->add(GUI_OBJ_ID, new s_game_object_card(mini, back, sprite, name, hp, create, choose, place, erase));
 
 }

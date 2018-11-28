@@ -5,6 +5,10 @@ using namespace std;
 
 #include "gui_object.h"
 
+#include "actor.h"
+#include "entities.h"
+
+
 typedef struct		s_node
 {
 	string			name;

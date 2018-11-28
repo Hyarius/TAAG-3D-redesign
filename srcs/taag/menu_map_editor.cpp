@@ -6,7 +6,7 @@ void				menu_map_editor(t_data data)
 	SDL_Event		event;
 	bool			quit = false;
 	vector<t_cell *>target;
-	t_game_object	object;
+	t_entities		object;
 	t_gui			gui = t_gui(30, 20);
 	string			path;
 
