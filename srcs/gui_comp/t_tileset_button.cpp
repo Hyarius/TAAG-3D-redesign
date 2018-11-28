@@ -2,7 +2,7 @@
 #include "base_value.h"
 
 s_tileset_button::s_tileset_button(string *p_text, int p_text_color,
-							t_tileset *p_tile, t_vect p_selected,
+							vector<t_tileset *> *p_tile, int *p_index, t_vect p_selected,
 							t_vect p_coord, t_vect p_size, int border)
 {
 	text = p_text;
@@ -15,13 +15,14 @@ s_tileset_button::s_tileset_button(string *p_text, int p_text_color,
 	if (text != NULL && *text != "")
 		text_size = calc_text_size(*text, size[1] - border * 2);
 	tile = p_tile;
+	index = p_index;
 	selected = p_selected;
 	funct = NULL;
 	data = NULL;
 	draw_funct = draw_centred_text;
 }
 
-s_tileset_button::s_tileset_button(t_tileset *p_tile, t_vect p_selected,
+s_tileset_button::s_tileset_button(vector<t_tileset *> *p_tile, int *p_index, t_vect p_selected,
 							t_vect p_coord, t_vect p_size, int border)
 {
 	text = NULL;
@@ -31,6 +32,7 @@ s_tileset_button::s_tileset_button(t_tileset *p_tile, t_vect p_selected,
 	size[1] = p_size - (border * 2);
 	coord[2] = coord[1] + size[1] / 2;
 	tile = p_tile;
+	index = p_index;
 	selected = p_selected;
 	funct = NULL;
 	data = NULL;
@@ -41,7 +43,7 @@ void			s_tileset_button::draw_self()
 {
 	draw_rectangle(coord[0], size[0], color[0]);
 	draw_rectangle(coord[1], size[1], color[3]);
-	tile->draw_self(coord[1], size[1], selected);
+	((*tile)[*index])->draw_self(coord[1], size[1], selected);
 	if (text != NULL && *text != "")
 	{
 		if (text_size == -1 || size[1].x > calc_text_len(*text, text_size)

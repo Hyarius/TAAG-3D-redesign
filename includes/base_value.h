@@ -34,6 +34,8 @@ extern string				NODE_EXT;
 extern string				NODE_PATH;
 extern string				MAP_EXT;
 extern string				MAP_PATH;
+extern string				OBJ_EXT;
+extern string				OBJ_PATH;
 
 extern int					GUI_OBJ_ID;
 extern int					ITERATOR_ID;

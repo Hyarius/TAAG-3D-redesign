@@ -6,6 +6,7 @@ void				menu_map_editor(t_data data)
 	SDL_Event		event;
 	bool			quit = false;
 	vector<t_cell *>target;
+	t_game_object	object;
 	t_gui			gui = t_gui(30, 20);
 	string			path;
 
@@ -17,10 +18,9 @@ void				menu_map_editor(t_data data)
 	create_generate_button(&gui, &board);
 	create_erase_button(&gui, &path);
 
-	create_object_editor(&gui, );
+	create_object_editor(&gui, &object);
 
 	create_spawn_selector_button(&gui, &target);
-
 	create_swap_button(&gui, &target);
 
 	while (quit == false)

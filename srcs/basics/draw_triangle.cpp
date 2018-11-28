@@ -123,7 +123,6 @@ void			render_triangle_texture(GLuint texture_id)
 	if (g_vertex_vector_data.size() == 0 || g_uv_vector_data.size() == 0 || g_alpha_vector_data.size() == 0)
 		return ;
 	glBindTexture(GL_TEXTURE_2D, texture_id);
-	glBindVertexArray(get_vertex_array());
 
 	glBindBuffer(GL_ARRAY_BUFFER, get_vertex_buffer());
 	glBufferData(GL_ARRAY_BUFFER, g_vertex_vector_data.size() * sizeof(GLfloat), &g_vertex_vector_data.front(), GL_STATIC_DRAW);
@@ -166,7 +165,6 @@ void			render_triangle_color()
 {
 	if (g_vertex_vector_data.size() == 0 || g_color_vector_data.size() == 0)
 		return;
-	glBindVertexArray(get_vertex_array());
 
 	glBindBuffer(GL_ARRAY_BUFFER, get_vertex_buffer());
 	glBufferData(GL_ARRAY_BUFFER, g_vertex_vector_data.size() * sizeof(GLfloat), &g_vertex_vector_data.front(), GL_STATIC_DRAW);

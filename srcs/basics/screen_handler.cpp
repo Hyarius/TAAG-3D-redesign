@@ -68,21 +68,7 @@ void				window_initialisation(string window_name)
 	glGenBuffers(1, &texture_buffer);
 	glGenBuffers(1, &alpha_buffer);
 
-	glEnableVertexAttribArray(0);
-	glBindBuffer(GL_ARRAY_BUFFER, vertex_buffer);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, NULL);
-
-	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, texture_buffer);
-	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 0, NULL);
-
-	glEnableVertexAttribArray(2);
-	glBindBuffer(GL_ARRAY_BUFFER, alpha_buffer);
-	glVertexAttribPointer(2, 1, GL_FLOAT, GL_FALSE, 0, NULL);
-
-	glEnableVertexAttribArray(1);
-	glBindBuffer(GL_ARRAY_BUFFER, color_buffer);
-	glVertexAttribPointer(1, 4, GL_FLOAT, GL_FALSE, 0, NULL);
+	glBindVertexArray(get_vertex_array());
 
 	program_color = LoadShaders(	"ressources/shader/color_shader.vert",	"ressources/shader/color_shader.frag");
 	program_sprite = LoadShaders(	"ressources/shader/texture_shader.vert", "ressources/shader/texture_shader.frag");

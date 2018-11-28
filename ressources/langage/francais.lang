@@ -9,6 +9,7 @@ save ?;Voulez-vous vraiment enregistrer sur ce fichier ?
 player to load;Quel fichier voulez-vous charger ?
 map to load;Quelle carte souhaitez-vous charger ?
 no file;Aucun personnage sauvegarder
+close;X
 yes;Oui
 no;Non
 up;Suivant
@@ -43,3 +44,5 @@ atk_phy;Attaque physique :
 atk_mag;Attaque magique :
 def_phy;Armure physique :
 def_mag;Armure magique :
+choose object;Choisir l'objet
+place object;Placer l'object

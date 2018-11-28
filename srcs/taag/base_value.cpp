@@ -28,6 +28,8 @@ string					NODE_EXT = ".node";
 string					NODE_PATH = "ressources/node/";
 string					MAP_EXT = ".map";
 string					MAP_PATH = "ressources/map/";
+string					OBJ_EXT = ".act";
+string					OBJ_PATH = "ressources/object/";
 
 map<string, t_spell>	spell_list;
 vector<t_tileset *>		tile_list;

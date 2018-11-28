@@ -13,7 +13,7 @@ s_text_button::s_text_button(	string *p_text, int p_text_color, //text info
 	coord[2] = coord[1] + size[1] / 2;
 	if (text != NULL && *text != "")
 	{
-		text_size = calc_text_size(*text, size[1] - border * 2);
+		text_size = calc_text_size(*text, size[1]);
 		surface = TTF_RenderText_Blended(get_font(text_size), p_text->c_str(), get_color(p_text_color));
 		if (surface == NULL)
 			error_exit("can't create the text to text_button", 3567);
@@ -43,7 +43,7 @@ void		s_text_button::draw_self()
 	{
 		if (text_size == -1 || size[1].x > calc_text_len(*text, text_size)
 							|| size[1].y > get_char(text_size, BLACK, 'M')->surface->h)
-			text_size = calc_text_size(*text, size[1] - (size[0] - size[1]));
+			text_size = calc_text_size(*text, size[1]);
 		this->draw_funct(*text, text_size, coord[2], text_color);
 	}
 }

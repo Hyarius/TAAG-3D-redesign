@@ -22,12 +22,12 @@ static void			set_index_value(int *index, int a, int b, int c, int d, int e, int
 {
 	board = new s_game_board(p_path);
 	camera = new s_camera(60, 0, 45);
+	camera->target = t_vect(board->map_size.x / 2.0, board->map_size.y / 2.0);
 	calc_camera();
 }
 
 void					s_game_engine::calc_camera()
 {
-	camera->target = t_vect(board->map_size.x / 2.0, board->map_size.y / 2.0);
 	if ((int)(camera->angle.z) % 360 >= 0 && (int)(camera->angle.z) % 360 < 90)
 	{
 		iter_coord[0] = t_vect(0, 0);

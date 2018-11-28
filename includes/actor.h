@@ -35,16 +35,22 @@ typedef struct	s_stat
 				s_stat(t_value p_hp, t_value p_pa, t_value p_pm, t_value p_ini, t_element p_phy, t_element p_mag);
 }				t_stat;
 
-typedef struct	s_actor
+typedef struct	s_game_object
 {
 	string		name;
-	int			level;
-	int			attrib_point;
 	t_stat		stat;
-	t_spell		spell[8];
 	int			tile_index;
 	t_vect		sprite_pos;
 	t_vect		sprite_size;
+				s_game_object();
+				s_game_object(string p_name, t_stat p_stat);
+}				t_game_object;
+
+typedef struct	s_actor : s_game_object
+{
+	int			level;
+	int			attrib_point;
+	t_spell		spell[8];
 				s_actor();
 				s_actor(string p_name, int p_level, int p_pool, t_stat p_stat);
 }				t_actor;

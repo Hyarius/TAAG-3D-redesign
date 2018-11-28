@@ -48,9 +48,9 @@ void			menu_quit(t_data data)
 
 		if (data.data.size() != 0)
 		{
-			(*((t_gui *)(data.data[0]))).draw_self();
 			if (data.data.size() == 3)
 				(*((t_game_engine *)(data.data[2]))).draw_board();
+			(*((t_gui *)(data.data[0]))).draw_self();
 		}
 		gui.draw_self();
 

@@ -51,7 +51,7 @@ void			menu_map_generation(t_data data)
 				new t_text_button(get_text(">"), DARK_GREY, //plus button
 					gui.unit * t_vect(18, 8), gui.unit * t_vect(1, 1), 3,
 					color[0], color[3]),
-				&size_x, 1, 1, 25,
+				&size_x, 1, 1, 50,
 				NULL, 0, NULL));
 
 	gui.add(ITERATOR_ID, new s_iterator(
@@ -67,7 +67,7 @@ void			menu_map_generation(t_data data)
 				new t_text_button(get_text(">"), DARK_GREY, //plus button
 					gui.unit * t_vect(18, 10), gui.unit * t_vect(1, 1), 3,
 					color[0], color[3]),
-				&size_y, 1, 5, 25,
+				&size_y, 1, 5, 50,
 				NULL, 0, NULL));
 
 	t_text_button *button0 = new t_text_button(get_text("node type"), DARK_GREY, //health
