@@ -255,6 +255,6 @@ void			create_max_level_iterator(t_gui *gui, int *map_level)
 		new t_text_button(get_text("+"), DARK_GREY, //plus button
 			gui->unit * t_vect(8.5, 3.2), gui->unit * t_vect(1, line_height), 3,
 			color[0], color[1]),
-		map_level, 1, 1, 500,
+		map_level, 1, 8, 500,
 		NULL, 0, NULL));
 }

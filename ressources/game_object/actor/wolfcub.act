@@ -1,0 +1,21 @@
+name:Wolfy the cub
+tileset: 0
+sprite_pos: 4.000000:0.000000
+level:57
+point:286
+health:175
+action:14
+mouvement:10
+initiative:70
+attack phy:20
+defense phy:20
+attack mag:40
+defense mag:10
+spell1:NULL
+spell2:NULL
+spell3:NULL
+spell4:NULL
+spell5:NULL
+spell6:NULL
+spell7:NULL
+spell8:NULL

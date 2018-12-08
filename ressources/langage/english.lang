@@ -45,3 +45,5 @@ atk_phy;Physical attack :
 atk_mag;Magical attack :
 def_phy;Physical armor :
 def_mag;Magical armor :
+red team comp;Red team composition
+blue team comp;Blue team composition

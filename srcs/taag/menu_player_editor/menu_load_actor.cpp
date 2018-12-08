@@ -21,26 +21,27 @@ static void		increment_index(int *index, int delta, vector<string> *file_list, v
 static void		quit_load(t_data data)
 {
 	string		full_path = ACT_PATH + *((string *)(data.data[1])) + ACT_EXT;
-	*((string *)(data.data[3])) = *((string *)(data.data[1]));
+	if (data.data[3] != NULL)
+		*((string *)(data.data[3])) = *((string *)(data.data[1]));
 	*((t_actor *)(data.data[0])) = read_actor(t_data(&full_path));
 	size_t i = 0;
 	t_gui	*gui = ((t_gui *)(data.data[4]));
 
-	while (i < gui->object_list[SPELL_CARD_ID].size())
+	while (gui->object_list.size() >= SPELL_CARD_ID && i < gui->object_list[SPELL_CARD_ID].size())
 	{
 		((t_spell_card *)(gui->object_list[SPELL_CARD_ID].at(i)))->set_desc_size();
 		i++;
 	}
 
 	i = 0;
-	while (i < gui->object_list[ITERATOR_ID].size())
+	while (gui->object_list.size() >= ITERATOR_ID && i < gui->object_list[ITERATOR_ID].size())
 	{
 		((t_iterator *)(gui->object_list[ITERATOR_ID].at(i)))->set_text_value();
 		i++;
 	}
 
 	i = 0;
-	while (i < gui->object_list[SPRITE_SELECTOR_ID].size())
+	while (gui->object_list.size() >= SPRITE_SELECTOR_ID && i < gui->object_list[SPRITE_SELECTOR_ID].size())
 	{
 		((t_sprite_selector *)(gui->object_list[SPRITE_SELECTOR_ID].at(i)))->reset_actor((t_actor *)(data.data[0]));
 		i++;

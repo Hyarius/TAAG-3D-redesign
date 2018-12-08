@@ -16,7 +16,7 @@ static void			set_index_value(int *index, int a, int b, int c, int d, int e, int
 {
 	board = NULL;
 	camera = NULL;
-	board_level = 0;
+	board_level = 8;
 }
 
 					s_game_engine::s_game_engine(string p_path)
