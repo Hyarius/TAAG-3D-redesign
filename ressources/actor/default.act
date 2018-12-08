@@ -1,0 +1,22 @@
+name:Default
+tileset: NULL
+sprite_pos: 0:0
+sprite_size: 0:0
+level:0
+point:0
+health:100
+action:6
+mouvement:3
+initiative:50
+attack phy:0
+defense phy:0
+attack mag:0
+defense mag:0
+spell1:fire10
+spell2:fire9
+spell3:fire1
+spell4:fire11
+spell5:fire13
+spell6:fire6
+spell7:fire10
+spell8:fire8

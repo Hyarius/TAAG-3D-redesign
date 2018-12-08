@@ -1,0 +1,22 @@
+name:Piou-piou
+tileset: 5
+sprite_pos: 4.000000:2.000000
+sprite_size: 1.000000:1.000000
+level:103
+point:518
+health:200
+action:12
+mouvement:9
+initiative:150
+attack phy:50
+defense phy:50
+attack mag:50
+defense mag:50
+spell1:NULL
+spell2:NULL
+spell3:fire12
+spell4:NULL
+spell5:NULL
+spell6:NULL
+spell7:NULL
+spell8:NULL
