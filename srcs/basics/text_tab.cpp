@@ -10,6 +10,8 @@ void				set_lang_text(string path)
 
 	file.open(path);
 
+	if (text_map.size() != 0)
+		text_map.clear();
 	while (file.eof() == false)
 	{
 		line = get_strsplit(&file, ";", 2);
