@@ -15,7 +15,10 @@ void			quit_generate(t_data data)
 		board->camera->target = t_vect(board->board->map_size.x / 2.0, board->board->map_size.y / 2.0);
 	}
 	else
+	{
 		*(board->board) = map_generator(*size_x, *size_y, node);
+		board->camera->target = t_vect(board->board->map_size.x / 2.0, board->board->map_size.y / 2.0);
+	}
 	board->calc_camera();
 	*continu = true;
 }

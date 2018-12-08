@@ -220,11 +220,8 @@ void			create_swap_button(t_gui *gui, vector<t_cell *> *target)
 	t_vect pos = t_vect(0, 0);
 	while (i < node_list.size())
 	{
-		gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(&texture_list, &tmp, pos,
+		gui->add(GUI_OBJ_ID, new s_button(new t_tileset_button(&texture_list, &tmp, node_list[i]->pos,
 			gui->unit * t_vect(b_pos[i % 2], 2 + (((i / 2) + (i / 2) * 0.5))), gui->unit * t_vect(1, 1), 3), change_block_texture, t_data(2, target, node_list[i])));
-		pos.x += increment.x;
-		if (pos.x >= texture_list[1]->nb_sprite.x)
-			pos = t_vect(0, pos.y + increment.y);
 		i++;
 	}
 }

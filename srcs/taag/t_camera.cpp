@@ -15,7 +15,7 @@ s_camera::s_camera(int angle_x, int angle_y, int angle_z)
 	angle = t_vertex(angle_x, angle_y, angle_z);
 	offset = get_win_size() / 2;
 	target = t_vect(0, 0);
-	sprite_unit = t_vertex(60, 60, 30);
+	sprite_unit = t_vertex(60, 60, 45);
 	zoom = 1;
 	calc_axe();
 }

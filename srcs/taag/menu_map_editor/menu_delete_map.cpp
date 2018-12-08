@@ -6,9 +6,11 @@ static void		delete_file(t_data data)
 	vector<string>	*list_file = (vector<string> *)(data.data[1]);
 	vector<string>	*final_list = (vector<string> *)(data.data[2]);
 	string			file_to_delete = MAP_PATH + *((string *)(data.data[3])) + MAP_EXT;
+	string			file_to_delete2 = MAP_DESC_PATH + *((string *)(data.data[3])) + MAP_DESC_EXT;
 	size_t i = 0;
 
 	remove(file_to_delete.c_str());
+	remove(file_to_delete2.c_str());
 	if (*index - 1 >= 0)
 		*index -= 1;
 	*list_file = list_files(MAP_PATH, MAP_EXT);

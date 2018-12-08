@@ -2,6 +2,7 @@
 
 static void		increment_value(t_data data)
 {
+	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	int			*value = (int *)(data.data[0]);
 	int			delta = *((int *)(data.data[1]));
 	int			max = *((int *)(data.data[2]));
@@ -9,8 +10,9 @@ static void		increment_value(t_data data)
 	int			cost = *((int *)(data.data[4]));
 	int			*level = (int *)(data.data[5]);
 	string		*text_value = (string *)(data.data[6]);
+	int			i = (state[SDL_SCANCODE_LCTRL] ? 10 : 1);
 
-	if (value != NULL && *value + delta <= max)
+	while (i > 0 && value != NULL && *value + delta <= max)
 	{
 		*value += delta;
 		if (pool != NULL)
@@ -19,11 +21,13 @@ static void		increment_value(t_data data)
 			*level = *pool / 5;
 		}
 		*text_value = to_string(*value);
+		i--;
 	}
 }
 
 static void		decrement_value(t_data data)
 {
+	const Uint8 *state = SDL_GetKeyboardState(NULL);
 	int			*value = (int *)(data.data[0]);
 	int			delta = *((int *)(data.data[1]));
 	int			min = *((int *)(data.data[2]));
@@ -31,8 +35,9 @@ static void		decrement_value(t_data data)
 	int			cost = *((int *)(data.data[4]));
 	int			*level = (int *)(data.data[5]);
 	string		*text_value = (string *)(data.data[6]);
+	int			i = (state[SDL_SCANCODE_LCTRL] ? 10 : 1);
 
-	if (value != NULL && *value - delta >= min)
+	while (i > 0 && value != NULL && *value - delta >= min)
 	{
 		*value -= delta;
 		if (pool != NULL)
@@ -41,6 +46,7 @@ static void		decrement_value(t_data data)
 			*level = *pool / 5;
 		}
 		*text_value = to_string(*value);
+		i--;
 	}
 }
 
